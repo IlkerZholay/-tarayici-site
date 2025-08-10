@@ -7,22 +7,41 @@
   <title>Bahargül'e Not</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html,body{margin:0;padding:0;height:100%;font-family:'Playfair Display',serif;}
+    html,body{
+      margin:0;padding:0;height:100%;
+      font-family:'Playfair Display',serif;
+      overflow:hidden;
+    }
     body{
-      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+      background:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
       display:flex;align-items:center;justify-content:center;padding:2rem;
+      animation:fadeInBg 2s ease-in-out;
+    }
+    @keyframes fadeInBg {
+      from{opacity:0;} to{opacity:1;}
     }
     .overlay{
-      position:fixed;inset:0;background:rgba(255,255,255,0.6);
+      position:fixed;inset:0;
+      background:rgba(255,255,255,0.45);
+      backdrop-filter:blur(3px);
+      animation:fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from{opacity:0;} to{opacity:1;}
     }
     .card{
       position:relative;
-      background:rgba(255,255,255,0.85);
+      background:rgba(255,255,255,0.88);
       border-radius:24px;
       padding:2.4rem;
       box-shadow:0 10px 30px rgba(0,0,0,0.15);
       max-width:800px;
       z-index:1;
+      transform:translateY(20px);
+      animation:slideUp 1.8s ease-out forwards;
+    }
+    @keyframes slideUp {
+      to{transform:translateY(0);opacity:1;}
     }
     .note h1{
       font-family:'Great Vibes',cursive;
@@ -38,17 +57,11 @@
       font-size:1.2rem;
       text-align:center;
     }
-    .rose{
-      width:120px;
-      margin:0 auto 1rem;
-      display:block;
-    }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
   <div class="card">
-    <img class="rose" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/White_rose_2.jpg/640px-White_rose_2.jpg" alt="Beyaz Gül">
     <div class="note">
       <h1>Not Bahargül'e ❤️</h1>
       <p>Sevgili Bahargül,</p>
