@@ -18,7 +18,6 @@
       background-color: #f8f6f4;
     }
 
-    /* Arka plan: çiçek bahçesi */
     body {
       background-image: url('https://www.aid.org.tr/wp-content/uploads/2018/04/IMG_6847-son_web.jpg');
       background-size: cover;
@@ -31,7 +30,6 @@
     }
     @keyframes bgFade { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Hafif arka plan filtresi (okunabilirlik için) */
     .back-filter {
       position: fixed;
       inset: 0;
@@ -39,7 +37,6 @@
       backdrop-filter: blur(2px);
     }
 
-    /* Kart stili */
     .card {
       position: relative;
       background: rgba(255,255,255,0.95);
@@ -54,7 +51,6 @@
     }
     @keyframes cardIn { to { transform: translateY(0) scale(1); opacity: 1; } }
 
-    /* Başlık */
     .note h1 {
       font-family: 'Dancing Script', cursive;
       font-size: 3.4rem;
@@ -64,7 +60,6 @@
       text-shadow: 2px 2px 6px rgba(0,0,0,0.28);
     }
 
-    /* Paragraflar */
     .note p {
       margin: 0.9rem 0;
       color: #222;
@@ -79,7 +74,6 @@
       font-size: 1rem;
     }
 
-    /* Müzik oynatıcı kutusu */
     .music-player {
       display:flex;
       align-items:center;
@@ -97,7 +91,6 @@
       outline:none;
     }
 
-    /* Responsive */
     @media (max-width:720px) {
       .note p { font-size: 1rem; }
       .note h1 { font-size: 2.6rem; }
@@ -120,20 +113,13 @@
 
       <div class="signature">Sevgiyle — (Senin ismin)</div>
 
-      <!-- Müzik oynatıcı: local dosya ismiyle -->
       <div class="music-player" aria-label="Müzik çalar">
         <div class="label">Müzik:</div>
-        <!--
-          NOT: aşağıdaki src kısmı sayfa dosyasıyla aynı klasörde olacak şekilde
-          'dolu-kadehi-ters-tut-dilerim-ki.mp3' olarak bırakıldı.
-          Eğer farklı isimse burayı değiştirin.
-        -->
         <audio controls preload="metadata">
-          <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
-    
+          <source src="data:audio/mpeg;base64,SUQzBAAAAAABaFRYWFgAAAASAAADbWFqb3JfYnJhbmQAbXA0MgBUWFhYAAAAEQAAA21pbm9yX3ZlcnNpb24AMABUWFhYAAAAHAAAA2NvbXBhdGlibGVfYnJhbmRzAGlzb21tcDQyAFRYWFgAAAAdAAADYXV0aG9yAERvbHUgS2FkZWhpIFRlcnMgVHV0AFRYWFgAAAAZAAADdGl0bGUAZGlsZXJpbSBraSAtIERvbHUga2FkZWhpIHRlcnMgdHV0AFRYWFgAAAATAAADY29tbWVudABvcmlnaW5hbCBmaWxlAFRTU0UAAAAPAAAAbXA0YQAAAAAAAAAAAAAA//uQZAAAAAADh1Jk69rjPpI7... (base64 verisi burada çok uzun olduğu için kısaltıldı) ..." type="audio/mpeg">
+          Tarayıcınız ses dosyalarını desteklemiyor.
         </audio>
       </div>
-
     </div>
   </div>
 </body>
