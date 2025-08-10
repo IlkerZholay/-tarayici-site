@@ -1,202 +1,91 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
 <title>Bilgelik Arama</title>
 <style>
-  /* --- Parşömen benzeri arka plan (dış resim yok, tamamen CSS ile) --- */
-  html,body{
-    height:100%;
-    margin:0;
-    font-family: "Georgia", "Times New Roman", serif;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.unsplash.com/photo-1520975918313-60a59a7b9c1d?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+    color: white;
+    text-align: center;
   }
 
-  body{
-    /* base parchment color */
-    background:
-      radial-gradient(1200px 600px at 10% 20%, rgba(0,0,0,0.06), transparent 10%),
-      radial-gradient(900px 450px at 90% 80%, rgba(0,0,0,0.04), transparent 10%),
-      linear-gradient(180deg, #fbf6ec 0%, #f4ead6 50%, #efe4c9 100%);
-
-    /* subtle paper grain using repeating gradients (no external image) */
-    background-image:
-      linear-gradient(180deg, rgba(0,0,0,0.02) 0.5px, transparent 0.5px),
-      linear-gradient(90deg, rgba(255,255,255,0.015) 0.7px, transparent 0.7px),
-      radial-gradient(1200px 600px at 10% 20%, rgba(0,0,0,0.06), transparent 10%),
-      radial-gradient(900px 450px at 90% 80%, rgba(0,0,0,0.04), transparent 10%),
-      linear-gradient(180deg, #fbf6ec 0%, #f4ead6 50%, #efe4c9 100%);
-    background-size: auto, auto, cover, cover, cover;
-    background-blend-mode: multiply, overlay, normal, normal, normal;
+  .container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.7);
+    max-width: 500px;
+    width: 90%;
+    animation: fadeIn 2s ease-in-out;
   }
 
-  /* center layout */
-  .wrap{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:28px;
-    box-sizing:border-box;
+  h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
   }
 
-  .card{
-    width:100%;
-    max-width:760px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border-radius:18px;
-    padding:28px;
-    box-shadow: 0 10px 30px rgba(33,33,33,0.12), inset 0 1px 0 rgba(255,255,255,0.03);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(0,0,0,0.06);
+  form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
   }
 
-  header h1{
-    margin:0 0 12px 0;
-    font-size:30px;
-    color:#3c2f22;
-    letter-spacing:0.6px;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-  }
-
-  p.subtitle{
-    margin:0 0 18px 0;
-    color:#5b4a3a;
-    opacity:0.95;
-  }
-
-  /* search area */
-  .search {
-    display:flex;
-    gap:12px;
-    align-items:center;
-    margin-bottom:18px;
-  }
-
-  .search input[type="text"]{
-    flex:1;
-    padding:14px 16px;
-    font-size:16px;
-    border-radius:10px;
-    border: 1px solid rgba(60,48,36,0.12);
-    outline:none;
-    background: rgba(255,255,255,0.85);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-    color:#2b1f14;
-  }
-
-  .search input[type="text"]::placeholder{
-    color:#7b6a58;
-  }
-
-  .search button{
-    padding:12px 18px;
-    border-radius:10px;
+  input {
+    padding: 10px;
+    flex: 1;
+    font-size: 16px;
+    border-radius: 5px;
     border: none;
-    cursor:pointer;
-    background: linear-gradient(180deg,#8b5e34,#6f4726);
-    color:white;
-    font-weight:600;
-    box-shadow: 0 6px 14px rgba(107,63,27,0.24);
-    transition: transform .12s ease, box-shadow .12s ease;
-  }
-  .search button:hover{ transform: translateY(-2px); box-shadow: 0 10px 20px rgba(107,63,27,0.28); }
-
-  /* quote area */
-  .quote-wrap{
-    margin-top:16px;
-    display:flex;
-    gap:12px;
-    align-items:flex-start;
   }
 
-  .quote {
-    flex:1;
-    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
-    border-radius: 12px;
-    padding:18px;
-    color:#3b2b1f;
-    font-style:italic;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    position:relative;
-    min-height:72px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-size:18px;
-    line-height:1.4;
-    transition: opacity .6s ease, transform .6s ease;
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background: #d4a373;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
   }
 
-  .quote.small{
-    max-width:220px;
-    font-size:14px;
-    padding:12px;
+  button:hover {
+    background: #e9c46a;
+    color: black;
   }
 
-  /* buttons under quote */
-  .controls{
-    display:flex;
-    gap:8px;
-    justify-content:center;
-    margin-top:12px;
-  }
-  .icon-btn{
-    padding:8px 12px;
-    border-radius:8px;
-    border: 1px solid rgba(0,0,0,0.06);
-    background: rgba(255,255,255,0.85);
-    cursor:pointer;
-    font-weight:600;
-    color:#3b2b1f;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  .soz {
+    font-style: italic;
+    font-size: 18px;
+    color: #ffebcd;
+    animation: fadeIn 3s ease-in-out;
   }
 
-  /* small screens */
-  @media (max-width:620px){
-    .card{ padding:18px; border-radius:12px; }
-    header h1{ font-size:22px; }
-    .search{ flex-direction:column; align-items:stretch; }
-    .search button{ width:100%; }
-    .quote-wrap{ flex-direction:column; }
-    .quote.small{ max-width:none; }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
   }
-
-  /* simple fade animation for quote change */
-  .fade-out { opacity:0; transform: translateY(8px) scale(.995); }
-  .fade-in { opacity:1; transform: translateY(0) scale(1); }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card" role="main">
-      <header>
-        <h1>Bilgelik Arama</h1>
-        <p class="subtitle">Eski destanlardan ve güzel sözlerden rastgele seçilen öğütler — arama yapmak için kutuyu kullan.</p>
-      </header>
-
-      <form class="search" action="https://www.google.com/search" method="GET" onsubmit="return preserveQuery()">
-        <input id="q" name="q" type="text" placeholder="Ara... (Enter ile ara)" autocomplete="off" />
-        <button type="submit">Ara</button>
-      </form>
-
-      <div class="quote-wrap">
-        <div id="quoteBox" class="quote fade-in" aria-live="polite"></div>
-      </div>
-
-      <div class="controls" style="margin-top:14px;">
-        <button id="newBtn" class="icon-btn" title="Yeni söz">Yeni Söz</button>
-        <button id="copyBtn" class="icon-btn" title="Sözü kopyala">Kopyala</button>
-        <button id="shareBtn" class="icon-btn" title="Paylaş (kopyala link)">Paylaş</button>
-      </div>
-    </div>
+  <div class="container">
+    <h1>Bilgelik Arama</h1>
+    <form action="https://www.google.com/search" method="GET">
+      <input type="text" name="q" placeholder="Ara...">
+      <button type="submit">Ara</button>
+    </form>
+    <div class="soz" id="soz"></div>
   </div>
 
 <script>
-  // Zenginleştirilmiş söz listesi (isteğe göre genişlet)
   const sozler = [
     "Oğuz Kağan der ki: Güneş doğudan doğar, batıdan batar.",
     "Bilgi, kılıçtan keskindir.",
@@ -205,100 +94,11 @@
     "İyilik eden, iyilik bulur.",
     "Türk erinin sözü kılıcı kadar keskindir.",
     "Yurt sevgisi imandandır.",
-    "Kişi kendini bilir ise, nice bilmek gerektir.",
-    "Atın iyisini toprak örter, adamın iyisini zaman gösterir.",
-    "Bir elin nesi var, iki elin sesi var.",
-    "Bilme ki bilmezsin, bilmediğini bilirse daima bilir.",
-    "Ayağa kalkarken arkanı da düşün.",
-    "Kervan yolunu bilir, yorgun biner ama varır.",
-    "Sabırla koruk olur üzüm, kızmayınca gönül doyurur.",
-    "Güzel söz gümüşse, susmak altındır.",
-    "Yiğit, sözünde durandır; eğer sözün varsa yön ver."
+    "Kişi kendini bilir ise, nice bilmek gerektir."
   ];
 
-  const quoteBox = document.getElementById('quoteBox');
-  const newBtn = document.getElementById('newBtn');
-  const copyBtn = document.getElementById('copyBtn');
-  const shareBtn = document.getElementById('shareBtn');
-
-  let currentIndex = -1;
-  let autoTimer = null;
-
-  function pickRandomIndex(excludeIndex){
-    if(sozler.length === 1) return 0;
-    let i;
-    do {
-      i = Math.floor(Math.random() * sozler.length);
-    } while(i === excludeIndex);
-    return i;
-  }
-
-  function showQuote(idx){
-    // animate fade-out -> change -> fade-in
-    quoteBox.classList.remove('fade-in');
-    quoteBox.classList.add('fade-out');
-    setTimeout(() => {
-      quoteBox.textContent = sozler[idx];
-      quoteBox.classList.remove('fade-out');
-      quoteBox.classList.add('fade-in');
-    }, 220);
-    currentIndex = idx;
-  }
-
-  function newQuote(){
-    const idx = pickRandomIndex(currentIndex);
-    showQuote(idx);
-    resetAuto();
-  }
-
-  function resetAuto(){
-    if(autoTimer) clearInterval(autoTimer);
-    autoTimer = setInterval(newQuote, 10000); // her 10 saniyede bir otomatik değiştir
-  }
-
-  newBtn.addEventListener('click', newQuote);
-  copyBtn.addEventListener('click', () => {
-    if(currentIndex < 0) return;
-    navigator.clipboard?.writeText(sozler[currentIndex]).then(() => {
-      copyBtn.textContent = 'Kopyalandı ✓';
-      setTimeout(()=> copyBtn.textContent = 'Kopyala', 1500);
-    }).catch(()=> alert('Kopyalama desteklenmiyor.'));
-  });
-
-  shareBtn.addEventListener('click', () => {
-    const text = (currentIndex >= 0) ? sozler[currentIndex] : '';
-    const pageUrl = location.href.split('#')[0];
-    const shareText = text ? `${text} — ${pageUrl}` : pageUrl;
-    // önce Web Share API dene
-    if(navigator.share){
-      navigator.share({ text: shareText }).catch(()=> {
-        navigator.clipboard?.writeText(shareText);
-        alert('Paylaşma desteklenmiyor, metin panoya kopyalandı.');
-      });
-    } else {
-      navigator.clipboard?.writeText(shareText).then(()=> {
-        shareBtn.textContent = 'Kopyalandı ✓';
-        setTimeout(()=> shareBtn.textContent = 'Paylaş', 1500);
-      }).catch(()=> alert('Paylaşma/kopyalama desteklenmiyor.'));
-    }
-  });
-
-  // form submit'te eğer arama kutusu boşsa rastgele sözü sorguya koy (kullanıcının isteğine göre)
-  function preserveQuery(){
-    const q = document.getElementById('q').value.trim();
-    if(!q && currentIndex >= 0){
-      // eğer boşsa arama sorgusuna şu anki sözü yerleştir
-      document.getElementById('q').value = sozler[currentIndex];
-    }
-    return true; // formu gönder
-  }
-
-  // başlangıçta bir söz göster
-  (function init(){
-    const start = Math.floor(Math.random() * sozler.length);
-    showQuote(start);
-    resetAuto();
-  })();
+  document.getElementById("soz").innerText =
+    sozler[Math.floor(Math.random() * sozler.length)];
 </script>
 </body>
 </html>
