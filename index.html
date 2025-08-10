@@ -1,57 +1,61 @@
-<svg class="float-heart" style="left:78%;top:12%;width:120px;opacity:0.6" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M23.6 2.6c-2.6 0-4.5 1.7-5.6 3.3C16.9 4.3 15 2.6 12.4 2.6 8.1 2.6 4.8 6.2 4.8 10.3c0 7.3 11.2 13.9 11.2 13.9S27.2 17.6 27.2 10.3c0-4.1-3.3-7.7-7.6-7.7z" fill="#ffe6ec"/></svg>  <div class="card" role="main">
+<!doctype html>
+
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bahargül'e Not</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html,body{margin:0;padding:0;height:100%;font-family:'Playfair Display',serif;}
+    body{
+      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+      display:flex;align-items:center;justify-content:center;padding:2rem;
+    }
+    .overlay{
+      position:fixed;inset:0;background:rgba(255,255,255,0.6);
+    }
+    .card{
+      position:relative;
+      background:rgba(255,255,255,0.85);
+      border-radius:24px;
+      padding:2.4rem;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+      max-width:800px;
+      z-index:1;
+    }
+    .note h1{
+      font-family:'Great Vibes',cursive;
+      font-size:3.2rem;
+      margin:0 0 1rem;
+      color:#b63c5a;
+      text-align:center;
+    }
+    .note p{
+      margin:1rem 0;
+      color:#374042;
+      line-height:1.8;
+      font-size:1.2rem;
+      text-align:center;
+    }
+    .rose{
+      width:120px;
+      margin:0 auto 1rem;
+      display:block;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="card">
+    <img class="rose" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/White_rose_2.jpg/640px-White_rose_2.jpg" alt="Beyaz Gül">
     <div class="note">
-      <h1>Not Bahargül'e <span class="heart">❤️</span></h1>
-      <p>
-        Sevgili Bahargül,
-      </p>
-      <p>
-        Bugün güneş biraz daha parlak, kuşlar daha bir neşeli çünkü aklımda hep sen varsın. Seninle geçen her an, hayatımın en güzel baharı gibi; her gülüşün çiçek açtırıyor içimde. Seni tanıdığım için çok şanslıyım — seninle her şey daha anlamlı, daha sıcak.
-      </p>
-      <p>
-        Hep yanında olmak, elini tutmak ve birlikte yeni anılar biriktirmek istiyorum. Seni çok seviyorum, Bahargül. 🌸
-      </p>
-      <div class="actions">
-        <button class="btn btn-pink" onclick="toggleLike(this)">Bunu beğen</button>
-        <button class="btn btn-soft" onclick="downloadNote()">Kaydet (HTML)</button>
-      </div>
-      <footer>Sevgiyle — (Senin ismin)</footer>
-    </div><aside class="side" aria-hidden="false">
-  <div class="rose-stack">
-    <!-- decorative white rose SVG -->
-    <svg class="rose-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="beyaz gül">
-      <defs>
-        <radialGradient id="g1" cx="40%" cy="30%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="100%" stop-color="#f2f3f5"/>
-        </radialGradient>
-      </defs>
-      <g transform="translate(100,100)">
-        <circle r="80" fill="url(#g1)" opacity="0.6"/>
-        <path d="M0,-20 C18,-18 30,2 14,18 C28,6 42,18 34,34 C22,58 -6,68 -22,54 C-40,38 -36,14 -44,-6 C-54,-30 -18,-36 0,-20 Z" fill="#fff" stroke="#eee" stroke-width="0.8"/>
-        <path d="M6,-6 C18,2 28,16 20,28 C10,44 -6,46 -18,38 C-26,32 -18,18 -10,10 C-4,4 2,0 6,-6 Z" fill="#fff" stroke="#f1f1f1" stroke-width="0.6"/>
-        <circle r="6" fill="#fff8e6" opacity="0.9"/>
-      </g>
-    </svg>
+      <h1>Not Bahargül'e ❤️</h1>
+      <p>Sevgili Bahargül,</p>
+      <p>Bugün güneş biraz daha parlak, kuşlar daha bir neşeli çünkü aklımda hep sen varsın. Seninle geçen her an, hayatımın en güzel baharı gibi; her gülüşün çiçek açtırıyor içimde. Seni tanıdığım için çok şanslıyım — seninle her şey daha anlamlı, daha sıcak.</p>
+      <p>Hep yanında olmak, elini tutmak ve birlikte yeni anılar biriktirmek istiyorum. Seni çok seviyorum, Bahargül. 🌸</p>
+      <p style="text-align:right;margin-top:2rem;">Sevgiyle — (Senin ismin)</p>
+    </div>
   </div>
-  <small style="opacity:.9;text-align:center">Baharın tazeliği ve bir gülün masumiyeti sana ait.</small>
-</aside>
-
-  </div>  <script>
-    function toggleLike(btn){
-      if(btn.dataset.liked==='1'){
-        btn.dataset.liked='0';btn.textContent='Bunu beğen';btn.style.transform='scale(1)';
-      } else {
-        btn.dataset.liked='1';btn.textContent='Beğenildi ❤️';btn.style.transform='scale(1.04)';
-      }
-    }
-
-    function downloadNote(){
-      const html = document.documentElement.outerHTML;
-      const blob = new Blob([html], {type: 'text/html'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'bahargul-not.html';
-      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    }
-  </script></body>
+</body>
 </html>
