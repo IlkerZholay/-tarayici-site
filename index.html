@@ -1,108 +1,57 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<title>Bilgelik Arama</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-
-  body {
-    font-family: 'Georgia', serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    text-align: center;
-  }
-
-  .container {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.7);
-    max-width: 500px;
-    width: 90%;
-    animation: fadeIn 2s ease-in-out;
-  }
-
-  h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-  }
-
-  form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  input {
-    padding: 10px;
-    flex: 1;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-  }
-
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    background: #d4a373;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  button:hover {
-    background: #e9c46a;
-    color: black;
-  }
-
-  .soz {
-    font-style: italic;
-    font-size: 18px;
-    color: #ffebcd;
-    animation: fadeIn 3s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-</style>
-</head>
-<body>
-  <div class="container">
-    <h1>Bilgelik Arama</h1>
-    <form action="https://www.google.com/search" method="GET">
-      <input type="text" name="q" placeholder="Ara...">
-      <button type="submit">Ara</button>
-    </form>
-    <div class="soz" id="soz"></div>
+<svg class="float-heart" style="left:78%;top:12%;width:120px;opacity:0.6" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M23.6 2.6c-2.6 0-4.5 1.7-5.6 3.3C16.9 4.3 15 2.6 12.4 2.6 8.1 2.6 4.8 6.2 4.8 10.3c0 7.3 11.2 13.9 11.2 13.9S27.2 17.6 27.2 10.3c0-4.1-3.3-7.7-7.6-7.7z" fill="#ffe6ec"/></svg>  <div class="card" role="main">
+    <div class="note">
+      <h1>Not Bahargül'e <span class="heart">❤️</span></h1>
+      <p>
+        Sevgili Bahargül,
+      </p>
+      <p>
+        Bugün güneş biraz daha parlak, kuşlar daha bir neşeli çünkü aklımda hep sen varsın. Seninle geçen her an, hayatımın en güzel baharı gibi; her gülüşün çiçek açtırıyor içimde. Seni tanıdığım için çok şanslıyım — seninle her şey daha anlamlı, daha sıcak.
+      </p>
+      <p>
+        Hep yanında olmak, elini tutmak ve birlikte yeni anılar biriktirmek istiyorum. Seni çok seviyorum, Bahargül. 🌸
+      </p>
+      <div class="actions">
+        <button class="btn btn-pink" onclick="toggleLike(this)">Bunu beğen</button>
+        <button class="btn btn-soft" onclick="downloadNote()">Kaydet (HTML)</button>
+      </div>
+      <footer>Sevgiyle — (Senin ismin)</footer>
+    </div><aside class="side" aria-hidden="false">
+  <div class="rose-stack">
+    <!-- decorative white rose SVG -->
+    <svg class="rose-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="beyaz gül">
+      <defs>
+        <radialGradient id="g1" cx="40%" cy="30%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#f2f3f5"/>
+        </radialGradient>
+      </defs>
+      <g transform="translate(100,100)">
+        <circle r="80" fill="url(#g1)" opacity="0.6"/>
+        <path d="M0,-20 C18,-18 30,2 14,18 C28,6 42,18 34,34 C22,58 -6,68 -22,54 C-40,38 -36,14 -44,-6 C-54,-30 -18,-36 0,-20 Z" fill="#fff" stroke="#eee" stroke-width="0.8"/>
+        <path d="M6,-6 C18,2 28,16 20,28 C10,44 -6,46 -18,38 C-26,32 -18,18 -10,10 C-4,4 2,0 6,-6 Z" fill="#fff" stroke="#f1f1f1" stroke-width="0.6"/>
+        <circle r="6" fill="#fff8e6" opacity="0.9"/>
+      </g>
+    </svg>
   </div>
+  <small style="opacity:.9;text-align:center">Baharın tazeliği ve bir gülün masumiyeti sana ait.</small>
+</aside>
 
-<script>
-  const sozler = [
-    "Oğuz Kağan der ki: Güneş doğudan doğar, batıdan batar.",
-    "Bilgi, kılıçtan keskindir.",
-    "Yiğit, savaşta belli olur.",
-    "Söz, ok gibidir; yaydan çıkınca geri dönmez.",
-    "İyilik eden, iyilik bulur.",
-    "Türk erinin sözü kılıcı kadar keskindir.",
-    "Yurt sevgisi imandandır.",
-    "Kişi kendini bilir ise, nice bilmek gerektir."
-  ];
+  </div>  <script>
+    function toggleLike(btn){
+      if(btn.dataset.liked==='1'){
+        btn.dataset.liked='0';btn.textContent='Bunu beğen';btn.style.transform='scale(1)';
+      } else {
+        btn.dataset.liked='1';btn.textContent='Beğenildi ❤️';btn.style.transform='scale(1.04)';
+      }
+    }
 
-  document.getElementById("soz").innerText =
-    sozler[Math.floor(Math.random() * sozler.length)];
-</script>
-</body>
+    function downloadNote(){
+      const html = document.documentElement.outerHTML;
+      const blob = new Blob([html], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'bahargul-not.html';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+  </script></body>
 </html>
