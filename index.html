@@ -5,49 +5,100 @@
 <title>Bilgelik Arama</title>
 <style>
   body {
-    text-align: center;
+    margin: 0;
+    padding: 0;
     font-family: 'Georgia', serif;
-    background: #f4f1e3;
-    padding-top: 80px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.unsplash.com/photo-1604176354204-926a62e7e5c3?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+    color: white;
+    text-align: center;
   }
+
+  .container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.7);
+    max-width: 500px;
+    width: 90%;
+    animation: fadeIn 2s ease-in-out;
+  }
+
   h1 {
     font-size: 36px;
-    color: #4b3621;
+    margin-bottom: 20px;
   }
+
+  form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
   input {
     padding: 10px;
-    width: 300px;
+    flex: 1;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #aaa;
+    border: none;
   }
+
   button {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
-    background: #8b5e34;
+    background: #d4a373;
     color: white;
     border: none;
     cursor: pointer;
+    transition: 0.3s;
   }
+
   button:hover {
-    background: #a97142;
+    background: #e9c46a;
+    color: black;
   }
+
   .soz {
-    margin-top: 40px;
     font-style: italic;
-    color: #555;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 18px;
+    color: #ffebcd;
+    animation: fadeIn 3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
   }
 </style>
 </head>
 <body>
-<h1>Bilgelik Arama</h1>
-<form action="https://www.google.com/search" method="GET">
-  <input type="text" name="q" placeholder="Ara...">
-  <button type="submit">Ara</button>
-</form>
-<div class="soz"
+  <div class="container">
+    <h1>Bilgelik Arama</h1>
+    <form action="https://www.google.com/search" method="GET">
+      <input type="text" name="q" placeholder="Ara...">
+      <button type="submit">Ara</button>
+    </form>
+    <div class="soz" id="soz"></div>
+  </div>
 
+<script>
+  const sozler = [
+    "Oğuz Kağan der ki: Güneş doğudan doğar, batıdan batar.",
+    "Bilgi, kılıçtan keskindir.",
+    "Yiğit, savaşta belli olur.",
+    "Söz, ok gibidir; yaydan çıkınca geri dönmez.",
+    "İyilik eden, iyilik bulur.",
+    "Türk erinin sözü kılıcı kadar keskindir.",
+    "Yurt sevgisi imandandır.",
+    "Kişi kendini bilir ise, nice bilmek gerektir."
+  ];
+
+  document.getElementById("soz").innerText =
+    sozler[Math.floor(Math.random() * sozler.length)];
+</script>
+</body>
+</html>
