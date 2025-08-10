@@ -84,6 +84,12 @@
       font-size: 1rem;
     }
 
+    /* Müzik oynatıcı */
+    .music-player {
+      text-align: center;
+      margin-top: 20px;
+    }
+
     /* Responsive */
     @media (max-width: 720px) {
       .note p { font-size: 1rem; }
@@ -97,12 +103,20 @@
   <div class="card">
     <div class="note">
       <h1>Not Bahargül'e ❤️</h1>
-      <p>Sevgili Ufaklık</p>
       <p>Aramızda zaman zaman küslükler, kırgınlıklar olabilir. Ama bil ki bu kötü devirde birbirimize sahip çıkmak her şeyden önemli. Bizim bağımız, ufak tefek tartışmalardan çok daha güçlü.</p>
       <p>Ben senin her durumda yanında olacağım. İyi günde de, kötü günde de, gülüşlerinde de, gözyaşlarında da... Çünkü sen benim hayatımda en değerli insansın.</p>
       <p>Ne olursa olsun, birbirimize sarılmayı, anlamayı ve sevmeyi asla bırakmayalım. Seni seviyorum Bahargül, hem de çok. 🌸</p>
-      <div class="signature">Sevgiyle — (İlker)</div>
+      <div class="signature">Sevgiyle — (Senin ismin)</div>
     </div>
+
+    <!-- Şarkı oynatıcı -->
+    <div class="music-player">
+      <audio controls>
+        <source src="SARKI_LINKI.mp3" type="audio/mpeg">
+        Tarayıcınız ses dosyalarını desteklemiyor.
+      </audio>
+    </div>
+
   </div>
 </body>
 </html>
