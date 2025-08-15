@@ -20,7 +20,7 @@
       background-size:cover; background-position:center; filter:contrast(1.03) saturate(1.03);
     }
     .veil{position:absolute; inset:0; background:linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.18)); backdrop-filter:blur(1px);}
-    .content{position:relative; z-index:2; display:grid; grid-template-columns: 1fr 380px; gap:20px; padding:32px;}
+    .content{position:relative; z-index:2; display:grid; grid-template-columns: 1fr 400px; gap:20px; padding:32px;}
     @media (max-width:980px){ .content{grid-template-columns:1fr; padding:20px} }
     .left{padding:6px 12px}
     h1{font-family:'Dancing Script',cursive; font-size:3.4rem; margin:0 0 6px; color:var(--accent);}
@@ -33,7 +33,7 @@
     .right{display:flex; flex-direction:column; align-items:center; gap:14px; padding:6px 12px;}
     .decorative{width:100%; border-radius:12px; padding:12px; background:linear-gradient(180deg,#fff,#fff0); box-shadow:0 8px 30px rgba(10,20,10,0.06); display:flex; align-items:center; justify-content:center; flex-direction:column;}
     .flower-svg{width:220px; height:auto; display:block}
-    .controls{display:flex; gap:10px; margin-top:8px;}
+    .controls{display:flex; gap:10px; margin-top:8px; flex-wrap:wrap; justify-content:center}
     .btn{background:var(--accent); color:white; padding:10px 14px; border-radius:12px; border:0; cursor:pointer; font-weight:700; box-shadow:0 10px 28px rgba(180,60,88,0.12)}
     .btn.ghost{background:transparent; color:var(--accent); border:1px solid rgba(180,60,88,0.12)}
     .note{font-size:0.95rem; color:#5a5a5a; text-align:center; margin-top:6px;}
@@ -43,24 +43,26 @@
     .petal.p3{left:38%; top:76%; animation-duration:13.5s}
     @keyframes floaty{0%{transform:translateY(0) rotate(0) scale(1)} 50%{transform:translateY(-26px) rotate(12deg) scale(.98)} 100%{transform:translateY(0) rotate(0) scale(1)}}
     footer{text-align:center; padding:12px; color:#6b6f70; font-size:0.9rem; margin-top:8px;}
+    .file { display:none }
+    .status { font-size:.9rem; color:#6b6f70; margin-top:6px; text-align:center }
   </style>
 </head>
 <body>
-  <div class="scene" role="application" aria-label="Bahargül için sürpriz not">
+  <div class="scene" role="application" aria-label="Ufaklık için sürpriz not">
     <div class="garden" aria-hidden="true"></div>
     <div class="veil" aria-hidden="true"></div>
 
     <div class="content" role="main">
       <!-- Sol: Mesaj -->
       <div class="left" aria-live="polite">
-        <h1>Not Bahargül'e <span aria-hidden="true">🌸</span></h1>
+        <h1>Not Ufaklığa <span aria-hidden="true">🌸</span></h1>
         <div class="typing-box" id="typeArea" aria-atomic="false" aria-relevant="additions"></div>
-        <div class="signature" id="signature">Sevgiyle — (İlker)</div>
+        <div class="signature" id="signature">Sevgiyle — İlker</div>
         <div style="margin-top:12px;">
           <button class="btn" id="startBtn">Mesajı Göster</button>
           <button class="btn ghost" id="replayBtn" style="display:none">Baştan</button>
         </div>
-        <div class="note">Müziği sağdan açabilirsin. (Tarayıcı otomatik oynatmayı engelleyebilir.)</div>
+        <div class="note">Müziği sağdan açabilirsin. Otomatik çalma engellenebilir; istersen önce “MP3 Seç” ile kendi dosyanı seç.</div>
       </div>
 
       <!-- Sağ: Süs + Müzik -->
@@ -91,16 +93,18 @@
           <div class="controls" role="group" aria-label="Müzik kontrolleri">
             <button class="btn" id="playAudioBtn" aria-controls="audio">Oynat</button>
             <button class="btn ghost" id="pauseAudioBtn" aria-controls="audio">Duraklat</button>
+            <label class="btn ghost" for="fileInput">MP3 Seç</label>
+            <input id="fileInput" class="file" type="file" accept="audio/mpeg,audio/mp3,audio/*" />
           </div>
           <div style="margin-top:10px">
-            <!-- Gömülü MP3: tek dosya -->
-            <audio id="audio" preload="metadata" controls style="width:100%;max-width:320px;border-radius:8px;">
-              <source src="data:audio/mpeg;base64,SUQzBAAAAAABaFRYWFgAAAASAAADbWFqb3JfYnJhbmQAbXA0MgBUWFhYAAAAEQAAA21pbm9yX3ZlcnNpb24AMABUWFhYAAAAHAAA
-" type="audio/mpeg">
+            <audio id="audio" preload="metadata" controls style="width:100%;max-width:340px;border-radius:8px;">
+              <!-- İstersen varsayılan bir şarkı yolu koy: aynı klasöre 'dilerim-ki.mp3' dersen otomatik yükler -->
+              <!-- <source src="dilerim-ki.mp3" type="audio/mpeg"> -->
               Tarayıcınız ses dosyalarını desteklemiyor.
             </audio>
+            <div class="status" id="status">Hazır.</div>
           </div>
-          <div class="note">Müzik: "Dilerim Ki" — oynat düğmesine bas.</div>
+          <div class="note">İpucu: “MP3 Seç” ile yerelden seçtiğin dosya internet gerektirmez.</div>
         </div>
       </aside>
     </div>
@@ -114,14 +118,15 @@
   </div>
 
   <script>
+    // Mesajlar (Ufaklığa göre düzenlendi)
     const messages = [
       "Bugün canın biraz sıkkınmış olabilir, biliyorum —",
       "Belki işler istediğin gibi gitmedi; belki yorgun, belki kırgınsın.",
       "Ama bil ki: Ben buradayım. Hemen yanında, elini uzatsan tutacak kadar yakın.",
       "Konuşmak istersen dinlerim; susmak istersen yanında sessizce otururum.",
       "Birlikte yürüyelim istersen; rüzgâr dağıtsın içindeki bulutları.",
-      "İyi günde de, zor günde de: kalbimin en güvenli yeri senin.",
-      "Seni seviyorum Bahargül — ve her hâlinde yanındayım."
+      "İyi günde de, zor günde de: kalbimin en güvenli yeri sensin.",
+      "Seni çok seviyorum Ufaklık — ve her hâlinde yanındayım."
     ];
 
     const typeArea = document.getElementById('typeArea');
@@ -131,6 +136,8 @@
     const audio = document.getElementById('audio');
     const playBtn = document.getElementById('playAudioBtn');
     const pauseBtn = document.getElementById('pauseAudioBtn');
+    const fileInput = document.getElementById('fileInput');
+    const statusEl = document.getElementById('status');
 
     let typing = false;
     const sleep = (ms)=> new Promise(r=>setTimeout(r, ms));
@@ -171,11 +178,26 @@
       typeArea.innerHTML=''; signature.style.opacity=0; replayBtn.style.display='none'; setTimeout(()=>typeAll(), 200);
     });
 
+    // Müzik kontrolleri
     playBtn.addEventListener('click', ()=> audio.play());
     pauseBtn.addEventListener('click', ()=> audio.pause());
 
     audio.addEventListener('play', ()=>{ document.querySelector('.scene').style.boxShadow='0 40px 110px rgba(20,30,20,0.18)'; });
     audio.addEventListener('pause', ()=>{ document.querySelector('.scene').style.boxShadow='0 28px 90px rgba(20,30,20,0.12)'; });
+
+    // Yerelden MP3 seçme (internetsiz, tek dosya)
+    fileInput.addEventListener('change', ()=>{
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      audio.innerHTML = ''; // Eski source'ları temizle
+      const src = document.createElement('source');
+      src.src = url;
+      src.type = file.type || 'audio/mpeg';
+      audio.appendChild(src);
+      audio.load();
+      statusEl.textContent = `Yüklendi: ${file.name}`;
+    });
 
     startBtn.addEventListener('keyup', (e)=>{ if(e.key==='Enter') startBtn.click(); });
     playBtn.addEventListener('keyup', (e)=>{ if(e.key==='Enter') playBtn.click(); });
