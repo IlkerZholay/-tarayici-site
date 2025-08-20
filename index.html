@@ -1,208 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Not Ufaklığa — Tek Dosya Sürpriz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bahargül & İlker</title>
   <style>
-    :root { --accent:#b43c58; --card:rgba(255,255,255,0.94); }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:#f6f8f5;font-family:'Playfair Display',serif}
-    body{display:flex;align-items:center;justify-content:center;padding:28px}
-    .scene{
-      position:relative; width:min(1100px,96%); min-height:660px; border-radius:18px; overflow:hidden;
-      background:linear-gradient(180deg,#ffffffee,#ffffffdd); box-shadow:0 28px 90px rgba(20,30,20,0.12);
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Dancing Script', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      background: url('https://i.ibb.co/JwzhgHwZ/b.jpg') no-repeat center center/cover;
+      color: white;
     }
-    .garden{
-      position:absolute; inset:0;
-      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="%23fffaf0"/><stop offset="1" stop-color="%23f0fff4"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g1)"/><g transform="translate(0,560)"><rect x="0" y="0" width="1200" height="260" fill="%23a8dba8" opacity="0.18"/></g><g transform="translate(90,600)"><g fill="%23ffb6c1"><circle cx="60" cy="-40" r="28"/><circle cx="20" cy="-30" r="18"/></g></g><g transform="translate(360,620)"><g fill="%23ffd6e0"><circle cx="0" cy="0" r="24"/><circle cx="36" cy="-12" r="18"/></g></g><g transform="translate(820,620)"><g fill="%23ffe4b5"><circle cx="0" cy="0" r="28"/><circle cx="40" cy="-10" r="16"/></g></g></svg>');
-      background-size:cover; background-position:center; filter:contrast(1.03) saturate(1.03);
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 700px;
     }
-    .veil{position:absolute; inset:0; background:linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.18)); backdrop-filter:blur(1px);}
-    .content{position:relative; z-index:2; display:grid; grid-template-columns: 1fr 400px; gap:20px; padding:32px;}
-    @media (max-width:980px){ .content{grid-template-columns:1fr; padding:20px} }
-    .left{padding:6px 12px}
-    h1{font-family:'Dancing Script',cursive; font-size:3.4rem; margin:0 0 6px; color:var(--accent);}
-    .typing-box{
-      margin-top:14px; background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,255,255,0.96));
-      padding:16px; border-radius:12px; min-height:260px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
     }
-    .line{font-size:1.12rem; color:#222; line-height:1.8; margin:0 0 10px; opacity:0; transform:translateY(8px); transition:all .45s cubic-bezier(.2,.9,.3,1)}
-    .signature{text-align:right; margin-top:14px; color:#4b4f50; font-weight:600; opacity:0; transition:opacity .6s ease;}
-    .right{display:flex; flex-direction:column; align-items:center; gap:14px; padding:6px 12px;}
-    .decorative{width:100%; border-radius:12px; padding:12px; background:linear-gradient(180deg,#fff,#fff0); box-shadow:0 8px 30px rgba(10,20,10,0.06); display:flex; align-items:center; justify-content:center; flex-direction:column;}
-    .flower-svg{width:220px; height:auto; display:block}
-    .controls{display:flex; gap:10px; margin-top:8px; flex-wrap:wrap; justify-content:center}
-    .btn{background:var(--accent); color:white; padding:10px 14px; border-radius:12px; border:0; cursor:pointer; font-weight:700; box-shadow:0 10px 28px rgba(180,60,88,0.12)}
-    .btn.ghost{background:transparent; color:var(--accent); border:1px solid rgba(180,60,88,0.12)}
-    .note{font-size:0.95rem; color:#5a5a5a; text-align:center; margin-top:6px;}
-    .petal{position:absolute; width:36px; height:36px; opacity:.95; animation:floaty linear infinite; pointer-events:none}
-    .petal.p1{left:8%; top:14%; animation-duration:11s}
-    .petal.p2{left:82%; top:8%; animation-duration:8.8s}
-    .petal.p3{left:38%; top:76%; animation-duration:13.5s}
-    @keyframes floaty{0%{transform:translateY(0) rotate(0) scale(1)} 50%{transform:translateY(-26px) rotate(12deg) scale(.98)} 100%{transform:translateY(0) rotate(0) scale(1)}}
-    footer{text-align:center; padding:12px; color:#6b6f70; font-size:0.9rem; margin-top:8px;}
-    .file { display:none }
-    .status { font-size:.9rem; color:#6b6f70; margin-top:6px; text-align:center }
+
+    p {
+      font-size: 24px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
-  <div class="scene" role="application" aria-label="Ufaklık için sürpriz not">
-    <div class="garden" aria-hidden="true"></div>
-    <div class="veil" aria-hidden="true"></div>
-
-    <div class="content" role="main">
-      <!-- Sol: Mesaj -->
-      <div class="left" aria-live="polite">
-        <h1>Not Ufaklığa <span aria-hidden="true">🌸</span></h1>
-        <div class="typing-box" id="typeArea" aria-atomic="false" aria-relevant="additions"></div>
-        <div class="signature" id="signature">Sevgiyle — İlker</div>
-        <div style="margin-top:12px;">
-          <button class="btn" id="startBtn">Mesajı Göster</button>
-          <button class="btn ghost" id="replayBtn" style="display:none">Baştan</button>
-        </div>
-        <div class="note">UMARIM BU NOT YÜZÜNE UFAK BİR TEBESSÜM KONDURABİLMİŞTİR GÖZÜMÜN NURU</div>
-      </div>
-
-      <!-- Sağ: Süs + Müzik -->
-      <aside class="right" aria-hidden="false">
-        <div class="decorative" role="img" aria-label="Çiçek illüstrasyonu">
-          <svg class="flower-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <radialGradient id="rg" cx="40%" cy="30%">
-                <stop offset="0%" stop-color="#fff9f9"/>
-                <stop offset="100%" stop-color="#ffeef2"/>
-              </radialGradient>
-              <linearGradient id="lg" x1="0" x2="1">
-                <stop offset="0" stop-color="#ffd6e0"/>
-                <stop offset="1" stop-color="#ffb6c1"/>
-              </linearGradient>
-            </defs>
-            <g transform="translate(100,100)">
-              <circle r="66" fill="url(#rg)" opacity="0.98"/>
-              <path d="M0,-28 C20,-24 34,6 20,22 C34,8 48,22 40,42 C24,68 -6,78 -28,62 C-50,44 -48,18 -56,-4 C-66,-34 -24,-40 0,-28 Z" fill="#fff" stroke="#f3d6dd" stroke-width="0.8"/>
-              <g transform="translate(-6,6)"><path d="M0 -6 a 8 8 0 1 0 0.1 0" fill="url(#lg)" opacity="0.98"/></g>
-            </g>
-          </svg>
-          <div style="font-weight:700;margin-top:6px;color:#6b3b4f">Birlikte Bahara</div>
-          <div style="font-size:0.9rem;color:#7a7a7a;margin-top:4px">Her anın kıymetli</div>
-        </div>
-
-        <div style="width:100%;text-align:center">
-          <div class="controls" role="group" aria-label="Müzik kontrolleri">
-            <button class="btn" id="playAudioBtn" aria-controls="audio">Oynat</button>
-            <button class="btn ghost" id="pauseAudioBtn" aria-controls="audio">Duraklat</button>
-            <label class="btn ghost" for="fileInput">MP3 Seç</label>
-            <input id="fileInput" class="file" type="file" accept="audio/mpeg,audio/mp3,audio/*" />
-          </div>
-          <div style="margin-top:10px">
-            <audio id="audio" preload="metadata" controls style="width:100%;max-width:340px;border-radius:8px;">
-              <!-- İstersen varsayılan bir şarkı yolu koy: aynı klasöre 'dilerim-ki.mp3' dersen otomatik yükler -->
-              <!-- <source src="dilerim-ki.mp3" type="audio/mpeg"> -->
-              Tarayıcınız ses dosyalarını desteklemiyor.
-            </audio>
-            <div class="status" id="status">Hazır.</div>
-          </div>
-          <div class="note">İpucu: “MP3 Seç” ile yerelden seçtiğin dosya internet gerektirmez.</div>
-        </div>
-      </aside>
-    </div>
-
-    <!-- Uçuşan yapraklar -->
-    <svg class="petal p1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2s4 2 5 5-2 6-5 9-5-3-5-6 2-8 5-8z" fill="#fff2f4" opacity="0.95"/></svg>
-    <svg class="petal p2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2s4 2 5 5-2 6-5 9-5-3-5-6 2-8 5-8z" fill="#fff6e6" opacity="0.9"/></svg>
-    <svg class="petal p3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2s4 2 5 5-2 6-5 9-5-3-5-6 2-8 5-8z" fill="#fff8f1" opacity="0.9"/></svg>
-
-    <footer>Bu sürpriz sadece senin için — yanında olduğumu unutma.</footer>
+  <div class="overlay">
+    <h1>Not Ufaklığa</h1>
+    <p>
+      Aramızda bazen küçük kırgınlıklar olur, bazen de sessizlikler...  
+      Ama bil ki ben her durumda senin yanındayım. 🌸  
+      Sen benim en değerli parçam, en güzel baharımsın.  
+      Bugün canın ne kadar sıkılmış olursa olsun, ben seni gülümsetmek için buradayım.  
+      Seninle geçirdiğim her an, kalbimde sakladığım bir hazine.  
+      Seni çok seviyorum Bahargül 💖
+    </p>
+    <p style="margin-top:20px; font-size:20px;">- İlker</p>
   </div>
-
-  <script>
-    // Mesajlar (Ufaklığa göre düzenlendi)
-    const messages = [
-      "Bugün canın biraz sıkkın olabilir, biliyorum —",
-      "Belki işler istediğin gibi gitmedi; belki yorgun, belki kırgınsın.",
-      "Ama bil ki: Ben buradayım. Hemen yanında, elini uzatsan tutacak kadar yakın.",
-      "Konuşmak istersen dinlerim; susmak istersen yanında sessizce otururum.",
-      "Birlikte yürüyelim istersen; rüzgâr dağıtsın içindeki bulutları.",
-      "İyi günde de, zor günde de: kalbimin en güvenli yeri sensin.",
-      "Seni çok seviyorum Ufaklık — ve her durumda yanındayım."
-    ];
-
-    const typeArea = document.getElementById('typeArea');
-    const startBtn = document.getElementById('startBtn');
-    const replayBtn = document.getElementById('replayBtn');
-    const signature = document.getElementById('signature');
-    const audio = document.getElementById('audio');
-    const playBtn = document.getElementById('playAudioBtn');
-    const pauseBtn = document.getElementById('pauseAudioBtn');
-    const fileInput = document.getElementById('fileInput');
-    const statusEl = document.getElementById('status');
-
-    let typing = false;
-    const sleep = (ms)=> new Promise(r=>setTimeout(r, ms));
-
-    async function typeAll(){
-      if(typing) return;
-      typing = true;
-      startBtn.disabled = true;
-      replayBtn.style.display = 'none';
-      typeArea.innerHTML = '';
-      signature.style.opacity = 0;
-
-      for (let i=0; i<messages.length; i++) {
-        const p = document.createElement('p');
-        p.className = 'line';
-        typeArea.appendChild(p);
-        await typeText(p, messages[i]);
-        p.style.opacity = 1;
-        p.style.transform = 'translateY(0)';
-        await sleep(650);
-      }
-      signature.style.opacity = 1;
-      replayBtn.style.display = 'inline-block';
-      startBtn.disabled = false;
-      typing = false;
-    }
-
-    async function typeText(el, text) {
-      const base = 28;
-      for (let i=0; i<text.length; i++) {
-        el.textContent = text.slice(0, i+1);
-        await sleep(base + Math.floor(Math.random()*16));
-      }
-    }
-
-    startBtn.addEventListener('click', ()=> typeAll());
-    replayBtn.addEventListener('click', ()=>{
-      typeArea.innerHTML=''; signature.style.opacity=0; replayBtn.style.display='none'; setTimeout(()=>typeAll(), 200);
-    });
-
-    // Müzik kontrolleri
-    playBtn.addEventListener('click', ()=> audio.play());
-    pauseBtn.addEventListener('click', ()=> audio.pause());
-
-    audio.addEventListener('play', ()=>{ document.querySelector('.scene').style.boxShadow='0 40px 110px rgba(20,30,20,0.18)'; });
-    audio.addEventListener('pause', ()=>{ document.querySelector('.scene').style.boxShadow='0 28px 90px rgba(20,30,20,0.12)'; });
-
-    // Yerelden MP3 seçme (internetsiz, tek dosya)
-    fileInput.addEventListener('change', ()=>{
-      const file = fileInput.files && fileInput.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      audio.innerHTML = ''; // Eski source'ları temizle
-      const src = document.createElement('source');
-      src.src = url;
-      src.type = file.type || 'audio/mpeg';
-      audio.appendChild(src);
-      audio.load();
-      statusEl.textContent = `Yüklendi: ${file.name}`;
-    });
-
-    startBtn.addEventListener('keyup', (e)=>{ if(e.key==='Enter') startBtn.click(); });
-    playBtn.addEventListener('keyup', (e)=>{ if(e.key==='Enter') playBtn.click(); });
-
-    startBtn.focus();
-  </script>
 </body>
 </html>
