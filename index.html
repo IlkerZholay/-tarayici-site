@@ -66,10 +66,10 @@
 
   <div class="section">
     <h2>📅 Bir Sonraki Buluşma Tarihi</h2>
-    <label for="meetingTime">Tarih seç:</label>
+    <label for="meetingTime">Bahar tarafından ayarlanacak:</label>
     <input type="datetime-local" id="meetingTime" />
     <button onclick="saveMeetingTime()">Tarihi Kaydet</button>
-    <div class="date-display" id="displayTime">Henüz bir tarih belirlenmedi.</div>
+    <div class="date-display" id="displayTime">Yükleniyor...</div>
   </div>
 
   <div class="section">
@@ -80,19 +80,33 @@
     <div class="date-display" id="displayNote">Henüz bir not yazılmadı.</div>
   </div>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
   <script>
-    // Buluşma tarihi
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     const meetingInput = document.getElementById("meetingTime");
     const displayTime = document.getElementById("displayTime");
 
     function saveMeetingTime() {
       const time = meetingInput.value;
-      localStorage.setItem("meetingTime", time);
-      updateMeetingDisplay();
+      db.ref("meetingTime").set(time);
     }
 
-    function updateMeetingDisplay() {
-      const time = localStorage.getItem("meetingTime");
+    db.ref("meetingTime").on("value", snapshot => {
+      const time = snapshot.val();
       if (time) {
         const formatted = new Date(time).toLocaleString("tr-TR", {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
@@ -102,9 +116,9 @@
       } else {
         displayTime.textContent = "Henüz bir tarih belirlenmedi.";
       }
-    }
+    });
 
-    // Hafıza notu
+    // Hafıza notu (localStorage ile)
     const memoryNote = document.getElementById("memoryNote");
     const displayNote = document.getElementById("displayNote");
 
@@ -123,8 +137,6 @@
       }
     }
 
-    // Sayfa yüklenince verileri göster
-    updateMeetingDisplay();
     updateNoteDisplay();
   </script>
 
