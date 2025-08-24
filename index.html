@@ -1,232 +1,119 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tarayıcı Site</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buluşma Saati</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --bg-color: #f0f4ff;
-      --card-color: #ffffff;
-      --text-color: #333;
-    }
-
-    body.dark {
-      --bg-color: #1e1e2f;
-      --card-color: #2c2c3c;
-      --text-color: #f0f0f0;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Quicksand', sans-serif;
-    }
-
     body {
-      background: var(--bg-color);
-      color: var(--text-color);
+      margin: 0;
       padding: 20px;
-      transition: background 0.5s, color 0.5s;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to right, #f0f4ff, #d0e6ff);
+      color: #333;
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 30px;
       font-size: 2.5em;
+      margin-bottom: 20px;
     }
 
-    .section {
-      margin-bottom: 40px;
-    }
-
-    .card-container {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 10px;
-    }
-
-    .card {
-      min-width: 200px;
-      height: 150px;
-      background: var(--card-color);
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2em;
-      cursor: grab;
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .memory-box {
-      width: 100%;
+    .container {
       max-width: 500px;
       margin: auto;
-      background: var(--card-color);
+      background: #fff;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    .memory-box textarea {
+    label {
+      font-size: 1.1em;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="datetime-local"] {
       width: 100%;
-      height: 100px;
-      border: none;
-      resize: none;
       padding: 10px;
       font-size: 1em;
-      border-radius: 5px;
-      background: #f9f9f9;
-    }
-
-    .puzzle {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      gap: 10px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .piece {
-      width: 100px;
-      height: 100px;
-      background: #3498db;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
       border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
     }
 
-    .piece:hover {
-      background: #2980b9;
-    }
-
-    .toggle-theme {
-      display: block;
-      margin: 0 auto 30px auto;
+    button {
       padding: 10px 20px;
-      background: #555;
+      font-size: 1em;
+      background-color: #3498db;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
     }
 
-    .daily-message {
-      text-align: center;
+    .meeting-time {
+      margin-top: 20px;
       font-size: 1.2em;
-      margin-bottom: 30px;
-      padding: 10px;
-      background: var(--card-color);
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      color: #2c3e50;
     }
   </style>
 </head>
 <body>
 
-  <button class="toggle-theme">🌙 Gece Modu</button>
+  <h1>🌸 Bahar & Arda Buluşma Saati</h1>
 
-  <h1>🌟 Tarayıcı Site</h1>
+  <div class="container">
+    <label for="meetingInput">Buluşma Saatini Gir:</label>
+    <input type="datetime-local" id="meetingInput" />
+    <button onclick="saveMeetingTime()">Kaydet</button>
 
-  <div class="daily-message" id="dailyMessage">Bugünün mesajı yükleniyor...</div>
-
-  <div class="section">
-    <h2>Sürüklenebilir Kartlar</h2>
-    <div class="card-container" id="cardContainer">
-      <div class="card" draggable="true">Kart 1</div>
-      <div class="card" draggable="true">Kart 2</div>
-      <div class="card" draggable="true">Kart 3</div>
-      <div class="card" draggable="true">Kart 4</div>
+    <div class="meeting-time" id="meetingDisplay">
+      🔄 Buluşma saati yükleniyor...
     </div>
   </div>
 
-  <div class="section">
-    <h2>📝 Hafıza Kapsülü</h2>
-    <div class="memory-box">
-      <textarea id="memory" placeholder="Bugün ne hissettin?"></textarea>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>🧩 Mini Puzzle</h2>
-    <div class="puzzle" id="puzzle">
-      <div class="piece">1</div>
-      <div class="piece">2</div>
-      <div class="piece">3</div>
-      <div class="piece">4</div>
-      <div class="piece">5</div>
-      <div class="piece">6</div>
-      <div class="piece">7</div>
-      <div class="piece">8</div>
-      <div class="piece">9</div>
-    </div>
-  </div>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"></script>
 
   <script>
-    // Gece modu
-    document.querySelector('.toggle-theme').onclick = () => {
-      document.body.classList.toggle('dark');
+    // Firebase yapılandırması
+    const firebaseConfig = {
+      apiKey: "AIzaSyC4k4uK4Y7VqXynwgwhnooFP5O_zeCZy84",
+      authDomain: "ilker-bahar-bulusma.firebaseapp.com",
+      projectId: "ilker-bahar-bulusma",
+      storageBucket: "ilker-bahar-bulusma.firebasestorage.app",
+      messagingSenderId: "561783283193",
+      appId: "1:561783283193:web:dded6fbf6eb1c36bc97128",
+      measurementId: "G-7R12WEZMZJ",
+      databaseURL: "https://ilker-bahar-bulusma-default-rtdb.firebaseio.com"
     };
 
-    // Hafıza kapsülü kaydetme
-    const memory = document.getElementById('memory');
-    memory.value = localStorage.getItem('memory') || '';
-    memory.addEventListener('input', () => {
-      localStorage.setItem('memory', memory.value);
-    });
+    // Firebase başlat
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-    // Sürüklenebilir kartlar
-    const container = document.getElementById('cardContainer');
-    let dragged;
+    // Kaydetme fonksiyonu
+    function saveMeetingTime() {
+      const input = document.getElementById("meetingInput").value;
+      db.ref("bulusmaSaati").set({ saat: input });
+    }
 
-    container.addEventListener('dragstart', e => {
-      dragged = e.target;
-    });
-
-    container.addEventListener('dragover', e => {
-      e.preventDefault();
-    });
-
-    container.addEventListener('drop', e => {
-      e.preventDefault();
-      if (e.target.classList.contains('card')) {
-        container.insertBefore(dragged, e.target.nextSibling);
+    // Dinleme fonksiyonu
+    db.ref("bulusmaSaati").on("value", snapshot => {
+      const data = snapshot.val();
+      const display = document.getElementById("meetingDisplay");
+      if (data && data.saat) {
+        const formatted = new Date(data.saat).toLocaleString("tr-TR");
+        display.textContent = `📅 Buluşma Saati: ${formatted}`;
+      } else {
+        display.textContent = "Henüz buluşma saati girilmedi.";
       }
     });
-
-    // Puzzle karıştırma
-    const puzzle = document.getElementById('puzzle');
-    const pieces = Array.from(puzzle.children);
-    pieces.sort(() => Math.random() - 0.5);
-    pieces.forEach(piece => puzzle.appendChild(piece));
-
-    // Bugünün mesajı
-    const messages = [
-      "Bugün kendine nazik ol.",
-      "Her şey zamanla yoluna girer.",
-      "Sen düşündüğünden daha güçlüsün.",
-      "Küçük adımlar büyük farklar yaratır.",
-      "Bugün bir gülümseme paylaş.",
-      "Hayat, hatırladığın anlarda gizlidir.",
-      "İçindeki ışığı unutma."
-    ];
-    const dailyMessage = document.getElementById('dailyMessage');
-    const index = new Date().getDate() % messages.length;
-    dailyMessage.textContent = messages[index];
   </script>
 
 </body>
