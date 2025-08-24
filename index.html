@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ufaklığıma</title>
+  <title>Not Ufaklığa</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -11,70 +11,59 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
+      height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
+      align-items: flex-end; /* yazıyı alta sabitliyoruz */
       background: url('https://i.ibb.co/JwzhgHwZ/b.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
+      text-align: center;
     }
 
-    .text-box {
+    .note {
+      width: 100%;
       padding: 20px;
-      max-width: 600px;
-      margin: 15px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* Yazıya gölge, daha okunaklı */
+      background: rgba(0, 0, 0, 0.4); /* siyah şeffaf arka plan */
+      box-sizing: border-box;
     }
 
     h1 {
       font-size: 28px;
-      margin-bottom: 15px;
-      font-weight: 600;
-      color: #ffccd5;
+      margin: 0 0 10px;
+      color: #ffdde1;
     }
 
     p {
       font-size: 18px;
       line-height: 1.6;
+      margin: 0;
     }
 
     .signature {
-      margin-top: 20px;
-      font-size: 16px;
+      margin-top: 15px;
       font-weight: bold;
-      color: #ffe6f0;
+      color: #ffd6f6;
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 24px;
-      }
-      p {
-        font-size: 16px;
-      }
+      h1 { font-size: 22px; }
+      p { font-size: 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="text-box">
+  <div class="note">
     <h1>Not Ufaklığa 💌</h1>
     <p>
-      Canımın içi Bahargül… 
-      Aşkımın Baharı
-      Sen benim görmediğimi görensin  
-      Aklımın yetmediğini bilensin  
-      Ben hatalar yapıyor olabilirim hala da yapıyorumdur   
-      Ama bir yerlerde çok doğru bir şeyler yapmış olmalıyım ki seni hakedeyim  
-
-      Kimi zaman canını sıkıyorum bazen keyfini kaçırıyorum ama bil ki
-      Benim için en değerli şey sensin. 🌸  
-      Yaptığım tüm yanlışlar için senden özür diliyorum
-      Seni ne olursa olsun hep seveceğim,  
-      çünkü sen benim baharım, en güzel hikâyem, kalbimin tek sahibisin.  
+      Bazen zor günlerimiz olur, bazen kalbimiz kırılır, bazen de sessizliğe gömülürüz...  
+      Ama bil ki ben, her ne olursa olsun, senin yanında olacağım.  
+      Sen benim için sadece sevgilim değil, en yakın dostum, en güvenilir sığınağımsın.  
+      Bu hayatta sırtımı yaslayabileceğim tek dağ sensin.  
+      Ne yaşarsak yaşayalım, ben senin yanındayım ve sonsuza kadar da yanında kalacağım.  
+      Sen benim Bahargül’ümsün 🌸❤️
     </p>
-    <p class="signature">- Sevgiyle, İlker 💖</p>
+    <p class="signature">- İlker</p>
   </div>
 </body>
 </html>
