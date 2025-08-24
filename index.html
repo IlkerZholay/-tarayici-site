@@ -1,120 +1,406 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buluşma Saati</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to right, #f0f4ff, #d0e6ff);
-      color: #333;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bahar & İlker — Dijital Sürpriz</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1f22;
+    --muted:#6b6f76;
+    --rose:#d63384;
+    --bg:#fff;
+    --card: rgba(255,255,255,.88);
+    --blur: blur(6px);
+  }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{margin:0;background:#fafafa;color:var(--ink);font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;}
 
-    h1 {
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:grid; place-items:center; overflow:hidden;
+    background: url("https://i.ibb.co/JwzhgHwZ/b.jpg") center/cover fixed no-repeat;
+  }
+  .hero::after{
+    /* çok hafif vinyet + okunurluk */
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(120% 120% at 50% 70%, rgba(0,0,0,0) 40%, rgba(0,0,0,.18) 85%, rgba(0,0,0,.28) 100%);
+  }
+  .hero-card{
+    position:relative; z-index:2; text-align:center; color:#fff;
+    padding: clamp(18px, 4vw, 34px);
+    width:min(900px, 95%); border-radius:22px; backdrop-filter: blur(2px);
+    text-shadow:0 2px 10px rgba(0,0,0,.55);
+  }
+  .ttl{
+    font-family:'Playfair Display',serif; font-weight:800; letter-spacing:.3px;
+    font-size:clamp(28px,7vw,54px); line-height:1.15; margin:0 0 .4rem;
+  }
+  .sub{opacity:.95; font-size:clamp(14px,3.6vw,18px)}
+  .heart-draw{width:120px;height:120px;margin:14px auto 0;display:block}
+  .petal{position:absolute; width:26px; height:26px; opacity:.9; pointer-events:none; animation:floaty linear infinite}
+  .p1{left:8%; top:16%; animation-duration:11s}
+  .p2{left:82%; top:9%; animation-duration:9s}
+  .p3{left:42%; top:78%; animation-duration:13s}
+  @keyframes floaty{0%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-18px) rotate(10deg)} 100%{transform:translateY(0) rotate(0)}}
 
-    .container {
-      max-width: 500px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+  /* ---------- SECTIONS ---------- */
+  section{padding: clamp(28px, 6vw, 64px)  clamp(16px, 6vw, 48px);}
+  .section-title{
+    font-family:'Playfair Display',serif; font-weight:800; margin:0 0 18px;
+    font-size:clamp(22px,5.8vw,34px); letter-spacing:.2px;
+  }
+  .muted{color:var(--muted)}
+  .container{max-width:1100px; margin:0 auto;}
 
-    label {
-      font-size: 1.1em;
-      display: block;
-      margin-bottom: 10px;
-    }
+  /* ---------- TIMELINE (yatay kaydırmalı) ---------- */
+  .timeline{
+    display:grid; grid-auto-flow:column; grid-auto-columns: minmax(260px, 1fr);
+    gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px;
+  }
+  .tcard{
+    scroll-snap-align:center; background:var(--card); backdrop-filter: var(--blur);
+    border-radius:18px; padding:16px; box-shadow:0 10px 30px rgba(0,0,0,.06);
+  }
+  .tdate{font-weight:700; color:var(--rose); margin-bottom:6px}
+  .tcard h3{margin:0 0 8px; font-size:18px}
+  .tcard p{margin:0; font-size:15px}
 
-    input[type="datetime-local"] {
-      width: 100%;
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 20px;
-    }
+  /* ---------- GALLERY (kullanıcı foto yükler) ---------- */
+  .uploader{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px}
+  .btn{background:var(--rose); color:#fff; border:0; padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow:0 10px 26px rgba(214,51,132,.18)}
+  .btn.ghost{background:transparent;color:var(--rose); border:1px solid rgba(214,51,132,.25)}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:10px}
+  .ph{position:relative; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 8px 22px rgba(0,0,0,.06)}
+  .ph img{width:100%; height:160px; object-fit:cover; display:block}
+  .ph span{position:absolute; inset:auto 8px 8px auto; background:rgba(0,0,0,.55); color:#fff; font-size:12px; padding:2px 6px; border-radius:8px}
+  /* ---------- SCRATCH CARD ---------- */
+  .scratch-wrap{position:relative; border-radius:16px; overflow:hidden; box-shadow:0 10px 28px rgba(0,0,0,.08); background:#000}
+  .scratch-wrap img{display:block; width:100%; height:auto}
+  .scratch-canvas{position:absolute; inset:0; touch-action:none}
 
-    button {
-      padding: 10px 20px;
-      font-size: 1em;
-      background-color: #3498db;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+  /* ---------- 15-PUZZLE ---------- */
+  .puzzle{
+    width:min(420px, 92vw); aspect-ratio:1/1; margin:auto;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:6px;
+  }
+  .tile{
+    position:relative; border-radius:10px; overflow:hidden; background:#ddd; cursor:pointer;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.05), 0 8px 20px rgba(0,0,0,.06);
+  }
+  .tile::before{
+    content:""; position:absolute; inset:0;
+    background: url("https://i.ibb.co/JwzhgHwZ/b.jpg") center/cover no-repeat;
+    filter:saturate(1.05) contrast(1.02);
+  }
+  .tile.empty{background:transparent; box-shadow:none; cursor:default}
+  .puzzle-bar{display:flex; gap:10px; justify-content:center; margin:12px 0 0}
+  .small{font-size:13px; color:var(--muted)}
 
-    .meeting-time {
-      margin-top: 20px;
-      font-size: 1.2em;
-      text-align: center;
-      color: #2c3e50;
-    }
-  </style>
+  /* ---------- COUNTDOWN ---------- */
+  .countbox{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .counter{font-size:clamp(18px,5vw,26px); font-weight:700}
+
+  /* ---------- MEMORY CAPSULE ---------- */
+  .capsule{background:var(--card); backdrop-filter:var(--blur); padding:16px; border-radius:16px; box-shadow:0 12px 32px rgba(0,0,0,.06)}
+  textarea{width:100%; min-height:110px; padding:12px; border-radius:12px; border:1px solid #e6e6e9; resize:vertical; font-family:inherit; font-size:14px}
+  .ok{color:#16803c; font-weight:600}
+
+  footer{padding:22px; text-align:center; color:var(--muted); font-size:13px}
+</style>
 </head>
 <body>
 
-  <h1>🌸 Bahar & Arda Buluşma Saati</h1>
+<!-- HERO -->
+<header class="hero" aria-label="Kapak">
+  <svg class="petal p1" viewBox="0 0 24 24"><path d="M12 2s4 2 5 5-2 6-5 9-5-3-5-6 2-8 5-8z" fill="#fff3f7"/></svg>
+  <svg class="petal p2" viewBox="0 0 24 24"><path d="M12 2s4 2 5 5-2 6-5 9-5-3-5-6 2-8 5-8z" fill="#fff8f0"/></svg>
+  <svg class="petal p3" viewBox="0 0 24 24"><path d="M12 2s4 2 5 5-2 6-5 9-5-3-5-6 2-8 5-8z" fill="#f3fff6"/></svg>
 
-  <div class="container">
-    <label for="meetingInput">Buluşma Saatini Gir:</label>
-    <input type="datetime-local" id="meetingInput" />
-    <button onclick="saveMeetingTime()">Kaydet</button>
+  <div class="hero-card">
+    <h1 class="ttl">Bahar & İlker — Bizim Küçük Evrenimiz</h1>
+    <div class="sub">Fotoğraflar, küçük oyunlar ve geleceğe mesajlar… Hepsi tek sayfada 💫</div>
 
-    <div class="meeting-time" id="meetingDisplay">
-      🔄 Buluşma saati yükleniyor...
-    </div>
+    <!-- Kalp çizim animasyonu -->
+    <svg class="heart-draw" viewBox="0 0 100 100" fill="none">
+      <path id="h" d="M50 82 C30 62 16 50 16 34 a18 18 0 0 1 32 -10 a18 18 0 0 1 32 10 c0 16 -14 28 -30 48 z"
+            stroke="#ffd6e8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      <style>
+        #h{ stroke-dasharray:400; stroke-dashoffset:400; animation:dash 2.6s ease forwards }
+        @keyframes dash{ to{ stroke-dashoffset:0 } }
+      </style>
+    </svg>
   </div>
+</header>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"></script>
+<main>
 
-  <script>
-    // Firebase yapılandırması
-    const firebaseConfig = {
-      apiKey: "AIzaSyC4k4uK4Y7VqXynwgwhnooFP5O_zeCZy84",
-      authDomain: "ilker-bahar-bulusma.firebaseapp.com",
-      projectId: "ilker-bahar-bulusma",
-      storageBucket: "ilker-bahar-bulusma.firebasestorage.app",
-      messagingSenderId: "561783283193",
-      appId: "1:561783283193:web:dded6fbf6eb1c36bc97128",
-      measurementId: "G-7R12WEZMZJ",
-      databaseURL: "https://ilker-bahar-bulusma-default-rtdb.firebaseio.com"
+  <!-- ZAMAN ÇİZELGESİ -->
+  <section aria-label="Zaman Çizelgesi">
+    <div class="container">
+      <h2 class="section-title">Zaman Çizelgesi</h2>
+      <p class="muted" style="margin-top:-6px">Aşağıdaki kartları sağa-sola kaydırabilirsin. Metinleri sonra kolayca değiştirebilirsin.</p>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <!-- FOTO GALERİ (KULLANICI YÜKLER) -->
+  <section aria-label="Foto Galeri">
+    <div class="container">
+      <h2 class="section-title">Anılardan Kareler</h2>
+      <div class="uploader">
+        <input id="fileInput" type="file" accept="image/*" multiple />
+        <button class="btn" id="addPhotos">Fotoğrafları Ekle</button>
+        <button class="btn ghost" id="clearPhotos">Temizle</button>
+        <span class="small">Fotoğraflar sadece bu cihazda görünür, yükleme yapılmaz.</span>
+      </div>
+      <div class="grid" id="gallery"></div>
+    </div>
+  </section>
+
+  <!-- SCRATCH CARD -->
+  <section aria-label="Çiz ve Keşfet">
+    <div class="container">
+      <h2 class="section-title">Çiz ve Keşfet ✨</h2>
+      <p class="muted">Parmağınla/Mouse ile üstteki gri alanı kazı; altta sürpriz görsel belirecek.</p>
+      <div class="scratch-wrap" id="scratch">
+        <img src="https://i.ibb.co/JwzhgHwZ/b.jpg" alt="Sürpriz görsel" />
+        <canvas class="scratch-canvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3x3 PUZZLE -->
+  <section aria-label="Mini Puzzle">
+    <div class="container">
+      <h2 class="section-title">Mini Puzzle 🧩</h2>
+      <p class="muted">Parçalara dokunarak boş yere kaydır, resmi tamamla.</p>
+      <div class="puzzle" id="puzzle"></div>
+      <div class="puzzle-bar">
+        <button class="btn" id="shuffle">Karıştır</button>
+        <div class="small" id="moves">Hamle: 0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section aria-label="Geri Sayım">
+    <div class="container">
+      <h2 class="section-title">Bir Sonraki Buluşma ⏳</h2>
+      <div class="countbox">
+        <input id="datePick" type="datetime-local" />
+        <button class="btn" id="saveDate">Kaydet</button>
+        <button class="btn ghost" id="clearDate">Sıfırla</button>
+        <div class="counter" id="counter">—</div>
+      </div>
+      <p class="small">Seçim sadece bu cihazda saklanır (localStorage).</p>
+    </div>
+  </section>
+
+  <!-- MEMORY CAPSULE -->
+  <section aria-label="Hafıza Kapsülü">
+    <div class="container">
+      <h2 class="section-title">Hafıza Kapsülü 💌</h2>
+      <div class="capsule">
+        <p class="small">Buraya Bahar’a küçük bir not yaz. Bu not sadece bu telefonda/em cihazda saklanır.</p>
+        <textarea id="memo" placeholder="Bugün ne hissettin?"></textarea>
+        <div style="display:flex; gap:10px; margin-top:10px; align-items:center;">
+          <button class="btn" id="saveMemo">Kaydet</button>
+          <button class="btn ghost" id="clearMemo">Sil</button>
+          <span id="memoStatus" class="ok" style="display:none">Kaydedildi ✓</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© Bahar & İlker — “Küçük şeylerin toplamı büyük bir aşk yapar.”</footer>
+
+<script>
+/* ---------------- ZAMAN ÇİZELGESİ ---------------- */
+const timelineData = [
+  { date: '2023 • Yaz', title: 'Tanıştık', text: 'Göz göze geldik; dünya bir anlığına yavaşladı.'},
+  { date: 'İlk Buluşma', title: 'Kumsal & Kahkaha', text: 'Kumda “İ + B ❤️” yazısı… ve bitmeyen sohbet.'},
+  { date: 'İlk Kavgamız', title: 'Sarılınca Geçen', text: 'Kırılmak kolaydı; sarılınca hepsi anlamsız.'},
+  { date: 'Birlikte Plan', title: 'Küçük Evren', text: 'Hafta sonu minik kaçamaklar. Çok değil; ama bize yetiyor.'},
+  { date: 'Bugün', title: 'Şu An', text: 'Hâlâ buradayız. Daha güçlüyüz.'}
+];
+const tl = document.getElementById('timeline');
+tl.innerHTML = timelineData.map(i => 
+  <article class="tcard">
+    <div class="tdate">${i.date}</div>
+    <h3>${i.title}</h3>
+    <p>${i.text}</p>
+  </article>
+).join('');
+
+/* ---------------- GALERİ (YEREL) ---------------- */
+const fileInput = document.getElementById('fileInput');
+const addPhotos = document.getElementById('addPhotos');
+const clearPhotos = document.getElementById('clearPhotos');
+const gallery = document.getElementById('gallery');
+
+addPhotos.addEventListener('click', ()=> fileInput.click());
+fileInput.addEventListener('change', handleFiles);
+clearPhotos.addEventListener('click', ()=> { gallery.innerHTML=''; fileInput.value=''; });
+
+function handleFiles(){
+  const files = [...fileInput.files].slice(0,24);
+  files.forEach((f,idx)=>{
+    const r = new FileReader();
+    r.onload = e=>{
+      const div = document.createElement('div');
+      div.className='ph';
+      div.innerHTML = <img src="${e.target.result}" alt="photo ${idx+1}"><span>${idx+1}</span>;
+      gallery.appendChild(div);
     };
+    r.readAsDataURL(f);
+  });
+}
+  /* ---------------- SCRATCH CARD ---------------- */
+(function(){
+  const wrap = document.getElementById('scratch');
+  const canvas = wrap.querySelector('canvas');
+  const ctx = canvas.getContext('2d');
+  function resize(){
+    canvas.width = wrap.clientWidth;
+    canvas.height = wrap.clientHeight;
+    ctx.fillStyle = '#bcbcbc';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.globalCompositeOperation = 'destination-out';
+  }
+  resize(); window.addEventListener('resize', resize);
 
-    // Firebase başlat
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    // Kaydetme fonksiyonu
-    function saveMeetingTime() {
-      const input = document.getElementById("meetingInput").value;
-      db.ref("bulusmaSaati").set({ saat: input });
+  let drawing = false;
+  const brush = 28;
+  function draw(x,y){
+    ctx.beginPath();
+    ctx.arc(x, y, brush, 0, Math.PI*2);
+    ctx.fill();
+  }
+  const pos = e=>{
+    const r = canvas.getBoundingClientRect();
+    if(e.touches){
+      return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
     }
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  };
+  canvas.addEventListener('pointerdown', e=>{ drawing=true; draw(...Object.values(pos(e))); });
+  canvas.addEventListener('pointermove', e=>{ if(drawing) draw(...Object.values(pos(e))); });
+  window.addEventListener('pointerup', ()=> drawing=false);
+})();
 
-    // Dinleme fonksiyonu
-    db.ref("bulusmaSaati").on("value", snapshot => {
-      const data = snapshot.val();
-      const display = document.getElementById("meetingDisplay");
-      if (data && data.saat) {
-        const formatted = new Date(data.saat).toLocaleString("tr-TR");
-        display.textContent = `📅 Buluşma Saati: ${formatted}`;
-      } else {
-        display.textContent = "Henüz buluşma saati girilmedi.";
-      }
-    });
-  </script>
+/* ---------------- 3x3 PUZZLE ---------------- */
+const puzzle = document.getElementById('puzzle');
+const movesEl = document.getElementById('moves');
+let moves = 0;
+let order = [...Array(8).keys()].map(n=>n+1).concat(0); // 0 = boş
+function render(){
+  puzzle.innerHTML = '';
+  order.forEach((n,i)=>{
+    const div = document.createElement('div');
+    div.className = 'tile' + (n===0 ? ' empty' : '');
+    // arka plan pozisyon
+    const row = Math.floor((n-1)/3), col = (n-1)%3;
+    if(n!==0){
+      div.style.setProperty('--r', row);
+      div.style.setProperty('--c', col);
+      const x = (-col*100/2) + '%'; // 3 dilim için yaklaşık hizalama
+      const y = (-row*100/2) + '%';
+      div.style.background = '#ddd';
+      div.style.setProperty('--x', x); div.style.setProperty('--y', y);
+      div.style.setProperty('background','transparent');
+      div.style.setProperty('--url',"url('https://i.ibb.co/JwzhgHwZ/b.jpg')");
+      div.style.setProperty('overflow','hidden');
+    }
+    div.style.setProperty('--i', i);
+    div.dataset.idx = i;
+    div.dataset.num = n;
+    // dilim resmi
+    if(n!==0){
+      div.innerHTML = <div style="
+        position:absolute; inset:0; background: url('https://i.ibb.co/JwzhgHwZ/b.jpg') center/cover no-repeat;
+        transform: translate(calc(-${(col)*100/3}% + 0%), calc(-${(row)*100/3}% + 0%));
+      "></div>;
+    }
+    puzzle.appendChild(div);
+  });
+}
+function neighbors(i){
+  const n=[]; const r=Math.floor(i/3), c=i%3;
+  [[r-1,c],[r+1,c],[r,c-1],[r,c+1]].forEach(([rr,cc])=>{
+    if(rr>=0&&rr<3&&cc>=0&&cc<3) n.push(rr*3+cc);
+  });
+  return n;
+}
+function clickTile(e){
+  const i = +e.currentTarget.dataset.idx;
+  const empty = order.indexOf(0);
+  if(neighbors(i).includes(empty)){
+    [order[i], order[empty]] = [order[empty], order[i]];
+    moves++; movesEl.textContent = 'Hamle: ' + moves;
+    render(); bindTiles();
+  }
+}
+function bindTiles(){
+  [...puzzle.children].forEach(el=>{ if(!el.classList.contains('empty')) el.addEventListener('click', clickTile); });
+}
+function shuffle(){
+  moves = 0; movesEl.textContent='Hamle: 0';
+  // Boşluğu rastgele komşularla bir süre değiştirerek karıştır (çözülebilir olsun)
+  order = [...Array(8).keys()].map(n=>n+1).concat(0);
+  for(let k=0;k<200;k++){
+    const empty = order.indexOf(0);
+    const ns = neighbors(empty);
+    const pick = ns[Math.floor(Math.random()*ns.length)];
+    [order[empty], order[pick]] = [order[pick], order[empty]];
+  }
+  render(); bindTiles();
+}
+document.getElementById('shuffle').addEventListener('click', shuffle);
+shuffle();
 
+/* ---------------- COUNTDOWN ---------------- */
+const keyDate='baharilker-date';
+const datePick = document.getElementById('datePick');
+const counter = document.getElementById('counter');
+const saveDate = document.getElementById('saveDate');
+const clearDate = document.getElementById('clearDate');
+  const saved = localStorage.getItem(keyDate);
+if(saved){ datePick.value = saved; }
+function tick(){
+  const v = datePick.value;
+  if(!v){ counter.textContent = 'Tarih seçilmedi.'; return; }
+  const t = new Date(v).getTime() - Date.now();
+  if(isNaN(t)){ counter.textContent = 'Geçersiz tarih'; return; }
+  if(t<=0){ counter.textContent = 'Bugün! 🎉'; return; }
+  const d = Math.floor(t/86400000);
+  const h = Math.floor((t%86400000)/3600000);
+  const m = Math.floor((t%3600000)/60000);
+  const s = Math.floor((t%60000)/1000);
+  counter.textContent = ${d}g ${h}s ${m}d ${s}sn;
+}
+setInterval(tick, 1000); tick();
+
+saveDate.addEventListener('click', ()=>{ if(datePick.value){ localStorage.setItem(keyDate, datePick.value); tick(); } });
+clearDate.addEventListener('click', ()=>{ localStorage.removeItem(keyDate); datePick.value=''; tick(); });
+
+/* ---------------- MEMORY CAPSÜL ---------------- */
+const memoKey='baharilker-memo';
+const memo = document.getElementById('memo');
+const saveMemoBtn = document.getElementById('saveMemo');
+const clearMemoBtn = document.getElementById('clearMemo');
+const memoStatus = document.getElementById('memoStatus');
+memo.value = localStorage.getItem(memoKey)||'';
+saveMemoBtn.addEventListener('click', ()=>{
+  localStorage.setItem(memoKey, memo.value||'');
+  memoStatus.style.display='inline';
+  setTimeout(()=> memoStatus.style.display='none', 1600);
+});
+clearMemoBtn.addEventListener('click', ()=>{ memo.value=''; localStorage.removeItem(memoKey); });
+
+</script>
 </body>
 </html>
