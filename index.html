@@ -1,167 +1,367 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>İlker ❤️ Bahargül</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
-      color: #333;
-      overflow-x: hidden;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>İlker ❤️ Bahargül — Anı Defteri</title>
 
-    header {
-      text-align: center;
-      padding: 50px 20px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(5px);
-    }
+<!-- Yazı tipleri -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    header h1 {
-      font-size: 2.5rem;
-      color: #b30059;
-      margin-bottom: 10px;
-    }
+<style>
+  :root{
+    --bg1: #fff8fb;
+    --accent: #d63384;
+    --muted: #6b6f76;
+    --card: rgba(255,255,255,0.9);
+    --glass: rgba(255,255,255,0.6);
+    --shadow: 0 12px 40px rgba(15,20,30,0.12);
+    --radius: 16px;
+    --maxw: 1150px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%; margin:0; font-family:'Poppins',system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  body{
+    background: linear-gradient(180deg,#fff7fb 0%, #fff0f4 100%);
+    color:#222; -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
 
-    header p {
-      font-size: 1.2rem;
-      color: #444;
-    }
+  /* CONTAINER */
+  .wrap{max-width:var(--maxw); margin:30px auto; padding:20px;}
+  header.site{
+    display:flex; gap:18px; align-items:center; padding:18px; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7)); box-shadow: var(--shadow);
+  }
+  .logo{
+    width:84px; height:84px; border-radius:14px; overflow:hidden; flex:0 0 84px;
+    background:linear-gradient(135deg, #ffd6e0, #ffdfe8);
+    display:flex; align-items:center; justify-content:center; font-family:'Playfair Display', serif; color:var(--accent); font-weight:700; font-size:22px;
+  }
+  .site h1{margin:0; font-family:'Playfair Display', serif; font-size:20px; color:#b71f59}
+  .site p{margin:4px 0 0; color:var(--muted); font-size:13px}
 
-    .timeline {
-      position: relative;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+  /* HERO (kapak) */
+  .hero{
+    margin-top:22px; border-radius:18px; overflow:hidden; position:relative;
+    background: url("https://i.ibb.co/JwzhgHwZ/b.jpg") center/cover fixed no-repeat;
+    min-height:340px; display:flex; align-items:center; justify-content:center;
+  }
+  .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.32)); }
+  .hero-card{ position:relative; z-index:2; padding:28px; text-align:center; color:#fff; width:min(920px,94%); }
+  .hero-card h2{ font-family:'Playfair Display', serif; margin:0; font-size: clamp(28px,5.6vw,44px); line-height:1.05; letter-spacing:.2px }
+  .hero-card p{ margin-top:10px; color:rgba(255,255,255,0.92); font-size:16px; max-width:760px; margin-left:auto; margin-right:auto; }
 
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 6px;
-      background-color: #b30059;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -3px;
-      border-radius: 3px;
-    }
+  /* SECTIONS */
+  section{ margin-top:28px; background:transparent; padding:18px 0; }
+  .section-title{ font-family:'Playfair Display', serif; font-size:20px; margin:0 0 10px; color:#8b1a52; }
 
-    .timeline-item {
-      padding: 20px;
-      position: relative;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      width: 45%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      margin: 20px 0;
-      animation: fadeInUp 1s ease;
-    }
+  /* TIMELINE: yatay, zengin kartlar */
+  .timeline-wrap{ background:var(--card); border-radius:18px; padding:18px; box-shadow:var(--shadow); }
+  .timeline{
+    display:grid; grid-auto-flow:column; grid-auto-columns:minmax(300px, 1fr); gap:18px;
+    overflow-x:auto; scroll-snap-type:x mandatory; padding:12px;
+  }
+  .tcard{
+    scroll-snap-align:center; background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+    border-radius:14px; padding:16px; min-height:200px; position:relative; box-shadow:0 10px 30px rgba(15,20,30,0.04);
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .tdate{ font-weight:700; color:var(--accent); font-size:13px }
+  .tcard h3{ margin:0; font-size:18px; color:#222 }
+  .tcard p{ margin:0; color:var(--muted) }
+  .tmeta{ margin-top:auto; display:flex; gap:8px; align-items:center; justify-content:flex-start; color:var(--muted); font-size:13px }
+  .thumb{ width:72px; height:72px; border-radius:10px; overflow:hidden; flex:0 0 72px; background:#eee; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,0.06) }
 
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      right: -13px;
-      background-color: #fff;
-      border: 4px solid #b30059;
-      top: 30px;
-      border-radius: 50%;
-      z-index: 1;
-    }
+  /* END IMAGE CARD (son kart - full image style) */
+  .tcard.image-only{ padding:6px; display:block }
+  .tcard.image-only img{ width:100%; height:100%; object-fit:cover; border-radius:12px; display:block }
 
-    .left {
-      left: 0;
-    }
+  /* GALLERY */
+  .gallery{ display:grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap:12px; margin-top:12px }
+  .photo{ border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 8px 22px rgba(0,0,0,0.06) }
+  .photo img{ width:100%; height:120px; object-fit:cover; display:block; transition:transform .25s }
 
-    .right {
-      left: 55%;
-    }
+  /* SCRATCH */
+  .scratch-wrap{ border-radius:12px; overflow:hidden; box-shadow:0 10px 28px rgba(0,0,0,0.06); position:relative; background:#000 }
+  .scratch-wrap img{ display:block; width:100%; height:auto }
+  .scratch-canvas{ position:absolute; inset:0; }
 
-    .timeline-item h3 {
-      margin-top: 0;
-      color: #b30059;
-    }
+  /* COUNTDOWN & CAPSULE */
+  .row{ display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start }
+  .card{ background:var(--card); border-radius:12px; padding:14px; box-shadow:0 8px 30px rgba(0,0,0,0.05); min-width:260px }
+  .card h4{ margin:0 0 8px 0; font-size:16px; color:var(--accent) }
 
-    .timeline-item p {
-      margin: 10px 0 0;
-    }
+  /* FOOTER */
+  footer{ margin-top:30px; text-align:center; color:var(--muted); font-size:13px; padding:14px 0 }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Resim için ek stil */
-    .timeline-item img {
-      width: 100%;
-      border-radius: 12px;
-      margin-top: 10px;
-    }
-
-    /* Mobil uyum */
-    @media screen and (max-width: 768px) {
-      .timeline::after {
-        left: 20px;
-      }
-      .timeline-item {
-        width: 100%;
-        left: 0 !important;
-        margin-left: 40px;
-      }
-      .timeline-item::after {
-        left: -33px;
-      }
-    }
-  </style>
+  /* Responsive tweaks */
+  @media (max-width:900px){
+    .tcard{ min-width:260px }
+    .hero{ min-height:300px }
+    header.site{flex-direction:column; gap:8px; align-items:flex-start}
+  }
+  @media (max-width:560px){
+    .hero-card h2{ font-size:22px }
+    .thumb{ display:none }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>İlker ❤️ Bahargül</h1>
-    <p>Bizim küçük ama çok değerli hikayemiz…</p>
+
+<div class="wrap">
+
+  <!-- SITE HEADER -->
+  <header class="site" role="banner">
+    <div class="logo">İ♥B</div>
+    <div>
+      <h1>İlker &amp; Bahargül — Dijital Anı Defteri</h1>
+      <p>Bu sayfa sadece sizin — fotoğraflar, notlar ve sürprizlerle dolu. Her şey cihazınızda saklı kalır.</p>
+    </div>
   </header>
 
-  <section class="timeline">
-    <div class="timeline-item left">
-      <h3>2024 • Kış</h3>
-      <p>Tanıştığımız an… biraz gergin ama unutulmaz bir başlangıçtı.</p>
-    </div>
-
-    <div class="timeline-item right">
-      <h3>İlk Sürpriz</h3>
-      <p>Ansızın içimden gelen küçük bir sürpriz: beyaz gül… seni mutlu görmek en güzeliydi.</p>
-    </div>
-
-    <div class="timeline-item left">
-      <h3>İlk Kavgamız</h3>
-      <p>Ufak kırgınlıklar, aslında bizi daha da yakınlaştıran anılar oldu.</p>
-    </div>
-
-    <div class="timeline-item right">
-      <h3>İlk Buluşmalar</h3>
-      <p>Merdivenlerde saatlerce oturup sohbet edişimiz… ilk sarılmalar, ilk heyecan.</p>
-    </div>
-
-    <div class="timeline-item left">
-      <h3>Bugün</h3>
-      <p>Hâlâ buradayız, daha güçlüyüz, daha çok seviyoruz.</p>
-    </div>
-
-    <!-- Senin gönderdiğin görsel -->
-    <div class="timeline-item right">
-      <h3>Bizim Anımız</h3>
-      <img src="https://r.resimlink.com/RboDvu2.png" alt="Bizim Anımız">
+  <!-- HERO -->
+  <section class="hero" role="img" aria-label="Kapak görseli">
+    <div class="hero-card">
+      <h2>Seninle her mevsim bahar — Bahargül</h2>
+      <p>Burada geçmiş anlarımızı, küçük sürprizleri ve gelecek planlarımızı saklıyorum. Kaydır, ekle, hatırla — hepsi burada.</p>
     </div>
   </section>
+
+  <!-- TIMELINE -->
+  <section aria-label="Zaman çizelgesi">
+    <h3 class="section-title">Zaman Çizelgesi</h3>
+    <div class="timeline-wrap">
+      <div class="timeline" id="timeline">
+
+        <!-- Timeline kartları (JS ile doldurulacak). Eğer JS devre dışı ise altındaki noscript gözükecek -->
+      </div>
+    </div>
+    <noscript style="display:block;margin-top:10px;color:var(--muted)">JavaScript açık değil — zaman çizelgesi görüntülenemiyor.</noscript>
+  </section>
+
+  <!-- GALERİ -->
+  <section aria-label="Foto Galeri">
+    <h3 class="section-title">Anılardan Kareler</h3>
+    <div class="card">
+      <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+        <input id="fileInput" type="file" accept="image/*" multiple style="display:none" />
+        <button class="btn" id="addPhotosBtn">Fotoğraf Ekle</button>
+        <button class="btn" id="clearPhotosBtn" style="background:transparent; color:var(--accent); border:1px solid rgba(214,51,132,.12)">Temizle</button>
+        <div style="margin-left:auto; color:var(--muted); font-size:13px">Fotoğraflar sadece bu cihazda saklanır.</div>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
+  <!-- SCRATCH -->
+  <section aria-label="Sürpriz Kazı">
+    <h3 class="section-title">Çiz ve Keşfet</h3>
+    <div class="scratch-wrap card" id="scratch">
+      <img src="https://i.ibb.co/JwzhgHwZ/b.jpg" alt="Sürpriz Görsel" />
+      <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN + MEMORY -->
+  <section aria-label="Geri Sayım & Hafıza">
+    <h3 class="section-title">Gelecek Planları ve Hafıza Kapsülü</h3>
+    <div class="row">
+      <div class="card" style="flex:1; min-width:240px">
+        <h4>Bir sonraki buluşma</h4>
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px">
+          <input id="datePick" type="datetime-local" style="flex:1; padding:8px; border-radius:8px; border:1px solid #eee" />
+          <button class="btn" id="saveDateBtn" style="padding:8px 10px">Kaydet</button>
+        </div>
+        <div style="font-size:20px; font-weight:700" id="countdown">Tarih seçilmedi</div>
+        <div style="margin-top:8px; color:var(--muted); font-size:13px">Ayarlar cihazda saklanır.</div>
+      </div>
+
+      <div class="card" style="flex:1; min-width:240px">
+        <h4>Hafıza Kapsülü</h4>
+        <textarea id="capsule" placeholder="Bahar için kısa bir not bırak..." style="width:100%; min-height:120px; padding:10px; border-radius:10px; border:1px solid #eee"></textarea>
+        <div style="display:flex; gap:8px; margin-top:10px; align-items:center">
+          <button class="btn" id="saveCapsule">Kaydet</button>
+          <button class="btn ghost" id="clearCapsule" style="background:transparent;color:var(--accent);border:1px solid rgba(214,51,132,.12)">Sil</button>
+          <div id="capsuleStatus" style="margin-left:auto;color:green;font-weight:600;display:none">Kaydedildi ✓</div>
+        </div>
+        <div style="margin-top:8px; color:var(--muted); font-size:13px">Kaydedilen not sadece bu tarayıcıda kalır.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © İlker &amp; Bahargül — Küçük şeyler, büyük hatıralar.
+  </footer>
+</div>
+
+<!-- SCRIPT: timeline verisi, render, gallery, scratch, countdown, capsule -->
+<script>
+/* ---------- Timeline verisi (senin verdiğin uzun sürüm) ---------- */
+const timelineData = [
+  { date: '2024 • Kış', title: 'Tanıştık', text: 'Çok gergin bir tanışma oldu gerçi. Ama o an aklımda hep sen vardın; o sıcak bakış hiç gitmedi.' , thumb: 'https://i.ibb.co/7QfL7Yt/sample1.jpg' },
+  { date: 'İlk Sürpriz', title: 'Beyaz Gül', text: 'Ansızın içimden gelen ufak bir sürpriz; beyaz gül verdim. Senin gülüşünü görmek her şeye değerdi.' , thumb: 'https://i.ibb.co/7QfL7Yt/sample2.jpg' },
+  { date: 'İlk Kavgamız', title: 'Tanışmamıza vesile olan', text: 'Yeni duygular, ilk adımlar ve büyük heyecanın başlangıcı. Sonunda sarılarak güldük, daha sıkı sarıldık.' , thumb: 'https://i.ibb.co/7QfL7Yt/sample3.jpg' },
+  { date: 'İlk Buluşmalar', title: 'İlk Sarılma', text: 'Merdivenlerde oturup saatlerce sohbet ediyorduk; ilk sarılmamızda zaman durdu gibi hissettim.' , thumb: 'https://i.ibb.co/7QfL7Yt/sample4.jpg' },
+  { date: 'Bugün', title: 'Şu An', text: 'Hâlâ buradayız. Daha güçlüyüz, daha olgunuz ve daha çok seviyoruz.' , thumb: 'https://i.ibb.co/7QfL7Yt/sample5.jpg' },
+  // SON KART - senin gönderdiğin görsel (büyük görsel olarak gösterilecek)
+  { date: '', title: 'Bizim Anımız', text: '', imageOnly: true, image: 'https://r.resimlink.com/RboDvu2.png' }
+];
+
+/* ---------- Render timeline ---------- */
+function renderTimeline(){
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = ''; // temizle
+  timelineData.forEach(item => {
+    if(item.imageOnly){
+      const div = document.createElement('div');
+      div.className = 'tcard image-only';
+      div.innerHTML = `<img src="${item.image}" alt="Bizim Anımız">`;
+      tl.appendChild(div);
+      return;
+    }
+    const el = document.createElement('article');
+    el.className = 'tcard';
+    el.innerHTML = `
+      <div class="tdate">${item.date}</div>
+      <h3>${item.title}</h3>
+      <p>${item.text}</p>
+      <div class="tmeta">
+        <div class="thumb"><img src="${item.thumb}" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="font-size:13px;color:var(--muted)">${item.date ? item.date : ''}</div>
+      </div>
+    `;
+    tl.appendChild(el);
+  });
+}
+renderTimeline();
+
+/* ---------- Gallery (yerel) ---------- */
+const fileInput = document.getElementById('fileInput');
+const addPhotosBtn = document.getElementById('addPhotosBtn');
+const clearPhotosBtn = document.getElementById('clearPhotosBtn');
+const gallery = document.getElementById('gallery');
+
+addPhotosBtn.addEventListener('click', ()=> fileInput.click());
+clearPhotosBtn.addEventListener('click', ()=> { gallery.innerHTML=''; fileInput.value=''; localStorage.removeItem('bahar_gallery'); });
+
+fileInput.addEventListener('change', (e)=>{
+  const files = [...e.target.files].slice(0, 30);
+  files.forEach((f, i)=>{
+    const reader = new FileReader();
+    reader.onload = evt => {
+      const div = document.createElement('div'); div.className='photo';
+      div.innerHTML = `<img src="${evt.target.result}" alt="photo">`;
+      gallery.prepend(div);
+      saveGalleryToLocal();
+    };
+    reader.readAsDataURL(f);
+  });
+});
+
+function saveGalleryToLocal(){
+  const imgs = [...gallery.querySelectorAll('img')].map(i=>i.src);
+  localStorage.setItem('bahar_gallery', JSON.stringify(imgs));
+}
+function loadGalleryFromLocal(){
+  const data = localStorage.getItem('bahar_gallery'); if(!data) return;
+  const arr = JSON.parse(data);
+  arr.forEach(src => {
+    const div = document.createElement('div'); div.className='photo';
+    div.innerHTML = `<img src="${src}" alt="photo">`;
+    gallery.prepend(div);
+  });
+}
+loadGalleryFromLocal();
+
+/* ---------- Scratch card  ---------- */
+(function(){
+  const wrap = document.getElementById('scratch');
+  const canvas = document.getElementById('scratchCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize(){
+    const rect = wrap.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#bdbdbd';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    // çizim için overlay
+    ctx.globalCompositeOperation = 'destination-out';
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let drawing = false;
+  const radius = Math.max(18, Math.floor((canvas.width+canvas.height)/120));
+  function pos(e){
+    const r = canvas.getBoundingClientRect();
+    if(e.touches) return {x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top};
+    return {x: e.clientX - r.left, y: e.clientY - r.top};
+  }
+  canvas.addEventListener('pointerdown', e=>{ drawing=true; const p=pos(e); ctx.beginPath(); ctx.arc(p.x,p.y, radius,0,Math.PI*2); ctx.fill(); });
+  canvas.addEventListener('pointermove', e=>{ if(!drawing) return; const p=pos(e); ctx.beginPath(); ctx.arc(p.x,p.y, radius,0,Math.PI*2); ctx.fill(); });
+  window.addEventListener('pointerup', ()=> drawing=false);
+})();
+
+/* ---------- Countdown ---------- */
+const datePick = document.getElementById('datePick');
+const countdown = document.getElementById('countdown');
+const saveDateBtn = document.getElementById('saveDateBtn');
+
+const dateKey = 'bahar_event_date';
+if(localStorage.getItem(dateKey)) datePick.value = localStorage.getItem(dateKey);
+
+function updateCountdown(){
+  const v = datePick.value;
+  if(!v){ countdown.textContent = 'Tarih seçilmedi'; return; }
+  const diff = new Date(v) - Date.now();
+  if(diff <= 0){ countdown.textContent = 'Bugün! 🎉'; return; }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  countdown.textContent = `${d}g ${h}s ${m}d ${s}sn`;
+}
+setInterval(updateCountdown, 1000);
+saveDateBtn.addEventListener('click', ()=>{ if(datePick.value){ localStorage.setItem(dateKey, datePick.value); updateCountdown(); } });
+
+/* ---------- Memory capsule ---------- */
+const capsuleEl = document.getElementById('capsule');
+const saveCapsuleBtn = document.getElementById('saveCapsule');
+const clearCapsuleBtn = document.getElementById('clearCapsule');
+const capsuleStatus = document.getElementById('capsuleStatus');
+const capsuleKey = 'bahar_capsule';
+capsuleEl.value = localStorage.getItem(capsuleKey) || '';
+saveCapsuleBtn.addEventListener('click', ()=>{
+  localStorage.setItem(capsuleKey, capsuleEl.value || '');
+  capsuleStatus.style.display = 'inline';
+  setTimeout(()=> capsuleStatus.style.display = 'none', 1600);
+});
+clearCapsuleBtn.addEventListener('click', ()=>{ capsuleEl.value=''; localStorage.removeItem(capsuleKey); });
+
+/* ---------- small UI niceties: keyboard focus, smooth scroll ---------- */
+document.documentElement.style.scrollBehavior = 'smooth';
+
+/* ---------- Optional: allow editing timeline items via prompt (quick) ---------- */
+function promptAddTimeline(){
+  const date = prompt('Tarih (ör: 2024 • Yaz)');
+  if(!date) return;
+  const title = prompt('Başlık (ör: İlk Buluşma)');
+  const text = prompt('Kısa açıklama');
+  const thumb = ''; // kullanıcı eklesin galeriden
+  timelineData.splice(timelineData.length-1, 0, {date, title, text, thumb});
+  renderTimeline();
+}
+window.addEventListener('keydown', (e)=>{
+  if(e.key === 't' && e.ctrlKey){ promptAddTimeline(); }
+});
+
+/* ---------- Save gallery automatically when images added via input ---------- */
+fileInput.addEventListener('change', ()=> setTimeout(saveGalleryToLocal, 600));
+
+</script>
 </body>
 </html>
