@@ -75,6 +75,7 @@
   .ph{position:relative; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 8px 22px rgba(0,0,0,.06)}
   .ph img{width:100%; height:160px; object-fit:cover; display:block}
   .ph span{position:absolute; inset:auto 8px 8px auto; background:rgba(0,0,0,.55); color:#fff; font-size:12px; padding:2px 6px; border-radius:8px}
+
   /* ---------- SCRATCH CARD ---------- */
   .scratch-wrap{position:relative; border-radius:16px; overflow:hidden; box-shadow:0 10px 28px rgba(0,0,0,.08); background:#000}
   .scratch-wrap img{display:block; width:100%; height:auto}
@@ -228,13 +229,13 @@ const timelineData = [
   { date: 'Bugün', title: 'Şu An', text: 'Hâlâ buradayız. Daha güçlüyüz.'}
 ];
 const tl = document.getElementById('timeline');
-tl.innerHTML = timelineData.map(i => 
+tl.innerHTML = timelineData.map(i => `
   <article class="tcard">
     <div class="tdate">${i.date}</div>
     <h3>${i.title}</h3>
     <p>${i.text}</p>
   </article>
-).join('');
+`).join('');
 
 /* ---------------- GALERİ (YEREL) ---------------- */
 const fileInput = document.getElementById('fileInput');
@@ -253,13 +254,14 @@ function handleFiles(){
     r.onload = e=>{
       const div = document.createElement('div');
       div.className='ph';
-      div.innerHTML = <img src="${e.target.result}" alt="photo ${idx+1}"><span>${idx+1}</span>;
+      div.innerHTML = `<img src="${e.target.result}" alt="photo ${idx+1}"><span>${idx+1}</span>`;
       gallery.appendChild(div);
     };
     r.readAsDataURL(f);
   });
 }
-  /* ---------------- SCRATCH CARD ---------------- */
+
+/* ---------------- SCRATCH CARD ---------------- */
 (function(){
   const wrap = document.getElementById('scratch');
   const canvas = wrap.querySelector('canvas');
@@ -320,10 +322,10 @@ function render(){
     div.dataset.num = n;
     // dilim resmi
     if(n!==0){
-      div.innerHTML = <div style="
+      div.innerHTML = `<div style="
         position:absolute; inset:0; background: url('https://i.ibb.co/JwzhgHwZ/b.jpg') center/cover no-repeat;
         transform: translate(calc(-${(col)*100/3}% + 0%), calc(-${(row)*100/3}% + 0%));
-      "></div>;
+      "></div>`;
     }
     puzzle.appendChild(div);
   });
@@ -368,7 +370,8 @@ const datePick = document.getElementById('datePick');
 const counter = document.getElementById('counter');
 const saveDate = document.getElementById('saveDate');
 const clearDate = document.getElementById('clearDate');
-  const saved = localStorage.getItem(keyDate);
+
+const saved = localStorage.getItem(keyDate);
 if(saved){ datePick.value = saved; }
 function tick(){
   const v = datePick.value;
@@ -380,7 +383,7 @@ function tick(){
   const h = Math.floor((t%86400000)/3600000);
   const m = Math.floor((t%3600000)/60000);
   const s = Math.floor((t%60000)/1000);
-  counter.textContent = ${d}g ${h}s ${m}d ${s}sn;
+  counter.textContent = `${d}g ${h}s ${m}d ${s}sn`;
 }
 setInterval(tick, 1000); tick();
 
