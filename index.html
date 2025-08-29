@@ -1,1 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bizim Küçük Evrenimiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: url('https://i.ibb.co/JwzhgHwZ/b.jpg') no-repeat center center/cover;
+      backdrop-filter: brightness(0.6);
+    }
 
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: rgba(0,0,0,0.5);
+    }
+    header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    header p { font-size: 1.2em; }
+
+    /* Timeline */
+    .timeline {
+      max-width: 900px;
+      margin: 60px auto;
+      position: relative;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: #fff;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      padding: 20px 40px;
+      position: relative;
+      width: 50%;
+    }
+    .timeline-item.left { left: 0; }
+    .timeline-item.right { left: 50%; }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      right: -10px;
+      background: #ff4b5c;
+      border: 3px solid #fff;
+      top: 30px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .timeline-item.right::after { left: -10px; }
+    .timeline-content {
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 10px;
+    }
+    .timeline-content h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    /* Collage */
+    .collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      max-width: 800px;
+      margin: 60px auto;
+    }
+    .collage img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    /* Videos */
+    .videos {
+      max-width: 900px;
+      margin: 60px auto;
+      text-align: center;
+    }
+    .videos video {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    /* Note */
+    .note {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(0,0,0,0.7);
+    }
+    .note h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    .note textarea {
+      width: 90%;
+      max-width: 600px;
+      height: 150px;
+      border-radius: 10px;
+      border: none;
+      padding: 15px;
+      font-size: 1em;
+      resize: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Bizim Küçük Evrenimiz</h1>
+  <p>Merhaba, ben İlker... Bu sayfa bizim yolculuğumuzun küçük bir yansıması 💕</p>
+</header>
+
+<section class="timeline">
+  <div class="timeline-item left">
+    <div class="timeline-content">
+      <h3>2024 • Kış</h3>
+      <p>Tanıştık... belki biraz gergindik ama kalplerimiz çoktan birbirini bulmuştu.</p>
+    </div>
+  </div>
+  <div class="timeline-item right">
+    <div class="timeline-content">
+      <h3>İlk Sürpriz</h3>
+      <p>Beyaz gül... Ufak bir anı, büyük bir mutluluk 💐</p>
+    </div>
+  </div>
+  <div class="timeline-item left">
+    <div class="timeline-content">
+      <h3>İlk Kavgamız</h3>
+      <p>Ufak tartışmalar bile bizi daha çok kenetledi. Çünkü vazgeçmek yoktu.</p>
+    </div>
+  </div>
+  <div class="timeline-item right">
+    <div class="timeline-content">
+      <h3>İlk Sarılma</h3>
+      <p>Merdivenlerde oturup saatlerce sohbet ettik. Dünya dursa da biz devam ettik.</p>
+    </div>
+  </div>
+  <div class="timeline-item left">
+    <div class="timeline-content">
+      <h3>Bugün</h3>
+      <p>Hâlâ buradayız. Daha güçlüyüz. Daha çok seviyoruz 💞</p>
+    </div>
+  </div>
+</section>
+
+<section class="collage">
+  <img src="https://ibb.co.com/9mwCTwzG" alt="Anı 1">
+  <img src="https://ibb.co.com/0R9YcVCJ" alt="Anı 2">
+  <img src="https://ibb.co.com/k24nbt1Z" alt="Anı 3">
+  <img src="https://i.ibb.co/JwzhgHwZ/b.jpg" alt="Anı 4">
+</section>
+
+<section class="videos">
+  <video controls>
+    <source src="https://www.kapwing.com/videos/68b1bda87aa715a838c90ce0" type="video/mp4">
+  </video>
+  <video controls>
+    <source src="https://www.kapwing.com/videos/68b1bca358c5b671edcb15d3" type="video/mp4">
+  </video>
+  <video controls>
+    <source src="https://www.kapwing.com/videos/68b1be4b5bbea83581afe31b" type="video/mp4">
+  </video>
+</section>
+
+<section class="note">
+  <h2>Bahargül'ün Notu 💌</h2>
+  <textarea placeholder="Buraya birkaç kelime bırak..."></textarea>
+</section>
+
+<footer>
+  <p>İlker ❤️ Bahargül — Bizim küçük evrenimiz</p>
+</footer>
+
+</body>
+</html>
