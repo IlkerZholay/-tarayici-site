@@ -12,99 +12,107 @@
     --accent:#d63384;
     --muted:#6b7280;
     --card: rgba(255,255,255,0.96);
-    --glass: rgba(255,255,255,0.76);
     --shadow: 0 18px 60px rgba(10,10,20,0.08);
-    --radius:16px;
+    --radius: 14px;
     --maxw:1100px;
-    --bgimg: url("https://i.ibb.co/JwzhgHwZ/b.jpg");
+    --bg: url("https://i.ibb.co/JwzhgHwZ/b.jpg");
   }
   *{box-sizing:border-box}
   html,body{height:100%; margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased;}
-  body{ background:#060608; color:#111; }
+  body{ background:#060608; color:#111; -webkit-font-smoothing:antialiased; }
 
   /* NAV */
-  nav{ position:fixed; top:12px; left:50%; transform:translateX(-50%); z-index:60; width:min(var(--maxw),94%); display:flex; justify-content:center; }
-  nav ul{ display:flex; gap:8px; background:rgba(255,255,255,0.06); padding:8px 10px; border-radius:999px; list-style:none; margin:0; align-items:center; }
-  nav a{ color:#fff; text-decoration:none; padding:6px 10px; border-radius:8px; font-weight:600; font-size:14px }
+  nav{
+    position:fixed; top:12px; left:50%; transform:translateX(-50%); z-index:140;
+    width:min(var(--maxw),96%); display:flex; justify-content:center;
+  }
+  nav ul{ display:flex; gap:8px; background:rgba(255,255,255,0.06); padding:8px 12px; border-radius:999px; list-style:none; margin:0; overflow:auto; }
+  nav a{ color:#fff; text-decoration:none; padding:8px 12px; border-radius:10px; font-weight:600; white-space:nowrap }
   nav a:hover{ background:rgba(255,255,255,0.04) }
 
   /* HERO */
   .hero{
     min-height:72vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
-    background: var(--bgimg) center/cover fixed no-repeat;
+    background: var(--bg) center/cover fixed no-repeat;
   }
-  .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.46)); z-index:0; }
+  .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.48)); z-index:0; }
   .hero-inner{ position:relative; z-index:2; text-align:center; color:#fff; width:min(var(--maxw),94%); padding:34px; border-radius:12px; }
-  .logo{ display:inline-block; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,0.06); font-weight:700; letter-spacing:.6px }
-  .title{ font-family:'Playfair Display',serif; font-size:clamp(28px,6.4vw,56px); margin:12px 0 6px; text-shadow:0 8px 28px rgba(0,0,0,0.5) }
-  .subtitle{ font-size:clamp(14px,3.2vw,18px); opacity:.95 }
-  .script{ font-family:'Dancing Script',cursive; color:#ffdfe9; margin-top:10px; font-size:clamp(20px,4.2vw,32px) }
+  .logo{ display:inline-block; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,0.06); font-weight:700; letter-spacing:.6px }
+  .main-title{ font-family:'Playfair Display',serif; font-size:clamp(28px,6.2vw,52px); margin:12px 0 6px; text-shadow:0 8px 28px rgba(0,0,0,0.55) }
+  .lead{ font-size:clamp(13px,3vw,17px); opacity:.95 }
+  .script{ font-family:'Dancing Script',cursive; color:#ffdfe9; margin-top:10px; font-size:clamp(18px,4.2vw,30px) }
 
   .hero-cta{ margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap }
   .btn{ background:var(--accent); color:#fff; border:0; padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer }
   .btn.ghost{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.12) }
 
-  /* main area */
-  main{ background:#fff; border-top-left-radius:26px; border-top-right-radius:26px; margin-top:-40px; box-shadow:0 -16px 50px rgba(10,10,20,0.06); }
-  .wrap{ max-width:var(--maxw); margin:0 auto; padding:34px 18px; }
+  /* main wrapper */
+  main{ background:#fff; border-top-left-radius:26px; border-top-right-radius:26px; margin-top:-40px; box-shadow:0 -18px 50px rgba(10,10,20,0.06); }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:36px 18px; }
 
   h2.section-title{ font-family:'Playfair Display',serif; color:#8b1a52; font-size:22px; margin:0 0 6px; }
   p.muted{ color:var(--muted); margin:0 0 10px; }
 
-  /* TIMELINE */
+  /* TIMELINE: horizontal cards */
   .timeline-wrap{ background:var(--card); border-radius:14px; padding:12px; box-shadow:var(--shadow); }
-  .timeline{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(280px, 1fr); gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:12px }
-  .tcard{ scroll-snap-align:center; background:linear-gradient(180deg,#fff,#fff7fb); border-radius:12px; padding:16px; min-height:150px; box-shadow:0 8px 28px rgba(10,10,20,0.06); display:flex; flex-direction:column; gap:8px }
+  .timeline{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(280px,1fr); gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:10px; -webkit-overflow-scrolling:touch; }
+  .tcard{ scroll-snap-align:center; background:linear-gradient(180deg,#fff,#fff7fb); border-radius:12px; padding:16px; min-height:150px; box-shadow:0 8px 28px rgba(10,10,20,0.06); display:flex; flex-direction:column; gap:8px; }
   .tdate{ color:var(--accent); font-weight:700; font-size:13px }
   .tcard h3{ margin:0; font-size:18px; color:#222 }
-  .tcard p{ margin:0; color:var(--muted); font-size:14px }
+  .tcard p{ margin:0; color:var(--muted); font-size:14px; line-height:1.5 }
 
-  /* baby photo card */
   .tcard.photo{ padding:0; overflow:hidden }
   .tcard.photo img{ width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/3 }
 
-  /* GALLERY (combined: images + videos) - horizontal snapping */
-  .gallery-wrap{ background:var(--card); border-radius:14px; padding:12px; box-shadow:var(--shadow); margin-top:22px }
+  /* GALLERY (images + videos in one horizontal scroll) */
+  .gallery-wrap{ background:var(--card); border-radius:14px; padding:12px; box-shadow:var(--shadow); margin-top:22px; }
   .gallery{
-    display:flex; gap:12px; overflow-x:auto; padding:12px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    display:flex; gap:12px; overflow-x:auto; padding:16px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
   }
   .card{
-    flex:0 0 86%; /* card width on mobile; on desktop override with media query */
-    height: min(56vh, 420px);
-    border-radius:14px; overflow:hidden; background:#000; position:relative; box-shadow:0 12px 36px rgba(10,10,20,0.06);
+    flex:0 0 86%; /* mobile: almost full width */
+    height: min(56vh,450px);
+    border-radius:12px; overflow:hidden; background:#000; position:relative; box-shadow:0 12px 36px rgba(10,10,20,0.06);
     scroll-snap-align:center;
   }
-  .card img{ width:100%; height:100%; object-fit:cover; display:block }
-  .card .caption{ position:absolute; left:12px; bottom:12px; background:rgba(0,0,0,0.42); color:#fff; padding:6px 10px; border-radius:999px; font-size:13px }
+  /* desktop: two-up look */
+  @media(min-width:900px){
+    .card{ flex:0 0 46%; height:420px }
+  }
 
-  /* video iframe wrapper */
+  .card img{ width:100%; height:100%; object-fit:cover; display:block }
+  .card .caption{ position:absolute; left:12px; bottom:12px; background:rgba(0,0,0,0.45); color:#fff; padding:6px 10px; border-radius:999px; font-size:13px }
+
+  /* video embed wrapper */
   .vid-frame{ position:absolute; inset:0; border:0; width:100%; height:100%; }
 
-  /* thumb indicators */
+  /* small thumbs */
   .thumbs{ display:flex; gap:8px; justify-content:center; margin-top:12px; flex-wrap:wrap }
   .thumbs button{ width:12px; height:12px; border-radius:50%; border:0; background:rgba(0,0,0,0.12); cursor:pointer }
   .thumbs button.active{ background:var(--accent) }
 
-  /* MUSIC + controls */
+  /* music area */
   .music-wrap{ margin-top:18px; background:var(--card); border-radius:12px; padding:12px; box-shadow:var(--shadow); display:flex; gap:12px; align-items:center; flex-wrap:wrap }
-  .audio{ width:100%; max-width:560px }
-  .audio-btn{ padding:10px 12px; border-radius:10px; border:0; background:var(--accent); color:#fff; font-weight:700; cursor:pointer }
+  .audio{ width:100%; max-width:560px; border-radius:8px }
+  .audio-loader{ font-size:13px; color:var(--muted) }
 
-  /* two column area */
+  /* two columns */
   .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px }
   .card-box{ background:var(--card); border-radius:12px; padding:12px; box-shadow:var(--shadow) }
-  textarea{ width:100%; min-height:140px; border-radius:10px; border:1px solid #ececf2; padding:10px; font-size:15px; resize:vertical; font-family:inherit }
 
-  footer{ margin-top:28px; text-align:center; color:var(--muted); font-size:13px; padding-bottom:24px }
+  textarea{ width:100%; min-height:140px; border-radius:10px; border:1px solid #ececf2; padding:10px; font-size:15px; resize:vertical }
 
-  /* desktop tweaks */
-  @media(min-width:900px){
-    .card{ flex:0 0 46%; height:420px }
-    .gallery{ padding:18px }
+  footer{ margin-top:28px; text-align:center; color:var(--muted); font-size:13px; padding-bottom:30px }
+
+  /* accessibility reduce motion */
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none!important}
   }
-  @media(max-width:520px){
-    nav{ left:10px; transform:none; width:auto }
-  }
+
+  /* hide scrollbars lightly */
+  .gallery, .timeline{ scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.1) transparent; }
+  .gallery::-webkit-scrollbar, .timeline::-webkit-scrollbar{ height:8px; }
+  .gallery::-webkit-scrollbar-thumb{ background:rgba(0,0,0,0.12); border-radius:8px }
 </style>
 </head>
 <body>
@@ -124,8 +132,8 @@
 <header id="hero" class="hero" role="banner" aria-label="Kumsal — İ + B">
   <div class="hero-inner" role="img" aria-hidden="false">
     <div class="logo">İ + B</div>
-    <div class="title">Bizim Küçük Evrenimiz</div>
-    <div class="subtitle">Seninle her mevsim bahar. Bu sayfa anılarımızı saklasın diye hazırlandı.</div>
+    <h1 class="main-title">Bizim Küçük Evrenimiz</h1>
+    <p class="lead">Seninle her mevsim bahar. Bu sayfa anılarımızı saklasın diye hazırlandı — gülümse, kaydır ve anıların tadını çıkar.</p>
     <div class="script">“Yanındayım — her hâlinde.”</div>
     <div class="hero-cta">
       <a class="btn" href="#memories">Anılara Git</a>
@@ -134,16 +142,16 @@
   </div>
 </header>
 
-<!-- MAIN -->
 <main class="wrap">
 
   <!-- TIMELINE -->
-  <section id="timeline">
+  <section id="timeline" aria-label="Zaman Çizelgesi">
     <h2 class="section-title">Zaman Çizelgesi</h2>
-    <p class="muted">Kartları sağa kaydırın. Burada kısa anılarımız yer alır; en sonda minik bebeğin fotoğrafı var.</p>
+    <p class="muted">Kartları sağa kaydır. Burada kısa anılarımız; en sonda minik bebeğin fotoğrafı var.</p>
 
-    <div class="timeline-wrap" aria-label="Zaman çizelgesi">
+    <div class="timeline-wrap">
       <div class="timeline" id="timelineInner">
+        <!-- text cards -->
         <article class="tcard">
           <div class="tdate">2024 • Kış</div>
           <h3>Tanıştık</h3>
@@ -174,91 +182,92 @@
           <p>Hâlâ buradayız; daha güçlü, daha sevgi dolu.</p>
         </article>
 
-        <!-- Only baby photo remains in timeline (as you asked) -->
+        <!-- only baby photo left in timeline -->
         <article class="tcard photo" aria-label="Bebek Fotoğrafı">
-          <img src="https://r.resimlink.com/RboDvu2.png" alt="Minik Bebek">
+          <img id="babyPhoto" src="https://r.resimlink.com/RboDvu2.png" alt="Minik Bebek">
         </article>
       </div>
     </div>
   </section>
 
-  <!-- MEMORIES (combined gallery: images + videos horizontally scrollable) -->
-  <section id="memories" style="margin-top:20px">
+  <!-- MEMORIES: combined horizontal gallery (images + videos) -->
+  <section id="memories" aria-label="Anılarımız">
     <h2 class="section-title">Anılarımız</h2>
-    <p class="muted">Galeriyi yana kaydır (parmakla veya sürükle). Fotoğraflar yüksek çözünürlüklü; videolar sessiz autoplay ile döner, istersen sesi açabilirsin.</p>
+    <p class="muted">Parmağınla yana kaydır (mobil). Fotoğraflar yüksek çözünürlükte, videolar sessiz autoplay ile döner. Fotoğrafı tıkla → tam ekran açılır.</p>
 
-    <div class="gallery-wrap" aria-label="Anılar galerisi">
+    <div class="gallery-wrap" aria-label="Galerimiz">
       <div class="gallery" id="gallery">
 
-        <!-- Card 1: image -->
-        <div class="card" data-type="image" data-index="0">
-          <img src="https://i.ibb.co/7JJf5x60/bb.jpg" alt="Anı 1 — Tatlı An">
+        <!-- IMAGE CARDS (corrected i.ibb.co links) -->
+        <div class="card" data-type="image" data-src="https://i.ibb.co/7JJf5x60/bb.jpg" data-caption="Tatlı An — 1">
+          <img alt="Tatlı An — 1" />
           <div class="caption">Tatlı An — 1</div>
         </div>
 
-        <!-- Card 2: image -->
-        <div class="card" data-type="image" data-index="1">
-          <img src="https://i.ibb.co/fdcMwyyX/bbb.jpg" alt="Anı 2 — Tatlı An">
+        <div class="card" data-type="image" data-src="https://i.ibb.co/fdcMwyyX/bbb.jpg" data-caption="Tatlı An — 2">
+          <img alt="Tatlı An — 2" />
           <div class="caption">Tatlı An — 2</div>
         </div>
 
-        <!-- Card 3: image -->
-        <div class="card" data-type="image" data-index="2">
-          <img src="https://i.ibb.co/dwVVPVVZ/bbbb.jpg" alt="Anı 3 — Tatlı An">
+        <div class="card" data-type="image" data-src="https://i.ibb.co/dwVVPVVZ/bbbb.jpg" data-caption="Tatlı An — 3">
+          <img alt="Tatlı An — 3" />
           <div class="caption">Tatlı An — 3</div>
         </div>
 
-        <!-- Card 4: kumsal image -->
-        <div class="card" data-type="image" data-index="3">
-          <img src="https://i.ibb.co/JwzhgHwZ/b.jpg" alt="Kumsal — İ + B">
+        <div class="card" data-type="image" data-src="https://i.ibb.co/JwzhgHwZ/b.jpg" data-caption="Kumsal — İ + B">
+          <img alt="Kumsal İ+B" />
           <div class="caption">Kumsal — İ + B</div>
         </div>
 
-        <!-- Card 5: video 1 -->
-        <div class="card" data-type="video" data-index="4">
-          <div class="vid-frame" aria-hidden="false">
+        <!-- VIDEO CARDS (Streamable embed with autoplay muted loop) -->
+        <div class="card" data-type="video" data-caption="Video — Anı 1">
+          <div class="vid-frame">
             <iframe src="https://streamable.com/e/xdqvz2?autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen" allowfullscreen title="Video 1"></iframe>
           </div>
           <div class="caption">Video — Anı 1</div>
         </div>
 
-        <!-- Card 6: video 2 -->
-        <div class="card" data-type="video" data-index="5">
-          <div class="vid-frame" aria-hidden="false">
+        <div class="card" data-type="video" data-caption="Video — Anı 2">
+          <div class="vid-frame">
             <iframe src="https://streamable.com/e/8vdhrg?autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen" allowfullscreen title="Video 2"></iframe>
           </div>
           <div class="caption">Video — Anı 2</div>
         </div>
 
-        <!-- (If you have a 3rd video, add another card similar to above) -->
+        <!-- if you later want to add a 3rd video, duplicate the block above and change the src -->
       </div>
 
-      <!-- thumbnails / small indicator dots -->
       <div class="thumbs" id="thumbs" aria-hidden="true"></div>
     </div>
   </section>
 
   <!-- MUSIC -->
-  <section id="music" style="margin-top:22px">
+  <section id="music" aria-label="Müzik">
     <h2 class="section-title">Müzik</h2>
-    <p class="muted">“Dilerim Ki” — oynatmak için düğmeye bas. (MP3 dosyasını index.html ile aynı klasöre koy; dosya adı: <code>dilerim-ki.mp3</code>)</p>
+    <p class="muted">Şarkıyı telefonundan yükleyebilir veya aynı klasöre <code>dilerim-ki.mp3</code> koyabilirsin. (Tarayıcı otomatik çalımı genelde engeller — bir kez Oynat’a basman yeter.)</p>
 
     <div class="music-wrap">
-      <button class="audio-btn" id="playAudio">Oynat</button>
-      <button class="audio-btn" id="pauseAudio" style="background:transparent;color:var(--accent);border:1px solid rgba(214,51,132,0.12)">Duraklat</button>
-      <audio id="audioEl" class="audio" preload="metadata">
-        <source src="dilerim-ki.mp3" type="audio/mpeg">
-        Tarayıcınız ses çalmasını desteklemiyor.
-      </audio>
+      <div>
+        <button class="btn" id="chooseAudioBtn">Şarkı Yükle (Telefonundan Seç)</button>
+        <input type="file" id="audioFile" accept="audio/*" style="display:none">
+      </div>
+
+      <div style="flex:1; min-width:220px;">
+        <audio id="audioEl" class="audio" controls preload="metadata">
+          <source id="audioSource" src="dilerim-ki.mp3" type="audio/mpeg">
+          Tarayıcınız ses oynatamıyor.
+        </audio>
+        <div class="audio-loader" id="audioInfo">Seçili: <span id="audioName">dilerim-ki.mp3 (varsayılan)</span></div>
+      </div>
     </div>
   </section>
 
   <!-- DATE + MEMO -->
-  <section id="memo" style="margin-top:22px">
+  <section id="memo" aria-label="Buluşma ve Not">
     <div class="two-col">
       <div class="card-box">
         <h3 class="section-title" style="margin-top:0">Bir Sonraki Buluşma</h3>
-        <p class="muted">Tarih seçip kaydet; yalnızca bu tarayıcıda saklanır.</p>
+        <p class="muted">Tarih seçip kaydet; sadece bu tarayıcıda saklanır.</p>
         <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
           <input id="datePick" type="datetime-local" style="padding:8px;border-radius:8px;border:1px solid #eee" />
           <button class="btn" id="saveDate">Kaydet</button>
@@ -284,148 +293,145 @@
 
 <footer>© İlker &amp; Bahargül — “Küçük şeylerin toplamı büyük bir aşk yapar.”</footer>
 
+<!-- LIGHTBOX for images -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;align-items:center;justify-content:center;padding:20px">
+  <button id="lbClose" style="position:absolute;right:18px;top:18px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.06);color:#fff;border:0;cursor:pointer">Kapat ✕</button>
+  <button id="lbPrev" style="position:absolute;left:18px;top:50%;transform:translateY(-50%);padding:10px;border-radius:8px;background:rgba(255,255,255,0.06);color:#fff;border:0;cursor:pointer">◀</button>
+  <button id="lbNext" style="position:absolute;right:18px;top:50%;transform:translateY(-50%);padding:10px;border-radius:8px;background:rgba(255,255,255,0.06);color:#fff;border:0;cursor:pointer">▶</button>
+  <img id="lbImg" src="" alt="" style="max-width:100%; max-height:100%; border-radius:12px; box-shadow:0 30px 80px rgba(0,0,0,0.6)">
+</div>
+
 <script>
-/* Smooth nav scroll */
-document.querySelectorAll('nav a').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-  });
-});
+/* ------------------ Utility: Fix common wrong i.ibb.co.com -> i.ibb.co ------------------ */
+function fixImgUrl(url){
+  if(!url) return url;
+  // common wrong forms:
+  url = url.replace('https://i.ibb.co.com/', 'https://i.ibb.co/').replace('http://i.ibb.co.com/', 'http://i.ibb.co/');
+  url = url.replace('https://ibb.co.com/', 'https://i.ibb.co/').replace('http://ibb.co.com/', 'http://i.ibb.co/');
+  // ensure https
+  if(url.startsWith('//')) url = 'https:' + url;
+  return url;
+}
 
-/* Timeline intersection animation (cards fade in) */
-const timelineCards = document.querySelectorAll('.tcard:not(.photo)');
-const tlObserver = new IntersectionObserver((entries)=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting) en.target.style.transform = 'none', en.target.style.opacity = '1';
-  });
-},{root: document.querySelector('.timeline'), threshold: 0.35});
-timelineCards.forEach(c=>{ c.style.transform='translateY(12px)'; c.style.opacity='0'; tlObserver.observe(c); });
-
-/* GALLERY - thumbnails + nice behavior */
+/* ------------------ Gallery: populate images from data-src attributes ------------------ */
 const gallery = document.getElementById('gallery');
-const thumbs = document.getElementById('thumbs');
-const cards = [...gallery.children];
-
-function makeThumbs(){
-  thumbs.innerHTML = '';
-  cards.forEach((c,i)=>{
-    const btn = document.createElement('button');
-    btn.title = `Göster ${i+1}`;
-    btn.addEventListener('click', ()=> scrollToIndex(i));
-    if(i===0) btn.classList.add('active');
-    thumbs.appendChild(btn);
-  });
-}
-function scrollToIndex(i){
-  const card = cards[i];
-  if(!card) return;
-  card.scrollIntoView({behavior:'smooth', inline:'center'});
-  updateActive(i);
-}
-function updateActive(activeIdx){
-  [...thumbs.children].forEach((b,idx)=> b.classList.toggle('active', idx===activeIdx));
-}
-makeThumbs();
-
-/* Update active thumb when user scrolls gallery */
-let scrollTimeout = null;
-gallery.addEventListener('scroll', ()=>{
-  if(scrollTimeout) clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(()=>{
-    const center = gallery.scrollLeft + gallery.clientWidth/2;
-    let closest = 0; let closestDist = Infinity;
-    cards.forEach((card,i)=>{
-      const rect = card.getBoundingClientRect();
-      const galleryRect = gallery.getBoundingClientRect();
-      const cardCenter = (rect.left - galleryRect.left) + rect.width/2;
-      const dist = Math.abs(cardCenter - gallery.clientWidth/2);
-      if(dist < closestDist){ closestDist = dist; closest = i; }
+const galleryCards = Array.from(gallery.querySelectorAll('.card'));
+galleryCards.forEach((card, i) => {
+  const type = card.dataset.type;
+  if(type === 'image'){
+    const imgEl = card.querySelector('img');
+    const raw = card.dataset.src || card.getAttribute('data-src');
+    const fixed = fixImgUrl(raw);
+    // lazy load
+    imgEl.loading = 'lazy';
+    imgEl.src = fixed;
+    imgEl.onerror = () => {
+      // try some fallbacks: replace .co.com -> .co etc already attempted; if fail, show placeholder
+      console.warn('Resim yüklenemedi:', raw);
+      imgEl.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="100%" height="100%" fill="%23f3f3f3"/><text x="50%" y="48%" alignment-baseline="middle" text-anchor="middle" fill="%23999" font-size="28">Resim yüklenemedi</text></svg>';
+      const cap = card.querySelector('.caption');
+      if(cap) cap.textContent = (card.dataset.caption || 'Görsel') + ' — (açılmadı)';
+    };
+    // open in lightbox on click
+    card.addEventListener('click', (e)=>{
+      // if clicked on video iframe, skip
+      if(card.dataset.type === 'video') return;
+      openLightbox(i);
     });
-    updateActive(closest);
-  }, 120);
-});
-
-/* Make videos clickable to toggle sound (unmute) — optional */
-gallery.addEventListener('click', (e)=>{
-  const card = e.target.closest('.card');
-  if(!card) return;
-  if(card.dataset.type === 'video'){
-    const iframe = card.querySelector('iframe');
-    // Streamable iframe can't be directly controlled for mute via JS from another origin.
-    // Instead we open fullscreen in new tab allowing user to control audio if they wish.
-    const src = iframe.getAttribute('src');
-    // open in new tab without autoplay params so user can enable sound
-    const clean = src.split('?')[0];
-    window.open(clean, '_blank');
+  } else if(type === 'video'){
+    // clicking a video will open its clean link in a new tab to let user unmute if they want
+    card.addEventListener('click', (e)=>{
+      // find iframe src and open cleaned (without autoplay params)
+      const iframe = card.querySelector('iframe');
+      if(!iframe) return;
+      const src = iframe.getAttribute('src') || '';
+      const clean = src.split('?')[0];
+      window.open(clean, '_blank');
+    });
   }
 });
 
-/* AUDIO controls */
-const audio = document.getElementById('audioEl');
-document.getElementById('playAudio').addEventListener('click', ()=> {
-  audio.play().catch(()=> alert('Tarayıcı otomatik çalmayı engelledi. Lütfen tekrar "Oynat" düğmesine basın.'));
+/* --------------- Lightbox logic --------------- */
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbClose = document.getElementById('lbClose');
+const lbNext = document.getElementById('lbNext');
+const lbPrev = document.getElementById('lbPrev');
+
+let currentIndex = 0;
+function openLightbox(startIndex){
+  // find next image card index among galleryCards
+  const imageIndexes = galleryCards.map((c, idx) => c.dataset.type === 'image' ? idx : -1).filter(v=>v>=0);
+  if(imageIndexes.length === 0) return;
+  // if startIndex is not an image, find nearest image
+  let idx = startIndex;
+  if(galleryCards[idx].dataset.type !== 'image'){
+    // find nearest image to the right, else left
+    let found = imageIndexes.find(i=>i>idx);
+    if(found === undefined) found = imageIndexes[imageIndexes.length-1];
+    idx = found;
+  }
+  currentIndex = imageIndexes.indexOf(idx);
+  showLBImage();
+  lightbox.style.display = 'flex';
+}
+
+function showLBImage(){
+  const imageIndexes = galleryCards.map((c, idx) => c.dataset.type === 'image' ? idx : -1).filter(v=>v>=0);
+  if(imageIndexes.length === 0) return;
+  const idx = imageIndexes[currentIndex];
+  const card = galleryCards[idx];
+  const img = card.querySelector('img');
+  lbImg.src = img.src;
+  lbImg.alt = img.alt || card.dataset.caption || 'Anı';
+}
+
+function closeLB(){ lightbox.style.display = 'none'; lbImg.src = ''; }
+
+lbClose.addEventListener('click', closeLB);
+lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLB(); });
+lbNext.addEventListener('click', ()=>{
+  const imageIndexes = galleryCards.map((c, idx) => c.dataset.type === 'image' ? idx : -1).filter(v=>v>=0);
+  if(imageIndexes.length === 0) return;
+  currentIndex = (currentIndex + 1) % imageIndexes.length;
+  showLBImage();
 });
-document.getElementById('pauseAudio').addEventListener('click', ()=> audio.pause());
-// also buttons above music section
-document.getElementById('playAudio').addEventListener('click', ()=> audio.play().catch(()=>{}));
-document.getElementById('pauseAudio').addEventListener('click', ()=> audio.pause());
-document.getElementById('playAudio').style.display = 'none'; // hide fallback if not present
+lbPrev.addEventListener('click', ()=>{
+  const imageIndexes = galleryCards.map((c, idx) => c.dataset.type === 'image' ? idx : -1).filter(v=>v>=0);
+  if(imageIndexes.length === 0) return;
+  currentIndex = (currentIndex - 1 + imageIndexes.length) % imageIndexes.length;
+  showLBImage();
+});
 
-// provide controls in music area:
-document.getElementById('playAudio')?.remove();
-document.getElementById('pauseAudio')?.remove();
-document.getElementById('playAudio'); // no-op
+/* support swipe inside lightbox */
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+lightbox.addEventListener('touchend', e => {
+  const dx = (e.changedTouches[0].clientX - touchStartX);
+  if(Math.abs(dx) > 50){
+    if(dx < 0) lbNext.click(); else lbPrev.click();
+  }
+});
 
-// bind music play/pause from visible buttons
-document.getElementById('playAudio') // might be removed; robustly select visible controls
-const playBtn = document.querySelector('#music .audio-btn') || document.querySelector('.audio-btn');
-const pauseBtn = document.querySelector('#music .audio-btn.ghost') || document.querySelectorAll('.audio-btn')[1];
-if(playBtn) playBtn.addEventListener('click', ()=> audio.play().catch(()=> alert('Tarayıcı otomatik çalmayı engelledi. Lütfen tekrar Oynat.')));
-if(pauseBtn) pauseBtn.addEventListener('click', ()=> audio.pause());
-
-/* Countdown date logic */
-const DATE_KEY = 'ilker_bahar_date';
-const datePick = document.getElementById('datePick');
-const saveDate = document.getElementById('saveDate');
-const clearDate = document.getElementById('clearDate');
-const counter = document.getElementById('counter');
-if(localStorage.getItem(DATE_KEY)) datePick.value = localStorage.getItem(DATE_KEY);
-
-function updateCounter(){
-  const v = datePick.value;
-  if(!v){ counter.textContent = 'Tarih seçilmedi'; return; }
-  const diff = new Date(v).getTime() - Date.now();
-  if(isNaN(diff)){ counter.textContent = 'Geçersiz tarih'; return; }
-  if(diff <= 0){ counter.textContent = 'Bugün! 🎉'; return; }
-  const d = Math.floor(diff/86400000);
-  const h = Math.floor((diff%86400000)/3600000);
-  const m = Math.floor((diff%3600000)/60000);
-  const s = Math.floor((diff%60000)/1000);
-  counter.textContent = `${d}g ${h}s ${m}d ${s}sn`;
+/* --------------- Thumbnails / active card indicator --------------- */
+const thumbsContainer = document.getElementById('thumbs');
+function buildThumbs(){
+  thumbsContainer.innerHTML = '';
+  galleryCards.forEach((c,i)=>{
+    const btn = document.createElement('button');
+    btn.addEventListener('click', ()=> {
+      galleryCards[i].scrollIntoView({behavior:'smooth', inline:'center'});
+    });
+    if(i===0) btn.classList.add('active');
+    thumbsContainer.appendChild(btn);
+  });
 }
-setInterval(updateCounter,1000);
-updateCounter();
-saveDate.addEventListener('click', ()=> { if(datePick.value){ localStorage.setItem(DATE_KEY, datePick.value); updateCounter(); }});
-clearDate.addEventListener('click', ()=> { localStorage.removeItem(DATE_KEY); datePick.value=''; updateCounter(); });
+buildThumbs();
 
-/* Memo save logic */
-const MEMO_KEY = 'ilker_bahar_memo';
-const memoText = document.getElementById('memoText');
-const saveMemo = document.getElementById('saveMemo');
-const clearMemo = document.getElementById('clearMemo');
-const memoStatus = document.getElementById('memoStatus');
-memoText.value = localStorage.getItem(MEMO_KEY) || '';
-saveMemo.addEventListener('click', ()=> { localStorage.setItem(MEMO_KEY, memoText.value || ''); memoStatus.style.display='inline'; setTimeout(()=> memoStatus.style.display='none', 1600); });
-clearMemo.addEventListener('click', ()=> { memoText.value = ''; localStorage.removeItem(MEMO_KEY); });
-
-/* Accessibility: respect prefers-reduced-motion */
-if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  document.documentElement.style.scrollBehavior = 'auto';
-}
-</script>
-
-</body>
-</html>
+// update active on scroll (debounced)
+let scTimer;
+gallery.addEventListener('scroll', ()=>{
+  if(scTimer) clearTimeout(scTimer);
+  scTimer = setTimeout(()=> {
+    // find centered card
+    const center = gallery.scrollLeft + gall
