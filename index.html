@@ -1,225 +1,382 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bizim Küçük Evrenimiz</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #fffafc;
-      color: #333;
-      line-height: 1.6;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>İlker ❤ Bahargül — Bizim Küçük Evrenimiz</title>
 
-    header {
-      background: url("https://i.ibb.co.com/KxCVCRNz/IMG-20240623-005755-133.jpg") center/cover no-repeat;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      color: white;
-      padding: 20px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    header h1 {
-      font-size: 2.5rem;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-    }
+<style>
+  :root{
+    --accent:#c83a66;
+    --muted:#6b7280;
+    --card: rgba(255,255,255,0.96);
+    --shadow: 0 22px 70px rgba(10,10,20,0.08);
+    --maxw:1120px;
+    --hero-bg: url("https://i.ibb.co/JwzhgHwZ/b.jpg");
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#fbf8f9;color:#111}
+  a{color:inherit}
+  /* NAV */
+  nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:180;width:min(var(--maxw),96%);display:flex;justify-content:center}
+  nav ul{display:flex;gap:8px;background:rgba(255,255,255,0.06);padding:8px;border-radius:999px;list-style:none;margin:0;overflow:auto}
+  nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:700;white-space:nowrap;font-size:14px}
+  nav a:hover{background:rgba(255,255,255,0.04)}
 
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    }
+  /* HERO */
+  .hero{
+    min-height:72vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+    background: var(--hero-bg) center/cover fixed no-repeat;
+  }
+  .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.52)); z-index:0 }
+  .hero-inner{position:relative; z-index:2; text-align:center; color:#fff; padding:34px; width:min(var(--maxw),94%); }
+  .logo-pill{display:inline-block;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:800}
+  .title{font-family:'Playfair Display',serif;font-size:clamp(28px,6.4vw,56px);margin:.6rem 0}
+  .subtitle{font-size:clamp(13px,3.2vw,17px);opacity:.95}
+  .script{font-family:'Dancing Script',cursive;color:#ffdfe8;margin-top:10px;font-size:clamp(16px,3.8vw,28px)}
+  .hero-cta{margin-top:18px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .btn{background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12)}
 
-    .btn {
-      background: #ff4d6d;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 25px;
-      margin-top: 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+  /* main container */
+  main{margin-top:-44px;border-top-left-radius:28px;border-top-right-radius:28px;background:#fff;box-shadow:0 -18px 60px rgba(0,0,0,0.04)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:26px 18px 60px}
 
-    .btn:hover {
-      background: #e63956;
-    }
+  h2.section-title{font-family:'Playfair Display',serif;color:#962a53;margin:0 0 8px;font-size:20px}
+  p.muted{color:var(--muted);margin:0 0 12px}
 
-    section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+  /* timeline */
+  .timeline-wrap{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);margin-bottom:18px}
+  .timeline{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:150px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px}
+  .tdate{color:var(--accent);font-weight:800;font-size:13px}
+  .tcard h3{margin:0;font-size:18px;color:#222}
+  .tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+  .tcard.photo{padding:0;overflow:hidden}
+  .tcard.photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #ff4d6d;
-    }
+  /* memories / collage */
+  .memories-wrap{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);margin-bottom:18px}
+  .collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .collage img{width:100%;height:180px;object-fit:cover;border-radius:12px}
+  @media(min-width:900px){ .collage img{height:220px} }
+  @media(max-width:600px){ .collage{grid-template-columns:1fr} .collage img{height:220px} }
 
-    /* Timeline */
-    .timeline {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding-bottom: 10px;
-    }
+  /* swipeable gallery (big) */
+  .gallery{display:flex;gap:14px;overflow-x:auto;padding:12px 6px;-webkit-overflow-scrolling:touch}
+  .gallery .card{flex:0 0 90%;height:min(62vh,520px);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 14px 44px rgba(0,0,0,0.06);scroll-snap-align:center}
+  @media(min-width:1000px){ .gallery .card{flex:0 0 48%;height:420px} }
+  .gallery img{width:100%;height:100%;object-fit:cover;display:block}
+  .gallery .caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.45);color:#fff;padding:6px 10px;border-radius:999px;font-size:13px}
+  .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px}
+  .video-wrap iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
 
-    .timeline-card {
-      min-width: 250px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 15px;
-      text-align: center;
-    }
+  /* music area */
+  .music-area{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)}
+  .music-area .player{flex:1;min-width:220px}
 
-    .timeline-card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
+  /* poem / note */
+  .poem{background:linear-gradient(180deg,#fffafc,#fff);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:10px}
+  .poem p{margin:8px 0;font-size:16px}
+  .poem .sign{margin-top:8px;color:var(--muted);font-weight:700}
 
-    /* Gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-    }
+  /* roomy memo */
+  .note-wrap{margin-top:16px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+  textarea#memo{width:100%;min-height:240px;border-radius:12px;border:1px solid #ecebf0;padding:14px;font-size:16px;resize:vertical}
 
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-    }
+  /* two column footer area */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  @media(max-width:900px){ .two-col{grid-template-columns:1fr} }
 
-    /* Videos */
-    .video {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      margin-bottom: 20px;
-      border-radius: 10px;
-    }
+  footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
 
-    .video iframe {
-      position: absolute;
-      top:0; left:0;
-      width:100%; height:100%;
-      border:0;
-      border-radius: 10px;
-    }
-
-    /* Notes */
-    .notes textarea {
-      width: 100%;
-      height: 150px;
-      padding: 15px;
-      font-size: 1rem;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      resize: none;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #ff4d6d;
-      color: white;
-      margin-top: 40px;
-    }
-  </style>
+  /* lightbox */
+  #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center;padding:18px}
+  #lightbox img{max-width:100%;max-height:100%;border-radius:12px}
+  /* small adjustments */
+  .small-muted{font-size:13px;color:var(--muted)}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
 </head>
 <body>
 
-  <!-- Hero -->
-  <header>
-    <h1>Bizim Küçük Evrenimiz</h1>
-    <p>“Bir yerlerde çok doğru bir şey yapmış olmalıyım ki seni hak edebileyim.”</p>
-    <button class="btn" onclick="playSong()">💖 Şarkımızı Dinle</button>
-  </header>
+<!-- NAV -->
+<nav aria-label="Ana Menü">
+  <ul>
+    <li><a href="#hero">Evrenimiz</a></li>
+    <li><a href="#timeline">Zaman Çizelgesi</a></li>
+    <li><a href="#memories">Anılar</a></li>
+    <li><a href="#music">Müzik</a></li>
+    <li><a href="#note">Not</a></li>
+  </ul>
+</nav>
 
-  <!-- Şarkı -->
-  <section id="music">
-    <h2>Şarkımız</h2>
-    <div class="video" id="songPlayer" style="display:none;">
-      <iframe id="ytplayer" src="https://www.youtube.com/embed/PHd-3PSQ6X4?enablejsapi=1" 
-        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- HERO -->
+<header id="hero" class="hero" role="banner" aria-label="Kapak - Kumsal">
+  <div class="hero-inner">
+    <div class="logo-pill">İ + B</div>
+    <h1 class="title">Bizim Küçük Evrenimiz</h1>
+    <p class="subtitle">Seninle her mevsim bahar — bu sayfa bizim anılarımızı saklasın diye hazırlandı.</p>
+    <div class="script">“Yanındayım — her hâlinde.”</div>
+    <div class="hero-cta">
+      <a class="btn" href="#memories">Anılara Git</a>
+      <a class="btn ghost" href="#note">Sana Yazdığım Not</a>
     </div>
-  </section>
+  </div>
+</header>
 
-  <!-- Timeline -->
-  <section>
-    <h2>Zaman Çizelgesi</h2>
-    <div class="timeline">
-      <div class="timeline-card">
-        <img src="https://i.ibb.co.com/KxCVCRNz/IMG-20240623-005755-133.jpg" alt="Anı">
-        <p>Küçük bir başlangıç, kocaman bir sevgi… 💕</p>
+<main class="wrap" role="main">
+
+  <!-- TIMELINE -->
+  <section id="timeline" aria-label="Zaman Çizelgesi">
+    <h2 class="section-title">Zaman Çizelgesi</h2>
+    <p class="muted">Kısa duraklarımız — sağa kaydır. En sonda bizim küçük hatıra fotoğrafı yer alıyor.</p>
+
+    <div class="timeline-wrap">
+      <div class="timeline" id="timelineInner">
+        <article class="tcard">
+          <div class="tdate">2023 • Yaz</div>
+          <h3>Tanıştık</h3>
+          <p class="muted">O an her şey biraz daha anlamlı oldu; küçük bir evren başladı.</p>
+        </article>
+
+        <article class="tcard">
+          <div class="tdate">İlk Sürpriz</div>
+          <h3>Oyuncak ve Gülüş</h3>
+          <p class="muted">Senin için aldığım o küçük şeyler; senin gülüşün her şeye değer.</p>
+        </article>
+
+        <article class="tcard">
+          <div class="tdate">İlk Buluşma</div>
+          <h3>Kumsal &amp; Kahkaha</h3>
+          <p class="muted">İlk buluşmamızda kumda yazdığımız İ + B; o gün unutulmazdı.</p>
+        </article>
+
+        <article class="tcard">
+          <div class="tdate">Bugün</div>
+          <h3>Şu An</h3>
+          <p class="muted">Hâlâ buradayız; birlikte daha güçlüyüz.</p>
+        </article>
+
+        <!-- timeline final: use first provided image as timeline final card -->
+        <article class="tcard photo" aria-label="Son Hatıra Fotoğrafı">
+          <img id="timelineFinal" src="https://i.ibb.co.com/SwjRXpBC/IMG-20250906-WA0167.jpg" alt="Son Hatıra" style="width:100%;height:220px;object-fit:cover">
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section>
-    <h2>Anılarımız</h2>
-    <div class="gallery">
-      <img src="https://i.ibb.co.com/SwjRXpBC/IMG-20250906-WA0167.jpg" alt="Oyuncak ve Sevgilim">
-      <img src="https://i.ibb.co.com/pjnbBV76/Screenshot-2025-09-03-21-50-21-547-com-instagram-android.jpg" alt="Hediye">
-      <img src="https://i.ibb.co.com/B2HgVWW4/IMG-20250828-WA0006.jpg" alt="Buluşma">
-      <img src="https://i.ibb.co.com/v4NN6HKv/IMG-20250828-WA0003.jpg" alt="Buluşma Kareleri">
+  <!-- MEMORIES -->
+  <section id="memories" aria-label="Anılarımız">
+    <h2 class="section-title">Anılarımız — Foto & Video</h2>
+    <p class="muted">Aşağıdaki 2x2 kolaj ve büyük kaydırılabilir galeri telefon için optimize edildi. Fotoğrafa dokununca büyük açılır.</p>
+
+    <div class="memories-wrap">
+
+      <!-- 2x2 collage using the four provided images -->
+      <div class="collage" id="collage">
+        <img data-src="https://i.ibb.co.com/SwjRXpBC/IMG-20250906-WA0167.jpg" alt="Oyuncak & Sevgilim">
+        <img data-src="https://i.ibb.co.com/pjnbBV76/Screenshot-2025-09-03-21-50-21-547-com-instagram-android.jpg" alt="Düşünerek Hediye">
+        <img data-src="https://i.ibb.co.com/B2HgVWW4/IMG-20250828-WA0006.jpg" alt="Küçük Tatlı An">
+        <img data-src="https://i.ibb.co.com/v4NN6HKv/IMG-20250828-WA0003.jpg" alt="Diğer Kare">
+      </div>
+
+      <!-- big, swipeable gallery with images and videos -->
+      <div style="margin-top:14px" class="gallery" id="bigGallery">
+        <!-- big image 1 -->
+        <div class="card" data-type="image" data-src="https://i.ibb.co.com/SwjRXpBC/IMG-20250906-WA0167.jpg">
+          <img alt="Oyuncak & Sevgilim">
+          <div class="caption">Oyuncak & Sevgilim</div>
+        </div>
+
+        <!-- big image 2 -->
+        <div class="card" data-type="image" data-src="https://i.ibb.co.com/pjnbBV76/Screenshot-2025-09-03-21-50-21-547-com-instagram-android.jpg">
+          <img alt="Düşünerek Hediye">
+          <div class="caption">Düşünerek Hediye</div>
+        </div>
+
+        <!-- big image 3 -->
+        <div class="card" data-type="image" data-src="https://i.ibb.co.com/B2HgVWW4/IMG-20250828-WA0006.jpg">
+          <img alt="Küçük Tatlı An">
+          <div class="caption">Küçük Tatlı An</div>
+        </div>
+
+        <!-- big image 4 -->
+        <div class="card" data-type="image" data-src="https://i.ibb.co.com/v4NN6HKv/IMG-20250828-WA0003.jpg">
+          <img alt="Diğer Kare">
+          <div class="caption">Diğer Kare</div>
+        </div>
+
+        <!-- Video card 1 (Vimeo embed) -->
+        <div class="card" data-type="video">
+          <div class="video-wrap" aria-hidden="false">
+            <!-- Vimeo iframe src provided by you (autoplay muted loop) -->
+            <iframe src="https://player.vimeo.com/video/1117390430?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Anı Video 1"></iframe>
+          </div>
+          <div class="caption">Video — Güzel An</div>
+        </div>
+
+        <!-- Video card 2 (Vimeo embed) -->
+        <div class="card" data-type="video">
+          <div class="video-wrap" aria-hidden="false">
+            <iframe src="https://player.vimeo.com/video/1117391796?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Anı Video 2"></iframe>
+          </div>
+          <div class="caption">Video — Birkaç An</div>
+        </div>
+
+      </div> <!-- end gallery -->
+    </div> <!-- end memories-wrap -->
+  </section>
+
+  <!-- MUSIC -->
+  <section id="music" aria-label="Müzik">
+    <h2 class="section-title">Müzik — Dilerim Ki</h2>
+    <p class="muted">YouTube linki ile gömülü oynatıcı: autoplay = sessiz (tarayıcı kısıtlaması nedeniyle sesi açmak için butona bas) — oynatmak istersen "YouTube'da aç" düğmesine bas.</p>
+
+    <div class="music-area">
+      <div class="player" style="flex:1;min-width:260px">
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px">
+          <!-- YouTube embed: muted autoplay & loop via playlist param -->
+          <iframe id="ytPlayer" src="https://www.youtube.com/embed/PHd-3PSQ6X4?autoplay=1&mute=1&loop=1&playlist=PHd-3PSQ6X4" style="position:absolute;left:0;top:0;width:100%;height:100%;border:0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Dilerim Ki - YouTube"></iframe>
+        </div>
+        <div class="small-muted" style="margin-top:10px">YouTube ile gömülü (sessiz autoplay). Sesi açmak için aşağıdaki butonla YouTube'da açabilirsiniz.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <button id="openYoutube" class="btn">YouTube'da Aç & Sesi Aç</button>
+        <div class="small-muted" style="max-width:260px;text-align:right">Tarayıcılar genelde sesli otomatik çalmayı engeller; YouTube'da açarsan sesi rahatça açabilirsin.</div>
+      </div>
     </div>
   </section>
 
-  <!-- Videos -->
-  <section>
-    <h2>Videolarımız</h2>
-    <div class="video">
-      <iframe src="https://player.vimeo.com/video/1117390430?loop=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen"></iframe>
+  <!-- POEM / NOTE -->
+  <section id="note" aria-label="Not Ufaklığa">
+    <h2 class="section-title">Not — Ufaklığa</h2>
+    <p class="muted">Biraz şiir, biraz iltifat — sonra senin için geniş, ferah bir alan bıraktım. Uzun yazabilirsin.</p>
+
+    <div class="poem" aria-live="polite">
+      <p style="font-weight:800;color:#b23a60;font-size:18px">Sevgili Ufaklık,</p>
+      <p>Gözümün görmediğini görensin — bir bakışın dünyamı başka kılar.</p>
+      <p>Aklımın yetmediğini bilensin — düşüncelerime ışık tutan ses sensin.</p>
+      <p>Bir yerlerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyim.</p>
+      <p style="font-weight:800">İyi ki varsın.</p>
+      <div class="sign poem-sign">Sevgilerle — <strong>İlker</strong></div>
     </div>
-    <div class="video">
-      <iframe src="https://player.vimeo.com/video/1117391796?loop=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen"></iframe>
+
+    <div class="note-wrap" aria-label="Bahargül'ün Düşünceleri">
+      <label style="font-weight:800;color:#8b1a52">Bahargül — Buraya dilediğin kadar yazabilirsin</label>
+      <textarea id="memo" placeholder="Sevgilim, hislerini buraya yaz..."></textarea>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+        <button id="saveMemo" class="btn">Kaydet</button>
+        <button id="clearMemo" class="btn ghost">Sil</button>
+        <span id="memoStatus" style="margin-left:auto;color:green;display:none;font-weight:700">Kaydedildi ✓</span>
+      </div>
     </div>
+
+    <div class="two-col">
+      <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
+        <h3 style="margin:0 0 8px">Bir Sonraki Buluşma</h3>
+        <p class="muted">Tarih seç ve kaydet; sadece bu tarayıcıda saklanır.</p>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <input id="datePick" type="datetime-local" style="padding:8px;border-radius:8px;border:1px solid #eee">
+          <button id="saveDate" class="btn">Kaydet</button>
+          <button id="clearDate" class="btn ghost">Sıfırla</button>
+          <div id="counter" style="margin-left:auto;font-weight:700">Tarih seçilmedi</div>
+        </div>
+      </div>
+
+      <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <div style="font-size:20px;color:#b23a60;font-weight:800">İlker ❤ Bahargül</div>
+        <div style="color:var(--muted);font-size:13px">Küçük şeylerin toplamı büyük bir aşk yapar.</div>
+      </div>
+    </div>
+
   </section>
 
-  <!-- Notes -->
-  <section class="notes">
-    <h2>Bahargül'ün Düşünceleri</h2>
-    <textarea placeholder="Buraya hislerini, güzel sözlerini yazabilirsin..."></textarea>
-  </section>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    Sonsuza dek seninle 💞
-  </footer>
+<footer>© İlker &amp; Bahargül — Bizim Küçük Evrenimiz</footer>
 
-  <script>
-    // YouTube Player kontrolü
-    let player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('ytplayer');
-    }
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-hidden="true" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center;padding:16px">
+  <button id="lbClose" style="position:absolute;right:18px;top:18px;padding:8px;border-radius:8px;background:rgba(255,255,255,0.06);color:#fff;border:0;cursor:pointer">Kapat</button>
+  <img id="lbImg" src="" alt="Büyütülmüş Görsel" style="max-width:100%;max-height:100%;border-radius:12px">
+</div>
 
-    function playSong() {
-      document.getElementById("songPlayer").style.display = "block";
-      if (player) {
-        player.playVideo();
-      }
-    }
+<script>
+/* ---------- helper: fix common malformed i.ibb.co.com links ---------- */
+function fixImgUrl(url){
+  if(!url) return url;
+  try {
+    url = url.replace('https://i.ibb.co.com/','https://i.ibb.co/').replace('http://i.ibb.co.com/','http://i.ibb.co/');
+    url = url.replace('https://ibb.co.com/','https://i.ibb.co/').replace('http://ibb.co.com/','http://i.ibb.co/');
+    if(url.startsWith('//')) url = 'https:' + url;
+  } catch(e){}
+  return url;
+}
 
-    // API yükleme
-    let tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    let firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  </script>
+/* ---------- load collage images (data-src -> src) ---------- */
+document.querySelectorAll('#collage img').forEach(img => {
+  const raw = img.getAttribute('data-src') || img.getAttribute('src');
+  const fixed = fixImgUrl(raw);
+  // set a neutral background while loading
+  img.style.background = '#efefef';
+  if(fixed && !fixed.includes('PASTE')) img.src = fixed;
+  img.onerror = () => {
+    img.style.background = '#f6f6f6';
+    img.alt = 'Görsel yüklenemedi';
+    img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="100%" height="100%" fill="%23f3f3f3"/><text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="%23999" font-size="22">Görsel yüklenemedi</text></svg>';
+  };
+  // open lightbox on click
+  img.addEventListener('click', ()=> openLightbox(img.src || fixed));
+});
 
-</body>
-</html>
+/* ---------- big gallery images load ---------- */
+document.querySelectorAll('#bigGallery .card').forEach((card, idx)=> {
+  const type = card.dataset.type;
+  if(type === 'image'){
+    const src = card.dataset.src || card.getAttribute('data-src');
+    const fixed = fixImgUrl(src);
+    const img = card.querySelector('img');
+    if(fixed && !fixed.includes('PASTE')) img.src = fixed;
+    img.onerror = () => {
+      img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="100%" height="100%" fill="%23f3f3f3"/><text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="%23999" font-size="22">Görsel yüklenemedi</text></svg>';
+    };
+    img.addEventListener('click', ()=> openLightbox(img.src || fixed));
+  } else {
+    // videos already embedded in markup
+  }
+});
+
+/* ---------- Lightbox ---------- */
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbClose = document.getElementById('lbClose');
+function openLightbox(src){
+  lbImg.src = src;
+  lightbox.style.display = 'flex';
+  lightbox.setAttribute('aria-hidden','false');
+}
+function closeLightbox(){ lightbox.style.display = 'none'; lightbox.setAttribute('aria-hidden','true'); lbImg.src = ''; }
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e)=> { if(e.target === lightbox) closeLightbox(); });
+lightbox.addEventListener('touchstart', e => { this._tX = e.touches[0].clientX; });
+lightbox.addEventListener('touchend', e => { const dx = (e.changedTouches[0].clientX - (this._tX||0)); if(Math.abs(dx) > 40){ if(dx < 0) {/* next /} else {/ prev */} } });
+
+/* ---------- YouTube open button ---------- */
+document.getElementById('openYoutube').addEventListener('click', ()=>{
+  // open YouTube in new tab to allow unmute & controls
+  window.open('https://youtu.be/PHd-3PSQ6X4', '_blank');
+});
+
+/* ---------- Memo (localStorage) ---------- */
+const MEMO_KEY = 'ilker_bahar_memo';
+const memoEl = document.getElementById('memo');
+const saveMemoBtn = document.getElementById('saveMemo');
+const clearMemoBtn = document.getElementById('clearMemo');
+const memoStatus = document.getElementById('memoStatus');
+try { const saved = localStorage.getItem(MEMO_KEY); if(saved) memoEl.value = saved; } catch(e){}
+saveMemoBtn.addEventListener('click', ()=> {
+  try { localStorage.setItem(MEMO_KEY, memoEl.value || ''); memoStatus.style.display = 'inline'; set
