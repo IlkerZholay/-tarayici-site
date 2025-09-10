@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>İlker ❤ Bahargül — Bizim Küçük Evrenimiz</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -16,79 +15,88 @@
   --maxw:1120px;
   --hero-bg: url("https://i.ibb.co/JwzhgHwZ/b.jpg");
 }
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#fbf8f9;color:#111}
-a{color:inherit}
-nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:180;width:min(var(--maxw),96%);display:flex;justify-content:center}
-nav ul{display:flex;gap:8px;background:rgba(255,255,255,0.06);padding:8px;border-radius:999px;list-style:none;margin:0;overflow:auto}
-nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:700;white-space:nowrap;font-size:14px}
-nav a:hover{background:rgba(255,255,255,0.04)}
+*{box-sizing:border-box;}
+html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fbf8f9;color:#111;}
+a{color:inherit;text-decoration:none;}
+nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:180;width:min(var(--maxw),96%);display:flex;justify-content:center;}
+nav ul{display:flex;gap:8px;background:rgba(255,255,255,0.06);padding:8px;border-radius:999px;list-style:none;margin:0;overflow:auto;}
+nav a{color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;font-size:14px;}
+nav a:hover{background:rgba(255,255,255,0.04);}
 
 .hero{
-  min-height:72vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  min-height:72vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
   background: var(--hero-bg) center/cover fixed no-repeat;
 }
 .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.52)); z-index:0 }
-.hero-inner{position:relative; z-index:2; text-align:center; color:#fff; padding:34px; width:min(var(--maxw),94%); }
-.logo-pill{display:inline-block;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:800}
-.title{font-family:'Playfair Display',serif;font-size:clamp(28px,6.4vw,56px);margin:.6rem 0}
-.subtitle{font-size:clamp(13px,3.2vw,17px);opacity:.95}
-.script{font-family:'Dancing Script',cursive;color:#ffdfe8;margin-top:10px;font-size:clamp(16px,3.8vw,28px)}
-.hero-cta{margin-top:18px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
-.btn{background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer}
-.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12)}
+.hero-inner{position:relative; z-index:2; text-align:center; color:#fff; padding:34px; width:min(var(--maxw),94%);}
+.logo-pill{display:inline-block;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:800;}
+.title{font-family:'Playfair Display',serif;font-size:clamp(28px,6.4vw,56px);margin:.6rem 0;}
+.subtitle{font-size:clamp(13px,3.2vw,17px);opacity:.95;}
+.script{font-family:'Dancing Script',cursive;color:#ffdfe8;margin-top:10px;font-size:clamp(16px,3.8vw,28px);}
+.hero-cta{margin-top:18px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+.btn{background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer;}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12);}
 
-main{margin-top:-44px;border-top-left-radius:28px;border-top-right-radius:28px;background:#fff;box-shadow:0 -18px 60px rgba(0,0,0,0.04)}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:26px 18px 60px}
-h2.section-title{font-family:'Playfair Display',serif;color:#962a53;margin:0 0 8px;font-size:20px}
-p.muted{color:var(--muted);margin:0 0 12px}
+main{margin-top:-44px;border-top-left-radius:28px;border-top-right-radius:28px;background:#fff;box-shadow:0 -18px 60px rgba(0,0,0,0.04);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:26px 18px 60px;}
 
-.timeline-wrap{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);margin-bottom:18px}
-.timeline{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:150px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px}
-.tdate{color:var(--accent);font-weight:800;font-size:13px}
-.tcard h3{margin:0;font-size:18px;color:#222}
-.tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
-.tcard.photo{padding:0;overflow:hidden}
-.tcard.photo img{width:100%;height:100%;object-fit:cover;display:block}
+h2.section-title{font-family:'Playfair Display',serif;color:#962a53;margin:0 0 8px;font-size:20px;}
+p.muted{color:var(--muted);margin:0 0 12px;}
 
-.memories-wrap{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);margin-bottom:18px}
-.collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.collage img{width:100%;height:180px;object-fit:cover;border-radius:12px}
+/* timeline */
+.timeline-wrap{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);margin-bottom:18px;}
+.timeline{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+.tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:150px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px;}
+.tdate{color:var(--accent);font-weight:800;font-size:13px;}
+.tcard h3{margin:0;font-size:18px;color:#222;}
+.tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.6;}
+.tcard.photo{padding:0;overflow:hidden;}
+.tcard.photo img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* memories / collage */
+.memories-wrap{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);margin-bottom:18px;}
+.collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.collage img{width:100%;height:180px;object-fit:cover;border-radius:12px;}
 @media(min-width:900px){ .collage img{height:220px} }
 @media(max-width:600px){ .collage{grid-template-columns:1fr} .collage img{height:220px} }
 
-.gallery{display:flex;gap:14px;overflow-x:auto;padding:12px 6px;-webkit-overflow-scrolling:touch}
-.gallery .card{flex:0 0 90%;height:min(62vh,520px);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 14px 44px rgba(0,0,0,0.06);scroll-snap-align:center}
+/* swipeable gallery (big) */
+.gallery{display:flex;gap:14px;overflow-x:auto;padding:12px 6px;-webkit-overflow-scrolling:touch;}
+.gallery .card{flex:0 0 90%;height:min(62vh,520px);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 14px 44px rgba(0,0,0,0.06);scroll-snap-align:center;}
 @media(min-width:1000px){ .gallery .card{flex:0 0 48%;height:420px} }
-.gallery img{width:100%;height:100%;object-fit:cover;display:block}
-.gallery .caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.45);color:#fff;padding:6px 10px;border-radius:999px;font-size:13px}
-.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px}
-.video-wrap iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery .caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.45);color:#fff;padding:6px 10px;border-radius:999px;font-size:13px;}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;}
+.video-wrap iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0;}
 
-.music-area{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)}
+/* music area */
+.music-area{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);}
 .music-area .player{flex:1;min-width:220px}
 
-.poem{background:linear-gradient(180deg,#fffafc,#fff);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:10px}
-.poem p{margin:8px 0;font-size:16px}
-.poem .sign{margin-top:8px;color:var(--muted);font-weight:700}
+/* poem / note */
+.poem{background:linear-gradient(180deg,#fffafc,#fff);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:10px;}
+.poem p{margin:8px 0;font-size:16px;}
+.poem .sign{margin-top:8px;color:var(--muted);font-weight:700;}
 
-.note-wrap{margin-top:16px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
-textarea#memo{width:100%;min-height:240px;border-radius:12px;border:1px solid #ecebf0;padding:14px;font-size:16px;resize:vertical}
+/* roomy memo */
+.note-wrap{margin-top:16px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);}
+textarea#memo{width:100%;min-height:240px;border-radius:12px;border:1px solid #ecebf0;padding:14px;font-size:16px;resize:vertical;}
 
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+/* two column footer area */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
 @media(max-width:900px){ .two-col{grid-template-columns:1fr} }
 
-footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
+footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px;}
 
+/* lightbox */
 #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center;padding:18px}
 #lightbox img{max-width:100%;max-height:100%;border-radius:12px}
-.small-muted{font-size:13px;color:var(--muted)}
-@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+.small-muted{font-size:13px;color:var(--muted);}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav aria-label="Ana Menü">
   <ul>
     <li><a href="#hero">Evrenimiz</a></li>
@@ -99,6 +107,7 @@ footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
   </ul>
 </nav>
 
+<!-- HERO -->
 <header id="hero" class="hero" role="banner" aria-label="Kapak - Kumsal">
   <div class="hero-inner">
     <div class="logo-pill">İ + B</div>
@@ -113,106 +122,109 @@ footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
 </header>
 
 <main class="wrap" role="main">
-
-<section id="timeline" aria-label="Zaman Çizelgesi">
-  <h2 class="section-title">Zaman Çizelgesi</h2>
-  <p class="muted">Kısa duraklarımız — sağa kaydır. En sonda bizim küçük hatıra fotoğrafı yer alıyor.</p>
-  <div class="timeline-wrap">
-    <div class="timeline" id="timelineInner">
-      <article class="tcard">
-        <div class="tdate">2024 • Kış</div>
-        <h3>Tanıştık</h3>
-        <p class="muted">Biraz gergin bir başlangıç oldu ama :D En büyük aşklar kavgayla başlarmış.</p>
-      </article>
-      <article class="tcard">
-        <div class="tdate">İlk Sürpriz</div>
-        <h3>Beyaz bir demet gül</h3>
-        <p class="muted">Senin için aldığım o küçük şeyler; senin gülüşün her şeye değer.</p>
-      </article>
-      <article class="tcard">
-        <div class="tdate">İlk Buluşmalar</div>
-        <h3>Merdivenler &amp; Kahkaha</h3>
-        <p class="muted">İlk buluşmamızda heycan dolu sohbetler o gün unutulmazdı.</p>
-      </article>
-      <article class="tcard">
-        <div class="tdate">Bugün</div>
-        <h3>Şu An</h3>
-        <p class="muted">Hâlâ buradayız; birlikte daha güçlüyüz.</p>
-      </article>
-      <article class="tcard photo" aria-label="Son Hatıra Fotoğrafı">
-        <img id="timelineFinal" src="https://drive.google.com/uc?export=view&id=172ymdrmc-ZDPfIUFhX5FKf_Bz7k8ULhP" alt="Son Hatıra">
-      </article>
+  <!-- TIMELINE -->
+  <section id="timeline" aria-label="Zaman Çizelgesi">
+    <h2 class="section-title">Zaman Çizelgesi</h2>
+    <p class="muted">Kısa duraklarımız — sağa kaydır. En sonda bizim küçük hatıra fotoğrafı yer alıyor.</p>
+    <div class="timeline-wrap">
+      <div class="timeline" id="timelineInner">
+        <article class="tcard">
+          <div class="tdate">2024 • Kış</div>
+          <h3>Tanıştık</h3>
+          <p class="muted">Biraz gergin bir başlangıç oldu ama :D En büyük aşklar kavgayla başlarmış.</p>
+        </article>
+        <article class="tcard">
+          <div class="tdate">İlk Sürpriz</div>
+          <h3>Beyaz bir demet gül</h3>
+          <p class="muted">Senin için aldığım o küçük şeyler; senin gülüşün her şeye değer.</p>
+        </article>
+        <article class="tcard">
+          <div class="tdate">İlk Buluşmalar</div>
+          <h3>Merdivenler &amp; Kahkaha</h3>
+          <p class="muted">İlk buluşmamızda heyecan dolu sohbetler o gün unutulmazdı.</p>
+        </article>
+        <article class="tcard">
+          <div class="tdate">Bugün</div>
+          <h3>Şu An</h3>
+          <p class="muted">Hâlâ buradayız; birlikte daha güçlüyüz.</p>
+        </article>
+        <article class="tcard photo" aria-label="Son Hatıra Fotoğrafı">
+          <img src="https://i.ibb.co/SwjRXpBC/IMG-20250906-WA0167.jpg" alt="Son Hatıra" style="width:100%;height:220px;object-fit:cover">
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="memories" aria-label="Anılarımız">
-  <h2 class="section-title">Anılarımız — Foto & Video</h2>
-  <p class="muted">Aşağıdaki 2x2 kolaj ve büyük kaydırılabilir galeri telefon için optimize edildi. Fotoğrafa dokununca büyük açılır.</p>
-
-  <div class="memories-wrap">
-    <div class="collage" id="collage">
-      <img src="https://drive.google.com/uc?export=view&id=172ymdrmc-ZDPfIUFhX5FKf_Bz7k8ULhP" alt="Görsel 1">
-      <img src="https://drive.google.com/uc?export=view&id=1s5stzcRz8bZfPBq8MxWPJZ_3cGIf-_l1" alt="Görsel 2">
-      <img src="https://drive.google.com/uc?export=view&id=1Cc5OC9yhfZ9oo7CP-1pgt4S8LBTedQP3" alt="Görsel 3">
-      <img src="https://drive.google.com/uc?export=view&id=19nvgeUz2nu2Wg1RVuMyHz0gdtypBUH1P" alt="Görsel 4">
-    </div>
-
-    <div style="margin-top:14px" class="gallery" id="bigGallery">
-      <div class="card" data-type="image" data-src="https://drive.google.com/uc?export=view&id=172ymdrmc-ZDPfIUFhX5FKf_Bz7k8ULhP">
-        <img alt="Oyuncak & Sevgilim">
-        <div class="caption">Oyuncak & Sevgilim</div>
-      </div>
-      <div class="card" data-type="image" data-src="https://drive.google.com/uc?export=view&id=1Cc5OC9yhfZ9oo7CP-1pgt4S8LBTedQP3">
-        <img alt="Düşünerek Hediye">
-        <div class="caption">Düşünerek Hediye</div>
-      </div>
-      <div class="card" data-type="image" data-src="https://drive.google.com/uc?export=view&id=1s5stzcRz8bZfPBq8MxWPJZ_3cGIf-_l1">
-        <img alt="Küçük Tatlı An">
-        <div class="caption">Küçük Tatlı An</div>
-      </div>
-      <div class="card" data-type="image" data-src="https://drive.google.com/uc?export=view&id=19nvgeUz2nu2Wg1RVuMyHz0gdtypBUH1P">
-        <img alt="Diğer Kare">
-        <div class="caption">Diğer Kare</div>
+  <!-- MEMORIES -->
+  <section id="memories" aria-label="Anılarımız">
+    <h2 class="section-title">Anılarımız — Foto & Video</h2>
+    <p class="muted">Aşağıdaki 2x2 kolaj ve büyük kaydırılabilir galeri telefon için optimize edildi. Fotoğrafa dokununca büyük açılır.</p>
+    <div class="memories-wrap">
+      <!-- 2x2 collage -->
+      <div class="collage" id="collage">
+        <img src="https://i.ibb.co/XYZ1.jpg" alt="Görsel 1">
+        <img src="https://i.ibb.co/XYZ2.jpg" alt="Görsel 2">
+        <img src="https://i.ibb.co/XYZ3.jpg" alt="Görsel 3">
+        <img src="https://i.ibb.co/XYZ4.jpg" alt="Görsel 4">
       </div>
 
-      <div class="card" data-type="video">
-        <div class="video-wrap" aria-hidden="false">
-          <iframe src="https://player.vimeo.com/video/1117390430?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Anı Video 1"></iframe>
+      <!-- big gallery -->
+      <div style="margin-top:14px" class="gallery" id="bigGallery">
+        <div class="card" data-type="image" data-src="https://i.ibb.co/SwjRXpBC/IMG-20250906-WA0167.jpg">
+          <img alt="Oyuncak & Sevgilim">
+          <div class="caption">Oyuncak & Sevgilim</div>
         </div>
-        <div class="caption">Video — Güzel An</div>
-      </div>
-
-      <div class="card" data-type="video">
-        <div class="video-wrap" aria-hidden="false">
-          <iframe src="https://player.vimeo.com/video/1117391796?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Anı Video 2"></iframe>
+        <div class="card" data-type="image" data-src="https://i.ibb.co/pjnbBV76/Screenshot.jpg">
+          <img alt="Düşünerek Hediye">
+          <div class="caption">Düşünerek Hediye</div>
         </div>
-        <div class="caption">Video — Birkaç An</div>
+        <div class="card" data-type="image" data-src="https://i.ibb.co/B2HgVWW4/IMG.jpg">
+          <img alt="Küçük Tatlı An">
+          <div class="caption">Küçük Tatlı An</div>
+        </div>
+        <div class="card" data-type="video">
+          <div class="video-wrap">
+            <iframe src="https://player.vimeo.com/video/1117390430?autoplay=1&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="caption">Video — Güzel An</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="music" aria-label="Müzik">
-  <h2 class="section-title">Müzik — Dilerim Ki</h2>
-  <p class="muted">YouTube linki ile gömülü oynatıcı: autoplay = sessiz (tarayıcı kısıtlaması nedeniyle sesi açmak için butona bas) — oynatmak istersen "YouTube'da aç" düğmesine bas.</p>
-
-  <div class="music-area">
-    <div class="player" style="flex:1;min-width:260px">
-      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px">
-        <iframe id="ytPlayer" src="https://www.youtube.com/embed/PHd-3PSQ6X4?autoplay=1&mute=1&loop=1&playlist=PHd-3PSQ6X4" style="position:absolute;left:0;top:0;width:100%;height:100%;border:0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Dilerim Ki - YouTube"></iframe>
+  <!-- MUSIC -->
+  <section id="music" aria-label="Müzik">
+    <h2 class="section-title">Müzik — Dilerim Ki</h2>
+    <p class="muted">YouTube linki ile gömülü oynatıcı: autoplay = sessiz (tarayıcı kısıtlaması nedeniyle sesi açmak için butona bas).</p>
+    <div class="music-area">
+      <div class="player" style="flex:1;min-width:260px">
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px">
+          <iframe id="ytPlayer" src="https://www.youtube.com/embed/PHd-3PSQ6X4?autoplay=1&mute=1&loop=1&playlist=PHd-3PSQ6X4" style="position:absolute;left:0;top:0;width:100%;height:100%;border:0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="small-muted" style="margin-top:10px">YouTube ile gömülü (sessiz autoplay). Sesi açmak için butonla YouTube'da açabilirsiniz.</div>
       </div>
-      <div class="small-muted" style="margin-top:10px">YouTube ile gömülü (sessiz autoplay). Sesi açmak için aşağıdaki butonla YouTube'da açabilirsiniz.</div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <button id="openYoutube" class="btn">YouTube'da Aç & Sesi Aç</button>
+      </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-      <button id="openYoutube" class="btn">YouTube'da Aç & Sesi Aç</button>
-      <div class="small-muted" style="max-width:260px;text-align:right">Tarayıcılar genelde sesli otomatik çalmayı engeller; YouTube'da açarsan sesi rahatça açabilirsin.</div>
+  </section>
+
+  <!-- POEM / NOTE -->
+  <section id="note" aria-label="Not Ufaklığa">
+    <h2 class="section-title">Not — Ufaklığa</h2>
+    <p class="muted">Biraz şiir, biraz iltifat — sonra senin için geniş bir alan bıraktım.</p>
+    <div class="poem">
+      <p style="font-weight:800;color:#b23a60;font-size:18px">Sevgili Ufaklık,</p>
+      <p>Gözümün görmediğini görensin.</p>
+      <p>Aklımın yetmediğini bilensin.</p>
+      <p>Bir yerlerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyim.</p>
+      <p style="font-weight:800">İyi ki varsın.</p>
+      <div class="sign poem-sign">Sevgilerle — <strong>İlker</strong></div>
     </div>
-  </div>
-</section>
 
-<section id="note" aria-label="Not Ufaklığa">
-  <h2 class="section-title">Not — Ufaklığa</h2>
-  <p class="muted">Biraz şiir, biraz iltifat — sonra senin için geniş, ferah bir alan bıraktım. Uzun yazabilirsin.</p>
-
-  <div
+    <div class="note-wrap">
+      <label style="font-weight:800;color:#8b1a52">Bahargül — Buraya dilediğin kadar yazabilirsin</label>
+      <textarea id="memo" placeholder="Sevgilim, hislerini buraya yaz..."></textarea>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+        <button id="saveMemo" class="btn">Kaydet</button>
+        <button id="clearMemo" class="btn ghost
