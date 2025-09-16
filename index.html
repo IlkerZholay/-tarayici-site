@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>İlker ❤ Bahargül — Bizim Küçük Evrenimiz</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
@@ -14,8 +14,8 @@
   --maxw:1120px;
   --hero-bg: url("Bahoş.jpg");
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:'Poppins',sans-serif;background:#fbf8f9;color:#111;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#fbf8f9;color:#111;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 
 /* NAV */
@@ -25,7 +25,10 @@ nav a{color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;white-space
 nav a:hover{background:rgba(255,255,255,0.04)}
 
 /* HERO */
-.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background: var(--hero-bg) center/cover fixed no-repeat}
+.hero{
+  min-height:70vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  background: var(--hero-bg) center/cover fixed no-repeat;
+}
 .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.52)); z-index:0 }
 .hero-inner{position:relative; z-index:2; text-align:center; color:#fff; padding:28px; width:min(var(--maxw),94%); }
 .logo-pill{display:inline-block;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:800}
@@ -36,11 +39,11 @@ nav a:hover{background:rgba(255,255,255,0.04)}
 .btn{background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer}
 .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12)}
 
-/* MAIN */
+/* main */
 main{margin-top:-40px;border-top-left-radius:22px;border-top-right-radius:22px;background:#fff;box-shadow:0 -18px 60px rgba(0,0,0,0.04)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 18px 80px}
 
-/* TIMELINE */
+/* timeline */
 .timeline-wrap{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);margin-bottom:18px}
 .timeline{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:150px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px}
@@ -48,7 +51,7 @@ main{margin-top:-40px;border-top-left-radius:22px;border-top-right-radius:22px;b
 .tcard h3{margin:0;font-size:18px;color:#222}
 .tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 
-/* MEMORIES */
+/* memories gallery */
 .memories-wrap{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);margin-bottom:18px}
 .collage{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
 .collage img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.06);transition:transform .2s}
@@ -59,34 +62,32 @@ main{margin-top:-40px;border-top-left-radius:22px;border-top-right-radius:22px;b
 @media(min-width:1000px){ .gallery .card{flex:0 0 48%;height:420px} }
 .gallery img,.gallery video{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px}
 
-/* MUSIC & KARAOKE */
+/* music / karaoke */
 .music-area{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:center;background:linear-gradient(180deg,#fff,#fffafc);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:18px}
 @media(max-width:900px){ .music-area{grid-template-columns:1fr; padding:14px} }
 .player-card{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
-.play-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;background:linear-gradient(90deg,#ff8aa3,#c83a66);color:#fff;font-weight:800;border:0;cursor:pointer;box-shadow:0 8px 26px rgba(200,60,100,0.18)}
+.play-btn{
+  display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;background:linear-gradient(90deg,#ff8aa3,#c83a66);color:#fff;font-weight:800;border:0;cursor:pointer;box-shadow:0 8px 26px rgba(200,60,100,0.18)
+}
 .play-btn .icon{width:20px;height:20px;display:inline-block;transform:translateX(1px)}
-.karaoke{background:#fff;padding:10px;border-radius:10px;border:1px solid #f1eaf0;max-height:240px;overflow-y:auto;width:100%;position:relative}
-.lyrics{list-style:none;margin:0;padding:8px 6px;display:flex;flex-direction:column;gap:8px}
+.karaoke{
+  background:#fff;padding:10px;border-radius:10px;border:1px solid #f1eaf0;max-height:240px;overflow-y:auto;width:100%;
+  position:relative;
+}
+.lyrics{list-style:none;margin:0;padding:8px 6px;display:flex;flex-direction:column;gap:8px;}
 .lyrics li{padding:6px 8px;border-radius:8px;color:#666;transition:all .18s ease;font-weight:600}
 .lyrics li.active{color:var(--accent);background:linear-gradient(90deg,#fff0,#ffeef5);transform:scale(1.02);box-shadow:0 6px 18px rgba(200,60,100,0.06)}
 .lyrics li.past{color:#999;font-weight:600;opacity:0.7}
 
-/* POEM & NOTE */
-.poem{background:linear-gradient(180deg,#fffafc,#fff);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:10px}
-.poem p{margin:8px 0;font-size:16px}
-.note-wrap{margin-top:16px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
-textarea#memo{width:100%;min-height:180px;border-radius:12px;border:1px solid #ecebf0;padding:14px;font-size:16px;resize:vertical}
+.player-art{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fffafc);box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
+.player-art img{width:120px;height:120px;border-radius:12px;object-fit:cover;box-shadow:0 12px 30px rgba(0,0,0,0.08)}
+.player-art .title{margin-top:8px;font-weight:700;color:#b23a60;text-align:center}
 
-/* DATE & INFO */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-@media(max-width:900px){ .two-col{grid-template-columns:1fr} }
-
-footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
-
-/* LIGHTBOX */
-#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center;padding:18px}
+/* lightbox */
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center;padding:16px}
 #lightbox img, #lightbox video{max-width:100%;max-height:100%;border-radius:12px}
 #lbClose{position:absolute;right:18px;top:18px;padding:8px;border-radius:8px;background:rgba(255,255,255,0.06);color:#fff;border:0;cursor:pointer}
+
 </style>
 </head>
 <body>
@@ -97,7 +98,6 @@ footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
     <li><a href="#timeline">Zaman Çizelgesi</a></li>
     <li><a href="#memories">Anılar</a></li>
     <li><a href="#music">Müzik</a></li>
-    <li><a href="#note">Not</a></li>
   </ul>
 </nav>
 
@@ -109,313 +109,125 @@ footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
     <div class="script">“Yanındayım — her hâlinde.”</div>
     <div class="hero-cta">
       <a class="btn" href="#memories">Anılara Git</a>
-      <a class="btn ghost" href="#note">Sana Yazdığım Not</a>
     </div>
   </div>
 </header>
 
 <main class="wrap" role="main">
-<!-- TIMELINE -->
-<section id="timeline" aria-label="Zaman Çizelgesi">
-  <h2 class="section-title">Zaman Çizelgesi</h2>
-  <p class="muted">Kısa duraklarımız — sağa kaydır.</p>
-  <div class="timeline-wrap">
-    <div class="timeline" id="timelineInner">
-      <article class="tcard">
-        <div class="tdate">2024 • Kış</div>
-        <h3>Tanıştık</h3>
-        <p class="muted">Göz göze geldiğimiz o an...</p>
-      </article>
-      <article class="tcard">
-        <div class="tdate">İlk Sürpriz</div>
-        <h3>Beyaz bir demet gül</h3>
-        <p class="muted">O küçük sürprizler hâlâ aklımda.</p>
-      </article>
-      <article class="tcard">
-        <div class="tdate">İlk Buluşmalar</div>
-        <h3>Merdivenler &amp; Kahkaha</h3>
-        <p class="muted">Saatlerce sohbet... hiç bitmesin dediğim anlar.</p>
-      </article>
-      <article class="tcard">
-        <div class="tdate">Bugün</div>
-        <h3>Şu An</h3>
-        <p class="muted">Hâlâ buradayız; her gün daha güzel.</p>
-      </article>
+  <!-- TIMELINE -->
+  <section id="timeline" aria-label="Zaman Çizelgesi">
+    <h2 class="section-title">Zaman Çizelgesi</h2>
+    <p class="muted">Kısa duraklarımız — sağa kaydır.</p>
+    <div class="timeline-wrap">
+      <div class="timeline" id="timelineInner">
+        <article class="tcard">
+          <div class="tdate">2024 • Kış</div>
+          <h3>Tanıştık</h3>
+          <p class="muted">Göz göze geldiğimiz o an...</p>
+        </article>
+        <article class="tcard">
+          <div class="tdate">İlk Sürpriz</div>
+          <h3>Beyaz bir demet gül</h3>
+          <p class="muted">O küçük sürprizler hâlâ aklımda.</p>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
-<!-- MEMORIES -->
-<section id="memories">
-  <h2 class="section-title">Anılarımız — Foto & Video</h2>
-  <p class="muted">Fotoğraflara dokun, büyüsün. Galeri kaydırılabilir, yeni foto ekledikçe otomatik çalışır.</p>
+  </section>
 
-  <div class="memories-wrap">
-    <div class="collage" id="collage">
-      <img src="Bahar.jpg" alt="Bahar" data-src="Bahar.jpg">
-      <img src="bahaar.jpg" alt="Bahaar" data-src="bahaar.jpg">
-      <img src="baharr.jpg" alt="Baharr" data-src="baharr.jpg">
-      <img src="baharrr.jpg" alt="Baharrr" data-src="baharrr.jpg">
-      <img src="bahharr.jpg" alt="Bahharr" data-src="bahharr.jpg">
-      <img src="bbaa.jpg" alt="Bbaa" data-src="bbaa.jpg">
-    </div>
+  <!-- MEMORIES -->
+  <section id="memories">
+    <h2 class="section-title">Anılarımız — Foto & Video</h2>
+    <p class="muted">Fotoğraflara dokun, büyüsün. Galeri kaydırılabilir.</p>
 
-    <div style="margin-top:14px" class="gallery" id="bigGallery">
-      <div class="card" data-type="video"><video controls preload="metadata" src="baharrrr.mp4"></video></div>
-      <div class="card" data-type="video"><video controls preload="metadata" src="baharrrrrr.mp4"></video></div>
+    <div class="memories-wrap">
+      <div class="collage" id="collage">
+        <img src="Bahar.jpg" alt="Bahar" data-src="Bahar.jpg">
+        <img src="bahaar.jpg" alt="Bahaar" data-src="bahaar.jpg">
+        <img src="baharr.jpg" alt="Baharr" data-src="baharr.jpg">
+        <img src="baharrr.jpg" alt="Baharrr" data-src="baharrr.jpg">
+        <img src="bahhar.jpg" alt="Bahhar" data-src="bahhar.jpg">
+        <img src="bbaa.jpg" alt="Bbaa" data-src="bbaa.jpg">
+      </div>
+
+      <div style="margin-top:14px" class="gallery" id="bigGallery">
+        <div class="card" data-type="video"><video controls preload="metadata" src="baharrrr.mp4"></video></div>
+        <div class="card" data-type="video"><video controls preload="metadata" src="baharrrrr.mp4"></video></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- MUSIC & KARAOKE -->
+  <section id="music">
+    <h2 class="section-title">Müzik — Dilerim Ki</h2>
+    <p class="muted">Oynat butonuna basınca şarkı başlar; sözler ritme göre öne çıkar.</p>
+
+    <div class="music-area">
+      <div class="player-card">
+        <button id="playBtn" class="play-btn">
+          <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M5 3v18l15-9L5 3z" fill="white"/></svg>
+          <span id="playLabel">Oynat</span>
+        </button>
+        <div class="karaoke" id="karaokeBox" aria-live="polite">
+          <ul class="lyrics" id="lyricList"></ul>
+        </div>
+      </div>
+
+      <div class="player-art">
+        <img src="Bahar.jpg" alt="Kapak">
+        <div class="title">Dilerim Ki — Senin İçin</div>
+        <audio id="audio" preload="metadata">
+          <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
+          Tarayıcın ses çalmayı desteklemiyor.
+        </audio>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© İlker &amp; Bahargül — Bizim Küçük Evrenimiz</footer>
 
 <!-- LIGHTBOX -->
-<div id="lightbox" role="dialog" aria-hidden="true" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center;padding:16px">
-  <button id="lbClose" style="position:absolute;top:16px;right:16px;padding:8px;border-radius:8px;background:rgba(255,255,255,0.06);color:#fff;border:0;cursor:pointer">Kapat ✕</button>
-  <img id="lbImg" src="" alt="Büyütülmüş Görsel" style="max-width:100%;max-height:100%;border-radius:12px;display:none;">
-  <video id="lbVid" controls style="max-width:100%;max-height:100%;border-radius:12px;display:none"></video>
+<div id="lightbox" role="dialog" aria-hidden="true">
+  <button id="lbClose">Kapat ✕</button>
+  <img id="lbImg" src="" alt="Büyütülmüş Görsel" style="display:none;">
+  <video id="lbVid" controls style="display:none"></video>
 </div>
 
 <script>
-// LIGHTBOX FUNCTIONALITY
-const lightbox = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImg');
-const lbVid = document.getElementById('lbVid');
-const lbClose = document.getElementById('lbClose');
-
-function openLightboxImage(src){
-  lbVid.style.display='none';
-  lbVid.pause && lbVid.pause();
-  lbImg.src = src;
-  lbImg.style.display='block';
-  lightbox.style.display='flex';
-  lightbox.setAttribute('aria-hidden','false');
-}
-function openLightboxVideo(src){
-  lbImg.style.display='none';
-  lbVid.src = src;
-  lbVid.style.display='block';
-  lightbox.style.display='flex';
-  lightbox.setAttribute('aria-hidden','false');
-  lbVid.play().catch(()=>{});
-}
-lbClose.addEventListener('click', closeLightbox);
-function closeLightbox(){
-  lightbox.style.display='none';
-  lightbox.setAttribute('aria-hidden','true');
-  lbImg.src='';
-  lbImg.style.display='none';
-  lbVid.pause && lbVid.pause();
-  lbVid.src='';
-  lbVid.style.display='none';
-}
-
-// COLLAGE IMAGE CLICK
-document.querySelectorAll('.collage img').forEach(img=>{
-  img.addEventListener('click',()=> openLightboxImage(img.getAttribute('data-src') || img.src));
-});
-
-// GALLERY VIDEO CLICK
-document.querySelectorAll('.gallery .card video').forEach(v=>{
-  v.addEventListener('click',()=> openLightboxVideo(v.currentSrc || v.src));
-});
-
-// CLOSE LIGHTBOX WHEN CLICKING OUTSIDE
-lightbox.addEventListener('click', (e)=>{
-  if(e.target===lightbox) closeLightbox();
-});
-</script>
-<!-- MUSIC & KARAOKE -->
-<section id="music">
-  <h2 class="section-title">Müzik — Dilerim Ki</h2>
-  <p class="muted">Oynat butonuna basınca şarkı başlar; sözler ritme göre öne çıkar.</p>
-
-  <div class="music-area">
-    <div class="player-card">
-      <div style="display:flex;gap:12px;align-items:center;width:100%">
-        <button id="playBtn" class="play-btn" aria-label="Play / Pause">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" width="18" height="18">
-            <path d="M5 3v18l15-9L5 3z" fill="white"/>
-          </svg>
-          <span id="playLabel">Oynat</span>
-        </button>
-        <div class="small-muted">Şarkı dosyası repo kökünden çekiliyor.</div>
-      </div>
-      <div class="karaoke" id="karaokeBox" aria-live="polite">
-        <ul class="lyrics" id="lyricList"></ul>
-      </div>
-    </div>
-    <div class="player-art">
-      <img src="Bahar.jpg" alt="Kapak">
-      <div class="title">Dilerim Ki — Senin İçin</div>
-      <div style="font-size:13px;color:var(--muted);margin-top:6px">Butona bas & sözlere eşlik et ❤</div>
-      <audio id="audio" preload="metadata">
-        <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
-        Tarayıcın ses çalmayı desteklemiyor.
-      </audio>
-    </div>
-  </div>
-</section>
-
-<!-- NOTE & POEM & DATE -->
-<section id="note">
-  <h2 class="section-title">Not — Ufaklığa</h2>
-  <div class="poem">
-    <p style="font-weight:800;color:#b23a60;font-size:18px">Sevgili Ufaklık,</p>
-    <p>Gözümün görmediğini görensin.</p>
-    <p>Aklımın yetmediğini bilensin.</p>
-    <p>Bir yerlerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyim.</p>
-    <p style="font-weight:800">İyi ki varsın.</p>
-    <div class="sign">Sevgilerle — <strong>İlker</strong></div>
-  </div>
-
-  <div class="note-wrap" aria-label="Bahargül'ün Düşünceleri">
-    <label style="font-weight:800;color:#8b1a52">Bahargül — Buraya dilediğin kadar yazabilirsin</label>
-    <textarea id="memo" placeholder="Sevgilim, hislerini buraya yaz..."></textarea>
-    <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
-      <button id="saveMemo" class="btn">Kaydet</button>
-      <button id="clearMemo" class="btn ghost">Sil</button>
-      <span id="memoStatus" style="margin-left:auto;color:green;display:none;font-weight:700">Kaydedildi ✓</span>
-    </div>
-  </div>
-
-  <div class="two-col">
-    <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
-      <h3 style="margin:0 0 8px">Bir Sonraki Buluşma</h3>
-      <p class="muted">Tarih seç ve kaydet; sadece bu tarayıcıda saklanır.</p>
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-        <input id="datePick" type="datetime-local" style="padding:8px;border-radius:8px;border:1px solid #eee">
-        <button id="saveDate" class="btn">Kaydet</button>
-        <button id="clearDate" class="btn ghost">Sıfırla</button>
-        <div id="counter" style="margin-left:auto;font-weight:700">Tarih seçilmedi</div>
-      </div>
-    </div>
-    <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center">
-      <div style="font-size:20px;color:#b23a60;font-weight:800">İlker ❤ Bahargül</div>
-      <div style="color:var(--muted);font-size:13px">Küçük şeylerin toplamı büyük bir aşk yapar.</div>
-    </div>
-  </div>
-</section>
-
-<script>
-// KARAOKE
-const rawLyrics=[
-"Umudumsun","Simsiyahken her yanım","Huzurumsun","Uçurumsun","Atlasam karanlığına","Adım unutulsun",
-"Evim ol","Kurtar beni","Sonum ol","Dilerim ki","Dilerim ki asla caymazsın benim olmaktan",
-"Dursun zaman","Kalsın yerim derinlerinde saklanan","Sönemezsin","İçimi yakan delip geçen",
-"Ateş sensin","Onlar ne bilsin?","Sana çıksa keşke her yolum","Hayalimsin","Evim ol",
-"Kurtar beni","Sonum ol","Dilerim ki","Dilerim ki asla caymazsın benim olmaktan",
-"Dursun zaman","Kalsın yerim derinlerinde saklanan","Kaybolan bir ruh gibi",
-"Kayıp gidersem de bul beni","Mahvolur da bitersem","Tut elimi","Dilerim ki",
-"Dilerim ki asla caymazsın benim olmaktan","Dursun zaman","Kalsın yerim derinlerinde saklanan",
-"Dilerim ki","Dilerim ki asla caymazsın benim olmaktan","Dursun zaman",
-"Kalsın yerim derinlerinde saklanan"
+/* ====== LYRIC DATA ====== */
+const rawLyrics = [
+"Umudumsun","Simsiyahken her yanım","Huzurumsun","Uçurumsun","Atlasam karanlığına",
+"Adım unutulsun","Evim ol","Kurtar beni","Sonum ol","Dilerim ki","Dilerim ki asla caymazsın benim olmaktan",
+"Dursun zaman","Kalsın yerim derinlerinde saklanan","Sönemezsin","İçimi yakan delip geçen","Ateş sensin","Onlar ne bilsin?",
+"Sana çıksa keşke her yolum","Hayalimsin","Evim ol","Kurtar beni","Sonum ol","Dilerim ki","Dilerim ki asla caymazsın benim olmaktan",
+"Dursun zaman","Kalsın yerim derinlerinde saklanan","Kaybolan bir ruh gibi","Kayıp gidersem de bul beni","Mahvolur da bitersem",
+"Tut elimi","Dilerim ki","Dilerim ki asla caymazsın benim olmaktan","Dursun zaman","Kalsın yerim derinlerinde saklanan",
+"Dilerim ki","Dilerim ki asla caymazsın benim olmaktan","Dursun zaman","Kalsın yerim derinlerinde saklanan"
 ];
-
-const LYRICS_START=2.0;
-const LYRICS_STEP=3.5;
-const lyrics=rawLyrics.map((t,i)=>({time:+(LYRICS_START+i*LYRICS_STEP).toFixed(2),text:t}));
-
-const lyricList=document.getElementById('lyricList');
-lyrics.forEach((line,idx)=>{
-  const li=document.createElement('li');
-  li.dataset.index=idx;
-  li.dataset.time=line.time;
-  li.textContent=line.text;
+const LYRICS_START = 2.0;
+const LYRICS_STEP  = 3.5;
+const lyrics = rawLyrics.map((t,i)=>({time: +(LYRICS_START + i*LYRICS_STEP).toFixed(2), text: t}));
+const lyricList = document.getElementById('lyricList');
+lyrics.forEach((line, idx)=>{
+  const li = document.createElement('li');
+  li.dataset.index = idx;
+  li.dataset.time = line.time;
+  li.textContent = line.text;
   lyricList.appendChild(li);
 });
 
-const audio=document.getElementById('audio');
-const playBtn=document.getElementById('playBtn');
-const playLabel=document.getElementById('playLabel');
-let currentIndex=-1;
+const audio = document.getElementById('audio');
+const playBtn = document.getElementById('playBtn');
+const playLabel = document.getElementById('playLabel');
+let currentIndex = -1;
 
 function updateLyrics(){
-  const t=audio.currentTime;
+  const t = audio.currentTime;
   for(let i=0;i<lyrics.length;i++){
-    const start=lyrics[i].time;
-    const end=(i+1<lyrics.length)?lyrics[i+1].time:99999;
-    if(t>=start && t<end){
-      setActive(i);
-      return;
-    }
+    const start = lyrics[i].time;
+    const end = (i+1<lyrics.length)? lyrics[i+1].time : 99999;
+    if(t >= start && t < end){ setActive(i); return; }
   }
   setActive(-1);
 }
-
-function setActive(idx){
-  if(currentIndex===idx) return;
-  const items=lyricList.querySelectorAll('li');
-  items.forEach(li=>li.classList.remove('active','past'));
-  if(idx>=0){
-    for(let i=0;i<idx;i++) items[i].classList.add('past');
-    items[idx].classList.add('active');
-    const box=document.getElementById('karaokeBox');
-    const target=items[idx];
-    const top=target.offsetTop-box.offsetTop-12;
-    box.scrollTo({top:top,behavior:'smooth'});
-  }
-  currentIndex=idx;
-}
-
-audio.addEventListener('timeupdate',updateLyrics);
-playBtn.addEventListener('click',()=>{
-  if(audio.paused){audio.play().catch(()=>{window.open('dolu-kadehi-ters-tut-dilerim-ki.mp3','_blank');});playLabel.textContent='Duraklat';}
-  else{audio.pause();playLabel.textContent='Oynat';}
-});
-audio.addEventListener('play',()=>playLabel.textContent='Duraklat');
-audio.addEventListener('pause',()=>playLabel.textContent='Oynat');
-audio.addEventListener('ended',()=>{playLabel.textContent='Oynat';setActive(-1);audio.currentTime=0;});
-lyricList.addEventListener('click',e=>{
-  const li=e.target.closest('li');
-  if(!li) return;
-  const idx=+li.dataset.index;
-  audio.currentTime=lyrics[idx].time+0.01;
-  audio.play();
-});
-
-// MEMO
-const MEMO_KEY='ilker_bahargul_memo';
-const memoEl=document.getElementById('memo');
-const saveMemoBtn=document.getElementById('saveMemo');
-const clearMemoBtn=document.getElementById('clearMemo');
-const memoStatus=document.getElementById('memoStatus');
-try{
-  const saved=localStorage.getItem(MEMO_KEY);
-  if(saved)memoEl.value=saved;
-}catch(e){}
-saveMemoBtn.addEventListener('click',()=>{
-  localStorage.setItem(MEMO_KEY,memoEl.value);
-  memoStatus.style.display='inline';
-  setTimeout(()=>memoStatus.style.display='none',1500);
-});
-clearMemoBtn.addEventListener('click',()=>{
-  memoEl.value='';
-  localStorage.removeItem(MEMO_KEY);
-  memoStatus.style.display='none';
-});
-
-// DATE PICKER
-const datePick=document.getElementById('datePick');
-const saveDate=document.getElementById('saveDate');
-const clearDate=document.getElementById('clearDate');
-const counter=document.getElementById('counter');
-const DATE_KEY='ilker_bahargul_date';
-
-try{
-  const savedDate=localStorage.getItem(DATE_KEY);
-  if(savedDate){
-    datePick.value=savedDate;
-    const diff=Math.max(0,new Date(savedDate)-new Date());
-    counter.textContent=${Math.ceil(diff/1000/60/60/24)} gün kaldı;
-  }
-}catch(e){}
-
-saveDate.addEventListener('click',()=>{
-  localStorage.setItem(DATE_KEY,datePick.value);
-  const diff=Math.max(0,new Date(datePick.value)-new Date());
-  counter.textContent=${Math.ceil(diff/1000/60/60/24)} gün kaldı;
-});
-clearDate.addEventListener('click',()=>{
-  datePick.value='';
-  localStorage.removeItem(DATE_KEY);
-  counter.textContent='Tarih seçilmedi';
-});
-</script>
+function setActive
