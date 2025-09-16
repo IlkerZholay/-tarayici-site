@@ -176,37 +176,28 @@
     </div>
   </section>
 
+<div class="two-col">
+      <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
+        <h3 style="margin:0 0 8px">Bir Sonraki Buluşma</h3>
+        <p class="muted">Tarih seç ve kaydet; sadece bu tarayıcıda saklanır.</p>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <input id="datePick" type="datetime-local" style="padding:8px;border-radius:8px;border:1px solid #eee">
+          <button id="saveDate" class="btn">Kaydet</button>
+          <button id="clearDate" class="btn ghost">Sıfırla</button>
+          <div id="counter" style="margin-left:auto;font-weight:700">Tarih seçilmedi</div>
+        </div>
+      </div>
+
+      <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <div style="font-size:20px;color:#b23a60;font-weight:800">İlker ❤ Bahargül</div>
+        <div style="color:var(--muted);font-size:13px">Küçük şeylerin toplamı büyük bir aşk yapar.</div>
+      </div>
+    </div>
+
+  </section>
+
 </main>
-  
-  // DATE PICKER
-const datePick=document.getElementById('datePick');
-const saveDate=document.getElementById('saveDate');
-const clearDate=document.getElementById('clearDate');
-const counter=document.getElementById('counter');
-const DATE_KEY='ilker_bahargul_date';
 
-try{
-  const savedDate=localStorage.getItem(DATE_KEY);
-  if(savedDate){
-    datePick.value=savedDate;
-    const diff=Math.max(0,new Date(savedDate)-new Date());
-    counter.textContent=${Math.ceil(diff/1000/60/60/24)} gün kaldı;
-  }
-}catch(e){}
-
-saveDate.addEventListener('click',()=>{
-  localStorage.setItem(DATE_KEY,datePick.value);
-  const diff=Math.max(0,new Date(datePick.value)-new Date());
-  counter.textContent=${Math.ceil(diff/1000/60/60/24)} gün kaldı;
-});
-clearDate.addEventListener('click',()=>{
-  datePick.value='';
-  localStorage.removeItem(DATE_KEY);
-  counter.textContent='Tarih seçilmedi';
-});
-  
-</script>
-  
 <footer>© İlker &amp; Bahargül — Bizim Küçük Evrenimiz</footer>
 
 </body>
