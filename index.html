@@ -14,69 +14,113 @@
     --card: rgba(255,255,255,0.96);
     --shadow: 0 22px 70px rgba(10,10,20,0.08);
     --maxw:1120px;
-    --hero-bg: url("https://i.ibb.co/JwzhgHwZ/b.jpg");
+    --hero-local: url("Bahar.jpg");
+    --hero-fallback: url("https://i.ibb.co/JwzhgHwZ/b.jpg");
   }
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#fbf8f9;color:#111}
-  a{color:inherit}
+  a{color:inherit;-webkit-tap-highlight-color:transparent}
+  /* NAV */
   nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:180;width:min(var(--maxw),96%);display:flex;justify-content:center}
   nav ul{display:flex;gap:8px;background:rgba(255,255,255,0.06);padding:8px;border-radius:999px;list-style:none;margin:0;overflow:auto}
   nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:700;white-space:nowrap;font-size:14px}
   nav a:hover{background:rgba(255,255,255,0.04)}
 
+  /* HERO */
   .hero{
     min-height:72vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
-    background: var(--hero-bg) center/cover fixed no-repeat;
+    /* first try local image, then fallback remote */
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.52)),
+      var(--hero-local),
+      var(--hero-fallback);
+    background-blend-mode: overlay;
+    background-position:center;
+    background-size:cover;
   }
-  .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.52)); z-index:0 }
   .hero-inner{position:relative; z-index:2; text-align:center; color:#fff; padding:34px; width:min(var(--maxw),94%); }
   .logo-pill{display:inline-block;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:800}
-  .title{font-family:'Playfair Display',serif;font-size:clamp(28px,6.4vw,56px);margin:.6rem 0}
+  .title{font-family:'Playfair Display',serif;font-size:clamp(28px,6.4vw,56px);margin:.6rem 0; text-shadow:0 6px 20px rgba(0,0,0,0.45)}
   .subtitle{font-size:clamp(13px,3.2vw,17px);opacity:.95}
   .script{font-family:'Dancing Script',cursive;color:#ffdfe8;margin-top:10px;font-size:clamp(16px,3.8vw,28px)}
   .hero-cta{margin-top:18px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
   .btn{background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer}
   .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12)}
 
+  /* main container */
   main{margin-top:-44px;border-top-left-radius:28px;border-top-right-radius:28px;background:#fff;box-shadow:0 -18px 60px rgba(0,0,0,0.04)}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:26px 18px 60px}
 
   h2.section-title{font-family:'Playfair Display',serif;color:#962a53;margin:0 0 8px;font-size:20px}
   p.muted{color:var(--muted);margin:0 0 12px}
 
+  /* special anniversary card */
+  .special-card{display:flex;gap:12px;align-items:center;padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fff9f9);box-shadow:var(--shadow);margin-bottom:18px}
+  .heart{width:64px;height:64px;border-radius:999px;background:linear-gradient(135deg,#ffd6e0,#ffc0d1);display:flex;align-items:center;justify-content:center;font-size:28px;color:#8b1a52}
+  .since{font-weight:700;color:#b23a60}
+  .since small{display:block;color:var(--muted);font-weight:400}
+
+  /* timeline */
   .timeline-wrap{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);margin-bottom:18px}
   .timeline{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-  .tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:150px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px}
+  .tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:150px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px;transition:transform .28s}
+  .tcard:hover{transform:translateY(-8px)}
   .tdate{color:var(--accent);font-weight:800;font-size:13px}
   .tcard h3{margin:0;font-size:18px;color:#222}
   .tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 
+  /* memories / collage */
   .memories-wrap{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);margin-bottom:18px}
   .collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-  .collage img{width:100%;height:180px;object-fit:cover;border-radius:12px}
-  @media(min-width:900px){ .collage img{height:220px} }
-  @media(max-width:600px){ .collage{grid-template-columns:1fr} .collage img{height:220px} }
+  .collage img{width:100%;height:220px;object-fit:cover;border-radius:12px;cursor:pointer;transition:transform .25s}
+  .collage img:hover{transform:scale(1.02)}
+  @media(min-width:900px){ .collage img{height:260px} }
+  @media(max-width:600px){ .collage{grid-template-columns:1fr 1fr} .collage img{height:180px} }
 
+  /* swipeable gallery (big) */
   .gallery{display:flex;gap:14px;overflow-x:auto;padding:12px 6px;-webkit-overflow-scrolling:touch}
   .gallery .card{flex:0 0 90%;height:min(62vh,520px);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 14px 44px rgba(0,0,0,0.06);scroll-snap-align:center}
   @media(min-width:1000px){ .gallery .card{flex:0 0 48%;height:420px} }
   .gallery img,.gallery video{width:100%;height:100%;object-fit:cover;display:block}
   .gallery .caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.45);color:#fff;padding:6px 10px;border-radius:999px;font-size:13px}
 
-  .music-area{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)}
-  .music-area .player{flex:1;min-width:220px}
+  /* music area & karaoke */
+  .music-area{display:grid;grid-template-columns:1fr 320px;gap:12px;align-items:start;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)}
+  @media(max-width:900px){ .music-area{grid-template-columns:1fr} }
+  .player-visual{display:flex;align-items:center;gap:12px}
+  .big-play{width:68px;height:68px;border-radius:999px;background:linear-gradient(180deg,#ff9dbb,#d64a79);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;border:0;cursor:pointer;box-shadow:0 10px 30px rgba(214,51,132,.18)}
+  .controls{display:flex;flex-direction:column;gap:8px;flex:1}
+  .progress{height:8px;background:#eee;border-radius:999px;position:relative;overflow:hidden;cursor:pointer}
+  .progress .bar{height:100%;width:0;background:linear-gradient(90deg,#ff6fa4,#d64a79)}
+  .time{font-size:13px;color:var(--muted);display:flex;justify-content:space-between}
+  .karaoke{background:#fff;padding:12px;border-radius:10px;box-shadow:inset 0 1px 0 rgba(0,0,0,0.02);height:260px;overflow:auto}
+  .karaoke p{margin:10px 0;font-size:16px;color:#777;transition:all .18s}
+  .karaoke p.active{color:#b23a60;font-size:18px;font-weight:800;text-shadow: 0 2px 12px rgba(178,58,96,0.12)}
 
+  /* poem / note */
   .poem{background:linear-gradient(180deg,#fffafc,#fff);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:10px}
   .poem p{margin:8px 0;font-size:16px}
   .poem .sign{margin-top:8px;color:var(--muted);font-weight:700}
 
   .note-wrap{margin-top:16px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
-  textarea#memo{width:100%;min-height:240px;border-radius:12px;border:1px solid #ecebf0;padding:14px;font-size:16px;resize:vertical}
+  textarea#memo{width:100%;min-height:200px;border-radius:12px;border:1px solid #ecebf0;padding:14px;font-size:16px;resize:vertical}
 
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
   @media(max-width:900px){ .two-col{grid-template-columns:1fr} }
 
   footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
+
+  /* lightbox */
+  #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center;padding:18px}
+  #lbInner{max-width:1200px;max-height:90vh;width:100%;position:relative}
+  #lightbox img,#lightbox video{max-width:100%;max-height:90vh;border-radius:12px;display:block;margin:0 auto}
+  .lb-close{position:absolute;right:12px;top:12px;background:rgba(255,255,255,0.06);border:0;color:white;padding:8px 10px;border-radius:10px;cursor:pointer}
+  .lb-nav{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:36px;color:white;background:rgba(255,255,255,0.04);border-radius:999px;padding:8px 10px;cursor:pointer}
+  .lb-nav.right{left:auto;right:10px}
+
+  /* small adjustments */
+  .small-muted{font-size:13px;color:var(--muted)}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
 </style>
 </head>
 <body>
@@ -91,26 +135,42 @@
   </ul>
 </nav>
 
-<header id="hero" class="hero" role="banner">
+<header id="hero" class="hero" role="banner" aria-label="Kapak - Kumsal">
   <div class="hero-inner">
     <div class="logo-pill">İ + B</div>
     <h1 class="title">Bizim Küçük Evrenimiz</h1>
     <p class="subtitle">Seninle her mevsim bahar — bu sayfa bizim anılarımızı saklasın diye hazırlandı.</p>
     <div class="script">“Yanındayım — her hâlinde.”</div>
+    <div class="hero-cta">
+      <a class="btn" href="#memories">Anılara Git</a>
+      <a class="btn ghost" href="#note">Sana Yazdığım Not</a>
+    </div>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" role="main">
 
-  <section id="timeline">
+  <!-- SPECIAL (Sevgili olduğumuzdan beri) -->
+  <div class="special-card" id="specialCard">
+    <div class="heart">❤</div>
+    <div>
+      <div class="since">Özel Anımız</div>
+      <small class="small-muted">Sevgili olduğumuzdan beri geçen süre</small>
+      <div id="timeSince" style="font-weight:800;font-size:18px;margin-top:6px">—</div>
+      <small class="small-muted" style="display:block;margin-top:6px">Başlangıç: 3 Ağustos 2025 04:05</small>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <section id="timeline" aria-label="Zaman Çizelgesi">
     <h2 class="section-title">Zaman Çizelgesi</h2>
     <p class="muted">Kısa duraklarımız — sağa kaydır.</p>
     <div class="timeline-wrap">
-      <div class="timeline">
+      <div class="timeline" id="timelineInner">
         <article class="tcard">
           <div class="tdate">2024 • Kış</div>
           <h3>Tanıştık</h3>
-          <p class="muted">Biraz gergin bir başlangıç oldu ama :D En büyük aşklar kavgayla başlarmış.</p>
+          <p class="muted">Biraz gergin bir başlangıç oldu ama — asıl güzel olan beraber kaldığımız anlar.</p>
         </article>
         <article class="tcard">
           <div class="tdate">İlk Sürpriz</div>
@@ -120,7 +180,7 @@
         <article class="tcard">
           <div class="tdate">İlk Buluşmalar</div>
           <h3>Merdivenler &amp; Kahkaha</h3>
-          <p class="muted">İlk buluşmamızda heycan dolu sohbetler o gün unutulmazdı.</p>
+          <p class="muted">Saatlerce konuştuğumuz, anlamaya başladığımız o günler…</p>
         </article>
         <article class="tcard">
           <div class="tdate">Bugün</div>
@@ -131,52 +191,94 @@
     </div>
   </section>
 
-  <section id="memories">
+  <!-- MEMORIES -->
+  <section id="memories" aria-label="Anılarımız">
     <h2 class="section-title">Anılarımız — Foto & Video</h2>
+    <p class="muted">Aşağıdaki kolaj ve galeri, tıklayınca büyür. Daha fazla eklemek istersen GitHub'a aynı klasöre yükle.</p>
+
     <div class="memories-wrap">
-      <div class="collage">
-        <img src="bahaar.jpg" alt="bahaar">
-        <img src="bahharr.jpg" alt="bahharr">
-        <img src="bbaa.jpg" alt="bbaa">
-        <img src="Bahar.jpg" alt="Bahar">
-        <img src="Bahoş.jpg" alt="Bahoş">
-        <img src="baharr.jpg" alt="baharr">
-        <img src="baharrr.jpg" alt="baharrr">
+      <div class="collage" id="collage">
+        <!-- Kullanıcı ekleyeceğin dosya isimleriyle eşleştir: -->
+        <img data-src="bahaar.jpg" alt="bahaar">
+        <img data-src="bahharr.jpg" alt="bahharr">
+        <img data-src="bbaa.jpg" alt="bbaa">
+        <img data-src="Bahar.jpg" alt="Bahar">
+        <img data-src="Bahoş.jpg" alt="Bahoş">
+        <img data-src="baharr.jpg" alt="baharr">
+        <img data-src="baharrr.jpg" alt="baharrr">
       </div>
-      <div style="margin-top:14px" class="gallery">
-        <div class="card"><video controls src="baharrrr.mp4"></video></div>
-        <div class="card"><video controls src="baharrrrrr.mp4"></video></div>
+
+      <div style="margin-top:14px" class="gallery" id="bigGallery">
+        <!-- Videolar (yerel dosya adlarını repo'ya göre değiştir) -->
+        <div class="card" data-type="video" data-src="baharrrr.mp4"><video preload="metadata" muted playsinline></video><div class="caption">Video — Kumsal An</div></div>
+        <div class="card" data-type="video" data-src="baharrrrrr.mp4"><video preload="metadata" muted playsinline></video><div class="caption">Video — Birlikte</div></div>
       </div>
     </div>
   </section>
 
-  <section id="music">
+  <!-- MUSIC -->
+  <section id="music" aria-label="Müzik">
     <h2 class="section-title">Müzik — Dilerim Ki</h2>
+    <p class="muted">Oynat butonuna basınca müziği çal; karaoke sözleri senkronize şekilde vurgulanacak.</p>
+
     <div class="music-area">
-      <audio controls>
+      <div class="player-visual">
+        <button id="bigPlay" class="big-play" aria-label="Oynat / Duraklat">▶</button>
+        <div style="min-width:220px">
+          <div style="font-weight:800">Dilerim Ki — (Şarkı)</div>
+          <div class="small-muted">İlker'in seçimi</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="progress" id="progress" title="Tıkla ve sürükle ile konum ayarla">
+          <div class="bar" id="bar"></div>
+        </div>
+        <div class="time"><span id="cur">00:00</span><span id="dur">00:00</span></div>
+        <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+          <button id="prevLyric" class="btn ghost">« Öne</button>
+          <button id="nextLyric" class="btn ghost">İleri »</button>
+          <div style="margin-left:auto" class="small-muted">Karaoke: satırlar otomatik ilerler</div>
+        </div>
+      </div>
+
+      <div class="karaoke" id="karaoke">
+        <!-- Sözler JS tarafından eklenecek -->
+      </div>
+
+      <!-- gizli audio element (yerel dosyaya işaret ediyor) -->
+      <audio id="audio" preload="metadata">
         <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
-        Tarayıcın ses çalmayı desteklemiyor.
+        Tarayıcınız ses çalamıyor.
       </audio>
     </div>
   </section>
 
-  <section id="note">
+  <!-- POEM / NOTE -->
+  <section id="note" aria-label="Not Ufaklığa">
     <h2 class="section-title">Not — Ufaklığa</h2>
+    <p class="muted">Biraz şiir, biraz iltifat — sonra senin için geniş, ferah bir alan bıraktım. Uzun yazabilirsin.</p>
+
     <div class="poem">
       <p style="font-weight:800;color:#b23a60;font-size:18px">Sevgili Ufaklık,</p>
-      <p>Gözümün görmediğini görensin .</p>
-      <p>Aklımın yetmediğini bilensin .</p>
+      <p>Gözümün görmediğini görensin.</p>
+      <p>Aklımın yetmediğini bilensin.</p>
       <p>Bir yerlerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyim.</p>
       <p style="font-weight:800">İyi ki varsın.</p>
       <div class="sign">Sevgilerle — <strong>İlker</strong></div>
     </div>
-    <div class="note-wrap">
+
+    <div class="note-wrap" style="margin-top:12px">
       <label style="font-weight:800;color:#8b1a52">Bahargül — Buraya dilediğin kadar yazabilirsin</label>
       <textarea id="memo" placeholder="Sevgilim, hislerini buraya yaz..."></textarea>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+        <button id="saveMemo" class="btn">Kaydet</button>
+        <button id="clearMemo" class="btn ghost">Sil</button>
+        <span id="memoStatus" style="margin-left:auto;color:green;display:none;font-weight:700">Kaydedildi ✓</span>
+      </div>
     </div>
-  </section>
 
-<div class="two-col">
+    <div class="two-col" style="margin-top:18px">
       <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
         <h3 style="margin:0 0 8px">Bir Sonraki Buluşma</h3>
         <p class="muted">Tarih seç ve kaydet; sadece bu tarayıcıda saklanır.</p>
@@ -200,5 +302,428 @@
 
 <footer>© İlker &amp; Bahargül — Bizim Küçük Evrenimiz</footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-hidden="true">
+  <div id="lbInner">
+    <button id="lbClose" class="lb-close" aria-label="Kapat">Kapat ✕</button>
+    <button id="lbPrev" class="lb-nav" aria-label="Önceki">‹</button>
+    <button id="lbNext" class="lb-nav right" aria-label="Sonraki">›</button>
+    <div id="lbContent" style="text-align:center"></div>
+  </div>
+</div>
+
+<script>
+/* ------------------------------------------
+  HAFIZA / LOCAL STORAGE: memo ve tarih
+-------------------------------------------*/
+const MEMO_KEY = 'ilker_bahar_memo_v1';
+const DATE_KEY = 'ilker_bahar_date_v1';
+const memoEl = document.getElementById('memo');
+const saveMemoBtn = document.getElementById('saveMemo');
+const clearMemoBtn = document.getElementById('clearMemo');
+const memoStatus = document.getElementById('memoStatus');
+
+try {
+  const saved = localStorage.getItem(MEMO_KEY);
+  if (saved) memoEl.value = saved;
+} catch(e){}
+
+saveMemoBtn.addEventListener('click', ()=>{
+  try { localStorage.setItem(MEMO_KEY, memoEl.value || ''); memoStatus.style.display='inline'; setTimeout(()=>memoStatus.style.display='none',1500); } catch(e){}
+});
+clearMemoBtn.addEventListener('click', ()=>{ memoEl.value=''; localStorage.removeItem(MEMO_KEY); });
+
+/* ------------------------------------------
+  Buluşma tarihi (geri sayım) - localStorage
+-------------------------------------------*/
+const datePick = document.getElementById('datePick');
+const saveDate = document.getElementById('saveDate');
+const clearDate = document.getElementById('clearDate');
+const counter = document.getElementById('counter');
+
+if(localStorage.getItem(DATE_KEY)) datePick.value = localStorage.getItem(DATE_KEY);
+
+saveDate.addEventListener('click', ()=> {
+  if(datePick.value){ localStorage.setItem(DATE_KEY, datePick.value); updateCounter(); }
+});
+clearDate.addEventListener('click', ()=> { datePick.value=''; localStorage.removeItem(DATE_KEY); updateCounter(); });
+
+function updateCounter(){
+  const v = datePick.value;
+  if(!v){ counter.textContent = 'Tarih seçilmedi'; return; }
+  const t = new Date(v).getTime() - Date.now();
+  if(t<=0){ counter.textContent = 'Geçmiş tarih seçildi'; return; }
+  const d = Math.floor(t/86400000);
+  const h = Math.floor((t%86400000)/3600000);
+  const m = Math.floor((t%3600000)/60000);
+  counter.textContent = ${d}g ${h}s ${m}d;
+}
+setInterval(updateCounter,1000); updateCounter();
+
+/* ------------------------------------------
+  "Sevgili olduğumuzdan beri" sayaç
+  Başlangıç: 2025-08-03 04:05 (UTC yerel saatine göre tarayıcı)
+-------------------------------------------*/
+const startDate = new Date('2025-08-03T04:05:00'); // kullanıcının verdiği tarih
+const timeSinceEl = document.getElementById('timeSince');
+
+function formatSince(ms){
+  const s = Math.floor(ms/1000);
+  const days = Math.floor(s/86400);
+  const hours = Math.floor((s%86400)/3600);
+  const mins = Math.floor((s%3600)/60);
+  const secs = s%60;
+  return ${days} gün ${hours} saat ${mins} dk ${secs} sn;
+}
+
+function tickSince(){
+  const diff = Date.now() - startDate.getTime();
+  if(diff < 0){
+    timeSinceEl.textContent = 'Henüz başlamadı';
+  } else {
+    timeSinceEl.textContent = formatSince(diff);
+  }
+}
+setInterval(tickSince,1000); tickSince();
+
+/* ------------------------------------------
+  GALLERY & COLLAGE : lazy load src ve lightbox hazırlığı
+-------------------------------------------*/
+function fixSrc(path){
+  if(!path) return path;
+  return path; // burada istersen URL düzeltmeleri yapabilirsin
+}
+
+/* Load collage images from data-src attributes */
+document.querySelectorAll('#collage img').forEach(img=>{
+  const src = img.getAttribute('data-src') || img.getAttribute('src');
+  img.src = fixSrc(src);
+  img.addEventListener('click', ()=> openLightByElement(img));
+});
+
+/* Big gallery: images/videos */
+const galleryCards = document.querySelectorAll('#bigGallery .card');
+galleryCards.forEach(card=>{
+  const type = card.dataset.type;
+  const src = card.dataset.src;
+  if(type === 'video'){
+    const v = card.querySelector('video');
+    v.src = fixSrc(src);
+    v.setAttribute('controls','');
+    v.addEventListener('click', (e)=> { e.stopPropagation(); }); // video kendi kontrolüne sahip
+    // click card to open lightbox with this video
+    card.addEventListener('click', ()=> openLightByElement(v));
+  } else {
+    const img = card.querySelector('img');
+    if(img){
+      const s = card.dataset.src || img.getAttribute('data-src') || img.getAttribute('src');
+      img.src = fixSrc(s);
+      card.addEventListener('click', ()=> openLightByElement(img));
+    }
+  }
+});
+
+/* Build lightbox items array by scanning collage + gallery (in DOM order) */
+function buildLightItems(){
+  const items = [];
+  // collage images
+  document.querySelectorAll('#collage img').forEach(img=>{
+    items.push({type:'image', src:img.src || img.getAttribute('data-src')});
+  });
+  // gallery cards (images or videos)
+  document.querySelectorAll('#bigGallery .card').forEach(card=>{
+    if(card.dataset.type === 'video'){
+      items.push({type:'video', src: card.dataset.src});
+    } else {
+      const img = card.querySelector('img');
+      if(img) items.push({type:'image', src: img.src});
+    }
+  });
+  return items;
+}
+let LB_ITEMS = buildLightItems();
+
+/* LIGHTBOX implementation */
+const lb = document.getElementById('lightbox');
+const lbContent = document.getElementById('lbContent');
+const lbClose = document.getElementById('lbClose');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
+
+let lbIndex = 0;
+
+function openLightByElement(el){
+  // find index by matching src
+  const src = el.tagName.toLowerCase() === 'video' ? el.currentSrc || el.src : el.src || el.getAttribute('data-src');
+  LB_ITEMS = buildLightItems();
+  const found = LB_ITEMS.findIndex(it => it.src && src && (it.src === src || it.src.endsWith(src) || src.endsWith(it.src)));
+  lbIndex = found >= 0 ? found : 0;
+  openLight(lbIndex);
+}
+
+function openLight(i){
+  LB_ITEMS = buildLightItems();
+  if(!LB_ITEMS || LB_ITEMS.length===0) return;
+  lbIndex = (i+LB_ITEMS.length)%LB_ITEMS.length;
+  const item = LB_ITEMS[lbIndex];
+  lbContent.innerHTML = '';
+  if(item.type === 'image'){
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = 'Fotoğraf';
+    lbContent.appendChild(img);
+  } else if(item.type === 'video'){
+    const v = document.createElement('video');
+    v.src = item.src;
+    v.controls = true;
+    v.autoplay = true;
+    v.playsInline = true;
+    v.style.maxHeight = '80vh';
+    lbContent.appendChild(v);
+  }
+  lb.style.display = 'flex';
+  lb.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLight(){
+  lb.style.display='none';
+  lb.setAttribute('aria-hidden','true');
+  lbContent.innerHTML='';
+  document.body.style.overflow = '';
+}
+
+lbClose.addEventListener('click', closeLight);
+lbPrev.addEventListener('click', ()=> openLight(lbIndex-1));
+lbNext.addEventListener('click', ()=> openLight(lbIndex+1));
+
+document.addEventListener('keydown', (e)=>{
+  if(lb.style.display === 'flex'){
+    if(e.key === 'ArrowLeft') openLight(lbIndex-1);
+    if(e.key === 'ArrowRight') openLight(lbIndex+1);
+    if(e.key === 'Escape') closeLight();
+  }
+});
+lb.addEventListener('click', (e)=> { if(e.target === lb) closeLight(); });
+
+/* ------------------------------------------
+  MUSIC + KARAOKE
+-------------------------------------------*/
+const audio = document.getElementById('audio');
+const bigPlay = document.getElementById('bigPlay');
+const bar = document.getElementById('bar');
+const progress = document.getElementById('progress');
+const curEl = document.getElementById('cur');
+const durEl = document.getElementById('dur');
+const karaokeEl = document.getElementById('karaoke');
+const prevLy = document.getElementById('prevLyric');
+const nextLy = document.getElementById('nextLyric');
+
+function fmt(s){
+  if(isNaN(s)) return '00:00';
+  const m = Math.floor(s/60), sec = Math.floor(s%60);
+  return String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+}
+
+/* Lyrics: lines + optional known time (seconds) from user.
+   Some times given, others will be auto-interpolated by JS.
+   (You gave partial times; we'll fill the rest automatically.)
+*/
+let lyricsRaw = [
+  {t:15, text:"Umudumsun"},
+  {t:19, text:"Simsiyahken"},
+  {t:20, text:"Her yanım"},
+  {t:22, text:"Huzurumsun"},
+  {t:26, text:"Uçurumsun"},
+  {t:28, text:"Atlasam karanlığına"},
+  {t:31, text:"Adım unutulsun"},
+  {t:36, text:"Evim ol"},
+  {t:38, text:"Kurtar beni"},
+  {t:41, text:"Sonum ol"},
+  {t:46, text:"Dilerim ki"},
+  {t:48, text:"Dilerim ki"},
+  {t:50, text:"Asla caymazsın"},
+  {t:52, text:"Benim olmaktan"},
+  {t:56, text:"Dursun zaman"},
+  {t:59, text:"Kalsın yerim derinlerinde saklanan"},
+  {t:81, text:"Sönemezsin"},
+  {t:85, text:"İçimi yakan delip geçen"},
+  {t:86, text:"Ateş sensin"},
+  {t:91, text:"Onlar ne bilsin?"},
+  {t:95, text:"Sana çıksa keşke her yolum hayalimsin"},
+  // sonrası: zaman yok -> otomatik atanacak
+  {t:null, text:"Evim ol"},
+  {t:null, text:"Kurtar beni"},
+  {t:null, text:"Sonum ol"},
+  {t:null, text:"Dilerim ki"},
+  {t:null, text:"Dilerim ki asla caymazsın benim olmaktan"},
+  {t:null, text:"Dursun zaman"},
+  {t:null, text:"Kalsın yerim derinlerinde saklanan"},
+  {t:null, text:"Kaybolan bir ruh gibi"},
+  {t:null, text:"Kayıp gidersem de bul beni"},
+  {t:null, text:"Mahvolur da bitersem"},
+  {t:null, text:"Tut elimi"},
+  {t:null, text:"Dilerim ki"},
+  {t:null, text:"Dilerim ki asla caymazsın benim olmaktan"},
+  {t:null, text:"Dursun zaman"},
+  {t:null, text:"Kalsın yerim derinlerinde saklanan"}
+];
+
+/* assign missing times by interpolation */
+function assignTimes(arr){
+  // find indices with known times
+  const known = [];
+  arr.forEach((l,i)=>{ if(typeof l.t === 'number' && !isNaN(l.t)) known.push(i); });
+  if(known.length === 0){
+    // distribute every 3s
+    arr.forEach((l,i)=> l.t = i*3);
+    return;
+  }
+  // leading segment (before first known)
+  const firstIdx = known[0];
+  const firstTime = arr[firstIdx].t;
+  if(firstIdx > 0){
+    const step = firstTime / (firstIdx+0.0);
+    for(let i=0;i<firstIdx;i++){
+      arr[i].t = Math.max(0, Math.round((i)*(step)));
+    }
+  }
+  // middle segments
+  for(let k=0;k<known.length-1;k++){
+    const i = known[k], j = known[k+1];
+    const ti = arr[i].t, tj = arr[j].t;
+    const gap = j - i - 1;
+    if(gap <= 0) continue;
+    for(let m=1;m<=gap;m++){
+      arr[i+m].t = Math.round(ti + (tj - ti) * (m/(gap+1)));
+    }
+  }
+  // trailing segment
+  const lastIdx = known[known.length-1];
+  const lastTime = arr[lastIdx].t;
+  if(lastIdx < arr.length-1){
+    let step = 3;
+    for(let i=lastIdx+1;i<arr.length;i++){
+      arr[i].t = lastTime + (i-lastIdx)*step;
+    }
+  }
+}
+assignTimes(lyricsRaw);
+
+/* build karaoke elements */
+lyricsRaw.forEach((ln, idx)=>{
+  const p = document.createElement('p');
+  p.textContent = ln.text;
+  p.dataset.idx = idx;
+  p.dataset.time = String(ln.t);
+  p.addEventListener('click', ()=> { audio.currentTime = Math.max(0, ln.t - 0.2); audio.play(); });
+  karaokeEl.appendChild(p);
+});
+
+let currentLyric = -1;
+function updateKaraoke(time){
+  // find highest index with time <= current time
+  let idx = 0;
+  for(let i=0;i<lyricsRaw.length;i++){
+    if(lyricsRaw[i].t <= time) idx = i;
+    else break;
+  }
+  if(idx !== currentLyric){
+    // update dom classes
+    const nodes = karaokeEl.querySelectorAll('p');
+    if(currentLyric >= 0 && nodes[currentLyric]) nodes[currentLyric].classList.remove('active');
+    if(nodes[idx]) {
+      nodes[idx].classList.add('active');
+      // scroll center
+      const rect = nodes[idx].getBoundingClientRect();
+      const parentRect = karaokeEl.getBoundingClientRect();
+      // smooth scroll to bring active roughly center
+      const offset = nodes[idx].offsetTop - karaokeEl.clientHeight/2 + nodes[idx].clientHeight/2;
+      karaokeEl.scrollTo({top: offset, behavior: 'smooth'});
+    }
+    currentLyric = idx;
+  }
+}
+
+/* audio events */
+audio.addEventListener('loadedmetadata', ()=>{
+  durEl.textContent = fmt(audio.duration);
+});
+audio.addEventListener('timeupdate', ()=>{
+  const t = audio.currentTime;
+  curEl.textContent = fmt(t);
+  const pct = (t / (audio.duration || 1)) * 100;
+  bar.style.width = pct + '%';
+  updateKaraoke(t);
+});
+audio.addEventListener('ended', ()=> { bigPlay.textContent = '▶'; bigPlay.setAttribute('aria-label','Oynat'); });
+
+bigPlay.addEventListener('click', ()=> {
+  if(audio.paused){ audio.play().catch(()=>{}); bigPlay.textContent = '▮▮'; bigPlay.setAttribute('aria-label','Duraklat'); }
+  else { audio.pause(); bigPlay.textContent = '▶'; bigPlay.setAttribute('aria-label','Oynat'); }
+});
+
+/* progress seek */
+let seeking = false;
+progress.addEventListener('pointerdown', (e)=>{
+  seeking = true;
+  seek(e);
+  progress.setPointerCapture(e.pointerId);
+});
+progress.addEventListener('pointermove', (e)=> { if(seeking) seek(e); });
+progress.addEventListener('pointerup', (e)=> { seeking = false; progress.releasePointerCapture(e.pointerId); });
+function seek(e){
+  const r = progress.getBoundingClientRect();
+  const x = Math.max(0, Math.min(1, (e.clientX - r.left)/r.width));
+  const t = x * (audio.duration || 0);
+  audio.currentTime = t;
+}
+
+/* prev/next lyric */
+prevLy.addEventListener('click', ()=>{
+  if(currentLyric > 0){
+    audio.currentTime = Math.max(0, lyricsRaw[currentLyric-1].t - 0.2);
+  }
+});
+nextLy.addEventListener('click', ()=>{
+  if(currentLyric < lyricsRaw.length - 1){
+    audio.currentTime = Math.max(0, lyricsRaw[currentLyric+1].t - 0.2);
+  }
+});
+
+/* keyboard control: space for play/pause */
+document.addEventListener('keydown', (e)=>{
+  if(e.code === 'Space'){
+    e.preventDefault();
+    if(audio.paused) audio.play().catch(()=>{});
+    else audio.pause();
+  }
+});
+
+/* ensure bigPlay reflects audio pause/play */
+audio.addEventListener('play', ()=> bigPlay.textContent = '▮▮');
+audio.addEventListener('pause', ()=> bigPlay.textContent = '▶');
+
+/* ------------------------------------------
+  Make gallery items responsive + fallback images
+-------------------------------------------*/
+document.querySelectorAll('.collage img').forEach(img=>{
+  img.onerror = ()=> {
+    img.style.background = '#f3f3f3';
+    img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="100%" height="100%" fill="%23f3f3f3"/><text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="%23999" font-size="22">Görsel yüklenemedi</text></svg>';
+  };
+});
+
+/* gallery videos fallback */
+document.querySelectorAll('.gallery video').forEach(v=>{
+  v.onerror = ()=> {
+    v.poster = '';
+  };
+});
+
+/* accessibility: focus first button */
+bigPlay.focus();
+
+</script>
 </body>
 </html>
