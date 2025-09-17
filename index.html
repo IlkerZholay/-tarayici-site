@@ -5,253 +5,402 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>İlker ❤ Bahargül — Bizim Küçük Evrenimiz</title>
 
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+  /* ---------- Root / base ---------- */
   :root{
     --accent:#c83a66;
     --muted:#6b7280;
     --card: rgba(255,255,255,0.96);
+    --glass: rgba(255,255,255,0.72);
     --shadow: 0 22px 70px rgba(10,10,20,0.08);
-    --maxw:1120px;
-    --hero-bg: url("Bahoş.jpg");
+    --maxw:1100px;
+    --warm:#ffefeF;
+    --bg-image: url("Bahar.jpg"); /* background hero */
   }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#fbf8f9;color:#111}
-  a{color:inherit}
-  nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:180;width:min(var(--maxw),96%);display:flex;justify-content:center}
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fff;color:#111;}
+  a{color:inherit; text-decoration:none}
+  img,video{max-width:100%;display:block}
+
+  /* ---------- Top nav (floating) ---------- */
+  nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:150;width:min(var(--maxw),96%);display:flex;justify-content:center}
   nav ul{display:flex;gap:8px;background:rgba(255,255,255,0.06);padding:8px;border-radius:999px;list-style:none;margin:0;overflow:auto}
   nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:700;white-space:nowrap;font-size:14px}
   nav a:hover{background:rgba(255,255,255,0.04)}
 
+  /* ---------- HERO ---------- */
   .hero{
-    min-height:72vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
-    background: var(--hero-bg) center/cover fixed no-repeat;
+    min-height:70vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+    background: var(--bg-image) center/cover no-repeat fixed;
   }
-  .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.52)); z-index:0 }
-  .hero-inner{position:relative; z-index:2; text-align:center; color:#fff; padding:34px; width:min(var(--maxw),94%); }
+  .hero::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.55)); z-index:0 }
+  .hero-inner{position:relative; z-index:2; text-align:center; color:#fff; padding:34px; width:min(var(--maxw),94%);}
   .logo-pill{display:inline-block;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:800}
-  .title{font-family:'Playfair Display',serif;font-size:clamp(28px,6.4vw,56px);margin:.6rem 0}
+  .title{font-family:'Playfair Display',serif;font-size:clamp(28px,6.4vw,56px);margin:.4rem 0}
   .subtitle{font-size:clamp(13px,3.2vw,17px);opacity:.95}
-  .script{font-family:'Dancing Script',cursive;color:#ffdfe8;margin-top:10px;font-size:clamp(16px,3.8vw,28px)}
+  .script{font-family:'Dancing Script',cursive;color:#ffdfe8;margin-top:10px;font-size:clamp(16px,3.8vw,24px)}
+  .hero-cta{margin-top:18px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
 
-  main{margin-top:-44px;border-top-left-radius:28px;border-top-right-radius:28px;background:#fff;box-shadow:0 -18px 60px rgba(0,0,0,0.04)}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:26px 18px 60px}
+  .btn{background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer; box-shadow:0 8px 22px rgba(200,60,102,0.12);}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12)}
 
-  h2.section-title{font-family:'Playfair Display',serif;color:#962a53;margin:0 0 8px;font-size:22px}
+  /* ---------- MAIN ---------- */
+  main{margin-top:-40px;border-top-left-radius:28px;border-top-right-radius:28px;background:#fff;box-shadow:0 -18px 60px rgba(0,0,0,0.04);padding-bottom:60px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 18px 60px}
+
+  h2.section-title{font-family:'Playfair Display',serif;color:#962a53;margin:0 0 8px;font-size:20px}
   p.muted{color:var(--muted);margin:0 0 12px}
 
+  /* ---------- COUNTER ---------- */
+  .counter-card{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:14px;border-radius:14px;background:linear-gradient(180deg,#fff,#fffafc);box-shadow:var(--shadow);margin-bottom:18px}
+  .counter-left{display:flex;gap:10px;align-items:center}
+  .counter-num{font-weight:800;color:var(--accent);font-size:1.4rem}
+  .counter-sub{color:var(--muted);font-size:0.95rem}
+
+  /* ---------- TIMELINE ---------- */
   .timeline-wrap{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);margin-bottom:18px}
   .timeline{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-  .tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:150px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px}
+  .tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:140px;box-shadow:0 8px 24px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px}
   .tdate{color:var(--accent);font-weight:800;font-size:13px}
-  .tcard h3{margin:0;font-size:18px;color:#222}
-  .tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+  .tcard h3{margin:0;font-size:16px;color:#222}
+  .tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
 
+  /* ---------- MEMORIES (COLLAGE + BIG GALLERY) ---------- */
   .memories-wrap{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);margin-bottom:18px}
-  .collage{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
-  .collage img{width:100%;height:200px;object-fit:cover;border-radius:12px;cursor:pointer;transition:transform .3s}
-  .collage img:hover{transform:scale(1.03)}
+  .collage{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .collage img{width:100%;height:180px;object-fit:cover;border-radius:12px;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,0.06);}
+  @media(min-width:900px){ .collage img{height:220px} }
+  @media(max-width:600px){ .collage{grid-template-columns:1fr} .collage img{height:220px} }
 
   .gallery{display:flex;gap:14px;overflow-x:auto;padding:12px 6px;-webkit-overflow-scrolling:touch}
   .gallery .card{flex:0 0 90%;height:min(62vh,520px);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 14px 44px rgba(0,0,0,0.06);scroll-snap-align:center}
   @media(min-width:1000px){ .gallery .card{flex:0 0 48%;height:420px} }
-  .gallery video{width:100%;height:100%;object-fit:cover;display:block}
+  .gallery img,.gallery video{width:100%;height:100%;object-fit:cover;display:block}
+  .gallery .caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.45);color:#fff;padding:6px 10px;border-radius:999px;font-size:13px}
 
-  .music-area{background:var(--card);padding:20px;border-radius:14px;box-shadow:var(--shadow);margin-top:20px;text-align:center}
-  .music-area button{background:var(--accent);color:#fff;border:none;padding:12px 20px;border-radius:999px;font-weight:700;cursor:pointer;font-size:16px}
-  .lyrics{margin-top:16px;font-size:18px;font-weight:600;min-height:42px;color:#962a53}
+  /* ---------- MUSIC PLAYER (custom) ---------- */
+  .music-wrap{background:var(--card);padding:14px;border-radius:14px;box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:1fr 320px;gap:12px;align-items:center}
+  @media(max-width:920px){ .music-wrap{grid-template-columns:1fr; } }
+  .player-controls{display:flex;gap:10px;align-items:center}
+  .big-play{width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,var(--accent),#b23a60);color:#fff;border:0;font-size:24px;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px rgba(200,60,102,0.18)}
+  .progress{flex:1;height:8px;background:#eee;border-radius:999px;overflow:hidden;position:relative}
+  .progress > .bar{height:100%;background:linear-gradient(90deg,#ffd6e0,#ffb6c1);width:0%}
+  .time{min-width:68px;font-weight:700;color:var(--muted);font-size:14px;text-align:center}
+  .vol-range{width:120px}
 
-  .poem{background:linear-gradient(180deg,#fffafc,#fff);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:10px}
+  /* karaoke */
+  .karaoke{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fff7fb);box-shadow:inset 0 1px 0 rgba(0,0,0,0.02); max-height:220px; overflow:auto}
+  .line{padding:6px 8px;border-radius:8px;margin-bottom:6px;font-weight:600;color:#4b4f50;opacity:0.7;transition:all .28s}
+  .line.active{background:linear-gradient(90deg,#ffeff3,#fff0); color:var(--accent); font-size:1.05rem; opacity:1; box-shadow:0 6px 18px rgba(200,60,102,0.08)}
+
+  /* ---------- NOTE & POEM ---------- */
+  .poem{background:linear-gradient(180deg,#fffafc,#fff);padding:16px;border-radius:12px;box-shadow:var(--shadow);margin-top:10px}
   .poem p{margin:8px 0;font-size:16px}
   .poem .sign{margin-top:8px;color:var(--muted);font-weight:700}
+  .note-wrap{margin-top:12px;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)}
+  textarea#memo{width:100%;min-height:160px;border-radius:10px;border:1px solid #ecebf0;padding:12px;font-size:15px;resize:vertical}
 
-  .note-wrap{margin-top:16px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
-  textarea#memo{width:100%;min-height:240px;border-radius:12px;border:1px solid #ecebf0;padding:14px;font-size:16px;resize:vertical}
+  /* ---------- LIGHTBOX ---------- */
+  #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:999;align-items:center;justify-content:center;padding:18px}
+  #lightbox .imgwrap{position:relative;max-width:1100px;max-height:90%;width:100%}
+  #lightbox img{display:block;width:100%;height:auto;border-radius:12px}
+  #lightbox .nav{position:absolute;top:50%;transform:translateY(-50%);font-size:38px;color:#fff;cursor:pointer;padding:12px}
+  #lightbox .nav.left{left:-6px} #lightbox .nav.right{right:-6px}
+  #lightbox .close{position:absolute;right:12px;top:12px;background:rgba(255,255,255,0.06);color:#fff;padding:8px;border-radius:8px;cursor:pointer}
 
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-  @media(max-width:900px){ .two-col{grid-template-columns:1fr} }
+  /* small helpers */
+  .muted-small{color:var(--muted);font-size:13px}
+  footer{margin-top:28px;text-align:center;color:var(--muted);padding-bottom:36px}
 
-  footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
-
-  /* fullscreen modal */
-  .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;z-index:999}
-  .lightbox img{max-width:90%;max-height:90%;border-radius:12px}
-  .lightbox:target{display:flex}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
 </style>
 </head>
+
 <body>
+  <!-- NAV -->
+  <nav aria-label="Ana Menü">
+    <ul>
+      <li><a href="#hero">Evrenimiz</a></li>
+      <li><a href="#timeline">Zaman Çizelgesi</a></li>
+      <li><a href="#memories">Anılar</a></li>
+      <li><a href="#music">Müzik</a></li>
+      <li><a href="#note">Not</a></li>
+    </ul>
+  </nav>
 
-<nav>
-  <ul>
-    <li><a href="#hero">Evrenimiz</a></li>
-    <li><a href="#timeline">Zaman Çizelgesi</a></li>
-    <li><a href="#memories">Anılar</a></li>
-    <li><a href="#music">Müzik</a></li>
-    <li><a href="#note">Not</a></li>
-  </ul>
-</nav>
+  <!-- HERO -->
+  <header id="hero" class="hero" role="banner" aria-label="Kapak - Kumsal">
+    <div class="hero-inner" role="img" aria-label="Kumsal arka plan ve İ + B">
+      <div class="logo-pill">İ + B</div>
+      <h1 class="title">Bizim Küçük Evrenimiz</h1>
+      <p class="subtitle">Seninle her mevsim bahar — bu sayfa anılarımızı saklasın diye hazırlandı.</p>
+      <div class="script">“Yanındayım — her hâlinde.”</div>
+      <div class="hero-cta">
+        <a class="btn" href="#memories">Anılara Git</a>
+        <a class="btn ghost" href="#note">Sana Yazdığım Not</a>
+      </div>
+    </div>
+  </header>
 
-<header id="hero" class="hero">
-  <div class="hero-inner">
-    <div class="logo-pill">İ + B</div>
-    <h1 class="title">Bizim Küçük Evrenimiz</h1>
-    <p class="subtitle">Seninle her mevsim bahar — bu sayfa bizim anılarımızı saklasın diye hazırlandı.</p>
-    <div class="script">“Yanındayım — her hâlinde.”</div>
+  <main class="wrap" role="main">
+    <!-- COUNTER -->
+    <section aria-label="İlişki Süresi" class="counter-card" id="counterCard">
+      <div class="counter-left">
+        <div>
+          <div class="counter-num" id="sinceDays">—</div>
+          <div class="counter-sub">Sevgili olduğumuz günden beri (3 Ağustos 2025, 04:05)</div>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div class="muted-small">Hâlâ yanındayım. 💖</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:8px">Sayacı manuel başlat/yenilemek için sayfayı yenile.</div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" aria-label="Zaman Çizelgesi">
+      <h2 class="section-title">Zaman Çizelgesi</h2>
+      <p class="muted">Kısa duraklarımız — sağa kaydır. Sonunda küçük hatıra fotoğrafımız duruyor.</p>
+      <div class="timeline-wrap">
+        <div class="timeline" id="timelineInner">
+          <article class="tcard">
+            <div class="tdate">2024 • Kış</div>
+            <h3>Tanıştık</h3>
+            <p class="muted">O an bir şeyler değişti — kahkaha ve heyecan karıştı.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="tdate">İlk Sürpriz</div>
+            <h3>Beyaz gül</h3>
+            <p class="muted">Aniden verilen küçük şeyler, büyük anlamlar taşır.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="tdate">İlk Buluşma</div>
+            <h3>Kumsal — Merdivenler</h3>
+            <p class="muted">Saatlerce oturup konuştuğumuz o gün; ilk sarılma hatırası.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="tdate">Bugün</div>
+            <h3>Şu An</h3>
+            <p class="muted">Hâlâ buradayız; daha güçlüyüz.</p>
+          </article>
+
+          <article class="tcard photo" aria-label="Final fotoğraf">
+            <!-- will be filled by timeline final image if present -->
+            <div style="display:grid;place-items:center;height:100%;color:var(--muted)">Küçük hatıra fotoğrafı burada görünecek.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMORIES (collage + gallery) -->
+    <section id="memories" aria-label="Anılarımız">
+      <h2 class="section-title">Anılarımız — Foto & Video</h2>
+      <p class="muted">2x2 kolaj ve büyük galeri — resme tıkla tam ekranda bak.</p>
+
+      <div class="memories-wrap">
+        <!-- collage 2x2 -->
+        <div class="collage" id="collage">
+          <!-- Images filled by JS dynamically from list -->
+        </div>
+
+        <!-- big gallery (swipeable) -->
+        <div style="margin-top:14px" class="gallery" id="bigGallery" aria-hidden="false">
+          <!-- cards added by JS -->
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:12px;align-items:center;flex-wrap:wrap">
+          <input id="localAdd" type="file" accept="image/*" multiple style="display:none">
+          <button class="btn" id="addLocalBtn">Cihazımdan Fotoğraf Ekle</button>
+          <button class="btn ghost" id="clearLocalBtn">Eklenenleri Temizle</button>
+          <div class="muted-small" style="margin-left:auto">Eklenen fotoğraflar yalnızca bu tarayıcıda görünür.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MUSIC + KARAOKE -->
+    <section id="music" aria-label="Müzik">
+      <h2 class="section-title">Müzik — Dilerim Ki</h2>
+      <p class="muted">Oynat düğmesine basınca şarkı çalacak; sözler senkronize gösterilecek.</p>
+
+      <div class="music-wrap">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+            <button class="big-play" id="playBtn" aria-label="Oynat / Duraklat">▶</button>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:10px" class="player-controls">
+                <div class="time small muted-small" id="curTime">0:00</div>
+                <div class="progress" id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" tabindex="0">
+                  <div class="bar" id="progressBar"></div>
+                </div>
+                <div class="time" id="durTime">0:00</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+                <input id="seekRange" type="range" min="0" max="100" value="0" style="flex:1">
+                <input id="volRange" class="vol-range" type="range" min="0" max="1" step="0.01" value="0.9" aria-label="Ses kontrolü">
+              </div>
+            </div>
+          </div>
+
+          <div class="karaoke" id="karaoke">
+            <!-- lyrics lines go here -->
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+          <div style="width:100%;max-width:300px">
+            <div style="font-weight:800;color:var(--accent);margin-bottom:8px">Dilerim Ki — (Dolu Kadehi Ters Tut)</div>
+            <div class="muted-small">Destek: İlker'in küçük sürprizi</div>
+            <div style="margin-top:10px" class="muted-small">Tarayıcı otomatik oynatmayı engelleyebilir. Lütfen oynatmak için butona bas.</div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn" id="openOnYT">YouTube'da Aç</button>
+            <button class="btn ghost" id="downloadMp3">MP3 İndir</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POEM & NOTE -->
+    <section id="note" aria-label="Not Ufaklığa">
+      <h2 class="section-title">Not — Ufaklığa</h2>
+      <p class="muted">Biraz şiir, biraz iltifat — sonra senin için geniş, ferah bir alan bıraktım.</p>
+
+      <div class="poem" aria-live="polite">
+        <p style="font-weight:800;color:#b23a60;font-size:18px">Sevgili Ufaklık,</p>
+        <p>Gözümün görmediğini görensin.</p>
+        <p>Aklımın yetmediğini bilensin.</p>
+        <p>Bir yerlerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyim.</p>
+        <p style="font-weight:800">İyi ki varsın.</p>
+        <div class="sign poem-sign">Sevgilerle — <strong>İlker</strong></div>
+      </div>
+
+      <div class="note-wrap" aria-label="Bahargül'ün Düşünceleri">
+        <label style="font-weight:800;color:#8b1a52">Bahargül — Buraya dilediğin kadar yazabilirsin</label>
+        <textarea id="memo" placeholder="Sevgilim, hislerini buraya yaz..."></textarea>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+          <button id="saveMemo" class="btn">Kaydet</button>
+          <button id="clearMemo" class="btn ghost">Sil</button>
+          <span id="memoStatus" style="margin-left:auto;color:green;display:none;font-weight:700">Kaydedildi ✓</span>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
+          <h3 style="margin:0 0 8px">Bir Sonraki Buluşma</h3>
+          <p class="muted">Tarih seç ve kaydet; sadece bu tarayıcıda saklanır.</p>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <input id="datePick" type="datetime-local" style="padding:8px;border-radius:8px;border:1px solid #eee">
+            <button id="saveDate" class="btn">Kaydet</button>
+            <button id="clearDate" class="btn ghost">Sıfırla</button>
+            <div id="counter" style="margin-left:auto;font-weight:700">Tarih seçilmedi</div>
+          </div>
+        </div>
+
+        <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <div style="font-size:20px;color:#b23a60;font-weight:800">İlker ❤ Bahargül</div>
+          <div style="color:var(--muted);font-size:13px">Küçük şeylerin toplamı büyük bir aşk yapar.</div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer>© İlker &amp; Bahargül — Bizim Küçük Evrenimiz</footer>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" role="dialog" aria-hidden="true" style="display:none;">
+    <div class="imgwrap">
+      <div class="close" id="lbClose">✕</div>
+      <div class="nav left" id="lbPrev">‹</div>
+      <div class="nav right" id="lbNext">›</div>
+      <img id="lbImg" src="" alt="Büyütülmüş görsel">
+    </div>
   </div>
-</header>
 
-<main class="wrap">
-
-  <section id="timeline">
-    <h2 class="section-title">Zaman Çizelgesi</h2>
-    <div class="timeline-wrap">
-      <div class="timeline">
-        <article class="tcard">
-          <div class="tdate">3 Ağustos 2025 • 04:05</div>
-          <h3>Sevgili Olduk</h3>
-          <p class="muted">O an kalbimizde yeni bir evren başladı.</p>
-        </article>
-        <article class="tcard">
-          <div class="tdate">İlk Buluşmalar</div>
-          <h3>Kahkahalar</h3>
-          <p class="muted">İlk buluşmamızda heyecan ve mutluluk vardı.</p>
-        </article>
-        <article class="tcard">
-          <div class="tdate">Bugün</div>
-          <h3>Birlikteyiz</h3>
-          <p class="muted">Her geçen gün sevgimiz büyüyor.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="memories">
-    <h2 class="section-title">Anılarımız — Foto & Video</h2>
-    <div class="memories-wrap">
-      <div class="collage">
-        <a href="#img1"><img src="Bahar.jpg" alt="Bahar"></a>
-        <a href="#img2"><img src="bahaar.jpg" alt="bahaar"></a>
-        <a href="#img3"><img src="baharr.jpg" alt="baharr"></a>
-        <a href="#img4"><img src="baharrr.jpg" alt="baharrr"></a>
-        <a href="#img5"><img src="bahharr.jpg" alt="bahharr"></a>
-        <a href="#img6"><img src="bbaa.jpg" alt="bbaa"></a>
-      </div>
-      <div class="gallery" style="margin-top:16px">
-        <div class="card"><video controls src="baharrrr.mp4"></video></div>
-        <div class="card"><video controls src="baharrrrrr.mp4"></video></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- lightbox fullscreen -->
-  <div id="img1" class="lightbox"><img src="Bahar.jpg"><a href="#memories"></a></div>
-  <div id="img2" class="lightbox"><img src="bahaar.jpg"><a href="#memories"></a></div>
-  <div id="img3" class="lightbox"><img src="baharr.jpg"><a href="#memories"></a></div>
-  <div id="img4" class="lightbox"><img src="baharrr.jpg"><a href="#memories"></a></div>
-  <div id="img5" class="lightbox"><img src="bahharr.jpg"><a href="#memories"></a></div>
-  <div id="img6" class="lightbox"><img src="bbaa.jpg"><a href="#memories"></a></div>
-
-  <section id="music">
-    <h2 class="section-title">Müzik — Dilerim Ki</h2>
-    <div class="music-area">
-      <button id="playBtn">🎶 Şarkıyı Çal</button>
-      <audio id="song" src="dolu-kadehi-ters-tut-dilerim-ki.mp3"></audio>
-      <div class="lyrics" id="lyrics"></div>
-    </div>
-  </section>
-
-  <section id="note">
-    <h2 class="section-title">Not — Ufaklığa</h2>
-    <div class="poem">
-      <p style="font-weight:800;color:#b23a60;font-size:18px">Sevgili Ufaklık,</p>
-      <p>Gözümün görmediğini görensin.</p>
-      <p>Aklımın yetmediğini bilensin.</p>
-      <p>Bir yerlerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyim.</p>
-      <p style="font-weight:800">İyi ki varsın.</p>
-      <div class="sign">Sevgilerle — <strong>İlker</strong></div>
-    </div>
-    <div class="note-wrap">
-      <label style="font-weight:800;color:#8b1a52">Bahargül — Buraya dilediğin kadar yazabilirsin</label>
-      <textarea id="memo" placeholder="Sevgilim, hislerini buraya yaz..."></textarea>
-    </div>
-  </section>
-
-  <div class="two-col">
-    <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
-      <h3 style="margin:0 0 8px">Ne Kadar Oldu?</h3>
-      <p class="muted">Sevgili olalı geçen süre:</p>
-      <div id="since" style="font-weight:700;color:#962a53;font-size:18px">Hesaplanıyor...</div>
-    </div>
-
-    <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center">
-      <div style="font-size:20px;color:#b23a60;font-weight:800">İlker ❤ Bahargül</div>
-      <div style="color:var(--muted);font-size:13px">Küçük şeylerin toplamı büyük bir aşk yapar.</div>
-    </div>
-  </div>
-
-</main>
-
-<footer>© İlker &amp; Bahargül — Bizim Küçük Evrenimiz</footer>
+  <!-- Hidden audio element (source file must be in same folder) -->
+  <audio id="song" preload="metadata">
+    <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
+    Tarayıcınız ses çalmayı desteklemiyor.
+  </audio>
 
 <script>
-  // karaoke lyrics
-  const lyricsData = [
-    {time:15, text:"Umudumsun"},
-    {time:19, text:"Simsiyahken"},
-    {time:20, text:"Her yanım"},
-    {time:22, text:"Huzurumsun"},
-    {time:26, text:"Uçurumsun"},
-    {time:28, text:"Atlasam"},
-    {time:30, text:"Karanlığına"},
-    {time:31, text:"Adım unutulsun"},
-    {time:36, text:"Evim ol"},
-    {time:38, text:"Kurtar beni"},
-    {time:41, text:"Sonum ol"},
-    {time:46, text:"Dilerim ki"},
-    {time:48, text:"Dilerim ki"},
-    {time:50, text:"Asla caymazsın"},
-    {time:52, text:"Benim olmaktan"},
-    {time:56, text:"Dursun zaman"},
-    {time:59, text:"Kalsın yerim derinlerinde saklanan"},
-    {time:81, text:"Sönemezsin"},
-    {time:85, text:"İçimi yakan delip geçen ateş sensin"},
-    {time:91, text:"Onlar ne bilsin"},
-    {time:95, text:"Sana çıksa keşke her yolum hayalimsin"}
-  ];
+/* =======================
+   Configuration (filenames)
+   ======================= */
+const MEDIA = {
+  images: [
+    "Bahar.jpg",
+    "Bahoş.jpg",
+    "bahaar.jpg",
+    "baharr.jpg",
+    "baharrr.jpg",
+    "bahharr.jpg",
+    "bbaa.jpg"
+  ],
+  videos: [
+    { src: "baharrrr.mp4", title: "Anı Video 1" },
+    { src: "baharrrrrr.mp4", title: "Anı Video 2" }
+  ],
+  audio: "dolu-kadehi-ters-tut-dilerim-ki.mp3"
+};
 
-  const song = document.getElementById('song');
-  const playBtn = document.getElementById('playBtn');
-  const lyricsBox = document.getElementById('lyrics');
+/* ================
+   HELPERS
+   ================ */
+function fmtTime(s){
+  s = Math.max(0, Math.floor(s));
+  const m = Math.floor(s/60);
+  const sec = s%60;
+  return ${m}:${sec.toString().padStart(2,'0')};
+}
 
-  playBtn.onclick = () => {
-    if(song.paused){ song.play(); playBtn.textContent="⏸ Durdur"; }
-    else{ song.pause(); playBtn.textContent="🎶 Şarkıyı Çal"; }
-  };
+/* =======================
+   Counter since relationship date
+   ======================= */
+(function relationshipCounter(){
+  // Use local timezone; note: monthIndex is 0-based, August=7
+  const start = new Date(2025, 7, 3, 4, 5, 0);
+  const daysEl = document.getElementById('sinceDays');
 
-  song.ontimeupdate = () => {
-    const t = song.currentTime;
-    const line = lyricsData.findLast(l => t >= l.time);
-    if(line) lyricsBox.textContent = line.text;
-  };
-
-  // sayaç
-  function updateSince(){
-    const start = new Date("2025-08-03T04:05:00");
+  function update(){
     const now = new Date();
-    let diff = Math.floor((now - start)/1000);
-    const days = Math.floor(diff/86400);
-    diff%=86400;
-    const hrs = Math.floor(diff/3600);
-    diff%=3600;
-    const mins = Math.floor(diff/60);
-    const secs = diff%60;
-    document.getElementById("since").textContent =
-      days+" gün "+hrs+" saat "+mins+" dk "+secs+" sn";
+    let diff = Math.max(0, now - start); // ms
+    const s = Math.floor(diff/1000);
+    const days = Math.floor(s / 86400);
+    const hours = Math.floor((s % 86400) / 3600);
+    const mins = Math.floor((s % 3600) / 60);
+    const secs = s % 60;
+    daysEl.textContent = ${days} gün · ${hours} saat · ${mins} dakika · ${secs} sn geçti;
   }
-  setInterval(updateSince,1000);
-  updateSince();
-</script>
+  update(); setInterval(update, 1000);
+})();
 
-</body>
-</html>
+/* =======================
+   Timeline final photo injection (if you want)
+   ======================= */
+(function timelineFill(){
+  // If you want one of the images to appear as the final timeline card, set here:
+  // We'll try to set the last timeline .photo image to the first image if exists.
+  const imgs = MEDIA.images;
+  if(imgs && imgs.length){
+    const finalCard = document.querySelector('.tcard.photo');
+    if(finalCard){
+      finalCard.innerHTML = <img src="${imgs[0]}" alt="Son Hatıra" style="width:100%;height:220px;object-fit:cover;border-radius:10px">;
+    }
+  }
+})();
+
+/* =======================
+   Build collage + big gallery
+   ======================= */
+(function buildGallery(){
+  const collage = document.getElementById('collage');
+  const big = document.getElementById('bigGallery');
+
+  // Collage: show first 4 images in 2x2; if fewer
