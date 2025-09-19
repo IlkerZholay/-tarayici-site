@@ -1,282 +1,470 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Bizim Küçük Evrenimiz</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('Bahoş.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      text-align: center;
-    }
-    header {
-      padding: 40px;
-      font-size: 2.5em;
-      font-weight: bold;
-      text-shadow: 2px 2px 8px black;
-    }
-    section { padding: 40px 20px; }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>İlker ❤ Bahargül — Bizim Küçük Evrenimiz</title>
 
-    /* Sayaç */
-    #counter {
-      font-size: 1.5em;
-      margin-top: 10px;
-      text-shadow: 1px 1px 6px black;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    /* Galeri */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .gallery img:hover { transform: scale(1.05); }
+<style>
+  :root{
+    --accent:#c83a66;
+    --muted:#6b7280;
+    --card: rgba(255,255,255,0.96);
+    --shadow: 0 22px 70px rgba(10,10,20,0.08);
+    --maxw:1120px;
+    --hero-bg: url("Bahoş.jpg");
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#fbf8f9;color:#111}
+  a{color:inherit;text-decoration:none}
+  nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:180;width:min(var(--maxw),96%);display:flex;justify-content:center}
+  nav ul{display:flex;gap:8px;background:rgba(255,255,255,0.06);padding:8px;border-radius:999px;list-style:none;margin:0;overflow:auto}
+  nav a{color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;white-space:nowrap;font-size:14px}
+  nav a:hover{background:rgba(255,255,255,0.04)}
 
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    .close {
-      position: absolute;
-      top: 20px; right: 40px;
-      font-size: 40px;
-      cursor: pointer;
-    }
+  .hero{
+    min-height:72vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+    background: var(--hero-bg) center/cover fixed no-repeat;
+  }
+  .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.52)); z-index:0 }
+  .hero-inner{position:relative; z-index:2; text-align:center; color:#fff; padding:34px; width:min(var(--maxw),94%); }
+  .logo-pill{display:inline-block;background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:800}
+  .title{font-family:'Playfair Display',serif;font-size:clamp(28px,6.4vw,56px);margin:.6rem 0}
+  .subtitle{font-size:clamp(13px,3.2vw,17px);opacity:.95}
+  .script{font-family:'Dancing Script',cursive;color:#ffdfe8;margin-top:10px;font-size:clamp(16px,3.8vw,28px)}
+  .hero-cta{margin-top:18px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .btn{background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:700; border:0; cursor:pointer}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12)}
 
-    /* Video */
-    video {
-      width: 80%;
-      border-radius: 12px;
-      margin: 20px auto;
-      display: block;
-      box-shadow: 0 0 20px black;
-    }
+  main{margin-top:-44px;border-top-left-radius:28px;border-top-right-radius:28px;background:#fff;box-shadow:0 -18px 60px rgba(0,0,0,0.04)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:26px 18px 60px}
 
-    /* Karaoke */
-    #karaoke {
-      margin-top: 20px;
-      font-size: 1.3em;
-      line-height: 1.6;
-      height: 120px;
-    }
-    .highlight {
-      color: yellow;
-      font-weight: bold;
-    }
-    button {
-      padding: 10px 20px;
-      margin-top: 15px;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      transition: background 0.3s;
-    }
-    button:hover { background: rgba(255,255,255,0.5); }
+  h2.section-title{font-family:'Playfair Display',serif;color:#962a53;margin:0 0 8px;font-size:22px}
+  p.muted{color:var(--muted);margin:0 0 12px}
 
-    /* Timeline */
-    .timeline {
-      max-width: 800px;
-      margin: auto;
-      position: relative;
-    }
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 4px;
-      background: white;
-      top: 0; bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .entry {
-      padding: 20px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 10px;
-      margin: 20px;
-      position: relative;
-      width: 40%;
-    }
-    .entry.left { left: 0; }
-    .entry.right { left: 60%; }
+  .timeline-wrap{background:var(--card);border-radius:14px;padding:12px;box-shadow:var(--shadow);margin-bottom:18px}
+  .timeline{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .tcard{scroll-snap-align:center;background:linear-gradient(#fff,#fff7fb);border-radius:12px;padding:14px;min-height:150px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px}
+  .tdate{color:var(--accent);font-weight:800;font-size:13px}
+  .tcard h3{margin:0;font-size:18px;color:#222}
+  .tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
 
-    textarea {
-      width: 80%;
-      height: 120px;
-      margin-top: 20px;
-      border-radius: 10px;
-      padding: 10px;
-      border: none;
-      resize: none;
-    }
-  </style>
+  .memories-wrap{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);margin-bottom:18px}
+  .collage{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .collage a{display:block;overflow:hidden;border-radius:12px}
+  .collage img{width:100%;height:200px;object-fit:cover;border-radius:12px;cursor:pointer;transition:transform .25s ease}
+  .collage img:hover{transform:scale(1.03)}
+
+  .gallery{display:flex;gap:14px;overflow-x:auto;padding:12px 6px;-webkit-overflow-scrolling:touch}
+  .gallery .card{flex:0 0 90%;height:min(62vh,520px);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 14px 44px rgba(0,0,0,0.06);scroll-snap-align:center}
+  @media(min-width:1000px){ .gallery .card{flex:0 0 48%;height:420px} }
+  .gallery video{width:100%;height:100%;object-fit:cover;display:block}
+  .gallery .caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.45);color:#fff;padding:6px 10px;border-radius:999px;font-size:13px}
+
+  .music-area{background:var(--card);padding:20px;border-radius:14px;box-shadow:var(--shadow);margin-top:20px;text-align:center}
+  .music-area .controls{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .music-area button{background:var(--accent);color:#fff;border:none;padding:12px 20px;border-radius:999px;font-weight:700;cursor:pointer;font-size:16px}
+  .music-area .progress{width:90%;max-width:720px;margin:12px auto 0;height:8px;background:#eee;border-radius:999px;overflow:hidden}
+  .music-area .progress > i{display:block;height:100%;background:linear-gradient(90deg,#c83a66,#ff8ab5);width:0%}
+
+  .lyrics{margin-top:16px;font-size:20px;font-weight:700;min-height:46px;color:#962a53;transition:opacity .18s}
+
+  .poem{background:linear-gradient(180deg,#fffafc,#fff);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:10px}
+  .poem p{margin:8px 0;font-size:16px}
+  .poem .sign{margin-top:8px;color:var(--muted);font-weight:700}
+
+  .note-wrap{margin-top:16px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+  textarea#memo{width:100%;min-height:240px;border-radius:12px;border:1px solid #ecebf0;padding:14px;font-size:16px;resize:vertical}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  @media(max-width:900px){ .two-col{grid-template-columns:1fr} }
+
+  footer{margin-top:32px;text-align:center;color:var(--muted);padding-bottom:36px}
+
+  /* lightbox */
+  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:999;align-items:center;justify-content:center;padding:14px}
+  .modal .inner{max-width:1100px;width:100%;max-height:96vh;display:flex;gap:12px;align-items:center;justify-content:center}
+  .modal img, .modal video{max-width:100%;max-height:96vh;border-radius:12px;display:block}
+  .modal.open{display:flex}
+  .closeX{position:absolute;right:18px;top:18px;background:rgba(255,255,255,0.06);color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+
+  /* small */
+  .small-muted{font-size:13px;color:var(--muted)}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
 </head>
 <body>
-  <header>🌌 Bizim Küçük Evrenimiz 🌌</header>
 
-  <!-- Sayaç -->
-  <section>
-    <h2>Sevgili Olalı Geçen Süre</h2>
-    <div id="counter"></div>
-  </section>
+<nav aria-label="Ana Menü">
+  <ul>
+    <li><a href="#hero">Evrenimiz</a></li>
+    <li><a href="#timeline">Zaman Çizelgesi</a></li>
+    <li><a href="#memories">Anılar</a></li>
+    <li><a href="#music">Müzik</a></li>
+    <li><a href="#note">Not</a></li>
+  </ul>
+</nav>
 
-  <!-- Galeri -->
-  <section>
-    <h2>Fotoğraf Galerisi</h2>
-    <div class="gallery">
-      <img src="Bahar.jpg" alt="Bahar">
-      <img src="bahaar.jpg" alt="Bahaar">
-      <img src="baharr.jpg" alt="Baharr">
-      <img src="baharrr.jpg" alt="Baharrr">
-      <img src="bahharr.jpg" alt="Bahharr">
-      <img src="bbaa.jpg" alt="Bbaa">
+<header id="hero" class="hero" role="banner" aria-label="Kapak - Kumsal">
+  <div class="hero-inner">
+    <div class="logo-pill">İ + B</div>
+    <h1 class="title">Bizim Küçük Evrenimiz</h1>
+    <p class="subtitle">Seninle her mevsim bahar — bu sayfa bizim anılarımızı saklasın diye hazırlandı.</p>
+    <div class="script">“Yanındayım — her hâlinde.”</div>
+  </div>
+</header>
+
+<main class="wrap" role="main">
+
+  <!-- TIMELINE -->
+  <section id="timeline" aria-label="Zaman Çizelgesi">
+    <h2 class="section-title">Zaman Çizelgesi</h2>
+    <p class="muted">Kısa duraklarımız — sağa kaydır. Sevgili olduğumuz tarih: <strong>3 Ağustos 2025 • 04:05</strong></p>
+
+    <div class="timeline-wrap">
+      <div class="timeline" id="timelineInner">
+        <article class="tcard">
+          <div class="tdate">3 Ağustos 2025 • 04:05</div>
+          <h3>Sevgili Olduk</h3>
+          <p class="muted">O an kalbimizde yeni bir evren başladı.</p>
+        </article>
+        <article class="tcard">
+          <div class="tdate">İlk Buluşmalar</div>
+          <h3>Kahkahalar</h3>
+          <p class="muted">İlk buluşmamızda heyecan ve mutluluk vardı.</p>
+        </article>
+        <article class="tcard">
+          <div class="tdate">İlk Sürpriz</div>
+          <h3>Beyaz Gül</h3>
+          <p class="muted">Senin için düşündüğüm küçük sürprizler.</p>
+        </article>
+        <article class="tcard">
+          <div class="tdate">Bugün</div>
+          <h3>Birlikteyiz</h3>
+          <p class="muted">Her geçen gün sevgimiz büyüyor.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <span class="close" id="close">&times;</span>
-    <img id="modal-img" src="" alt="">
+  <!-- MEMORIES -->
+  <section id="memories" aria-label="Anılarımız">
+    <h2 class="section-title">Anılarımız — Foto & Video</h2>
+    <p class="muted">Aşağıya tıklayınca fotoğraf tam ekranda açılır. Videolar ise oynatılabilir.</p>
+
+    <div class="memories-wrap">
+      <div class="collage" id="collage">
+        <a data-type="image" data-src="Bahar.jpg" href="#"><img src="Bahar.jpg" alt="Bahar"></a>
+        <a data-type="image" data-src="bahaar.jpg" href="#"><img src="bahaar.jpg" alt="bahaar"></a>
+        <a data-type="image" data-src="baharr.jpg" href="#"><img src="baharr.jpg" alt="baharr"></a>
+        <a data-type="image" data-src="baharrr.jpg" href="#"><img src="baharrr.jpg" alt="baharrr"></a>
+        <a data-type="image" data-src="bahharr.jpg" href="#"><img src="bahharr.jpg" alt="bahharr"></a>
+        <a data-type="image" data-src="bbaa.jpg" href="#"><img src="bbaa.jpg" alt="bbaa"></a>
+      </div>
+
+      <div class="gallery" id="videoGallery" style="margin-top:16px">
+        <div class="card" data-type="video" data-src="baharrrr.mp4">
+          <video controls preload="metadata" src="baharrrr.mp4" playsinline></video>
+        </div>
+        <div class="card" data-type="video" data-src="baharrrrrr.mp4">
+          <video controls preload="metadata" src="baharrrrrr.mp4" playsinline></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL (lightbox) -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <button class="closeX" id="modalClose">Kapat ✕</button>
+    <div class="inner" id="modalInner"></div>
   </div>
 
-  <!-- Videolar -->
-  <section>
-    <h2>Videolar</h2>
-    <video controls>
-      <source src="baharrrr.mp4" type="video/mp4">
-    </video>
-    <video controls>
-      <source src="baharrrrrr.mp4" type="video/mp4">
-    </video>
-  </section>
+  <!-- MUSIC -->
+  <section id="music" aria-label="Müzik">
+    <h2 class="section-title">Müzik — Dilerim Ki</h2>
+    <p class="muted">Butona basınca şarkı başlar; sözler tek satır halinde akar.</p>
 
-  <!-- Karaoke -->
-  <section>
-    <h2>Şarkımız 🎶</h2>
-    <audio id="song" src="dolu-kadehi-ters-tut-dilerim-ki.mp3"></audio>
-    <button onclick="playSong()">▶ Şarkıyı Çal</button>
-    <div id="karaoke"></div>
-  </section>
+    <div class="music-area">
+      <div class="controls">
+        <button id="playBtn" class="btn">▶ Şarkıyı Çal</button>
+        <button id="pauseBtn" class="btn ghost" style="display:none">⏸ Durdur</button>
+        <button id="ytOpen" class="btn ghost">YouTube'da Aç</button>
+      </div>
 
-  <!-- Timeline -->
-  <section>
-    <h2>Zaman Çizelgemiz</h2>
-    <div class="timeline">
-      <div class="entry left">Tanışma günü 💫</div>
-      <div class="entry right">İlk buluşma 🌹</div>
-      <div class="entry left">Sevgili olduk ❤</div>
+      <div class="progress" aria-hidden="true"><i id="progBar" style="width:0%"></i></div>
+      <div class="lyrics" id="lyrics">—</div>
+
+      <!-- audio element (local file in repo) -->
+      <audio id="song" preload="metadata" src="dolu-kadehi-ters-tut-dilerim-ki.mp3"></audio>
     </div>
   </section>
 
-  <!-- Notlar -->
-  <section>
-    <h2>Birbirimize Notlar 💌</h2>
-    <textarea placeholder="Sevdiğine not yaz..."></textarea>
+  <!-- POEM / NOTE -->
+  <section id="note" aria-label="Not Ufaklığa">
+    <h2 class="section-title">Not — Ufaklığa</h2>
+    <div class="poem">
+      <p style="font-weight:800;color:#b23a60;font-size:18px">Sevgili Ufaklık,</p>
+      <p>Gözümün görmediğini görensin.</p>
+      <p>Aklımın yetmediğini bilensin.</p>
+      <p>Bir yerlerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyim.</p>
+      <p style="font-weight:800">İyi ki varsın.</p>
+      <div class="sign">Sevgilerle — <strong>İlker</strong></div>
+    </div>
+
+    <div class="note-wrap" aria-label="Bahargül'ün Düşünceleri">
+      <label style="font-weight:800;color:#8b1a52;display:block;margin-bottom:8px">Bahargül — Buraya dilediğin kadar yazabilirsin</label>
+      <textarea id="memo" placeholder="Sevgilim, hislerini buraya yaz..."></textarea>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+        <button id="saveMemo" class="btn">Kaydet</button>
+        <button id="clearMemo" class="btn ghost">Sil</button>
+        <span id="memoStatus" style="margin-left:auto;color:green;display:none;font-weight:700">Kaydedildi ✓</span>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
+        <h3 style="margin:0 0 8px">Ne Kadar Oldu?</h3>
+        <p class="muted">Sevgili olalı geçen süre:</p>
+        <div id="since" style="font-weight:700;color:#962a53;font-size:18px">Hesaplanıyor...</div>
+      </div>
+
+      <div style="background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <div style="font-size:20px;color:#b23a60;font-weight:800">İlker ❤ Bahargül</div>
+        <div style="color:var(--muted);font-size:13px">Küçük şeylerin toplamı büyük bir aşk yapar.</div>
+      </div>
+    </div>
+
   </section>
 
-  <script>
-    // Sayaç
-    const startDate = new Date("August 3, 2025 04:05:00").getTime();
-    setInterval(() => {
-      let now = new Date().getTime();
-      let diff = now - startDate;
-      let days = Math.floor(diff / (1000*60*60*24));
-      let hours = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
-      let minutes = Math.floor((diff % (1000*60*60))/(1000*60));
-      let seconds = Math.floor((diff % (1000*60))/1000);
-      document.getElementById("counter").innerText =
-        ${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye;
-    }, 1000);
+</main>
 
-    // Galeri Modal
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
-    document.querySelectorAll(".gallery img").forEach(img => {
-      img.addEventListener("click", () => {
-        modal.style.display = "flex";
-        modalImg.src = img.src;
-      });
-    });
-    document.getElementById("close").onclick = () => modal.style.display = "none";
+<footer>© İlker &amp; Bahargül — Bizim Küçük Evrenimiz</footer>
 
-    // Karaoke
-    const lyrics = [
-      { time: 15, text: "Umudumsun" },
-      { time: 19, text: "Simsiyahken her yanım" },
-      { time: 21, text: "Huzurumsun" },
-      { time: 26, text: "Uçurumsun" },
-      { time: 29, text: "Atlasam karanlığına" },
-      { time: 31, text: "Adım unutulsun" },
-      { time: 36, text: "Evim ol" },
-      { time: 38, text: "Kurtar beni" },
-      { time: 41, text: "Sonum ol" },
-      { time: 46, text: "Dilerim ki" },
-      { time: 49, text: "Dilerim ki asla caymazsın benim olmaktan" },
-      { time: 56, text: "Dursun zaman" },
-      { time: 59, text: "Kalsın yerim derinlerinde saklanan" },
-      { time: 81, text: "Sönemezsin" },
-      { time: 85, text: "İçimi yakan" },
-      { time: 86, text: "Delip geçen ateş sensin" },
-      { time: 91, text: "Onlar ne bilsin" },
-      { time: 95, text: "Sana çıksa keşke" },
-      { time: 97, text: "Her yolum hayalimsin" },
-      { time: 102, text: "Evim ol" },
-      { time: 104, text: "Kurtar beni" },
-      { time: 108, text: "Sonum ol" },
-      { time: 112, text: "Dilerim ki" },
-      { time: 115, text: "Dilerim ki asla caymazsın benim olmaktan" },
-      { time: 123, text: "Dursun zaman" },
-      { time: 126, text: "Kalsın yerim derinlerinde saklanan" },
-      { time: 134, text: "Kaybolan bir ruh gibi" },
-      { time: 138, text: "Kayıp gidersem de bul beni" },
-      { time: 143, text: "Mahvolur da bitersem" },
-      { time: 149, text: "Tut elimi" },
-      { time: 153, text: "Dilerim ki" },
-      { time: 155, text: "Dilerim ki" },
-      { time: 157, text: "Asla caymazsın benim olmaktan" },
-      { time: 163, text: "Dursun zaman" },
-      { time: 166, text: "Kalsın yerim derinlerinde saklanan" },
-      { time: 174, text: "Dilerim ki" },
-      { time: 176, text: "Dilerim ki asla caymazsın benim olmaktan" },
-      { time: 183, text: "Dursun zaman" },
-      { time: 186, text: "Kalsın yerim derinlerinde saklanan" }
-    ];
+<script>
+/* ---------- lyrics timings (seconds) and text from your list ---------- */
+const lyricsData = [
+  {t:15, text:"umudumsun"},
+  {t:19, text:"simsiyahken her yanım"},
+  {t:21, text:"huzurumsun"},
+  {t:26, text:"uçurumsun"},
+  {t:29, text:"atlasam karanlığına"},
+  {t:31, text:"adım unutulsun"},
+  {t:36, text:"evim ol"},
+  {t:38, text:"kurtar beni"},
+  {t:41, text:"sonum ol"},
+  {t:46, text:"dilerim ki"},
+  {t:49, text:"dilerim ki — asla caymazsın benim olmaktan"},
+  {t:56, text:"dursun zaman"},
+  {t:59, text:"kalsın yerim derinlerinde saklanan"},
+  {t:81, text:"sönemezsin"},
+  {t:85, text:"içimi yakan"},
+  {t:86, text:"delip geçen ateş sensin"},
+  {t:91, text:"onlar ne bilsin"},
+  {t:95, text:"sana çıksa keşke"},
+  {t:97, text:"her yolum hayalimsin"},
+  {t:102, text:"evim ol"},
+  {t:104, text:"kurtar beni"},
+  {t:108, text:"sonum ol"},
+  {t:112, text:"dilerim ki"},
+  {t:115, text:"dilerim ki — asla caymazsın benim olmaktan"},
+  {t:123, text:"dursun zaman"},
+  {t:126, text:"kalsın yerim derinlerinde saklanan"},
+  /* then the later block from 2:12... provided as sequence */
+  {t:132, text:"..."},
+  {t:134, text:"kaybolan"},
+  {t:135, text:"bir ruh gibi"},
+  {t:138, text:"kaybolan — bir ruh gibi"},
+  {t:141, text:"kayıp gidersem de bul beni"},
+  {t:143, text:"mahvolur"},
+  {t:146, text:"da bitersem"},
+  {t:149, text:"tut elimi"},
+  {t:153, text:"dilerim ki"},
+  {t:155, text:"dilerim ki"},
+  {t:157, text:"asla caymazsın benim olmaktan"},
+  {t:163, text:"dursun zaman"},
+  {t:166, text:"kalsın"},
+  {t:167, text:"yerim derinlerinde saklanan"},
+  {t:174, text:"dilerim ki"},
+  {t:176, text:"dilerim ki — asla caymazsın benim olmaktan"},
+  {t:183, text:"dursun zaman"},
+  {t:186, text:"kalsın yerim derinlerinde saklanan"}
+];
 
-    const song = document.getElementById("song");
-    const karaokeDiv = document.getElementById("karaoke");
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
 
-    function playSong() {
-      song.play();
-      song.ontimeupdate = () => {
-        let current = lyrics.filter(line => song.currentTime >= line.time);
-        if(current.length > 0) {
-          karaokeDiv.innerHTML =
-            <span class="highlight">${current[current.length-1].text}</span>;
-        }
-      }
-    }
-  </script>
+/* ---------- modal (lightbox) ---------- */
+const modal = $('#modal');
+const modalInner = $('#modalInner');
+const modalClose = $('#modalClose');
+
+function openModal(type, src){
+  modalInner.innerHTML = '';
+  if(type === 'image'){
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
+    modalInner.appendChild(img);
+  } else if(type === 'video'){
+    const v = document.createElement('video');
+    v.src = src;
+    v.controls = true;
+    v.autoplay = true;
+    v.playsInline = true;
+    modalInner.appendChild(v);
+  }
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+}
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  // stop any playing media
+  modalInner.querySelectorAll('video').forEach(v=>{ v.pause(); v.currentTime=0; });
+  modalInner.innerHTML = '';
+}
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+
+/* attach collage click handlers */
+$$('#collage a').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const type = a.getAttribute('data-type') || 'image';
+    const src = a.getAttribute('data-src');
+    openModal(type, src);
+  });
+});
+
+/* attach gallery video clicks to open modal if tapped (for fullscreen) */
+$$('.gallery .card video').forEach(v=>{
+  v.addEventListener('dblclick', ()=> {
+    openModal('video', v.currentSrc || v.src);
+  });
+});
+
+/* ---------- audio & karaoke ---------- */
+const song = $('#song');
+const playBtn = $('#playBtn');
+const pauseBtn = $('#pauseBtn');
+const lyricsBox = $('#lyrics');
+const progBar = $('#progBar');
+const ytOpen = $('#ytOpen');
+
+let lyricIndex = -1;
+
+function findLyricIndex(time){
+  // find last lyric with t <= time
+  let idx = -1;
+  for(let i=0;i<lyricsData.length;i++){
+    if(time >= lyricsData[i].t) idx = i;
+    else break;
+  }
+  return idx;
+}
+
+song.addEventListener('timeupdate', ()=>{
+  const t = Math.floor(song.currentTime);
+  const idx = findLyricIndex(t);
+  if(idx !== lyricIndex){
+    lyricIndex = idx;
+    if(idx === -1) lyricsBox.textContent = '—';
+    else lyricsBox.textContent = lyricsData[idx].text;
+  }
+  // progress bar
+  if(song.duration && !isNaN(song.duration)){
+    const perc = Math.min(100, (song.currentTime / song.duration) * 100);
+    progBar.style.width = perc + '%';
+  }
+});
+
+playBtn.addEventListener('click', ()=>{
+  // try to play (browsers may block autoplay with sound)
+  song.play().then(()=>{
+    playBtn.style.display='none';
+    pauseBtn.style.display='inline-block';
+  }).catch(err=>{
+    // fallback: still show paused state
+    console.warn('Çalma hatası:', err);
+    // show user message? for now toggle UI
+    playBtn.style.display='none';
+    pauseBtn.style.display='inline-block';
+  });
+});
+pauseBtn.addEventListener('click', ()=>{
+  song.pause();
+  pauseBtn.style.display='none';
+  playBtn.style.display='inline-block';
+});
+
+// open youtube fallback
+ytOpen.addEventListener('click', ()=> {
+  // open YouTube in new tab for full player / unmute
+  window.open('https://youtu.be/PHd-3PSQ6X4', '_blank');
+});
+
+/* ---------- memo localStorage ---------- */
+const MEMO_KEY='bahar_ilker_memo';
+const memoEl = $('#memo');
+const saveMemo = $('#saveMemo');
+const clearMemo = $('#clearMemo');
+const memoStatus = $('#memoStatus');
+
+try {
+  const saved = localStorage.getItem(MEMO_KEY);
+  if(saved) memoEl.value = saved;
+} catch(e){}
+
+if(saveMemo){
+  saveMemo.addEventListener('click', ()=>{
+    try {
+      localStorage.setItem(MEMO_KEY, memoEl.value || '');
+      memoStatus.style.display='inline';
+      setTimeout(()=> memoStatus.style.display='none', 1500);
+    } catch(e){}
+  });
+}
+if(clearMemo){
+  clearMemo.addEventListener('click', ()=> {
+    memoEl.value='';
+    try{ localStorage.removeItem(MEMO_KEY); }catch(e){}
+  });
+}
+
+/* ---------- since counter (sevgili olma zamanından beri) ---------- */
+function updateSince(){
+  // Note: month in Date is 0-indexed if using Date(year,month,..) — we use ISO string
+  const start = new Date("2025-08-03T04:05:00");
+  const now = new Date();
+  let diff = Math.floor((now - start)/1000);
+  if(diff < 0){
+    document.getElementById('since').textContent = 'Henüz başlamadı';
+    return;
+  }
+  const days = Math.floor(diff/86400); diff%=86400;
+  const hrs = Math.floor(diff/3600); diff%=3600;
+  const mins = Math.floor(diff/60); const secs = diff%60;
+  document.getElementById('since').textContent = ${days} gün ${hrs} saat ${mins} dk ${secs} sn;
+}
+setInterval(updateSince, 1000);
+updateSince();
+
+/* ---------- accessibility: keyboard close modal ---------- */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') closeModal();
+});
+
+/* ---------- helpful: pre-load thumbnails (optional) ---------- */
+$$('.collage img').forEach(img=>{
+  // if images from repo are present they'll load, else show alt
+  img.addEventListener('error', ()=>{ img.style.background = '#f3f3f3'; img.alt = 'Görsel yüklenemedi'; });
+});
+
+/* ---------- end ---------- */
+</script>
+
 </body>
 </html>
