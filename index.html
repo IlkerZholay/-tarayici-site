@@ -13,7 +13,7 @@
   --bg:#fffafb;
   --muted:#555;
   --card:#ffffffcc;
-  --shadow:0 6px 30px rgba(0,0,0,0.08);
+  --shadow:0 8px 25px rgba(0,0,0,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins',sans-serif;background:var(--bg);color:#222;line-height:1.6;}
@@ -37,14 +37,19 @@ main{max-width:1100px;margin:0 auto;padding:20px}
 .timeline{display:flex;overflow-x:auto;gap:20px;padding:15px 0;scroll-snap-type:x mandatory}
 .tcard{flex:0 0 260px;background:var(--card);padding:20px;border-radius:16px;box-shadow:var(--shadow);
   transition:transform .3s ease,box-shadow .3s ease;scroll-snap-align:center;}
-.tcard:hover{transform:translateY(-6px);box-shadow:0 12px 25px rgba(0,0,0,.15);}
+.tcard:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.18);}
 .tcard h3{color:var(--accent);margin-bottom:6px}
 
-/* gallery */
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:20px 0}
-.gallery img,.gallery video{width:100%;border-radius:14px;cursor:pointer;box-shadow:var(--shadow);
-  transition:transform .3s ease, box-shadow .3s ease;}
-.gallery img:hover,.gallery video:hover{transform:scale(1.05);box-shadow:0 14px 30px rgba(0,0,0,.15);}
+/* gallery tabs */
+.tab-buttons{display:flex;gap:10px;margin:20px 0;}
+.tab-buttons button{flex:1;padding:12px;border:none;border-radius:10px;cursor:pointer;font-weight:600;
+  background:#eee;transition:.3s;}
+.tab-buttons button.active{background:var(--accent);color:#fff;}
+.gallery{display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:20px 0}
+.gallery img,.gallery video{width:100%;border-radius:14px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  transition:transform .3s ease, box-shadow .3s ease;
+  border:4px solid #fff;}
+.gallery img:hover,.gallery video:hover{transform:scale(1.05);box-shadow:0 14px 35px rgba(0,0,0,.25);}
 
 /* modal */
 #modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);
@@ -93,7 +98,14 @@ button:hover{background:#c73c6a}
   <!-- Anılar -->
   <section>
     <h2>📸 Anılar</h2>
-    <div class="gallery">
+    <p style="color:var(--muted);margin-bottom:10px;">Birlikte geçirdiğimiz en özel anıları burada bulabilirsin. Fotoğraf ve videolara tıklayarak büyütebilirsin. 💫</p>
+    
+    <div class="tab-buttons">
+      <button class="active" onclick="openTab('photos',this)">Fotoğraflar</button>
+      <button onclick="openTab('videos',this)">Videolar</button>
+    </div>
+
+    <div id="photos" class="gallery" style="display:grid;">
       <img src="Bahar.jpg" alt="Bahar">
       <img src="Bahoş.jpg" alt="Bahoş">
       <img src="bahaar.jpg" alt="bahaar">
@@ -101,13 +113,17 @@ button:hover{background:#c73c6a}
       <img src="baharrr.jpg" alt="baharrr">
       <img src="bahharr.jpg" alt="bahharr">
       <img src="bbaa.jpg" alt="bbaa">
+    </div>
+
+    <div id="videos" class="gallery">
       <video src="baharrrr.mp4"></video>
       <video src="baharrrrrr.mp4"></video>
       <video src="aass.mp4"></video>
+      <video src="sonvideo.mp4"></video>
     </div>
   </section>
 
-  <!-- Karaoke (Anıların Altında) -->
+  <!-- Karaoke -->
   <section class="karaoke">
     <h2>🎶 Şarkımız</h2>
     <audio id="song" controls style="width:100%;max-width:400px;display:block;margin:0 auto;">
@@ -219,6 +235,14 @@ window.onload=()=>{
   const saved=localStorage.getItem("baharnotu");
   if(saved){document.getElementById("baharnotu").value=saved;}
 };
+
+// tabs
+function openTab(tab,btn){
+  document.querySelectorAll('.gallery').forEach(g=>g.style.display='none');
+  document.getElementById(tab).style.display='grid';
+  document.querySelectorAll('.tab-buttons button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
 </script>
 
 <footer style="text-align:center;padding:20px;color:var(--muted)">
