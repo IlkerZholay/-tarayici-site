@@ -1,100 +1,108 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>İlker ❤ Bahargül — Hatıralarımız</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>İlker ❤ Bahargül</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --accent:#e75480; /* pembe ton */
-    --bg:#fffafb; 
-    --muted:#6b6b6b;
-    --card:#ffffffcc;
-    --shadow:0 6px 30px rgba(0,0,0,0.08);
-    --maxw:1100px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:#222;line-height:1.6}
-  h1,h2,h3{margin:0}
-  a{text-decoration:none;color:inherit}
+:root{
+  --accent:#e75480;
+  --bg:#fffafb;
+  --muted:#555;
+  --card:#ffffffcc;
+  --shadow:0 6px 30px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:#222;line-height:1.6;}
 
-  header.hero{
-    min-height:60vh;display:flex;justify-content:center;align-items:center;text-align:center;
-    background:linear-gradient(135deg,#ffe3ec,#fff);
-    padding:40px 20px;
-  }
-  header.hero h1{font-family:'Dancing Script',cursive;font-size:clamp(32px,7vw,64px);color:var(--accent);}
-  header.hero p{color:var(--muted);margin-top:10px;font-size:18px}
+/* hero */
+.hero{height:70vh;display:flex;align-items:center;justify-content:center;
+  background:url("Bahoş.jpg") center/cover fixed no-repeat;position:relative;}
+.hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);}
+.hero-inner{position:relative;z-index:2;text-align:center;color:#fff;}
+.hero-inner h1{font-family:'Dancing Script',cursive;font-size:clamp(36px,8vw,70px);}
+.hero-inner p{font-size:18px;opacity:.9}
 
-  main{max-width:var(--maxw);margin:0 auto;padding:30px 15px}
+/* main */
+main{max-width:1100px;margin:0 auto;padding:20px}
 
-  /* zaman çizelgesi */
-  .timeline{display:flex;overflow-x:auto;gap:20px;padding:10px 0}
-  .tcard{flex:0 0 250px;background:var(--card);padding:20px;border-radius:16px;box-shadow:var(--shadow);}
-  .tcard h3{color:var(--accent);margin-bottom:6px}
+/* karaoke */
+.karaoke{margin:30px 0;padding:20px;background:var(--card);border-radius:16px;box-shadow:var(--shadow);}
+#lyrics{margin-top:20px;font-size:18px;color:#333;font-weight:600;text-align:center;transition:.4s ease;}
 
-  /* anılar */
-  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:20px}
-  .gallery img,.gallery video{width:100%;border-radius:12px;cursor:pointer;box-shadow:var(--shadow);}
+/* timeline */
+.timeline{display:flex;overflow-x:auto;gap:20px;padding:15px 0;scroll-snap-type:x mandatory}
+.tcard{flex:0 0 260px;background:var(--card);padding:20px;border-radius:16px;box-shadow:var(--shadow);
+  transition:transform .3s ease,box-shadow .3s ease;scroll-snap-align:center;}
+.tcard:hover{transform:translateY(-6px);box-shadow:0 12px 25px rgba(0,0,0,.15);}
+.tcard h3{color:var(--accent);margin-bottom:6px}
 
-  /* modal */
-  #modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);justify-content:center;align-items:center;z-index:999}
-  #modal img,#modal video{max-width:90%;max-height:80%;border-radius:12px}
-  #close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer}
-  #prev,#next{position:absolute;top:50%;transform:translateY(-50%);font-size:50px;color:#fff;cursor:pointer;padding:20px}
-  #prev{left:10px} #next{right:10px}
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:20px 0}
+.gallery img,.gallery video{width:100%;border-radius:14px;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .3s ease, box-shadow .3s ease;}
+.gallery img:hover,.gallery video:hover{transform:scale(1.05);box-shadow:0 14px 30px rgba(0,0,0,.15);}
 
-  /* notlar */
-  .note-box{background:var(--card);padding:20px;border-radius:16px;box-shadow:var(--shadow);margin:20px 0}
-  .note-box h2{color:var(--accent)}
-  textarea{width:100%;height:120px;padding:10px;border-radius:10px;border:1px solid #ccc;resize:none}
-  button{margin-top:10px;padding:10px 18px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+/* modal */
+#modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);
+  justify-content:center;align-items:center;z-index:999;animation:fadeIn .4s ease;}
+#modal img,#modal video{max-width:90%;max-height:80%;border-radius:12px}
+#close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer}
+#prev,#next{position:absolute;top:50%;transform:translateY(-50%);font-size:50px;color:#fff;cursor:pointer;padding:20px}
+#prev{left:10px} #next{right:10px}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* notes */
+.note-box{background:var(--card);padding:20px;margin:20px 0;border-radius:16px;box-shadow:var(--shadow);}
+.note-box h2{color:var(--accent);margin-bottom:10px}
+textarea{width:100%;height:120px;padding:10px;border-radius:10px;border:1px solid #ccc;resize:none}
+button{margin-top:10px;padding:10px 18px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:.3s;}
+button:hover{background:#c73c6a}
+
+/* counter with video */
+.counter{margin:40px 0;padding:20px;text-align:center;background:var(--card);border-radius:16px;box-shadow:var(--shadow);}
+.counter h2{color:var(--accent);margin-bottom:10px}
+.counter-wrap{display:flex;flex-direction:column;gap:20px;align-items:center;}
+.counter video{max-width:400px;border-radius:14px;box-shadow:var(--shadow)}
+@media(min-width:768px){.counter-wrap{flex-direction:row;justify-content:space-around;}}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div>
+<section class="hero">
+  <div class="hero-inner">
     <h1>İlker ❤ Bahargül</h1>
-    <p>Hatıralarımızı saklayan küçük bir evren...</p>
+    <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
   </div>
-</header>
+</section>
 
 <main>
-  <!-- Zaman Sayacı ve Ayrılık Notu -->
-  <section id="counter" class="note-box">
-    <h2>⏳ Zaman Sayacı</h2>
-    <p>Sevgili olduğumuz günden ayrılığa kadar geçen süre:</p>
-    <p style="font-size:20px;font-weight:600;color:var(--accent);">48 gün 19 saat</p>
-    <p style="color:var(--muted);">Bu sayaç burada duracak... bir hatıra olarak.</p>
-    <p><strong>Duyuru:</strong> 20 Eylül 2025 tarihinde yollarımız ayrıldı.</p>
+  <!-- Karaoke -->
+  <section class="karaoke">
+    <h2>🎶 Şarkımız</h2>
+    <audio id="song" controls style="width:100%;max-width:400px;display:block;margin:0 auto;">
+      <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
+      Tarayıcınız bu müzik formatını desteklemiyor.
+    </audio>
+    <div id="lyrics">Şarkı sözleri burada belirecek 🎤</div>
   </section>
 
   <!-- Zaman Çizelgesi -->
-  <section id="timeline">
+  <section>
     <h2>📖 Zaman Çizelgesi</h2>
     <div class="timeline">
-      <div class="tcard">
-        <h3>3 Ağustos 2025</h3>
-        <p>04:05 — Sevgili olduk 💕</p>
-      </div>
-      <div class="tcard">
-        <h3>İlk Buluşma</h3>
-        <p>Kahkahalar, heyecan ve umut...</p>
-      </div>
-      <div class="tcard">
-        <h3>20 Eylül 2025</h3>
-        <p>Bir ayrılığın tarihi...</p>
-      </div>
+      <div class="tcard"><h3>3 Ağustos 2025</h3><p>04:05 — Sevgili olduk 💕</p></div>
+      <div class="tcard"><h3>İlk Buluşma</h3><p>Kahkahalar, heyecan ve umut...</p></div>
+      <div class="tcard"><h3>20 Eylül 2025</h3><p>Bir ayrılığın tarihi...</p></div>
     </div>
   </section>
 
   <!-- Anılar -->
-  <section id="memories">
-    <h2>📸 Anılarımız</h2>
+  <section>
+    <h2>📸 Anılar</h2>
     <div class="gallery">
       <img src="Bahar.jpg" alt="Bahar">
       <img src="Bahoş.jpg" alt="Bahoş">
@@ -103,14 +111,13 @@
       <img src="baharrr.jpg" alt="baharrr">
       <img src="bahharr.jpg" alt="bahharr">
       <img src="bbaa.jpg" alt="bbaa">
-      <video src="baharrrr.mp4" controls></video>
-      <video src="baharrrrrr.mp4" controls></video>
-      <video src="sonvideo.mp4" controls></video>
-      <video src="aass.mp4" controls></video>
+      <video src="baharrrr.mp4"></video>
+      <video src="baharrrrrr.mp4"></video>
+      <video src="aass.mp4"></video>
     </div>
   </section>
 
-  <!-- Şiir -->
+  <!-- Senin Şiirin -->
   <section class="note-box">
     <h2>✨ İlker’den Not</h2>
     <p>Sevgilim Ufacık,</p>
@@ -128,6 +135,20 @@
     <button onclick="saveNote()">Notu Kaydet</button>
     <p id="saved"></p>
   </section>
+
+  <!-- Sayaç + Video -->
+  <section class="counter">
+    <h2>⏳ Zaman Sayacı & Anı</h2>
+    <div class="counter-wrap">
+      <div>
+        <p>Sevgili olduğumuz günden ayrılığa kadar geçen süre:</p>
+        <p style="font-size:20px;font-weight:600;color:var(--accent);">48 gün 19 saat</p>
+        <p style="color:var(--muted);">Bu sayaç burada duracak... bir hatıra olarak.</p>
+        <p><strong>Duyuru:</strong> 20 Eylül 2025 tarihinde yollarımız ayrıldı.</p>
+      </div>
+      <video src="sonvideo.mp4" controls></video>
+    </div>
+  </section>
 </main>
 
 <!-- Modal -->
@@ -140,6 +161,35 @@
 </div>
 
 <script>
+// karaoke sözleri
+const lyrics = [
+  {time:15,text:"Umudumsun"},
+  {time:19,text:"Simsiyahken her yanım"},
+  {time:21,text:"Huzurumsun"},
+  {time:26,text:"Uçurumsun"},
+  {time:29,text:"Atlasam karanlığına"},
+  {time:31,text:"Adım unutulsun"},
+  {time:36,text:"Evim ol"},
+  {time:38,text:"Kurtar beni"},
+  {time:41,text:"Sonum ol"},
+  {time:46,text:"Dilerim ki"},
+  {time:49,text:"Dilerim ki asla caymazsın benim olmaktan"},
+  {time:56,text:"Dursun zaman"},
+  {time:59,text:"Kalsın yerim derinlerinde saklanan"},
+  {time:81,text:"Sönemezsin"},
+  {time:85,text:"İçimi yakan, delip geçen ateş sensin"},
+  {time:91,text:"Onlar ne bilsin"},
+  {time:95,text:"Sana çıksa keşke, her yolum hayalimsin"}
+];
+const audio=document.getElementById("song");
+const lyricsDiv=document.getElementById("lyrics");
+audio.ontimeupdate=()=>{
+  let t=Math.floor(audio.currentTime);
+  let line=lyrics.find((l,i)=>{let n=lyrics[i+1];return t>=l.time&&(!n||t<n.time);});
+  if(line)lyricsDiv.textContent=line.text;
+};
+
+// modal
 const images=[...document.querySelectorAll(".gallery img,.gallery video")];
 const modal=document.getElementById("modal");
 const modalImg=document.getElementById("modal-img");
@@ -148,26 +198,18 @@ const closeBtn=document.getElementById("close");
 const prev=document.getElementById("prev");
 const next=document.getElementById("next");
 let current=0;
-
-function showMedia(index){
-  const el=images[index];
-  if(el.tagName==="IMG"){
-    modalImg.style.display="block";
-    modalVideo.style.display="none";
-    modalImg.src=el.src;
-  }else{
-    modalImg.style.display="none";
-    modalVideo.style.display="block";
-    modalVideo.src=el.src;
-  }
-  modal.style.display="flex";current=index;
+function showMedia(i){
+  const el=images[i];
+  if(el.tagName==="IMG"){modalImg.style.display="block";modalVideo.style.display="none";modalImg.src=el.src;}
+  else{modalImg.style.display="none";modalVideo.style.display="block";modalVideo.src=el.src;}
+  modal.style.display="flex";current=i;
 }
-images.forEach((el,i)=>{el.addEventListener("click",()=>showMedia(i));});
+images.forEach((el,i)=>el.addEventListener("click",()=>showMedia(i)));
 closeBtn.onclick=()=>{modal.style.display="none";modalVideo.pause();};
-next.onclick=()=>{current=(current+1)%images.length;showMedia(current);};
+next.onclick=()=>{current=(current+1)%images.length;showMedia(current);}
 prev.onclick=()=>{current=(current-1+images.length)%images.length;showMedia(current);};
 
-// Not kaydetme
+// not kaydetme
 function saveNote(){
   const val=document.getElementById("baharnotu").value;
   localStorage.setItem("baharnotu",val);
@@ -179,9 +221,8 @@ window.onload=()=>{
 };
 </script>
 
-<footer style="text-align:center;padding:20px;color:var(--muted);">
+<footer style="text-align:center;padding:20px;color:var(--muted)">
   Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.
 </footer>
-
 </body>
 </html>
