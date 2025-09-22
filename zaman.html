@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Zaman Çizelgesi & Sayaç</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+  :root{
+    --accent:#e75480;
+    --bg:#fffafb;
+    --muted:#555;
+    --card:#ffffffcc;
+    --shadow:0 8px 25px rgba(0,0,0,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',sans-serif;background:var(--bg);color:#222;line-height:1.6;display:flex;}
+
+  /* sidebar */
+  nav{width:220px;min-height:100vh;background:#fff;box-shadow:var(--shadow);padding:20px;position:fixed;top:0;left:0;}
+  nav h2{font-family:'Dancing Script',cursive;color:var(--accent);margin-bottom:20px;font-size:28px;}
+  nav a{display:block;margin:10px 0;padding:10px;border-radius:8px;color:#333;text-decoration:none;font-weight:600;transition:.3s;}
+  nav a:hover{background:var(--accent);color:#fff;}
+
+  /* content */
+  main{margin-left:240px;padding:20px;max-width:1000px;width:100%;}
+
+  /* timeline */
+  .timeline{display:flex;overflow-x:auto;gap:20px;padding:15px 0;scroll-snap-type:x mandatory}
+  .tcard{flex:0 0 260px;background:var(--card);padding:20px;border-radius:16px;box-shadow:var(--shadow);
+    transition:transform .3s ease,box-shadow .3s ease;scroll-snap-align:center;}
+  .tcard:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.18);}
+  .tcard h3{color:var(--accent);margin-bottom:6px}
+
+  /* counter with video */
+  .counter{margin:40px 0;padding:20px;text-align:center;background:var(--card);border-radius:16px;box-shadow:var(--shadow);}
+  .counter h2{color:var(--accent);margin-bottom:10px}
+  .counter-wrap{display:flex;flex-direction:column;gap:20px;align-items:center;}
+  .counter video{max-width:400px;border-radius:14px;box-shadow:var(--shadow)}
+  @media(min-width:768px){.counter-wrap{flex-direction:row;justify-content:space-around;}}
+  </style>
+</head>
+<body>
+
+  <!-- Sol Menü -->
+  <nav>
+    <h2>Menü</h2>
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="anilar.html">📸 Anılar</a>
+    <a href="sarkilar.html">🎶 Şarkılar</a>
+    <a href="zaman.html">⏳ Zaman</a>
+  </nav>
+
+  <!-- İçerik -->
+  <main>
+    <h1>⏳ Zaman Çizelgesi & Sayaç</h1>
+
+    <!-- timeline -->
+    <section>
+      <h2>📖 Zaman Çizelgesi</h2>
+      <div class="timeline">
+        <div class="tcard"><h3>3 Ağustos 2025</h3><p>04:05 — Sevgili olduk 💕</p></div>
+        <div class="tcard"><h3>İlk Buluşma</h3><p>Kahkahalar, heyecan ve umut...</p></div>
+        <div class="tcard"><h3>20 Eylül 2025</h3><p>Bir ayrılığın tarihi...</p></div>
+      </div>
+    </section>
+
+    <!-- Sayaç + Video -->
+    <section class="counter">
+      <h2>⏳ Durmuş Sayaç & Video</h2>
+      <div class="counter-wrap">
+        <div>
+          <p>Serüvenimiz:</p>
+          <p style="font-size:20px;font-weight:600;color:var(--accent);">48 gün 19 saat</p>
+          <p style="color:var(--muted);">Bu sayaç burada duruyor... bir hatıra olarak.</p>
+          <p><strong>Duyuru:</strong> 20 Eylül 2025 Güzel şeyler kısa sürermiş demek ki.</p>
+        </div>
+        <video src="sonvideo.mp4" controls></video>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
