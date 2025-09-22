@@ -3,69 +3,88 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>İlker ❤ Bahargül</title>
+<title>Ana Sayfa | İlker ❤ Bahargül</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --accent:#e75480;
-  --bg:#fffafb;
-  --muted:#555;
-  --card:#ffffffcc;
-  --shadow:0 8px 25px rgba(0,0,0,0.08);
+body {
+  display:flex;
+  min-height:100vh;
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#fffafb,#ffe6f0);
 }
-
-/* Genel */
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Poppins',sans-serif;background:var(--bg) url("Bahoş.jpg") center/cover fixed no-repeat;
-  color:#222;line-height:1.6;display:flex;}
-
-/* Sol Menü */
 .sidebar{
-  width:240px;min-height:100vh;background:#fff;box-shadow:2px 0 8px rgba(0,0,0,.1);
-  padding:20px;position:fixed;top:0;left:0;z-index:1000;display:flex;flex-direction:column;gap:20px;
+  width:200px;
+  background:#fff;
+  box-shadow:2px 0 10px rgba(0,0,0,0.1);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  position:fixed;
+  top:0; bottom:0; left:0;
 }
-.sidebar h2{font-family:'Dancing Script',cursive;color:var(--accent);text-align:center;}
+.sidebar h2{
+  text-align:center;
+  color:#e75480;
+  margin-bottom:20px;
+}
 .sidebar a{
-  text-decoration:none;color:#333;font-weight:600;padding:10px;border-radius:8px;
-  transition:.3s;display:block;
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
+  padding:10px;
+  border-radius:8px;
+  transition:.3s;
 }
-.sidebar a:hover,.sidebar a.active{background:var(--accent);color:#fff;}
-.menu-toggle{display:none;}
-
-/* İçerik */
-.content{margin-left:260px;padding:20px;flex:1;}
-.hero{text-align:center;color:#fff;padding:80px 20px;background:rgba(0,0,0,0.4);border-radius:20px;}
-.hero h1{font-family:'Dancing Script',cursive;font-size:clamp(36px,8vw,70px);}
-.hero p{margin-top:10px;font-size:18px;}
-
-/* Not Kutusu */
-.note-box{background:var(--card);padding:20px;margin:20px 0;border-radius:16px;box-shadow:var(--shadow);}
-.note-box h2{color:var(--accent);margin-bottom:10px}
-
-/* Responsive Menü */
-@media(max-width:768px){
-  .sidebar{transform:translateX(-100%);transition:.3s;}
-  .sidebar.active{transform:translateX(0);}
-  .menu-toggle{
-    display:block;position:fixed;top:15px;left:15px;background:var(--accent);
-    color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer;z-index:1100;
-  }
-  .content{margin-left:0;padding-top:70px;}
+.sidebar a:hover{
+  background:#e75480;
+  color:#fff;
 }
+main{
+  margin-left:220px;
+  padding:30px;
+  flex:1;
+}
+
+/* Hero */
+.hero {
+  padding:50px;
+  background:url("Bahoş.jpg") center/cover no-repeat;
+  border-radius:16px;
+  color:#fff;
+  text-shadow:0 3px 8px rgba(0,0,0,0.4);
+}
+.hero h1 {
+  font-family:'Dancing Script',cursive;
+  font-size:48px;
+  margin-bottom:15px;
+}
+.hero p {margin:5px 0}
+
+/* Notes */
+.note-box{
+  background:#fff;
+  margin:20px 0;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.1);
+}
+.note-box h2{color:#e75480;margin-bottom:10px}
 </style>
 </head>
 <body>
 
-<button class="menu-toggle" onclick="toggleMenu()">☰ Menü</button>
-<nav class="sidebar" id="sidebar">
-  <h2>Menü</h2>
-  <a href="index.html" class="active">🏠 Ana Sayfa</a>
+<nav class="sidebar">
+  <h2>❤</h2>
+  <a href="index.html">🏠 Ana Sayfa</a>
   <a href="anilar.html">📸 Anılar</a>
   <a href="zaman.html">⏳ Zaman</a>
   <a href="sarkilar.html">🎶 Şarkılar</a>
 </nav>
 
-<div class="content">
+<main>
   <section class="hero">
     <h1>İlker ❤ Bahargül</h1>
     <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
@@ -80,7 +99,6 @@ body{font-family:'Poppins',sans-serif;background:var(--bg) url("Bahoş.jpg") cen
     <p>Muazzam bir ihtimaldin, gökyüzüne dokunmak gibi...</p>
   </section>
 
-  <!-- İlker’den Not -->
   <section class="note-box">
     <h2>✨ İlker’den Not</h2>
     <p>Sevgilim Ufaklıkk,</p>
@@ -91,32 +109,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg) url("Bahoş.jpg") cen
     <p><strong>Aradığın huzuru bulman dileği ile ❤</strong></p>
     <p style="text-align:right;">— İnatçı</p>
   </section>
-
-  <!-- Bahargül’ün Notu -->
-  <section class="note-box">
-    <h2>📝 Bahargül’den Not</h2>
-    <textarea id="baharnotu" placeholder="Bahargül buraya kendi notunu yazabilir..." 
-      style="width:100%;height:120px;padding:10px;border-radius:10px;border:1px solid #ccc;resize:none"></textarea>
-    <button onclick="saveNote()" style="margin-top:10px;padding:10px 18px;border:none;
-      border-radius:8px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;">
-      Notu Kaydet
-    </button>
-    <p id="saved"></p>
-  </section>
-</div>
-
-<script>
-function toggleMenu(){document.getElementById("sidebar").classList.toggle("active");}
-function saveNote(){
-  const val=document.getElementById("baharnotu").value;
-  localStorage.setItem("baharnotu",val);
-  document.getElementById("saved").innerText="Not kaydedildi ✅";
-}
-window.onload=()=>{
-  const saved=localStorage.getItem("baharnotu");
-  if(saved){document.getElementById("baharnotu").value=saved;}
-};
-</script>
+</main>
 
 </body>
 </html>
