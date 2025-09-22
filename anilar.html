@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zaman Çizelgesi</title>
+<title>Anılar</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -17,32 +17,69 @@ body{
   background:url("Bahoş.jpg") center/cover fixed no-repeat;
   color:#222;line-height:1.6;
 }
-main{max-width:1000px;margin:0 auto;padding:20px}
+main{max-width:1100px;margin:0 auto;padding:20px}
 h1{font-family:'Dancing Script',cursive;text-align:center;margin-bottom:20px;color:#fff;text-shadow:0 3px 6px rgba(0,0,0,.5)}
-.timeline{display:flex;overflow-x:auto;gap:20px;padding:15px 0;scroll-snap-type:x mandatory}
-.tcard{flex:0 0 260px;background:var(--card);padding:20px;border-radius:16px;box-shadow:var(--shadow);
-  scroll-snap-align:center;}
-.tcard h3{color:var(--accent);margin-bottom:6px}
-.counter{margin:40px 0;padding:20px;text-align:center;background:var(--card);border-radius:16px;box-shadow:var(--shadow);}
-.counter h2{color:var(--accent);margin-bottom:10px}
-.counter video{max-width:400px;border-radius:14px;box-shadow:var(--shadow)}
+.tab-buttons{display:flex;gap:10px;margin:20px 0;}
+.tab-buttons button{flex:1;padding:12px;border:none;border-radius:10px;cursor:pointer;font-weight:600;
+  background:#eee;transition:.3s;}
+.tab-buttons button.active{background:var(--accent);color:#fff;}
+.gallery{display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:20px 0}
+.gallery img,.gallery video{width:100%;border-radius:14px;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .3s ease, box-shadow .3s ease;
+  border:4px solid #fff;}
+.gallery img:hover,.gallery video:hover{transform:scale(1.05);box-shadow:0 14px 35px rgba(0,0,0,.25);}
+#modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);
+  justify-content:center;align-items:center;z-index:999;}
+#modal img,#modal video{max-width:90%;max-height:80%;border-radius:12px}
+#close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer}
 </style>
 </head>
 <body>
 <main>
-  <h1>⏳ Zaman Çizelgesi</h1>
-  <div class="timeline">
-    <div class="tcard"><h3>3 Ağustos 2025</h3><p>04:05 — Sevgili olduk 💕</p></div>
-    <div class="tcard"><h3>İlk Buluşma</h3><p>Kahkahalar, heyecan ve umut...</p></div>
-    <div class="tcard"><h3>20 Eylül 2025</h3><p>Bir ayrılığın tarihi...</p></div>
+  <h1>📸 Anılar</h1>
+  <div class="tab-buttons">
+    <button class="active" onclick="openTab('photos',this)">Fotoğraflar</button>
+    <button onclick="openTab('videos',this)">Videolar</button>
   </div>
-  <section class="counter">
-    <h2>Serüvenimiz</h2>
-    <p style="font-size:20px;font-weight:600;color:var(--accent);">48 gün 19 saat</p>
-    <p style="color:#555;">Bu sayaç burada duracak... bir hatıra olarak.</p>
-    <p><strong>Duyuru:</strong> 20 Eylül 2025 Güzel şeyler kısa sürermiş demek ki.</p>
-    <video src="sonvideo.mp4" controls></video>
-  </section>
+  <div id="photos" class="gallery" style="display:grid;">
+    <img src="Bahar.jpg">
+    <img src="Bahoş.jpg">
+    <img src="bahaar.jpg">
+    <img src="baharr.jpg">
+    <img src="baharrr.jpg">
+    <img src="bahharr.jpg">
+    <img src="bbaa.jpg">
+  </div>
+  <div id="videos" class="gallery">
+    <video src="baharrrr.mp4"></video>
+    <video src="baharrrrrr.mp4"></video>
+    <video src="aass.mp4"></video>
+  </div>
 </main>
+<div id="modal">
+  <span id="close">&times;</span>
+  <img id="modal-img">
+  <video id="modal-video" controls></video>
+</div>
+<script>
+function openTab(tab,btn){
+  document.querySelectorAll('.gallery').forEach(g=>g.style.display='none');
+  document.getElementById(tab).style.display='grid';
+  document.querySelectorAll('.tab-buttons button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+const images=[...document.querySelectorAll(".gallery img,.gallery video")];
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modal-img");
+const modalVideo=document.getElementById("modal-video");
+const closeBtn=document.getElementById("close");
+function showMedia(el){
+  if(el.tagName==="IMG"){modalImg.style.display="block";modalVideo.style.display="none";modalImg.src=el.src;}
+  else{modalImg.style.display="none";modalVideo.style.display="block";modalVideo.src=el.src;}
+  modal.style.display="flex";
+}
+images.forEach(el=>el.addEventListener("click",()=>showMedia(el)));
+closeBtn.onclick=()=>{modal.style.display="none";modalVideo.pause();}
+</script>
 </body>
 </html>
