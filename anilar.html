@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>📸 Anılar - İlker ❤ Bahargül</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#e75480;
+      --bg:#fffafb;
+      --muted:#555;
+      --card:#ffffffcc;
+      --shadow:0 8px 25px rgba(0,0,0,0.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:#222;line-height:1.6;display:flex;min-height:100vh;}
+
+    /* sol menü */
+    nav{
+      width:220px;background:var(--card);box-shadow:var(--shadow);padding:20px;
+      display:flex;flex-direction:column;gap:15px;position:fixed;top:0;bottom:0;left:0;
+    }
+    nav h2{font-family:'Dancing Script',cursive;color:var(--accent);margin-bottom:20px;text-align:center;}
+    nav a{color:#333;text-decoration:none;font-weight:600;padding:10px;border-radius:10px;transition:.3s;}
+    nav a:hover{background:var(--accent);color:#fff;}
+
+    /* içerik */
+    main{margin-left:240px;flex:1;padding:30px;max-width:1200px;}
+    main h1{font-family:'Dancing Script',cursive;color:var(--accent);margin-bottom:10px;}
+    main p{color:var(--muted);margin-bottom:20px;}
+
+    /* tablar */
+    .tab-buttons{display:flex;gap:10px;margin:20px 0;}
+    .tab-buttons button{flex:1;padding:12px;border:none;border-radius:10px;cursor:pointer;font-weight:600;
+      background:#eee;transition:.3s;}
+    .tab-buttons button.active{background:var(--accent);color:#fff;}
+
+    /* galeri */
+    .gallery{display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+    .gallery img,.gallery video{width:100%;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.15);
+      border:4px solid #fff;transition:.3s ease;cursor:pointer;}
+    .gallery img:hover,.gallery video:hover{transform:scale(1.05);box-shadow:0 14px 35px rgba(0,0,0,.25);}
+
+    /* modal */
+    #modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);
+      justify-content:center;align-items:center;z-index:999;}
+    #modal img,#modal video{max-width:90%;max-height:80%;border-radius:12px;}
+    #close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer;}
+    #prev,#next{position:absolute;top:50%;transform:translateY(-50%);font-size:50px;color:#fff;cursor:pointer;padding:20px;}
+    #prev{left:10px} #next{right:10px}
+  </style>
+</head>
+<body>
+
+<!-- sol menü -->
+<nav>
+  <h2>Menü</h2>
+  <a href="index.html">🏠 Ana Sayfa</a>
+  <a href="anilar.html">📸 Anılar</a>
+  <a href="#photos">🖼 Fotoğraflar</a>
+  <a href="#videos">🎥 Videolar</a>
+</nav>
+
+<!-- içerik -->
+<main>
+  <h1>📸 Anılar</h1>
+  <p>Birlikte geçirdiğimiz en özel anılar burada 💕 Tıklayarak büyütebilirsin.</p>
+
+  <!-- tab butonları -->
+  <div class="tab-buttons">
+    <button class="active" onclick="openTab('photos',this)">Fotoğraflar</button>
+    <button onclick="openTab('videos',this)">Videolar</button>
+  </div>
+
+  <!-- fotoğraflar -->
+  <div id="photos" class="gallery" style="display:grid;">
+    <img src="Bahar.jpg" alt="Bahar">
+    <img src="Bahoş.jpg" alt="Bahoş">
+    <img src="bahaar.jpg" alt="bahaar">
+    <img src="baharr.jpg" alt="baharr">
+    <img src="baharrr.jpg" alt="baharrr">
+    <img src="bahharr.jpg" alt="bahharr">
+    <img src="bbaa.jpg" alt="bbaa">
+  </div>
+
+  <!-- videolar -->
+  <div id="videos" class="gallery">
+    <video src="baharrrr.mp4"></video>
+    <video src="baharrrrrr.mp4"></video>
+    <video src="aass.mp4"></video>
+  </div>
+</main>
+
+<!-- modal -->
+<div id="modal">
+  <span id="close">&times;</span>
+  <span id="prev">&#10094;</span>
+  <img id="modal-img">
+  <video id="modal-video" controls></video>
+  <span id="next">&#10095;</span>
+</div>
+
+<script>
+function openTab(tab,btn){
+  document.querySelectorAll('.gallery').forEach(g=>g.style.display='none');
+  document.getElementById(tab).style.display='grid';
+  document.querySelectorAll('.tab-buttons button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// modal
+const items=[...document.querySelectorAll(".gallery img,.gallery video")];
+const modal=document.getElementById("modal");
+const modalImg=document.getElementById("modal-img");
+const modalVideo=document.getElementById("modal-video");
+const closeBtn=document.getElementById("close");
+const prev=document.getElementById("prev");
+const next=document.getElementById("next");
+let current=0;
+
+function showMedia(i){
+  const el=items[i];
+  if(el.tagName==="IMG"){
+    modalImg.style.display="block";modalVideo.style.display="none";
+    modalImg.src=el.src;
+  }else{
+    modalImg.style.display="none";modalVideo.style.display="block";
+    modalVideo.src=el.src;
+  }
+  modal.style.display="flex";current=i;
+}
+items.forEach((el,i)=>el.addEventListener("click",()=>showMedia(i)));
+closeBtn.onclick=()=>{modal.style.display="none";modalVideo.pause();};
+next.onclick=()=>{current=(current+1)%items.length;showMedia(current);}
+prev.onclick=()=>{current=(current-1+items.length)%items.length;showMedia(current);}
+</script>
+
+</body>
+</html>
