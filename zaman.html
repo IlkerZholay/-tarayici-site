@@ -3,46 +3,53 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zaman Çizelgesi</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Zaman | İlker ❤ Bahargül</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --accent:#e75480;
-  --card:#ffffffcc;
-  --shadow:0 8px 25px rgba(0,0,0,0.15);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'Poppins',sans-serif;
-  background:url("Bahoş.jpg") center/cover fixed no-repeat;
-  color:#222;line-height:1.6;
-}
-main{max-width:1000px;margin:0 auto;padding:20px}
-h1{font-family:'Dancing Script',cursive;text-align:center;margin-bottom:20px;color:#fff;text-shadow:0 3px 6px rgba(0,0,0,.5)}
+body{display:flex;min-height:100vh;margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#fffafb,#ffe6f0);}
+.sidebar{width:200px;background:#fff;box-shadow:2px 0 10px rgba(0,0,0,0.1);padding:20px;display:flex;flex-direction:column;gap:20px;position:fixed;top:0;bottom:0;left:0;}
+.sidebar h2{text-align:center;color:#e75480;margin-bottom:20px}
+.sidebar a{text-decoration:none;color:#333;font-weight:600;padding:10px;border-radius:8px;transition:.3s}
+.sidebar a:hover{background:#e75480;color:#fff}
+main{margin-left:220px;padding:30px;flex:1}
+
+/* timeline */
 .timeline{display:flex;overflow-x:auto;gap:20px;padding:15px 0;scroll-snap-type:x mandatory}
-.tcard{flex:0 0 260px;background:var(--card);padding:20px;border-radius:16px;box-shadow:var(--shadow);
-  scroll-snap-align:center;}
-.tcard h3{color:var(--accent);margin-bottom:6px}
-.counter{margin:40px 0;padding:20px;text-align:center;background:var(--card);border-radius:16px;box-shadow:var(--shadow);}
-.counter h2{color:var(--accent);margin-bottom:10px}
-.counter video{max-width:400px;border-radius:14px;box-shadow:var(--shadow)}
+.tcard{flex:0 0 240px;background:#fff;padding:20px;border-radius:16px;box-shadow:0 6px 15px rgba(0,0,0,0.1);scroll-snap-align:center}
+.tcard h3{color:#e75480;margin-bottom:8px}
+
+/* counter */
+.counter{margin-top:30px;padding:20px;background:#fff;border-radius:16px;box-shadow:0 6px 15px rgba(0,0,0,0.1);text-align:center}
+.counter h2{color:#e75480;margin-bottom:10px}
+.counter video{max-width:400px;margin-top:15px;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1)}
 </style>
 </head>
 <body>
+
+<nav class="sidebar">
+  <h2>❤</h2>
+  <a href="index.html">🏠 Ana Sayfa</a>
+  <a href="anilar.html">📸 Anılar</a>
+  <a href="zaman.html">⏳ Zaman</a>
+  <a href="sarkilar.html">🎶 Şarkılar</a>
+</nav>
+
 <main>
   <h1>⏳ Zaman Çizelgesi</h1>
   <div class="timeline">
-    <div class="tcard"><h3>3 Ağustos 2025</h3><p>04:05 — Sevgili olduk 💕</p></div>
+    <div class="tcard"><h3>3 Ağustos 2025</h3><p>Sevgili olduk 💕</p></div>
     <div class="tcard"><h3>İlk Buluşma</h3><p>Kahkahalar, heyecan ve umut...</p></div>
-    <div class="tcard"><h3>20 Eylül 2025</h3><p>Bir ayrılığın tarihi...</p></div>
+    <div class="tcard"><h3>15 Eylül 2025</h3><p>Birlikte geçirilen en uzun gün...</p></div>
+    <div class="tcard"><h3>20 Eylül 2025</h3><p>Ayrılık tarihi...</p></div>
   </div>
-  <section class="counter">
-    <h2>Serüvenimiz</h2>
-    <p style="font-size:20px;font-weight:600;color:var(--accent);">48 gün 19 saat</p>
-    <p style="color:#555;">Bu sayaç burada duracak... bir hatıra olarak.</p>
-    <p><strong>Duyuru:</strong> 20 Eylül 2025 Güzel şeyler kısa sürermiş demek ki.</p>
+
+  <div class="counter">
+    <h2>Zaman Sayacı</h2>
+    <p style="font-size:20px;font-weight:600;color:#e75480;">48 gün 19 saat</p>
+    <p>Bu sayaç burada duracak... bir hatıra olarak.</p>
     <video src="sonvideo.mp4" controls></video>
-  </section>
+  </div>
 </main>
+
 </body>
 </html>
