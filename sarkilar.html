@@ -3,72 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🎵 Şarkılar - İlker ❤ Bahargül</title>
-
+<title>Şarkılar</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --accent:#e75480;
-  --bg:#fffafb;
-  --muted:#555;
-  --card:#ffffffcc;
-  --shadow:0 8px 25px rgba(0,0,0,0.08);
-}
+:root{--accent:#e75480;--card:#ffffffcc;--shadow:0 8px 25px rgba(0,0,0,0.15);}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Poppins',sans-serif;background:var(--bg);color:#222;line-height:1.6;display:flex;min-height:100vh}
-
-/* sol menü */
-.sidebar{width:220px;background:#fff;box-shadow:var(--shadow);padding:20px;display:flex;flex-direction:column;gap:15px;position:fixed;top:0;left:0;bottom:0;}
-.sidebar h2{font-family:'Dancing Script',cursive;color:var(--accent);margin-bottom:10px}
-.sidebar a{text-decoration:none;color:var(--muted);font-weight:600;padding:10px;border-radius:8px;transition:.3s}
-.sidebar a:hover,.sidebar a.active{background:var(--accent);color:#fff}
-
-main{margin-left:240px;flex:1;padding:30px;}
-
-/* şarkı kartları */
-.song-card{background:var(--card);padding:20px;border-radius:16px;box-shadow:var(--shadow);margin-bottom:20px;transition:.3s}
-.song-card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(0,0,0,0.15);}
-.song-card h3{color:var(--accent);margin-bottom:10px}
-audio{width:100%;margin-top:10px}
+body{
+  font-family:'Poppins',sans-serif;
+  background:url("Bahoş.jpg") center/cover fixed no-repeat;
+  color:#222;line-height:1.6;
+}
+main{max-width:900px;margin:0 auto;padding:20px}
+h1{font-family:'Dancing Script',cursive;text-align:center;margin-bottom:20px;color:#fff;text-shadow:0 3px 6px rgba(0,0,0,.5)}
+.song-card{background:var(--card);padding:20px;margin:20px 0;border-radius:16px;box-shadow:var(--shadow);text-align:center;}
+.song-card h2{color:var(--accent);margin-bottom:10px}
+audio{width:100%;max-width:400px;margin-top:10px}
 </style>
 </head>
 <body>
-
-<!-- sol menü -->
-<nav class="sidebar">
-  <h2>Menü</h2>
-  <a href="index.html">🏠 Ana Sayfa</a>
-  <a href="anilar.html">📸 Anılar</a>
-  <a href="sarkilar.html" class="active">🎵 Şarkılar</a>
-</nav>
-
 <main>
-  <h1>🎶 Şarkılarımız</h1>
-  <p style="color:var(--muted);margin-bottom:20px;">Burada birlikte dinlediğimiz şarkılar yer alıyor. İstediğini seçip dinleyebilirsin.</p>
-
+  <h1>🎶 Şarkılar</h1>
   <div class="song-card">
-    <h3>Dolu Kadehi Ters Tut - Dilerim Ki</h3>
+    <h2>Dolu Kadehi Ters Tut - Dilerim Ki</h2>
     <audio controls>
       <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
-      Tarayıcınız bu müzik formatını desteklemiyor.
     </audio>
   </div>
-
   <div class="song-card">
-    <h3>Sezen Aksu - Tükeneceğiz</h3>
+    <h2>Başka Bir Şarkı</h2>
     <audio controls>
-      <source src="sezen-aksu-tukenecegiz.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-  <div class="song-card">
-    <h3>Tarkan - Kuzu Kuzu</h3>
-    <audio controls>
-      <source src="tarkan-kuzu-kuzu.mp3" type="audio/mpeg">
+      <source src="ornek.mp3" type="audio/mpeg">
     </audio>
   </div>
 </main>
-
 </body>
 </html>
