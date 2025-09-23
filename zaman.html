@@ -1,184 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zaman Çizelgesi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: url('bahos.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zaman</title>
 
-    /* Menü */
-    .menu-btn {
-      font-size: 28px;
-      cursor: pointer;
-      color: #ff4d6d;
-      position: fixed;
-      top: 15px;
-      left: 20px;
-      z-index: 1001;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: rgba(255, 255, 255, 0.95);
-      overflow-x: hidden;
-      transition: 0.5s;
-      padding-top: 60px;
-      box-shadow: 3px 0 8px rgba(0,0,0,0.2);
-    }
+<style>
+:root{
+  --accent:#e75480;
+  --bg:#fffafb;
+  --card-bg:rgba(255,255,255,0.75);
+  --shadow:0 8px 25px rgba(0,0,0,0.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Poppins',sans-serif;
+  background:url("bahoş.jpg") no-repeat center/cover fixed;
+  color:#222;
+}
 
-    .sidebar a {
-      padding: 15px 25px;
-      text-decoration: none;
-      font-size: 20px;
-      color: #333;
-      display: block;
-      transition: 0.3s;
-    }
+/* Menü */
+.sidebar{
+  position:fixed;top:0;left:0;height:100%;width:250px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:2px 0 15px rgba(0,0,0,0.1);
+  transform:translateX(-100%);
+  transition:transform 0.3s ease;
+  z-index:1000;padding:20px;
+}
+.sidebar.active{transform:translateX(0);}
+.sidebar h2{font-family:'Dancing Script',cursive;font-size:28px;color:var(--accent);margin-bottom:20px;}
+.sidebar a{
+  display:block;padding:12px;margin:8px 0;
+  color:#333;text-decoration:none;font-weight:600;
+  border-radius:8px;transition:0.3s;
+}
+.sidebar a:hover{background:var(--accent);color:#fff;}
+.menu-btn{
+  position:fixed;top:20px;left:20px;z-index:1100;
+  background:var(--accent);color:#fff;border:none;
+  font-size:22px;padding:10px 14px;border-radius:8px;
+  cursor:pointer;box-shadow:var(--shadow);
+}
 
-    .sidebar a:hover {
-      background-color: #ff4d6d;
-      color: white;
-      border-radius: 10px;
-    }
+/* Hero */
+.hero{
+  text-align:center;
+  padding:90px 20px 40px;
+  background:linear-gradient(to bottom, rgba(255,255,255,0.85), transparent);
+}
+.hero h1{font-family:'Dancing Script',cursive;font-size:42px;color:var(--accent);}
+.hero p{font-size:18px;color:#444;margin-top:8px;}
 
-    main {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: 0 auto;
-      color: white;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    }
+/* Zaman Sayacı */
+.counter{
+  background:var(--card-bg);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  display:inline-block;
+  padding:20px 40px;
+  font-size:28px;
+  font-weight:600;
+  color:#222;
+  margin:20px auto;
+  backdrop-filter:blur(12px);
+}
+.note{
+  margin-top:15px;
+  font-size:18px;
+  font-style:italic;
+  color:#444;
+}
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 20px;
-    }
-
-    /* Zaman Çizelgesi */
-    .timeline {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 20px 0;
-      scroll-snap-type: x mandatory;
-    }
-
-    .timeline-card {
-      min-width: 250px;
-      flex: 0 0 auto;
-      background: rgba(255,255,255,0.9);
-      color: #333;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      scroll-snap-align: start;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .timeline-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .timeline-card h3 {
-      margin-bottom: 10px;
-      font-size: 18px;
-      color: #ff4d6d;
-    }
-
-    /* Sayaç + Video */
-    .bottom-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 40px;
-      padding: 20px;
-      background: rgba(255,255,255,0.9);
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
-
-    .counter {
-      font-size: 24px;
-      font-weight: bold;
-      color: #ff4d6d;
-      margin-bottom: 15px;
-    }
-
-    .bottom-section video {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    }
-
-    @media(max-width:768px){
-      .timeline { gap: 12px; }
-      .timeline-card { min-width: 200px; }
-    }
-  </style>
+/* Çizelge */
+.timeline{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:30px;
+}
+.card{
+  background:var(--card-bg);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(10px);
+  transition:transform 0.3s, box-shadow 0.3s;
+  cursor:pointer;
+}
+.card:hover{transform:scale(1.05);box-shadow:0 12px 30px rgba(0,0,0,0.2);}
+.card h3{color:var(--accent);margin-bottom:8px;font-size:20px;}
+.card p{color:#333;font-size:15px;}
+</style>
 </head>
 <body>
 
-<!-- Menü Butonu -->
-<span class="menu-btn" onclick="openMenu()">☰</span>
-
-<!-- Sidebar Menü -->
-<div id="sidebar" class="sidebar">
-  <a href="javascript:void(0)" onclick="closeMenu()">✖ Kapat</a>
+<!-- Menü -->
+<button class="menu-btn">☰</button>
+<div class="sidebar" id="sidebar">
+  <h2>🌸 Menü</h2>
   <a href="index.html">🏠 Ana Sayfa</a>
   <a href="anilar.html">📸 Anılar</a>
   <a href="zaman.html">⏳ Zaman</a>
   <a href="sarkilar.html">🎵 Şarkılar</a>
 </div>
 
-<main>
-  <h1>⏳ Zaman Çizelgesi</h1>
-  <p>Birlikte geçen günlerin anıları burada kaydedildi. Kartlara tıklayınca biraz büyür, okunması kolaylaşır 💫</p>
+<!-- Başlık -->
+<section class="hero">
+  <h1>⏳ Zaman</h1>
+  <p>Bizim için özel günlerin kaydı...</p>
+</section>
 
-  <div class="timeline">
-    <div class="timeline-card">
-      <h3>💞 İlk Tanışma</h3>
-      <p>Birlikte başlayan hikayemizin ilk günü...</p>
-    </div>
-    <div class="timeline-card">
-      <h3>🎂 Doğum Günü</h3>
-      <p>Özel kutlama ve unutulmaz anılar.</p>
-    </div>
-    <div class="timeline-card">
-      <h3>🌸 Bahar Günleri</h3>
-      <p>Beraber geçirilen en huzurlu zamanlar.</p>
-    </div>
-    <div class="timeline-card">
-      <h3>💔 20 Eylül Ayrılık</h3>
-      <p>Zaman burada durdu...</p>
-    </div>
-  </div>
+<!-- Sayacı -->
+<div style="text-align:center;">
+  <div class="counter">48 Gün 19 Saat</div>
+  <div class="note">“Güzel şeyler kısa sürermiş...”</div>
+</div>
 
-  <div class="bottom-section">
-    <div class="counter">⏱ 48 gün 19 saat</div>
-    <video src="sonvideo.mp4" controls></video>
+<!-- Zaman Çizelgesi -->
+<section class="timeline">
+  <div class="card">
+    <h3>01 Ocak</h3>
+    <p>Tanışma...</p>
   </div>
-</main>
+  <div class="card">
+    <h3>14 Şubat</h3>
+    <p>Sevgi dolu bir an...</p>
+  </div>
+  <div class="card">
+    <h3>10 Temmuz</h3>
+    <p>İlk seyahatimiz.</p>
+  </div>
+  <div class="card">
+    <h3>20 Eylül</h3>
+    <p>Ayrılık... 💔</p>
+  </div>
+</section>
 
 <script>
-  function openMenu() {
-    document.getElementById("sidebar").style.width = "250px";
-  }
-  function closeMenu() {
-    document.getElementById("sidebar").style.width = "0";
-  }
+const menuBtn=document.querySelector(".menu-btn");
+const sidebar=document.getElementById("sidebar");
+menuBtn.addEventListener("click",()=>{sidebar.classList.toggle("active");});
 </script>
 
 </body>
