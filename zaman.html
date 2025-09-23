@@ -1,55 +1,185 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zaman | İlker ❤ Bahargül</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-body{display:flex;min-height:100vh;margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#fffafb,#ffe6f0);}
-.sidebar{width:200px;background:#fff;box-shadow:2px 0 10px rgba(0,0,0,0.1);padding:20px;display:flex;flex-direction:column;gap:20px;position:fixed;top:0;bottom:0;left:0;}
-.sidebar h2{text-align:center;color:#e75480;margin-bottom:20px}
-.sidebar a{text-decoration:none;color:#333;font-weight:600;padding:10px;border-radius:8px;transition:.3s}
-.sidebar a:hover{background:#e75480;color:#fff}
-main{margin-left:220px;padding:30px;flex:1}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaman Çizelgesi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: url('bahos.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
 
-/* timeline */
-.timeline{display:flex;overflow-x:auto;gap:20px;padding:15px 0;scroll-snap-type:x mandatory}
-.tcard{flex:0 0 240px;background:#fff;padding:20px;border-radius:16px;box-shadow:0 6px 15px rgba(0,0,0,0.1);scroll-snap-align:center}
-.tcard h3{color:#e75480;margin-bottom:8px}
+    /* Menü */
+    .menu-btn {
+      font-size: 28px;
+      cursor: pointer;
+      color: #ff4d6d;
+      position: fixed;
+      top: 15px;
+      left: 20px;
+      z-index: 1001;
+    }
 
-/* counter */
-.counter{margin-top:30px;padding:20px;background:#fff;border-radius:16px;box-shadow:0 6px 15px rgba(0,0,0,0.1);text-align:center}
-.counter h2{color:#e75480;margin-bottom:10px}
-.counter video{max-width:400px;margin-top:15px;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1)}
-</style>
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      box-shadow: 3px 0 8px rgba(0,0,0,0.2);
+    }
+
+    .sidebar a {
+      padding: 15px 25px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #333;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #ff4d6d;
+      color: white;
+      border-radius: 10px;
+    }
+
+    main {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+    }
+
+    /* Zaman Çizelgesi */
+    .timeline {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 0;
+      scroll-snap-type: x mandatory;
+    }
+
+    .timeline-card {
+      min-width: 250px;
+      flex: 0 0 auto;
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      scroll-snap-align: start;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .timeline-card h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #ff4d6d;
+    }
+
+    /* Sayaç + Video */
+    .bottom-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .counter {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff4d6d;
+      margin-bottom: 15px;
+    }
+
+    .bottom-section video {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    @media(max-width:768px){
+      .timeline { gap: 12px; }
+      .timeline-card { min-width: 200px; }
+    }
+  </style>
 </head>
 <body>
 
-<nav class="sidebar">
-  <h2>❤</h2>
+<!-- Menü Butonu -->
+<span class="menu-btn" onclick="openMenu()">☰</span>
+
+<!-- Sidebar Menü -->
+<div id="sidebar" class="sidebar">
+  <a href="javascript:void(0)" onclick="closeMenu()">✖ Kapat</a>
   <a href="index.html">🏠 Ana Sayfa</a>
   <a href="anilar.html">📸 Anılar</a>
   <a href="zaman.html">⏳ Zaman</a>
-  <a href="sarkilar.html">🎶 Şarkılar</a>
-</nav>
+  <a href="sarkilar.html">🎵 Şarkılar</a>
+</div>
 
 <main>
   <h1>⏳ Zaman Çizelgesi</h1>
+  <p>Birlikte geçen günlerin anıları burada kaydedildi. Kartlara tıklayınca biraz büyür, okunması kolaylaşır 💫</p>
+
   <div class="timeline">
-    <div class="tcard"><h3>3 Ağustos 2025</h3><p>Sevgili olduk 💕</p></div>
-    <div class="tcard"><h3>İlk Buluşma</h3><p>Kahkahalar, heyecan ve umut...</p></div>
-    <div class="tcard"><h3>15 Eylül 2025</h3><p>Birlikte geçirilen en uzun gün...</p></div>
-    <div class="tcard"><h3>20 Eylül 2025</h3><p>Ayrılık tarihi...</p></div>
+    <div class="timeline-card">
+      <h3>💞 İlk Tanışma</h3>
+      <p>Birlikte başlayan hikayemizin ilk günü...</p>
+    </div>
+    <div class="timeline-card">
+      <h3>🎂 Doğum Günü</h3>
+      <p>Özel kutlama ve unutulmaz anılar.</p>
+    </div>
+    <div class="timeline-card">
+      <h3>🌸 Bahar Günleri</h3>
+      <p>Beraber geçirilen en huzurlu zamanlar.</p>
+    </div>
+    <div class="timeline-card">
+      <h3>💔 20 Eylül Ayrılık</h3>
+      <p>Zaman burada durdu...</p>
+    </div>
   </div>
 
-  <div class="counter">
-    <h2>Zaman Sayacı</h2>
-    <p style="font-size:20px;font-weight:600;color:#e75480;">48 gün 19 saat</p>
-    <p>Bu sayaç burada duracak... bir hatıra olarak.</p>
+  <div class="bottom-section">
+    <div class="counter">⏱ 48 gün 19 saat</div>
     <video src="sonvideo.mp4" controls></video>
   </div>
 </main>
+
+<script>
+  function openMenu() {
+    document.getElementById("sidebar").style.width = "250px";
+  }
+  function closeMenu() {
+    document.getElementById("sidebar").style.width = "0";
+  }
+</script>
 
 </body>
 </html>
