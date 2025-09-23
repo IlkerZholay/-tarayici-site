@@ -1,46 +1,231 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Anılar | İlker ❤ Bahargül</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-body{display:flex;min-height:100vh;margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#fffafb,#ffe6f0);}
-.sidebar{width:200px;background:#fff;box-shadow:2px 0 10px rgba(0,0,0,0.1);padding:20px;display:flex;flex-direction:column;gap:20px;position:fixed;top:0;bottom:0;left:0;}
-.sidebar h2{text-align:center;color:#e75480;margin-bottom:20px}
-.sidebar a{text-decoration:none;color:#333;font-weight:600;padding:10px;border-radius:8px;transition:.3s}
-.sidebar a:hover{background:#e75480;color:#fff}
-main{margin-left:220px;padding:30px;flex:1}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px}
-.gallery img,.gallery video{width:100%;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.15);cursor:pointer;transition:.3s}
-.gallery img:hover,.gallery video:hover{transform:scale(1.05);}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anılar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: url('bahos.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Menü */
+    .menu-btn {
+      font-size: 28px;
+      cursor: pointer;
+      color: #ff4d6d;
+      position: fixed;
+      top: 15px;
+      left: 20px;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      box-shadow: 3px 0 8px rgba(0,0,0,0.2);
+    }
+
+    .sidebar a {
+      padding: 15px 25px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #333;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #ff4d6d;
+      color: white;
+      border-radius: 10px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 20px;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+    }
+
+    /* Sekme butonları */
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .tab-buttons button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      background: #eee;
+      transition: 0.3s;
+    }
+
+    .tab-buttons button.active {
+      background: #ff4d6d;
+      color: #fff;
+    }
+
+    /* Galeri */
+    .gallery {
+      display: none;
+      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .gallery img,
+    .gallery video {
+      width: 100%;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      border: 4px solid #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover,
+    .gallery video:hover {
+      transform: scale(1.05);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.3);
+    }
+
+    /* Modal */
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #modal img,
+    #modal video {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+    }
+
+    #close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-<nav class="sidebar">
-  <h2>❤</h2>
+<!-- Menü Butonu -->
+<span class="menu-btn" onclick="openMenu()">☰</span>
+
+<!-- Sidebar Menü -->
+<div id="sidebar" class="sidebar">
+  <a href="javascript:void(0)" onclick="closeMenu()">✖ Kapat</a>
   <a href="index.html">🏠 Ana Sayfa</a>
   <a href="anilar.html">📸 Anılar</a>
   <a href="zaman.html">⏳ Zaman</a>
-  <a href="sarkilar.html">🎶 Şarkılar</a>
-</nav>
+  <a href="sarkilar.html">🎵 Şarkılar</a>
+</div>
 
 <main>
   <h1>📸 Anılar</h1>
-  <p>Fotoğraflar ve videolar bir galeri gibi burada...</p>
+  <p>Birlikte geçirdiğimiz en özel anılar burada. Fotoğraf ve videolara tıklayarak büyütebilirsin 💫</p>
 
-  <div class="gallery">
+  <div class="tab-buttons">
+    <button class="active" onclick="openTab('photos',this)">Fotoğraflar</button>
+    <button onclick="openTab('videos',this)">Videolar</button>
+  </div>
+
+  <div id="photos" class="gallery" style="display:grid;">
     <img src="Bahar.jpg" alt="Bahar">
     <img src="Bahoş.jpg" alt="Bahoş">
     <img src="bahaar.jpg" alt="bahaar">
     <img src="baharr.jpg" alt="baharr">
-    <video src="baharrrr.mp4" controls></video>
-    <video src="baharrrrrr.mp4" controls></video>
-    <video src="aass.mp4" controls></video>
+    <img src="baharrr.jpg" alt="baharrr">
+    <img src="bahharr.jpg" alt="bahharr">
+    <img src="bbaa.jpg" alt="bbaa">
+  </div>
+
+  <div id="videos" class="gallery">
+    <video src="baharrrr.mp4"></video>
+    <video src="baharrrrrr.mp4"></video>
+    <video src="aass.mp4"></video>
   </div>
 </main>
+
+<!-- Modal -->
+<div id="modal">
+  <span id="close">&times;</span>
+  <img id="modal-img">
+  <video id="modal-video" controls></video>
+</div>
+
+<script>
+  // Menü
+  function openMenu() {
+    document.getElementById("sidebar").style.width = "250px";
+  }
+  function closeMenu() {
+    document.getElementById("sidebar").style.width = "0";
+  }
+
+  // Sekme
+  function openTab(tab,btn){
+    document.querySelectorAll('.gallery').forEach(g=>g.style.display='none');
+    document.getElementById(tab).style.display='grid';
+    document.querySelectorAll('.tab-buttons button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Modal
+  const images=[...document.querySelectorAll(".gallery img,.gallery video")];
+  const modal=document.getElementById("modal");
+  const modalImg=document.getElementById("modal-img");
+  const modalVideo=document.getElementById("modal-video");
+  const closeBtn=document.getElementById("close");
+
+  function showMedia(el){
+    if(el.tagName==="IMG"){
+      modalImg.style.display="block"; modalVideo.style.display="none";
+      modalImg.src=el.src;
+    } else {
+      modalImg.style.display="none"; modalVideo.style.display="block";
+      modalVideo.src=el.src;
+    }
+    modal.style.display="flex";
+  }
+
+  images.forEach(el=>el.addEventListener("click",()=>showMedia(el)));
+  closeBtn.onclick=()=>{modal.style.display="none"; modalVideo.pause();}
+</script>
 
 </body>
 </html>
