@@ -5,169 +5,103 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>📸 Anılar</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root {
   --accent:#e75480;
-  --bg:#fffafb;
-  --card:#ffffffcc;
   --shadow:0 6px 25px rgba(0,0,0,.12);
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 body {
   font-family:'Poppins',sans-serif;
   background:url("Bahoş.jpg") center/cover fixed no-repeat;
   color:#222;
-  line-height:1.6;
+  min-height:100vh;
 }
 
-/* üst bar */
-header {
-  background:rgba(255,255,255,.8);
-  padding:15px;
-  text-align:center;
-  font-family:'Dancing Script',cursive;
-  font-size:clamp(26px,6vw,46px);
-  color:var(--accent);
-  box-shadow:var(--shadow);
-}
-
-/* galeri grid */
-.gallery {
-  max-width:1100px;
-  margin:30px auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-  gap:20px;
-  padding:0 15px;
-}
-.gallery-item {
-  position:relative;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  cursor:pointer;
-  background:#fff;
-  transition:.3s ease;
-}
-.gallery-item img,
-.gallery-item video {
-  width:100%;
-  display:block;
-  border-radius:16px;
-}
-.gallery-item:hover {
-  transform:scale(1.03);
-  box-shadow:0 12px 30px rgba(0,0,0,.2);
-}
-
-/* lightbox modal */
-#lightbox {
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,.9);
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-  animation:fadeIn .3s ease;
-}
-#lightbox img, #lightbox video {
-  max-width:90%;
-  max-height:80%;
-  border-radius:12px;
-}
-#closeBtn {
-  position:absolute;
-  top:20px; right:30px;
-  font-size:40px;
-  color:#fff;
-  cursor:pointer;
-}
-#prevBtn, #nextBtn {
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:50px;
-  color:#fff;
-  cursor:pointer;
+/* side menu */
+.sidebar {
+  width:240px;
+  background:rgba(0,0,0,.85);
   padding:20px;
-  user-select:none;
+  position:fixed;
+  left:-240px;
+  top:0;
+  height:100%;
+  transition:.3s;
+  z-index:1000;
 }
-#prevBtn{left:20px;}
-#nextBtn{right:20px;}
-@keyframes fadeIn {from{opacity:0}to{opacity:1}}
+.sidebar.active {left:0;}
+.sidebar h2 {color:var(--accent);margin-bottom:30px;}
+.sidebar a {
+  display:block;
+  color:#fff;
+  text-decoration:none;
+  margin:15px 0;
+  font-size:18px;
+  transition:.2s;
+}
+.sidebar a:hover {color:var(--accent);}
+.menu-toggle {
+  position:fixed;
+  top:20px;
+  left:20px;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+  z-index:1100;
+}
+
+/* gallery */
+main {padding:80px 20px 20px;max-width:1100px;margin:auto;}
+h2 {font-size:28px;color:var(--accent);margin-bottom:20px;text-align:center;}
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:16px;
+}
+.gallery img,.gallery video {
+  width:100%;
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:.3s;
+}
+.gallery img:hover,.gallery video:hover {transform:scale(1.05);}
 </style>
 </head>
 <body>
 
-<header>📸 Anılar</header>
+<div class="menu-toggle"><i class="fas fa-bars"></i></div>
+<nav class="sidebar">
+  <h2>Menü</h2>
+  <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
+  <a href="anilar.html"><i class="fas fa-images"></i> Anılar</a>
+  <a href="zaman.html"><i class="fas fa-clock"></i> Zaman</a>
+  <a href="sarkilar.html"><i class="fas fa-music"></i> Şarkılar</a>
+</nav>
 
 <main>
+  <h2>📸 Anılar</h2>
   <div class="gallery">
-    <!-- Fotoğraflar -->
-    <div class="gallery-item"><img src="Bahar.jpg" alt="Bahar"></div>
-    <div class="gallery-item"><img src="Bahoş.jpg" alt="Bahoş"></div>
-    <div class="gallery-item"><img src="bahaar.jpg" alt="bahaar"></div>
-    <div class="gallery-item"><img src="baharr.jpg" alt="baharr"></div>
-    <div class="gallery-item"><img src="baharrr.jpg" alt="baharrr"></div>
-    <div class="gallery-item"><img src="bahharr.jpg" alt="bahharr"></div>
-    <div class="gallery-item"><img src="bbaa.jpg" alt="bbaa"></div>
-
-    <!-- Videolar -->
-    <div class="gallery-item"><video src="baharrrr.mp4"></video></div>
-    <div class="gallery-item"><video src="baharrrrrr.mp4"></video></div>
-    <div class="gallery-item"><video src="aass.mp4"></video></div>
+    <img src="Bahar.jpg" alt="Bahar">
+    <img src="Bahoş.jpg" alt="Bahoş">
+    <img src="bahaar.jpg" alt="bahaar">
+    <img src="baharr.jpg" alt="baharr">
+    <img src="baharrr.jpg" alt="baharrr">
+    <img src="bahharr.jpg" alt="bahharr">
+    <img src="bbaa.jpg" alt="bbaa">
+    <video src="baharrrr.mp4" controls></video>
+    <video src="baharrrrrr.mp4" controls></video>
+    <video src="aass.mp4" controls></video>
   </div>
 </main>
 
-<!-- Lightbox -->
-<div id="lightbox">
-  <span id="closeBtn">&times;</span>
-  <span id="prevBtn">&#10094;</span>
-  <img id="lightImg">
-  <video id="lightVideo" controls></video>
-  <span id="nextBtn">&#10095;</span>
-</div>
-
 <script>
-const items=[...document.querySelectorAll(".gallery-item img, .gallery-item video")];
-const lightbox=document.getElementById("lightbox");
-const lightImg=document.getElementById("lightImg");
-const lightVideo=document.getElementById("lightVideo");
-let current=0;
-
-function showItem(i){
-  const el=items[i];
-  if(el.tagName==="IMG"){
-    lightImg.style.display="block";
-    lightVideo.style.display="none";
-    lightImg.src=el.src;
-  }else{
-    lightImg.style.display="none";
-    lightVideo.style.display="block";
-    lightVideo.src=el.src;
-  }
-  lightbox.style.display="flex";
-  current=i;
-}
-items.forEach((el,i)=>el.addEventListener("click",()=>showItem(i)));
-
-document.getElementById("closeBtn").onclick=()=>{
-  lightbox.style.display="none";
-  lightVideo.pause();
-};
-document.getElementById("nextBtn").onclick=()=>{
-  current=(current+1)%items.length;
-  showItem(current);
-};
-document.getElementById("prevBtn").onclick=()=>{
-  current=(current-1+items.length)%items.length;
-  showItem(current);
-};
+const sidebar=document.querySelector(".sidebar");
+document.querySelector(".menu-toggle").onclick=()=>sidebar.classList.toggle("active");
 </script>
-
 </body>
 </html>
