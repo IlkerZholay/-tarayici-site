@@ -2,171 +2,171 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anılarımız</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>📸 Anılar</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
+:root {
   --accent:#e75480;
   --bg:#fffafb;
-  --card-bg:rgba(255,255,255,0.75);
-  --shadow:0 8px 25px rgba(0,0,0,0.1);
+  --card:#ffffffcc;
+  --shadow:0 6px 25px rgba(0,0,0,.12);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{
+body {
   font-family:'Poppins',sans-serif;
-  background:url("bahoş.jpg") no-repeat center/cover fixed;
+  background:url("Bahoş.jpg") center/cover fixed no-repeat;
   color:#222;
+  line-height:1.6;
 }
 
-/* Menü */
-.sidebar{
-  position:fixed;top:0;left:0;height:100%;width:250px;
-  background:rgba(255,255,255,0.9);
-  box-shadow:2px 0 15px rgba(0,0,0,0.1);
-  transform:translateX(-100%);
-  transition:transform 0.3s ease;
-  z-index:1000;padding:20px;
-}
-.sidebar.active{transform:translateX(0);}
-.sidebar h2{font-family:'Dancing Script',cursive;font-size:28px;color:var(--accent);margin-bottom:20px;}
-.sidebar a{
-  display:block;padding:12px;margin:8px 0;
-  color:#333;text-decoration:none;font-weight:600;
-  border-radius:8px;transition:0.3s;
-}
-.sidebar a:hover{background:var(--accent);color:#fff;}
-.menu-btn{
-  position:fixed;top:20px;left:20px;z-index:1100;
-  background:var(--accent);color:#fff;border:none;
-  font-size:22px;padding:10px 14px;border-radius:8px;
-  cursor:pointer;box-shadow:var(--shadow);
+/* üst bar */
+header {
+  background:rgba(255,255,255,.8);
+  padding:15px;
+  text-align:center;
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(26px,6vw,46px);
+  color:var(--accent);
+  box-shadow:var(--shadow);
 }
 
-/* Başlık */
-.hero{
-  text-align:center;padding:80px 20px 40px;
-  background:linear-gradient(to bottom, rgba(255,255,255,0.85), transparent);
-}
-.hero h1{font-family:'Dancing Script',cursive;font-size:40px;color:var(--accent);}
-.hero p{font-size:16px;color:#444;margin-top:8px;}
-
-/* Anılar Galeri */
-.gallery{
+/* galeri grid */
+.gallery {
+  max-width:1100px;
+  margin:30px auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
   gap:20px;
-  padding:20px;
+  padding:0 15px;
 }
-.card{
-  background:var(--card-bg);
-  border-radius:18px;
+.gallery-item {
+  position:relative;
+  border-radius:16px;
   overflow:hidden;
   box-shadow:var(--shadow);
-  backdrop-filter:blur(10px);
-  transition:transform 0.3s, box-shadow 0.3s;
   cursor:pointer;
-  position:relative;
+  background:#fff;
+  transition:.3s ease;
 }
-.card:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-.card img,.card video{width:100%;display:block;border-radius:18px;}
-.card .icon{
-  position:absolute;bottom:10px;right:10px;
-  background:var(--accent);color:#fff;
-  padding:6px;border-radius:50%;
-  font-size:14px;opacity:0;transition:0.3s;
+.gallery-item img,
+.gallery-item video {
+  width:100%;
+  display:block;
+  border-radius:16px;
 }
-.card:hover .icon{opacity:1;}
+.gallery-item:hover {
+  transform:scale(1.03);
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+}
 
-/* Modal */
-.modal{
-  display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.8);justify-content:center;align-items:center;
-  z-index:1200;
+/* lightbox modal */
+#lightbox {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,.9);
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+  animation:fadeIn .3s ease;
 }
-.modal-content{
-  max-width:90%;max-height:80%;border-radius:12px;
-  box-shadow:var(--shadow);
+#lightbox img, #lightbox video {
+  max-width:90%;
+  max-height:80%;
+  border-radius:12px;
 }
-.modal.show{display:flex;}
+#closeBtn {
+  position:absolute;
+  top:20px; right:30px;
+  font-size:40px;
+  color:#fff;
+  cursor:pointer;
+}
+#prevBtn, #nextBtn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:50px;
+  color:#fff;
+  cursor:pointer;
+  padding:20px;
+  user-select:none;
+}
+#prevBtn{left:20px;}
+#nextBtn{right:20px;}
+@keyframes fadeIn {from{opacity:0}to{opacity:1}}
 </style>
 </head>
 <body>
 
-<!-- Menü -->
-<button class="menu-btn">☰</button>
-<div class="sidebar" id="sidebar">
-  <h2>🌸 Menü</h2>
-  <a href="index.html">🏠 Ana Sayfa</a>
-  <a href="anilar.html">📸 Anılar</a>
-  <a href="zaman.html">⏳ Zaman</a>
-  <a href="sarkilar.html">🎵 Şarkılar</a>
-</div>
+<header>📸 Anılar</header>
 
-<!-- Başlık -->
-<section class="hero">
-  <h1>📸 Bizim Anılarımız</h1>
-  <p>Birlikte geçen en güzel zamanlardan kareler…</p>
-</section>
+<main>
+  <div class="gallery">
+    <!-- Fotoğraflar -->
+    <div class="gallery-item"><img src="Bahar.jpg" alt="Bahar"></div>
+    <div class="gallery-item"><img src="Bahoş.jpg" alt="Bahoş"></div>
+    <div class="gallery-item"><img src="bahaar.jpg" alt="bahaar"></div>
+    <div class="gallery-item"><img src="baharr.jpg" alt="baharr"></div>
+    <div class="gallery-item"><img src="baharrr.jpg" alt="baharrr"></div>
+    <div class="gallery-item"><img src="bahharr.jpg" alt="bahharr"></div>
+    <div class="gallery-item"><img src="bbaa.jpg" alt="bbaa"></div>
 
-<!-- Anılar -->
-<section class="gallery">
-  <div class="card">
-    <img src="bahar.jpg" alt="Anı">
-    <span class="icon">🖼</span>
+    <!-- Videolar -->
+    <div class="gallery-item"><video src="baharrrr.mp4"></video></div>
+    <div class="gallery-item"><video src="baharrrrrr.mp4"></video></div>
+    <div class="gallery-item"><video src="aass.mp4"></video></div>
   </div>
-  <div class="card">
-    <img src="baharr.jpg" alt="Anı">
-    <span class="icon">🖼</span>
-  </div>
-  <div class="card">
-    <video src="baharrrr.mp4"></video>
-    <span class="icon">🎬</span>
-  </div>
-  <div class="card">
-    <video src="aass.mp4"></video>
-    <span class="icon">🎬</span>
-  </div>
-</section>
+</main>
 
-<!-- Modal -->
-<div class="modal" id="modal">
-  <span class="close" style="position:absolute;top:20px;right:30px;font-size:32px;color:#fff;cursor:pointer;">&times;</span>
-  <img class="modal-content" id="modal-img">
-  <video class="modal-content" id="modal-video" controls></video>
+<!-- Lightbox -->
+<div id="lightbox">
+  <span id="closeBtn">&times;</span>
+  <span id="prevBtn">&#10094;</span>
+  <img id="lightImg">
+  <video id="lightVideo" controls></video>
+  <span id="nextBtn">&#10095;</span>
 </div>
 
 <script>
-const menuBtn=document.querySelector(".menu-btn");
-const sidebar=document.getElementById("sidebar");
-menuBtn.addEventListener("click",()=>{sidebar.classList.toggle("active");});
+const items=[...document.querySelectorAll(".gallery-item img, .gallery-item video")];
+const lightbox=document.getElementById("lightbox");
+const lightImg=document.getElementById("lightImg");
+const lightVideo=document.getElementById("lightVideo");
+let current=0;
 
-const modal=document.getElementById("modal");
-const modalImg=document.getElementById("modal-img");
-const modalVideo=document.getElementById("modal-video");
-const close=document.querySelector(".close");
+function showItem(i){
+  const el=items[i];
+  if(el.tagName==="IMG"){
+    lightImg.style.display="block";
+    lightVideo.style.display="none";
+    lightImg.src=el.src;
+  }else{
+    lightImg.style.display="none";
+    lightVideo.style.display="block";
+    lightVideo.src=el.src;
+  }
+  lightbox.style.display="flex";
+  current=i;
+}
+items.forEach((el,i)=>el.addEventListener("click",()=>showItem(i)));
 
-document.querySelectorAll(".card").forEach(card=>{
-  card.addEventListener("click",()=>{
-    modal.classList.add("show");
-    let img=card.querySelector("img");
-    let vid=card.querySelector("video");
-    if(img){
-      modalImg.src=img.src;
-      modalImg.style.display="block";
-      modalVideo.style.display="none";
-    }
-    if(vid){
-      modalVideo.src=vid.src;
-      modalVideo.style.display="block";
-      modalImg.style.display="none";
-    }
-  });
-});
-
-close.onclick=()=>{modal.classList.remove("show");modalImg.src="";modalVideo.src="";};
+document.getElementById("closeBtn").onclick=()=>{
+  lightbox.style.display="none";
+  lightVideo.pause();
+};
+document.getElementById("nextBtn").onclick=()=>{
+  current=(current+1)%items.length;
+  showItem(current);
+};
+document.getElementById("prevBtn").onclick=()=>{
+  current=(current-1+items.length)%items.length;
+  showItem(current);
+};
 </script>
 
 </body>
