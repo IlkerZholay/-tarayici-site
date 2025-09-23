@@ -1,90 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ana Sayfa | İlker ❤ Bahargül</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İlker ❤ Bahargül</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url("bahos.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
 
-<style>
-body {
-  display:flex;
-  min-height:100vh;
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#fffafb,#ffe6f0);
-}
-.sidebar{
-  width:200px;
-  background:#fff;
-  box-shadow:2px 0 10px rgba(0,0,0,0.1);
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  position:fixed;
-  top:0; bottom:0; left:0;
-}
-.sidebar h2{
-  text-align:center;
-  color:#e75480;
-  margin-bottom:20px;
-}
-.sidebar a{
-  text-decoration:none;
-  color:#333;
-  font-weight:600;
-  padding:10px;
-  border-radius:8px;
-  transition:.3s;
-}
-.sidebar a:hover{
-  background:#e75480;
-  color:#fff;
-}
-main{
-  margin-left:220px;
-  padding:30px;
-  flex:1;
-}
+    /* Hamburger butonu */
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 32px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
 
-/* Hero */
-.hero {
-  padding:50px;
-  background:url("Bahoş.jpg") center/cover no-repeat;
-  border-radius:16px;
-  color:#fff;
-  text-shadow:0 3px 8px rgba(0,0,0,0.4);
-}
-.hero h1 {
-  font-family:'Dancing Script',cursive;
-  font-size:48px;
-  margin-bottom:15px;
-}
-.hero p {margin:5px 0}
+    /* Yan menü */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 77, 109, 0.95);
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 60px;
+      z-index: 1000;
+    }
 
-/* Notes */
-.note-box{
-  background:#fff;
-  margin:20px 0;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 6px 15px rgba(0,0,0,0.1);
-}
-.note-box h2{color:#e75480;margin-bottom:10px}
-</style>
+    .sidebar a {
+      padding: 15px 25px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: rgba(255,255,255,0.2);
+      border-radius: 6px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 50px;
+      background: rgba(255, 255, 255, 0.85);
+      margin: 20px;
+      border-radius: 16px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      color: #ff4d6d;
+    }
+
+    .note-box {
+      background: rgba(255, 255, 255, 0.9);
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .note-box h2 {
+      color: #ff4d6d;
+    }
+  </style>
 </head>
 <body>
+  <!-- Menü butonu -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-<nav class="sidebar">
-  <h2>❤</h2>
-  <a href="index.html">🏠 Ana Sayfa</a>
-  <a href="anilar.html">📸 Anılar</a>
-  <a href="zaman.html">⏳ Zaman</a>
-  <a href="sarkilar.html">🎶 Şarkılar</a>
-</nav>
+  <!-- Yan menü -->
+  <div id="mySidebar" class="sidebar">
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="anilar.html">📸 Anılar</a>
+    <a href="zaman.html">⏳ Zaman</a>
+    <a href="sarkilar.html">🎵 Şarkılar</a>
+  </div>
 
-<main>
+  <!-- Hero -->
   <section class="hero">
     <h1>İlker ❤ Bahargül</h1>
     <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
@@ -92,13 +103,14 @@ main{
     <p>Barışma ihtimalimiz sıfır olsa bile,</p>
     <p>Şunu sakın unutma, ben seni hep içimde taşıyacağım.</p>
     <p>Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.</p>
-    <p>Belki bir şarkı da. Belki seninle yürüdüğümüz sokaklarda,</p>
+    <p>Belki bir şarkıda. Belki seninle yürüdüğümüz sokaklarda,</p>
     <p>Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.</p>
     <p>Benim için her şeye rağmen en güzel ihtimal sen oldun.</p>
     <p>Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.</p>
     <p>Muazzam bir ihtimaldin, gökyüzüne dokunmak gibi...</p>
   </section>
 
+  <!-- Notlar -->
   <section class="note-box">
     <h2>✨ İlker’den Not</h2>
     <p>Sevgilim Ufaklıkk,</p>
@@ -109,7 +121,16 @@ main{
     <p><strong>Aradığın huzuru bulman dileği ile ❤</strong></p>
     <p style="text-align:right;">— İnatçı</p>
   </section>
-</main>
 
+  <script>
+    function toggleMenu() {
+      let sidebar = document.getElementById("mySidebar");
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+      } else {
+        sidebar.style.width = "250px";
+      }
+    }
+  </script>
 </body>
 </html>
