@@ -1,144 +1,153 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>⏳ Zaman</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>İlker ❤ Bahargül — Zaman</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --accent:#e75480;
-  --card:#ffffffcc;
-  --shadow:0 6px 25px rgba(0,0,0,.15);
+:root{
+  --accent:#d64b74;
+  --muted:#6b6470;
+  --panel: rgba(255,255,255,0.95);
+  --shadow:0 20px 60px rgba(10,10,20,0.08);
+  --radius:12px;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body {
-  font-family:'Poppins',sans-serif;
-  background:url("Bahoş.jpg") center/cover fixed no-repeat;
-  color:#222;
-  line-height:1.6;
-}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:#fff}
+body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed;filter:saturate(.98);z-index:-2}
+body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.96));z-index:-1}
+a{color:inherit;text-decoration:none}
 
-/* side menu */
-.sidebar {
-  width:240px;
-  background:rgba(0,0,0,.85);
-  padding:20px;
-  position:fixed;
-  left:-240px;
-  top:0;
-  height:100%;
-  transition:.3s;
-  z-index:1000;
-}
-.sidebar.active {left:0;}
-.sidebar h2 {color:var(--accent);margin-bottom:30px;}
-.sidebar a {
-  display:block;
-  color:#fff;
-  text-decoration:none;
-  margin:15px 0;
-  font-size:18px;
-  transition:.2s;
-}
-.sidebar a:hover {color:var(--accent);}
-.menu-toggle {
-  position:fixed;
-  top:20px;
-  left:20px;
-  font-size:28px;
-  color:#fff;
-  cursor:pointer;
-  z-index:1100;
-}
+/* menu */
+.openbtn{position:fixed;left:12px;top:12px;z-index:1200;background:rgba(255,255,255,0.75);padding:10px;border-radius:12px;border:0;box-shadow:var(--shadow);cursor:pointer;display:flex;gap:10px;align-items:center}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));backdrop-filter:blur(8px);box-shadow:2px 0 40px rgba(0,0,0,0.06);transition:width .36s;z-index:1190}
+.sidebar.open{width:260px}
+.sidebar nav{margin-top:64px;display:flex;flex-direction:column;gap:6px;padding:12px}
+.sidebar a{padding:12px;border-radius:10px;font-weight:700;color:#222;display:flex;gap:10px;align-items:center}
+.sidebar a:hover{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff}
 
-/* counter */
-.counter {
-  margin:80px auto 20px;
-  padding:30px;
-  text-align:center;
-  background:var(--card);
-  border-radius:20px;
-  width:90%;
-  max-width:500px;
-  box-shadow:var(--shadow);
-}
-.counter h2 {font-size:32px;margin-bottom:10px;color:var(--accent);}
-.counter p {font-size:18px;color:#444;}
+/* container */
+.container{max-width:1100px;margin:10vh auto;padding:20px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.header h2{margin:0;font-weight:700;color:#222}
+.header p{margin:0;color:var(--muted)}
 
-/* timeline */
-.timeline {
-  max-width:900px;
-  margin:40px auto;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  padding:0 15px;
-}
-.card {
-  background:var(--card);
-  padding:20px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  transition:.3s;
-  cursor:pointer;
-}
-.card:hover {transform:scale(1.05);}
-.card h3 {color:var(--accent);margin-bottom:8px;}
-.card p {color:#333;}
+/* timeline horizontal */
+.timeline-wrap{background:var(--panel);padding:14px;border-radius:12px;box-shadow:var(--shadow)}
+.timeline{display:flex;gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory}
+.tcard{flex:0 0 260px;background:#fff;padding:14px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06);scroll-snap-align:center;transition:transform .18s,box-shadow .18s;cursor:pointer}
+.tcard:hover{transform:translateY(-8px);box-shadow:0 28px 60px rgba(0,0,0,0.12)}
+.tdate{color:var(--accent);font-weight:800;font-size:13px}
 
-/* video */
-.video {margin:30px auto;max-width:700px;text-align:center;}
-.video video {width:100%;border-radius:16px;box-shadow:var(--shadow);}
+/* counter area */
+.counter-wrap{display:flex;flex-direction:column;gap:14px;margin-top:18px;background:var(--panel);padding:14px;border-radius:12px;box-shadow:var(--shadow)}
+@media(min-width:900px){ .counter-wrap{flex-direction:row;align-items:center;justify-content:space-between} }
+.counter-info{display:flex;flex-direction:column;gap:8px}
+.counter-block{background:#fff;padding:12px;border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,0.05);text-align:center;min-width:160px}
+.counter-block .num{font-size:20px;font-weight:800;color:var(--accent)}
+.counter-not{color:var(--muted);font-size:13px}
+
+/* video box */
+.counter video{max-width:320px;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,0.08)}
+
+/* footer */
+.footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 </style>
 </head>
 <body>
 
-<div class="menu-toggle"><i class="fas fa-bars"></i></div>
-<nav class="sidebar">
-  <h2>Menü</h2>
-  <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
-  <a href="anilar.html"><i class="fas fa-images"></i> Anılar</a>
-  <a href="zaman.html"><i class="fas fa-clock"></i> Zaman</a>
-  <a href="sarkilar.html"><i class="fas fa-music"></i> Şarkılar</a>
-</nav>
+<button class="openbtn" id="menuToggle">☰ MENÜ</button>
+<aside id="sidebar" class="sidebar" aria-hidden="true">
+  <div style="padding:12px;display:flex;justify-content:flex-end"><span id="sidebarClose" style="cursor:pointer;font-size:22px">×</span></div>
+  <nav>
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="anilar.html">📸 Anılar</a>
+    <a href="zaman.html" style="background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:12px;border-radius:10px">⏳ Zaman</a>
+    <a href="sarkilar.html">🎶 Şarkılar</a>
+  </nav>
+</aside>
 
-<main>
-  <div class="counter">
-    <h2>48 Gün 19 Saat</h2>
-    <p>Güzel şeyler kısa sürermiş...</p>
-  </div>
-
-  <div class="timeline">
-    <div class="card">
-      <h3>Tanıştığımız Gün</h3>
-      <p>O an hayatımda yeni bir sayfa açıldı.</p>
-    </div>
-    <div class="card">
-      <h3>İlk Buluşma</h3>
-      <p>Kalplerimiz aynı anda hızlandı.</p>
-    </div>
-    <div class="card">
-      <h3>Birlikte Çekilen Fotoğraf</h3>
-      <p>Gülüşlerin hafızama kazındı.</p>
-    </div>
-    <div class="card">
-      <h3>Unutulmaz An</h3>
-      <p>Bu hatıra ömür boyu yanımda kalacak.</p>
+<main class="container">
+  <div class="header">
+    <div>
+      <h2>Zaman Çizelgesi</h2>
+      <p>Sevgili olduğumuz tarihten bugüne küçük duraklarımız. Kartlar kaydırılabilir, tıklayınca hafif büyür.</p>
     </div>
   </div>
 
-  <div class="video">
-    <video src="sonvideo.mp4" controls poster="sonvideo.jpg"></video>
-  </div>
+  <section class="timeline-wrap" aria-label="Zaman çizelgesi">
+    <div class="timeline" id="timeline">
+      <div class="tcard">
+        <div class="tdate">3 Ağustos 2025 • 04:05</div>
+        <h3>Sevgili Olduk</h3>
+        <p>O gece hayatımız başka bir yola girdi.</p>
+      </div>
+
+      <div class="tcard">
+        <div class="tdate">İlk Sürpriz</div>
+        <h3>Beyaz Güller</h3>
+        <p>Senin için aldığım küçük şeyler.</p>
+      </div>
+
+      <div class="tcard">
+        <div class="tdate">İlk Buluşma</div>
+        <h3>Merdivenler & Kahkaha</h3>
+        <p>Unutulmaz anlar.</p>
+      </div>
+
+      <div class="tcard">
+        <div class="tdate">20 Eylül 2025</div>
+        <h3>Ayrılık</h3>
+        <p>Bir dönemin sonu — bu tarih not edildi.</p>
+      </div>
+
+      <div class="tcard">
+        <div class="tdate">Bugün</div>
+        <h3>Hâlâ Hatıralar</h3>
+        <p>Anılar koleksiyonu burada saklı.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="counter-wrap" aria-label="Sayaç ve son video">
+    <div class="counter-info">
+      <div class="counter-block">
+        <div style="font-size:13px;color:var(--muted)">Sayacımız (durdu)</div>
+        <div class="num" id="frozenCounter">48 gün 19 saat</div>
+        <div class="counter-not">Bu sayaç burada sabit kalacak — <strong>Güzel şeyler kısa sürermiş</strong></div>
+      </div>
+
+      <div style="max-width:560px">
+        <div style="background:#fff;padding:10px;border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,0.06);margin-bottom:8px">
+          <div style="font-weight:700;color:var(--accent)">Duyuru</div>
+          <div style="color:var(--muted);margin-top:6px">20 Eylül 2025 tarihinde bir ayrılık kaydedildi. Bu sayfa anı amaçlı saklı kalacak.</div>
+        </div>
+
+        <div>
+          <video src="sonvideo.mp4" controls playsinline style="width:100%;border-radius:12px;box-shadow:var(--shadow)"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Zaman çizelgesi ve sayaç — İlker tarafından hazırlanmıştır.</div>
 </main>
 
 <script>
-const sidebar=document.querySelector(".sidebar");
-document.querySelector(".menu-toggle").onclick=()=>sidebar.classList.toggle("active");
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+const sidebarClose = document.getElementById('sidebarClose');
+menuToggle.addEventListener('click', ()=> { sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open')) });
+sidebarClose.addEventListener('click', ()=> { sidebar.classList.remove('open'); sidebar.setAttribute('aria-hidden','true') });
+
+/* timeline card click effect - slight scale */
+document.querySelectorAll('.tcard').forEach(c=>{
+  c.addEventListener('click', ()=> {
+    c.style.transform = 'scale(1.03)';
+    setTimeout(()=> c.style.transform = '', 250);
+  });
+});
 </script>
 </body>
 </html>
