@@ -4,143 +4,145 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>İlker ❤ Bahargül</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root {
+:root{
   --accent:#e75480;
-  --card:#ffffffcc;
-  --shadow:0 8px 25px rgba(0,0,0,0.12);
+  --bg:#fffafb;
+  --muted:#444;
+  --card:#ffffffdd;
+  --shadow:0 8px 25px rgba(0,0,0,0.1);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body {
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
   font-family:'Poppins',sans-serif;
   background:url("Bahoş.jpg") center/cover fixed no-repeat;
   color:#222;
-  line-height:1.6;
-  min-height:100vh;
+  line-height:1.7;
+  overflow-x:hidden;
 }
 
-/* side menu */
-.sidebar {
-  width:240px;
-  background:rgba(0,0,0,.85);
-  padding:20px;
-  position:fixed;
-  left:-240px;
-  top:0;
+/* Menü */
+.sidebar{
   height:100%;
-  transition:.3s;
-  z-index:1000;
-}
-.sidebar.active {left:0;}
-.sidebar h2 {color:var(--accent);margin-bottom:30px;}
-.sidebar a {
-  display:block;
-  color:#fff;
-  text-decoration:none;
-  margin:15px 0;
-  font-size:18px;
-  transition:.2s;
-}
-.sidebar a:hover {color:var(--accent);}
-.menu-toggle {
+  width:0;
   position:fixed;
-  top:20px;
-  left:20px;
-  font-size:28px;
-  color:#fff;
-  cursor:pointer;
-  z-index:1100;
+  z-index:1000;
+  top:0;left:0;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  overflow-x:hidden;
+  transition:.4s;
+  padding-top:60px;
+  box-shadow:2px 0 15px rgba(0,0,0,.2);
 }
+.sidebar a{
+  padding:12px 30px;
+  text-decoration:none;
+  font-size:18px;
+  color:#333;
+  display:block;
+  transition:.3s;
+}
+.sidebar a:hover{background:var(--accent);color:#fff;border-radius:10px;}
+.sidebar .closebtn{
+  position:absolute;top:20px;right:25px;font-size:40px;color:#333;cursor:pointer;
+}
+.openbtn{
+  font-size:28px;cursor:pointer;background:var(--accent);color:#fff;padding:10px 16px;border:none;
+  border-radius:12px;position:fixed;top:20px;left:20px;z-index:1100;box-shadow:var(--shadow);
+}
+.openbtn:hover{background:#c73c6a;}
 
-/* hero */
-.hero {
-  height:70vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  text-align:left;
+/* Hero */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;
   padding:20px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(2px);
 }
-.hero-inner {
-  background:rgba(0,0,0,.4);
-  padding:30px;
-  border-radius:16px;
+.hero h1{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(40px,8vw,90px);
   color:#fff;
-  max-width:700px;
+  text-shadow:0 4px 15px rgba(0,0,0,.6);
 }
-.hero-inner h1 {
-  font-family:'Dancing Script',cursive;
-  font-size:clamp(36px,8vw,70px);
-  margin-bottom:10px;
+.hero p{
+  max-width:800px;
+  margin:8px auto;
+  font-size:18px;
+  color:#fff;
+  text-shadow:0 2px 8px rgba(0,0,0,.5);
 }
-.hero-inner p {margin:5px 0;font-size:16px;}
 
-/* notes */
-.note-box {
+/* Not kutusu */
+.note-box{
   background:var(--card);
-  padding:20px;
-  margin:20px auto;
-  border-radius:16px;
-  max-width:700px;
+  padding:25px;
+  margin:30px auto;
+  border-radius:18px;
+  max-width:800px;
   box-shadow:var(--shadow);
 }
-.note-box h2 {
-  font-family:'Dancing Script',cursive;
-  font-size:28px;
+.note-box h2{
+  font-family:'Great Vibes',cursive;
+  font-size:32px;
   color:var(--accent);
-  margin-bottom:10px;
+  margin-bottom:12px;
+  text-align:center;
 }
-.note-box p {margin:6px 0;}
+.note-box p{margin:8px 0;font-size:17px;color:#333;}
+.note-box p strong{color:var(--accent);}
 </style>
 </head>
 <body>
 
-<div class="menu-toggle"><i class="fas fa-bars"></i></div>
-<nav class="sidebar">
-  <h2>Menü</h2>
-  <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
-  <a href="anilar.html"><i class="fas fa-images"></i> Anılar</a>
-  <a href="zaman.html"><i class="fas fa-clock"></i> Zaman</a>
-  <a href="sarkilar.html"><i class="fas fa-music"></i> Şarkılar</a>
-</nav>
+<!-- Menü -->
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="index.html">🏠 Ana Sayfa</a>
+  <a href="anilar.html">📸 Anılar</a>
+  <a href="zaman.html">⏳ Zaman</a>
+  <a href="sarkilar.html">🎶 Şarkılar</a>
+</div>
+<button class="openbtn" onclick="openNav()">☰ Menü</button>
 
+<!-- Hero -->
 <section class="hero">
-  <div class="hero-inner">
-    <h1>İlker ❤ Bahargül</h1>
-    <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
-    <p>Eğer bi' gün tamamen benden soğursan,</p>
-    <p>Barışma ihtimalimiz sıfır olsa bile,</p>
-    <p>Şunu sakın unutma, ben seni hep içimde taşıyacağım.</p>
-    <p>Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.</p>
-    <p>Belki bir şarkıda. Belki seninle yürüdüğümüz sokaklarda,</p>
-    <p>Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.</p>
-    <p>Benim için her şeye rağmen en güzel ihtimal sen oldun.</p>
-    <p>Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.</p>
-    <p>Muazzam bir ihtimaldin, gökyüzüne dokunmak gibi.</p>
-  </div>
+  <h1>İlker ❤ Bahargül</h1>
+  <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
+  <p>Eğer bi' gün tamamen benden soğursan,</p>
+  <p>Barışma ihtimalimiz sıfır olsa bile,</p>
+  <p>Şunu sakın unutma, ben seni hep içimde taşıyacağım.</p>
+  <p>Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.</p>
+  <p>Belki bir şarkıda. Belki seninle yürüdüğümüz sokaklarda,</p>
+  <p>Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.</p>
+  <p>Benim için her şeye rağmen en güzel ihtimal sen oldun.</p>
+  <p>Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.</p>
+  <p>Muazzam bir ihtimaldin, Gökyüzüne dokunmak gibi.</p>
 </section>
 
-<main>
-  <section class="note-box">
-    <h2>✨ İlker’den Not</h2>
-    <p>Sevgilim Ufaklıkk,</p>
-    <p>Sen benim gözümün görmediğini görensin.</p>
-    <p>Aklımın yetmediğini bilensin.</p>
-    <p>Her yerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyimm.</p>
-    <p><strong>İyi ki vardın ❤</strong></p>
-    <p><strong>Aradığın huzuru bulman dileği ile ❤</strong></p>
-    <p style="text-align:right;">— İnatçı</p>
-  </section>
-</main>
+<!-- İlker’den Not -->
+<section class="note-box">
+  <h2>✨ İlker’den Not</h2>
+  <p>Sevgilim Ufaklıkk,</p>
+  <p>Sen benim gözümün görmediğini görensin.</p>
+  <p>Aklımın yetmediğini bilensin.</p>
+  <p>Her yerde çok doğru bir şey yapıyor olmalıyım ki seni hak edebileyimm.</p>
+  <p><strong>İyi ki vardın ❤</strong></p>
+  <p><strong>Aradığın huzuru bulman dileği ile ❤</strong></p>
+  <p style="text-align:right;">— İnatçı</p>
+</section>
+
+<footer style="text-align:center;color:#fff;margin:20px 0;text-shadow:0 2px 6px rgba(0,0,0,.6);">
+  Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.
+</footer>
 
 <script>
-const sidebar=document.querySelector(".sidebar");
-document.querySelector(".menu-toggle").onclick=()=>sidebar.classList.toggle("active");
+function openNav(){document.getElementById("mySidebar").style.width="250px";}
+function closeNav(){document.getElementById("mySidebar").style.width="0";}
 </script>
 </body>
 </html>
