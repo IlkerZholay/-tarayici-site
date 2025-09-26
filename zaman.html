@@ -1,65 +1,32 @@
 <!doctype html>
 <html lang="tr">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>İlker ❤ Bahargül — Zaman</title>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zaman — İlker & Bahargül</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --accent:#d64b74;
-  --muted:#6b6470;
-  --panel: rgba(255,255,255,0.95);
-  --shadow:0 20px 60px rgba(10,10,20,0.08);
-  --radius:12px;
-}
+:root{--accent:#e85a80;--muted:#666;--card:rgba(255,255,255,0.98)}
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:#fff}
-body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed;filter:saturate(.98);z-index:-2}
-body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.96));z-index:-1}
-a{color:inherit;text-decoration:none}
-
-/* menu */
-.openbtn{position:fixed;left:12px;top:12px;z-index:1200;background:rgba(255,255,255,0.75);padding:10px;border-radius:12px;border:0;box-shadow:var(--shadow);cursor:pointer;display:flex;gap:10px;align-items:center}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));backdrop-filter:blur(8px);box-shadow:2px 0 40px rgba(0,0,0,0.06);transition:width .36s;z-index:1190}
-.sidebar.open{width:260px}
-.sidebar nav{margin-top:64px;display:flex;flex-direction:column;gap:6px;padding:12px}
-.sidebar a{padding:12px;border-radius:10px;font-weight:700;color:#222;display:flex;gap:10px;align-items:center}
-.sidebar a:hover{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff}
-
-/* container */
-.container{max-width:1100px;margin:10vh auto;padding:20px}
-.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.header h2{margin:0;font-weight:700;color:#222}
-.header p{margin:0;color:var(--muted)}
-
-/* timeline horizontal */
-.timeline-wrap{background:var(--panel);padding:14px;border-radius:12px;box-shadow:var(--shadow)}
-.timeline{display:flex;gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory}
-.tcard{flex:0 0 260px;background:#fff;padding:14px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06);scroll-snap-align:center;transition:transform .18s,box-shadow .18s;cursor:pointer}
-.tcard:hover{transform:translateY(-8px);box-shadow:0 28px 60px rgba(0,0,0,0.12)}
-.tdate{color:var(--accent);font-weight:800;font-size:13px}
-
-/* counter area */
-.counter-wrap{display:flex;flex-direction:column;gap:14px;margin-top:18px;background:var(--panel);padding:14px;border-radius:12px;box-shadow:var(--shadow)}
-@media(min-width:900px){ .counter-wrap{flex-direction:row;align-items:center;justify-content:space-between} }
-.counter-info{display:flex;flex-direction:column;gap:8px}
-.counter-block{background:#fff;padding:12px;border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,0.05);text-align:center;min-width:160px}
-.counter-block .num{font-size:20px;font-weight:800;color:var(--accent)}
-.counter-not{color:var(--muted);font-size:13px}
-
-/* video box */
-.counter video{max-width:320px;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,0.08)}
-
-/* footer */
-.footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+body{font-family:'Poppins',sans-serif;margin:0;background:#fff}
+body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed;filter:brightness(.95);z-index:-2}
+.main{max-width:1100px;margin:18px auto;padding:18px}
+.hamb{position:fixed;left:14px;top:14px;background:rgba(255,255,255,0.9);padding:10px;border-radius:12px;z-index:1200;border:0}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:rgba(255,255,255,0.98);transition:width .32s;z-index:1190}
+.sidebar.open{width:240px}
+.sidebar nav{padding:70px 14px;display:flex;flex-direction:column;gap:8px}
+.timeline-wrap{margin-top:10px;overflow-x:auto;display:flex;gap:14px;padding-bottom:8px}
+.tcard{flex:0 0 260px;background:var(--card);padding:16px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06);transition:transform .18s}
+.tcard:hover{transform:translateY(-6px) scale(1.01)}
+.counter{margin-top:20px;padding:18px;background:var(--card);border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06);display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.counter .time{font-size:20px;font-weight:800;color:var(--accent)}
+.counter video{max-width:320px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.08)}
+.announcement{margin-top:8px;color:#444}
+.footer{margin-top:30px;text-align:center;color:var(--muted)}
+@media(max-width:800px){ .tcard{flex:0 0 82%} }
 </style>
 </head>
 <body>
-
-<button class="openbtn" id="menuToggle">☰ MENÜ</button>
+<button class="hamb" id="menuBtn">☰</button>
 <aside id="sidebar" class="sidebar" aria-hidden="true">
-  <div style="padding:12px;display:flex;justify-content:flex-end"><span id="sidebarClose" style="cursor:pointer;font-size:22px">×</span></div>
   <nav>
     <a href="index.html">🏠 Ana Sayfa</a>
     <a href="anilar.html">📸 Anılar</a>
@@ -68,84 +35,41 @@ a{color:inherit;text-decoration:none}
   </nav>
 </aside>
 
-<main class="container">
-  <div class="header">
+<main class="main">
+  <h2>⏳ Zaman Çizelgesi</h2>
+  <p style="color:var(--muted)">Sevgili olduğumuz tarihten bugüne küçük duraklarımız — sağa kaydırın.</p>
+
+  <div class="timeline-wrap" id="timeline">
+    <div class="tcard"><div style="font-weight:800;color:var(--accent)">03 Ağustos 2025 • 04:05</div><div style="margin-top:8px;font-weight:700">Sevgili Olduk</div><p style="color:var(--muted)">O gece hayatımız yeni bir yola girdi.</p></div>
+    <div class="tcard"><div style="font-weight:800;color:var(--accent)">İlk Sürpriz</div><div style="margin-top:8px;font-weight:700">Beyaz Güller</div><p style="color:var(--muted)">Senin için aldığım o küçük çiçekler.</p></div>
+    <div class="tcard"><div style="font-weight:800;color:var(--accent)">İlk Buluşma</div><div style="margin-top:8px;font-weight:700">Merdivenler & Kahkaha</div><p style="color:var(--muted)">Kalbim deli gibi atıyordu.</p></div>
+    <div class="tcard"><div style="font-weight:800;color:var(--accent)">20 Eylül 2025</div><div style="margin-top:8px;font-weight:700">Ayrılık</div><p style="color:var(--muted)">Bu tarih, bu anı.</p></div>
+    <div class="tcard"><div style="font-weight:800;color:var(--accent)">Bugün</div><div style="margin-top:8px;font-weight:700">Hâlâ Hatıralar</div><p style="color:var(--muted)">Her hatıra bir başka değerli.</p></div>
+  </div>
+
+  <div class="counter" aria-live="polite">
     <div>
-      <h2>Zaman Çizelgesi</h2>
-      <p>Sevgili olduğumuz tarihten bugüne küçük duraklarımız. Kartlar kaydırılabilir, tıklayınca hafif büyür.</p>
+      <div style="font-weight:700">Sayaç (durdu)</div>
+      <div class="time">48 gün 19 saat</div>
+      <div class="announcement">Güzel şeyler kısa sürermiş — bu sayaç hatıra için durduruldu.</div>
+    </div>
+    <div>
+      <video src="sonvideo.mp4" controls></video>
     </div>
   </div>
 
-  <section class="timeline-wrap" aria-label="Zaman çizelgesi">
-    <div class="timeline" id="timeline">
-      <div class="tcard">
-        <div class="tdate">3 Ağustos 2025 • 04:05</div>
-        <h3>Sevgili Olduk</h3>
-        <p>O gece hayatımız başka bir yola girdi.</p>
-      </div>
-
-      <div class="tcard">
-        <div class="tdate">İlk Sürpriz</div>
-        <h3>Beyaz Güller</h3>
-        <p>Senin için aldığım küçük şeyler.</p>
-      </div>
-
-      <div class="tcard">
-        <div class="tdate">İlk Buluşma</div>
-        <h3>Merdivenler & Kahkaha</h3>
-        <p>Unutulmaz anlar.</p>
-      </div>
-
-      <div class="tcard">
-        <div class="tdate">20 Eylül 2025</div>
-        <h3>Ayrılık</h3>
-        <p>Bir dönemin sonu — bu tarih not edildi.</p>
-      </div>
-
-      <div class="tcard">
-        <div class="tdate">Bugün</div>
-        <h3>Hâlâ Hatıralar</h3>
-        <p>Anılar koleksiyonu burada saklı.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="counter-wrap" aria-label="Sayaç ve son video">
-    <div class="counter-info">
-      <div class="counter-block">
-        <div style="font-size:13px;color:var(--muted)">Sayacımız (durdu)</div>
-        <div class="num" id="frozenCounter">48 gün 19 saat</div>
-        <div class="counter-not">Bu sayaç burada sabit kalacak — <strong>Güzel şeyler kısa sürermiş</strong></div>
-      </div>
-
-      <div style="max-width:560px">
-        <div style="background:#fff;padding:10px;border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,0.06);margin-bottom:8px">
-          <div style="font-weight:700;color:var(--accent)">Duyuru</div>
-          <div style="color:var(--muted);margin-top:6px">20 Eylül 2025 tarihinde bir ayrılık kaydedildi. Bu sayfa anı amaçlı saklı kalacak.</div>
-        </div>
-
-        <div>
-          <video src="sonvideo.mp4" controls playsinline style="width:100%;border-radius:12px;box-shadow:var(--shadow)"></video>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer">Zaman çizelgesi ve sayaç — İlker tarafından hazırlanmıştır.</div>
+  <div class="footer">Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</div>
 </main>
 
 <script>
-const menuToggle = document.getElementById('menuToggle');
-const sidebar = document.getElementById('sidebar');
-const sidebarClose = document.getElementById('sidebarClose');
-menuToggle.addEventListener('click', ()=> { sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open')) });
-sidebarClose.addEventListener('click', ()=> { sidebar.classList.remove('open'); sidebar.setAttribute('aria-hidden','true') });
+const menuBtn=document.getElementById('menuBtn'), sidebar=document.getElementById('sidebar');
+menuBtn.addEventListener('click', ()=> { const open = sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden', !open); });
 
-/* timeline card click effect - slight scale */
+// small: tıklanınca hafif animasyon (okunur halde büyüsün)
 document.querySelectorAll('.tcard').forEach(c=>{
   c.addEventListener('click', ()=> {
-    c.style.transform = 'scale(1.03)';
-    setTimeout(()=> c.style.transform = '', 250);
+    c.style.transform='scale(1.02) translateY(-6px)';
+    setTimeout(()=> c.style.transform='', 420);
   });
 });
 </script>
