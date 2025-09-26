@@ -1,106 +1,110 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>İlker ❤ Bahargül — Zaman</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YBDYWZSF9B');
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-  :root{--accent:#c83a66;--muted:#666;--bg:#fff6f8;--card:rgba(255,255,255,0.98);--shadow:0 20px 50px rgba(10,10,20,0.08)}
-  *{box-sizing:border-box} html,body{height:100%;margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:#222}
-  a{color:inherit}
-  .hamburger{position:fixed;left:14px;top:14px;z-index:1200;background:rgba(255,255,255,0.85);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);cursor:pointer}
-  .sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));box-shadow:2px 0 40px rgba(0,0,0,0.06);transition:width .28s;z-index:1190;padding-top:64px}
-  .sidebar.open{width:260px}
-  .nav{display:flex;flex-direction:column;gap:6px;padding:12px}
-  .nav a{padding:12px;border-radius:8px;font-weight:700;color:#222;display:flex;gap:10px}
-  .nav a:hover{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff}
+:root{--accent:#c83a66;--muted:#6b7280;--card:#fff;--shadow:0 18px 60px rgba(0,0,0,0.06)}
+*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:#fff}
+body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed no-repeat;filter:brightness(.95);z-index:-2}
+body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.9));z-index:-1}
 
-  main{max-width:1100px;margin:24px auto;padding:0 18px 80px}
-  h1{font-size:20px;margin-bottom:8px}
-  p.desc{color:var(--muted)}
+/* sidebar */
+.hamburger{position:fixed;left:14px;top:14px;z-index:1200;background:rgba(255,255,255,0.86);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;gap:10px}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:rgba(255,255,255,0.75);backdrop-filter:blur(8px);box-shadow:2px 0 40px rgba(0,0,0,0.06);transition:width .36s}
+.sidebar.open{width:260px}
+.sidebar nav{margin-top:68px;display:flex;flex-direction:column;gap:6px;padding:12px}
+.sidebar a{padding:12px;border-radius:10px;font-weight:700;color:#222;text-decoration:none}
 
-  .timeline{display:flex;gap:16px;overflow-x:auto;padding:12px 4px;scroll-snap-type:x mandatory}
-  .card{flex:0 0 280px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);transition:transform .22s,box-shadow .22s;scroll-snap-align:center}
-  .card:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,0.12)}
-  .card h3{color:var(--accent);margin-top:0}
+/* main */
+.container{max-width:1100px;margin:8vh auto;padding:20px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.header h2{margin:0;font-weight:700;color:#222}
 
-  .counter-wrap{margin-top:26px;background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;align-items:center}
-  .counter-num{font-weight:800;font-size:20px;color:#222}
-  .counter-note{color:var(--muted)}
+/* timeline */
+.timeline-wrap{background:var(--card);padding:14px;border-radius:14px;box-shadow:var(--shadow)}
+.timeline{display:flex;gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory}
+.tcard{flex:0 0 260px;background:linear-gradient(#fff,#fff7fb);padding:14px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06);scroll-snap-align:center;transition:transform .22s ease}
+.tcard:hover{transform:translateY(-6px)}
+.tdate{color:var(--accent);font-weight:800;font-size:13px}
+.tcard h3{margin:8px 0}
 
-  .side-video{max-width:420px;width:100%;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
-  @media(min-width:900px){ .counter-wrap{flex-direction:row;justify-content:space-between} }
-  footer{margin-top:28px;text-align:center;color:var(--muted);padding-bottom:36px}
+/* counter */
+.counter{margin-top:20px;background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.counter .block{flex:1;min-width:220px}
+.counter .time{font-size:28px;font-weight:800;color:var(--accent)}
+.counter p{margin:6px 0;color:var(--muted)}
+.side-video{max-width:420px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.side-video video{width:100%;height:auto;display:block}
 </style>
 </head>
 <body>
 
-<div class="hamburger" id="hamburgerBtn">☰ Men&uuml;</div>
+<button class="hamburger" id="menuBtn">☰ Men&uuml;</button>
 <aside id="sidebar" class="sidebar" aria-hidden="true">
-  <nav class="nav">
+  <div style="display:flex;justify-content:flex-end;padding:10px"><button id="closeSidebar" style="background:transparent;border:0;font-size:28px;cursor:pointer">×</button></div>
+  <nav>
     <a href="index.html">🏠 Ana Sayfa</a>
     <a href="anilar.html">📸 Anılar</a>
-    <a href="zaman.html" style="background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:12px;border-radius:8px">⏳ Zaman</a>
+    <a href="zaman.html" style="background:linear-gradient(90deg,var(--accent),#a33357);color:#fff;padding:12px;border-radius:8px">⏳ Zaman</a>
     <a href="sarkilar.html">🎶 Şarkılar</a>
   </nav>
 </aside>
 
-<main>
-  <h1>⏳ Zaman Çizelgesi</h1>
-  <p class="desc">Sevgili olduğumuz tarihten bugüne küçük duraklar — sağa kaydır.</p>
+<main class="container">
+  <header class="header">
+    <h2>⏳ Zaman Çizelgesi</h2>
+    <p style="color:var(--muted)">Sevgili olduğumuz tarihten bugüne küçük duraklar — kaydır.</p>
+  </header>
 
-  <div class="timeline" id="timeline">
-    <div class="card">
-      <h3>3 Ağustos 2025 • 04:05</h3>
-      <p>Sevgili olduk — o gece hayatımız başka bir yola girdi.</p>
+  <section class="timeline-wrap card">
+    <div class="timeline" id="timeline">
+      <div class="tcard" tabindex="0"><div class="tdate">3 Ağustos 2025 • 04:05</div><h3>Sevgili Olduk</h3><p class="muted">O gece hayatımız yepyeni bir yola girdi.</p></div>
+      <div class="tcard" tabindex="0"><div class="tdate">İlk Sürpriz</div><h3>Beyaz Güller</h3><p class="muted">Senin için aldığım küçük çiçekler.</p></div>
+      <div class="tcard" tabindex="0"><div class="tdate">İlk Buluşma</div><h3>Merdivenler & Kahkaha</h3><p class="muted">Kalbim deli gibi atıyordu.</p></div>
+      <div class="tcard" tabindex="0"><div class="tdate">20 Eylül 2025</div><h3>Ayrılık</h3><p class="muted">Bir dönüm noktası — kaydedildi.</p></div>
+      <div class="tcard" tabindex="0"><div class="tdate">Bugün</div><h3>Hâlâ Buradayız</h3><p class="muted">Anılar burada saklı.</p></div>
     </div>
-    <div class="card">
-      <h3>İlk Sürpriz</h3>
-      <p>Beyaz güller — küçük mutluluklar.</p>
-    </div>
-    <div class="card">
-      <h3>İlk Buluşma</h3>
-      <p>Merdivenler ve kahkahalar.</p>
-    </div>
-    <div class="card">
-      <h3>20 Eylül 2025</h3>
-      <p><strong>Ayrılık</strong> — bir dönüm noktası.</p>
-    </div>
-    <div class="card">
-      <h3>Bugün</h3>
-      <p>Hâlâ seni düşünürüm.</p>
-    </div>
-  </div>
+  </section>
 
-  <div class="counter-wrap" style="margin-top:30px;align-items:center">
-    <div style="flex:1;max-width:560px">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
-        <div>
-          <div style="font-size:14px;color:var(--muted)">Serüvenimiz (duraklamış sayaç)</div>
-          <div class="counter-num">48 gün 19 saat</div>
-          <div class="counter-note">Güzel şeyler kısa sürermiş — bir duyuru olarak burada duracak.</div>
-        </div>
+  <section style="margin-top:18px" class="card">
+    <div class="counter">
+      <div class="block">
+        <p style="font-weight:700">Serüvenimizin sayaç kaydı</p>
+        <div class="time">48 gün 19 saat</div>
+        <p style="color:var(--muted)">Bu sayaç burada duracak — bir hatıra olarak. <strong>Güzel şeyler kısa sürermiş</strong>.</p>
+      </div>
+      <div class="side-video">
+        <video src="sonvideo.mp4" controls></video>
       </div>
     </div>
-
-    <div class="side-video">
-      <video src="sonvideo.mp4" controls style="width:100%;display:block;height:auto"></video>
-    </div>
-  </div>
-
-  <footer>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</footer>
+  </section>
 </main>
 
 <script>
-  // sidebar
-  const hb = document.getElementById('hamburgerBtn'), sb = document.getElementById('sidebar');
-  hb.addEventListener('click', ()=> { sb.classList.toggle('open'); sb.setAttribute('aria-hidden', !sb.classList.contains('open')); });
-  document.addEventListener('click', (e)=> { if(!sb.contains(e.target) && !hb.contains(e.target)){ sb.classList.remove('open'); sb.setAttribute('aria-hidden','true'); } });
+/* sidebar */
+const menuBtn=document.getElementById('menuBtn'), sidebar=document.getElementById('sidebar'), closeSidebar=document.getElementById('closeSidebar');
+menuBtn.addEventListener('click', ()=>{ sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden',!sidebar.classList.contains('open')) });
+closeSidebar.addEventListener('click', ()=>{ sidebar.classList.remove('open'); sidebar.setAttribute('aria-hidden','true') });
 
-  // tiny enhancement: clicking a card pulses slightly (done via CSS hover), add click zoom (brief)
-  document.querySelectorAll('.card').forEach(c=>{
-    c.addEventListener('click', ()=> { c.style.transform='scale(1.02)'; setTimeout(()=>c.style.transform='',250); });
+/* timeline click grow effect */
+document.querySelectorAll('.tcard').forEach(card=>{
+  card.addEventListener('click', ()=> {
+    card.style.transform = 'translateY(-8px) scale(1.02)';
+    setTimeout(()=>{ card.style.transform = ''; }, 260);
   });
+});
 </script>
 </body>
 </html>
