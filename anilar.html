@@ -1,116 +1,178 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Anılar — İlker & Bahargül</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>İlker ❤ Bahargül — Anılar</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root{--accent:#e85a80;--muted:#666;--card:rgba(255,255,255,0.96)}
-*{box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;margin:0;background:#fff}
-body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed;filter:brightness(.95);z-index:-2}
-.main{max-width:1100px;margin:18px auto;padding:18px}
-.hamb{position:fixed;left:14px;top:14px;background:rgba(255,255,255,0.85);padding:10px;border-radius:12px;z-index:1200;border:0;cursor:pointer}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:rgba(255,255,255,0.98);transition:width .32s;z-index:1190}
-.sidebar.open{width:240px}
-.sidebar nav{padding:70px 14px;display:flex;flex-direction:column;gap:8px}
-.sidebar a{padding:12px;border-radius:10px;text-decoration:none;color:#222;font-weight:700}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:12px}
-.tile{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,0.06);cursor:pointer;border:6px solid #fff}
-.tile img,.tile video{width:100%;height:220px;object-fit:cover;display:block}
-.controls{display:flex;gap:8px;justify-content:center;margin-top:12px}
-.note{margin-top:12px;background:var(--card);padding:14px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06)}
-/* modal */
-#modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;z-index:2000}
-#modal .wrap{max-width:92%;max-height:88%;position:relative}
-#modal img,#modal video{width:100%;height:100%;object-fit:contain;border-radius:12px}
-#close{position:absolute;right:-6px;top:-6px;background:rgba(255,255,255,0.06);color:#fff;border-radius:50%;padding:6px 10px;cursor:pointer;font-size:26px}
-#prev,#next{position:absolute;top:50%;transform:translateY(-50%);font-size:42px;color:#fff;cursor:pointer;padding:12px}
-#prev{left:-60px}#next{right:-60px}
-@media(max-width:600px){
-  .tile img,.tile video{height:160px}
-  #prev{left:6px}#next{right:6px}
-}
+  :root{--accent:#c83a66;--muted:#666;--bg:#fff6f8;--card:rgba(255,255,255,0.98);--shadow:0 20px 50px rgba(10,10,20,0.08)}
+  *{box-sizing:border-box} html,body{height:100%;margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:#222}
+  a{color:inherit}
+  /* same sidebar */
+  .hamburger{position:fixed;left:14px;top:14px;z-index:1200;background:rgba(255,255,255,0.85);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);cursor:pointer;display:flex;gap:10px;align-items:center;backdrop-filter:blur(6px)}
+  .sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));box-shadow:2px 0 40px rgba(0,0,0,0.06);transition:width .28s;z-index:1190;padding-top:64px;backdrop-filter: blur(6px)}
+  .sidebar.open{width:260px}
+  .nav{display:flex;flex-direction:column;gap:6px;padding:12px}
+  .nav a{padding:12px;border-radius:8px;font-weight:700;color:#222;display:flex;gap:10px;align-items:center}
+  .nav a:hover{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff}
+
+  main{max-width:1100px;margin:24px auto;padding:0 18px 60px}
+  h1{font-size:20px;margin:0 0 12px}
+  p.desc{color:var(--muted)}
+
+  /* gallery grid */
+  .gallery-wrap{margin-top:18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+  .item{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);position:relative;cursor:pointer;transition:transform .25s,box-shadow .25s}
+  .item:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,0.12)}
+  .item img,.item video{width:100%;height:260px;object-fit:cover;display:block}
+  .caption{padding:12px;font-size:14px;color:var(--muted)}
+
+  /* modal full */
+  #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:1400;align-items:center;justify-content:center;padding:18px}
+  #modal .inner{max-width:980px;width:100%;max-height:92vh;position:relative}
+  #modal img,#modal video{width:100%;height:auto;border-radius:12px;display:block}
+  #modal .close{position:absolute;right:8px;top:8px;color:#fff;font-size:28px;cursor:pointer}
+  #modal .prev,#modal .next{position:absolute;top:50%;transform:translateY(-50%);font-size:40px;color:#fff;cursor:pointer;padding:20px}
+  #modal .prev{left:-10px} #modal .next{right:-10px}
+
+  footer{margin-top:28px;text-align:center;color:var(--muted);padding-bottom:36px}
 </style>
 </head>
 <body>
-<button class="hamb" id="menuBtn">☰</button>
+
+<div class="hamburger" id="hamburgerBtn">☰ Men&uuml;</div>
 <aside id="sidebar" class="sidebar" aria-hidden="true">
-  <nav>
+  <nav class="nav">
     <a href="index.html">🏠 Ana Sayfa</a>
-    <a href="anilar.html">📸 Anılar</a>
+    <a href="anilar.html" style="background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:12px;border-radius:8px">📸 Anılar</a>
     <a href="zaman.html">⏳ Zaman</a>
     <a href="sarkilar.html">🎶 Şarkılar</a>
   </nav>
 </aside>
 
-<main class="main">
-  <h2>📸 Anılarımız — Albüm</h2>
-  <p style="color:var(--muted)">Bir fotoğrafa/ videoya tıklayın — tam ekranda gezinin. Sağ üstte X ile çıkabilirsiniz.</p>
+<main>
+  <h1>📸 Anılar — Albüm</h1>
+  <p class="desc">Fotoğraflar ve videolar kronolojik olarak. Tıklayınca tam ekranda inceleyebilirsiniz. Sağa/sola geçiş var.</p>
 
-  <div class="gallery-grid" id="grid">
-    <div class="tile"><img src="Bahar.jpg" alt=""></div>
-    <div class="tile"><img src="Bahoş.jpg" alt=""></div>
-    <div class="tile"><img src="bahaar.jpg" alt=""></div>
-    <div class="tile"><img src="baharr.jpg" alt=""></div>
-    <div class="tile"><img src="baharrr.jpg" alt=""></div>
-    <div class="tile"><img src="bahharr.jpg" alt=""></div>
-    <div class="tile"><img src="bbaa.jpg" alt=""></div>
-    <div class="tile"><video src="baharrrr.mp4" preload="metadata"></video></div>
-    <div class="tile"><video src="baharrrrrr.mp4" preload="metadata"></video></div>
-    <div class="tile"><video src="aass.mp4" preload="metadata"></video></div>
-    <div class="tile"><video src="sonvideo.mp4" preload="metadata"></video></div>
+  <div class="gallery-wrap">
+    <div class="grid" id="grid">
+      <div class="item" data-type="img" data-src="Bahar.jpg">
+        <img src="Bahar.jpg" alt="Bahar">
+        <div class="caption">Bahar — Sahilde bir an</div>
+      </div>
+
+      <div class="item" data-type="img" data-src="Bahoş.jpg">
+        <img src="Bahoş.jpg" alt="Bahoş">
+        <div class="caption">Bahoş — Gülüşün</div>
+      </div>
+
+      <div class="item" data-type="img" data-src="bahaar.jpg">
+        <img src="bahaar.jpg" alt="bahaar">
+        <div class="caption">bahaar — Gün batımı</div>
+      </div>
+
+      <div class="item" data-type="img" data-src="baharr.jpg">
+        <img src="baharr.jpg" alt="baharr">
+        <div class="caption">baharr — Sokak</div>
+      </div>
+
+      <div class="item" data-type="img" data-src="baharrr.jpg">
+        <img src="baharrr.jpg" alt="baharrr">
+        <div class="caption">baharrr — An</div>
+      </div>
+
+      <div class="item" data-type="img" data-src="bahharr.jpg">
+        <img src="bahharr.jpg" alt="bahharr">
+        <div class="caption">bahharr — Hatıra</div>
+      </div>
+
+      <div class="item" data-type="img" data-src="bbaa.jpg">
+        <img src="bbaa.jpg" alt="bbaa">
+        <div class="caption">bbaa — Özel</div>
+      </div>
+
+      <div class="item" data-type="video" data-src="baharrrr.mp4">
+        <video src="baharrrr.mp4" muted playsinline></video>
+        <div class="caption">Video: Kumsal</div>
+      </div>
+
+      <div class="item" data-type="video" data-src="baharrrrrr.mp4">
+        <video src="baharrrrrr.mp4" muted playsinline></video>
+        <div class="caption">Video: Anı</div>
+      </div>
+
+      <!-- ek video -->
+      <div class="item" data-type="video" data-src="aass.mp4">
+        <video src="aass.mp4" muted playsinline></video>
+        <div class="caption">Video: aass</div>
+      </div>
+    </div>
   </div>
 
-  <div class="note">
-    <strong>Not:</strong> Bu albüm büyüyebilir — yeni fotoğraflar/ videolar eklenecek. Her görsel çerçeveli, gölge ve temiz beyaz kenar ile sunulur.
-  </div>
+  <footer>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</footer>
 </main>
 
 <!-- modal -->
 <div id="modal" role="dialog" aria-hidden="true">
-  <div class="wrap">
-    <button id="close">✕</button>
-    <span id="prev">❮</span>
-    <span id="next">❯</span>
-    <img id="modal-img" style="display:none">
-    <video id="modal-video" style="display:none" controls></video>
+  <div class="inner">
+    <span class="close" id="mClose">✕</span>
+    <span class="prev" id="mPrev">‹</span>
+    <span class="next" id="mNext">›</span>
+    <img id="mImg" style="display:none">
+    <video id="mVideo" style="display:none" controls></video>
   </div>
 </div>
 
 <script>
-/* sidebar */
-const menuBtn=document.getElementById('menuBtn'), sidebar=document.getElementById('sidebar');
-menuBtn.addEventListener('click', ()=> { sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open')); });
+  // sidebar toggle
+  const hb = document.getElementById('hamburgerBtn'), sb = document.getElementById('sidebar');
+  hb.addEventListener('click', ()=> { sb.classList.toggle('open'); sb.setAttribute('aria-hidden', !sb.classList.contains('open')); });
 
-/* gallery modal */
-const tiles = Array.from(document.querySelectorAll('.tile img, .tile video'));
-const modal = document.getElementById('modal');
-const mImg = document.getElementById('modal-img'), mVideo = document.getElementById('modal-video');
-const closeBtn = document.getElementById('close'), prevBtn = document.getElementById('prev'), nextBtn = document.getElementById('next');
-let idx = 0;
+  // gallery modal
+  const items = Array.from(document.querySelectorAll('.item'));
+  const modal = document.getElementById('modal');
+  const mImg = document.getElementById('mImg'), mVideo = document.getElementById('mVideo');
+  const mClose = document.getElementById('mClose'), mNext = document.getElementById('mNext'), mPrev = document.getElementById('mPrev');
+  let index = 0;
 
-tiles.forEach((el,i)=> {
-  el.addEventListener('click', ()=> open(i));
-});
-function open(i){
-  idx = i;
-  const el = tiles[idx];
-  if(el.tagName === 'IMG'){
-    mVideo.style.display='none'; mVideo.pause();
-    mImg.src = el.src; mImg.style.display='block';
-  } else {
-    mImg.style.display='none';
-    mVideo.src = el.src; mVideo.style.display='block'; mVideo.currentTime=0; mVideo.play();
+  function openAt(i){
+    index = i;
+    const it = items[index];
+    const type = it.dataset.type, src = it.dataset.src;
+    if(type === 'img'){
+      mVideo.style.display='none'; mVideo.pause();
+      mImg.style.display='block'; mImg.src = src;
+    } else {
+      mImg.style.display='none';
+      mVideo.style.display='block'; mVideo.src = src; mVideo.play();
+    }
+    modal.style.display='flex'; modal.setAttribute('aria-hidden','false');
   }
-  modal.style.display='flex'; modal.setAttribute('aria-hidden','false');
-}
-function closeModal(){ modal.style.display='none'; mVideo.pause(); mVideo.src=''; modal.setAttribute('aria-hidden','true'); }
-closeBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', (e)=> { if(e.target===modal) closeModal(); });
-nextBtn.addEventListener('click', ()=> { idx=(idx+1)%tiles.length; open(idx); });
-prevBtn.addEventListener('click', ()=> { idx=(idx-1+tiles.length)%tiles.length; open(idx); });
+  items.forEach((el,i)=> el.addEventListener('click', ()=> openAt(i)));
 
+  mClose.addEventListener('click', ()=> { modal.style.display='none'; mVideo.pause(); modal.setAttribute('aria-hidden','true'); });
+  mNext.addEventListener('click', ()=> { index=(index+1)%items.length; openAt(index); });
+  mPrev.addEventListener('click', ()=> { index=(index-1+items.length)%items.length; openAt(index); });
+
+  // keyboard
+  document.addEventListener('keydown', (e)=>{
+    if(modal.style.display==='flex'){
+      if(e.key === 'ArrowRight') mNext.click();
+      if(e.key === 'ArrowLeft') mPrev.click();
+      if(e.key === 'Escape') mClose.click();
+    }
+  });
+
+  // pause preview videos on hover out (mobile safe)
+  document.querySelectorAll('.item video').forEach(v=>{
+    v.addEventListener('click', (e)=> { e.stopPropagation(); openAt(items.findIndex(it=>it.dataset.src===v.currentSrc.split('/').pop())); });
+  });
+
+  // click outside to close on mobile
+  modal.addEventListener('click', (e)=> { if(e.target===modal) mClose.click(); });
 </script>
+
 </body>
 </html>
