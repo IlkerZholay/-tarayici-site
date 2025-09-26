@@ -4,59 +4,83 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>İlker ❤ Bahargül — Ana Sayfa</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Google Analytics (gtag) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBDYWZSF9B');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --accent:#c83a66;
-    --muted:#6b7280;
-    --bg:#fff6f8;
-    --card: rgba(255,255,255,0.98);
-    --shadow: 0 20px 50px rgba(10,10,20,0.08);
-    --maxw:1100px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:var(--bg);color:#222;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  /* global layout */
-  .app{min-height:100vh;display:flex}
-  /* left hamburger / menu */
-  .hamburger{
-    position:fixed;left:14px;top:14px;z-index:1200;background:rgba(255,255,255,0.85);
-    border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);cursor:pointer;display:flex;gap:10px;align-items:center;
-    backdrop-filter:blur(6px);
-  }
-  .hamburger .icon{font-size:18px}
-  .sidebar{
-    position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));
-    box-shadow:2px 0 40px rgba(0,0,0,0.06);transition:width .28s;z-index:1190;padding-top:64px;backdrop-filter: blur(6px);
-  }
-  .sidebar.open{width:260px}
-  .nav{display:flex;flex-direction:column;gap:6px;padding:12px}
-  .nav a{padding:12px;border-radius:8px;font-weight:700;color:#222;display:flex;gap:10px;align-items:center}
-  .nav a:hover{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff}
-  /* main content */
-  main{margin:0 auto;max-width:var(--maxw);width:100%;padding:26px 18px 80px;margin-left:0}
-  .hero{background:url("Bahoş.jpg") center/cover fixed no-repeat;border-radius:14px;padding:36px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
-  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.28),rgba(0,0,0,0.56));mix-blend-mode:multiply}
-  .hero-inner{position:relative;z-index:2;color:#fff;max-width:980px;padding:2rem;border-radius:12px}
-  .hero-inner h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5.6vw,40px);margin:0 0 8px}
-  .hero-inner p{opacity:.95;margin:6px 0;font-size:16px;line-height:1.6}
-  .note-card{background:var(--card);padding:18px;border-radius:12px;margin-top:18px;box-shadow:var(--shadow)}
-  .note-card h3{color:var(--accent);margin:0 0 8px}
-  footer{margin-top:36px;text-align:center;color:var(--muted);padding-bottom:36px}
-  /* responsive */
-  @media(min-width:900px){ main{margin-left:320px} .sidebar{left:40px} .hamburger{left:calc(50% - var(--maxw)/2 - 60px)} }
+:root{
+  --accent:#c83a66;
+  --muted:#6b7280;
+  --card: rgba(255,255,255,0.98);
+  --shadow: 0 18px 60px rgba(0,0,0,0.06);
+  --maxw:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:#fff}
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background:url('Bahoş.jpg') center/cover fixed no-repeat;
+  filter: saturate(.98) brightness(.96);
+  z-index:-2;
+}
+body::after{
+  content:"";
+  position:fixed;inset:0;
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.9));
+  z-index:-1;
+}
+/* Sidebar / hamburger */
+.hamburger{
+  position:fixed; left:14px; top:14px; z-index:1200;
+  background:rgba(255,255,255,0.86); border-radius:12px; padding:10px 12px;
+  box-shadow:var(--shadow); cursor:pointer; display:flex; align-items:center; gap:10px;
+}
+.sidebar{
+  position:fixed; left:0; top:0; bottom:0; width:0; overflow:hidden;
+  background:rgba(255,255,255,0.75); backdrop-filter:blur(8px);
+  box-shadow:2px 0 40px rgba(0,0,0,0.06); transition:width .36s ease; z-index:1195;
+}
+.sidebar.open{width:260px}
+.sidebar nav{margin-top:68px; display:flex; flex-direction:column; gap:6px; padding:12px}
+.sidebar a{padding:12px; border-radius:10px; font-weight:700; color:#222; text-decoration:none; display:flex; gap:10px; align-items:center}
+.sidebar a:hover{background:linear-gradient(90deg,var(--accent),#a33357); color:#fff}
+
+/* Container / cards */
+.container{max-width:var(--maxw);margin:8vh auto;padding:26px}
+.card{background:var(--card);padding:20px;border-radius:14px;box-shadow:var(--shadow);}
+.hero{
+  border-radius:14px; overflow:hidden; position:relative;
+  color:#fff; padding:28px; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.14));
+}
+.hero h1{font-family:'Dancing Script',cursive;font-size:clamp(28px,6vw,56px);margin:0}
+.hero p{margin:8px 0;line-height:1.5;opacity:0.95}
+
+/* note */
+.note{margin-top:18px; padding:18px; border-radius:12px; background:#ffffff; color:#222}
+.note h3{color:var(--accent); margin:0 0 8px}
+
+/* footer */
+footer{margin-top:26px;text-align:center;color:var(--muted);padding-bottom:26px}
+@media(max-width:700px){ .container{padding:16px} .sidebar.open{width:86%} }
 </style>
 </head>
 <body>
 
-<div class="hamburger" id="hamburgerBtn" aria-label="Menüyü aç">
-  <span class="icon">☰</span>
-  <strong style="font-weight:700">Menü</strong>
-</div>
+<button class="hamburger" id="menuBtn" aria-label="Menüyü aç">☰ <strong style="margin-left:6px">Menü</strong></button>
 
 <aside id="sidebar" class="sidebar" aria-hidden="true">
-  <nav class="nav" role="navigation" aria-label="Ana menü">
+  <div style="display:flex;justify-content:flex-end;padding:10px"><button id="closeSidebar" style="background:transparent;border:0;font-size:28px;cursor:pointer">×</button></div>
+  <nav>
     <a href="index.html">🏠 Ana Sayfa</a>
     <a href="anilar.html">📸 Anılar</a>
     <a href="zaman.html">⏳ Zaman</a>
@@ -64,10 +88,10 @@
   </nav>
 </aside>
 
-<main role="main">
-  <section class="hero" aria-label="Kapak">
-    <div class="hero-inner">
-      <h1>İlker ❤ Bahargül</h1>
+<main class="container">
+  <section class="card hero" role="banner" aria-label="Kapak">
+    <h1>İlker ❤ Bahargül</h1>
+    <div style="margin-top:12px;">
       <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
       <p>Eğer bi' gün tamamen benden soğursan,</p>
       <p>Barışma ihtimalimiz sıfır olsa bile,</p>
@@ -81,33 +105,30 @@
     </div>
   </section>
 
-  <div class="note-card" aria-labelledby="ilkerNote">
-    <h3 id="ilkerNote">✨ İlker’den Not</h3>
+  <section class="card note" aria-label="İlker'den Not">
+    <h3>✨ İlker’den Not</h3>
     <p>Sevgilim ufaklık,</p>
     <p>Sen benim gözümün görmediğini görensin.</p>
     <p>Aklımın yetmediğini bilensin.</p>
     <p>Bir yerlerde çok doğru bir şey yapıyor olmalıydım ki seni hakedeyim.</p>
     <p>Aradığın huzuru bulman dileği ile.</p>
     <p style="text-align:right;font-weight:700">— İlker</p>
-  </div>
+  </section>
 
-  <footer>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</footer>
+  <footer class="card" style="text-align:center">Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</footer>
 </main>
 
 <script>
-  const hamburger = document.getElementById('hamburgerBtn');
-  const sidebar = document.getElementById('sidebar');
-  hamburger.addEventListener('click', ()=>{
-    sidebar.classList.toggle('open');
-    sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open'));
-  });
-  // close when clicking outside on mobile
-  document.addEventListener('click', (e)=>{
-    if(!sidebar.contains(e.target) && !hamburger.contains(e.target)){
-      sidebar.classList.remove('open');
-      sidebar.setAttribute('aria-hidden','true');
-    }
-  });
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+const closeSidebar = document.getElementById('closeSidebar');
+menuBtn.addEventListener('click', ()=> { sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open')) });
+closeSidebar.addEventListener('click', ()=> { sidebar.classList.remove('open'); sidebar.setAttribute('aria-hidden','true') });
+document.addEventListener('click', (e)=>{
+  if(!sidebar.classList.contains('open')) return;
+  if(e.target.closest('#sidebar') || e.target.closest('#menuBtn')) return;
+  sidebar.classList.remove('open');
+});
 </script>
 
 </body>
