@@ -1,74 +1,102 @@
 <!doctype html>
 <html lang="tr">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Şarkılar — İlker & Bahargül</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>İlker ❤ Bahargül — Şarkılar</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root{--accent:#1db954;--muted:#6b6b72;--panel:rgba(255,255,255,0.95)}
-*{box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;margin:0;background:#fff}
-body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed;filter:brightness(.95);z-index:-2}
-.container{max-width:980px;margin:28px auto;padding:18px}
-.hamb{position:fixed;left:14px;top:14px;background:rgba(255,255,255,0.9);padding:10px;border-radius:12px;z-index:1200}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:rgba(255,255,255,0.98);transition:width .32s;z-index:1190}
-.sidebar.open{width:240px}
-.sidebar nav{padding:70px 14px;display:flex;flex-direction:column;gap:8px}
-.player{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:center;background:var(--panel);padding:18px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06)}
-.cover img{width:100%;height:220px;object-fit:cover;border-radius:8px}
-.track-title{font-weight:800;font-size:18px}
-.controls{display:flex;gap:10px;align-items:center;margin-top:12px}
-.button{background:#fff;border:0;padding:10px;border-radius:10px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
-.play-big{background:linear-gradient(90deg,var(--accent),#0fa64a);color:#fff;padding:12px 16px;border-radius:999px;font-weight:800}
-.progress{margin-top:12px;height:8px;background:#eee;border-radius:999px;overflow:hidden;cursor:pointer}
-.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#0fa64a)}
-.playlist{margin-top:16px;display:flex;flex-direction:column;gap:8px}
-.pl-item{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;background:#fff;box-shadow:0 8px 26px rgba(0,0,0,0.04);cursor:pointer}
-.karaoke{margin-top:16px;padding:12px;background:#fff;border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,0.06);text-align:center;font-weight:700}
-.footer{margin-top:24px;text-align:center;color:var(--muted)}
-@media(max-width:860px){ .player{grid-template-columns:1fr; } .cover img{height:220px} }
+  :root{--accent:#c83a66;--muted:#666;--bg:#fff6f8;--panel:rgba(255,255,255,0.98);--shadow:0 20px 60px rgba(10,10,20,0.08)}
+  *{box-sizing:border-box} html,body{height:100%;margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:#222}
+  a{color:inherit}
+  .hamburger{position:fixed;left:14px;top:14px;z-index:1200;background:rgba(255,255,255,0.85);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);cursor:pointer}
+  .sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));box-shadow:2px 0 40px rgba(0,0,0,0.06);transition:width .28s;z-index:1190;padding-top:64px}
+  .sidebar.open{width:260px}
+  .nav{display:flex;flex-direction:column;gap:6px;padding:12px}
+  .nav a{padding:12px;border-radius:8px;font-weight:700;color:#222;display:flex;gap:10px}
+  .nav a:hover{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff}
+
+  main{max-width:1100px;margin:24px auto;padding:0 18px 80px}
+  .player{display:grid;grid-template-columns:260px 1fr;gap:20px}
+  @media(max-width:880px){ .player{grid-template-columns:1fr} }
+  .cover{border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .meta{background:var(--panel);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+  .title{font-weight:800;font-size:20px}
+  .artist{color:var(--muted);margin-top:6px}
+
+  .controls{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .btn{background:#fff;border:0;padding:10px;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,0.06);cursor:pointer}
+  .btn.big{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:14px 18px;font-weight:800}
+
+  .progress{height:10px;background:#eee;border-radius:999px;overflow:hidden;margin-top:12px}
+  .bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#b33e62)}
+
+  .playlist{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+  .pl-item{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;background:var(--panel);box-shadow:0 10px 30px rgba(0,0,0,0.04);cursor:pointer}
+  .pl-item.active{outline:3px solid rgba(200,58,102,0.08)}
+
+  .karaoke{margin-top:16px;padding:12px;background:var(--panel);border-radius:12px;box-shadow:var(--shadow);text-align:center}
+  #lyrics{min-height:36px;font-weight:700;color:#333}
+  footer{margin-top:28px;text-align:center;color:var(--muted);padding-bottom:36px}
 </style>
 </head>
 <body>
-<button class="hamb" id="menuBtn">☰</button>
+
+<div class="hamburger" id="hamburgerBtn">☰ Men&uuml;</div>
 <aside id="sidebar" class="sidebar" aria-hidden="true">
-  <nav>
+  <nav class="nav">
     <a href="index.html">🏠 Ana Sayfa</a>
     <a href="anilar.html">📸 Anılar</a>
     <a href="zaman.html">⏳ Zaman</a>
-    <a href="sarkilar.html" style="background:linear-gradient(90deg,#1db954,#0fa64a);color:#fff;padding:12px;border-radius:10px">🎶 Şarkılar</a>
+    <a href="sarkilar.html" style="background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:12px;border-radius:8px">🎶 Şarkılar</a>
   </nav>
 </aside>
 
-<div class="container">
-  <h2>🎧 Şarkılar</h2>
-  <p style="color:var(--muted)">Çalmak için oynat tuşuna bas — ileri/geri ve sonraki parça fonksiyonları hazır.</p>
+<main>
+  <h1>🎶 Şarkılar</h1>
+  <p style="color:var(--muted)">Oynatmak için ortadaki butona bas — ileride yeni parçalar ekleyebilirsin.</p>
 
-  <section class="player">
-    <div class="cover"><img id="cover" src="Bahar.jpg" alt="kapak"></div>
+  <div class="player" role="region" aria-label="Müzik oynatıcı">
+    <div>
+      <div class="cover">
+        <img id="coverImg" src="Bahar.jpg" alt="Kapak">
+      </div>
+    </div>
+
     <div>
       <div class="meta">
-        <div class="track-title" id="title">Dilerim Ki</div>
-        <div style="color:var(--muted)" id="artist">Dolu Kadehi Ters Tut</div>
+        <div class="title" id="trackTitle">Dilerim Ki</div>
+        <div class="artist" id="trackArtist">Dolu Kadehi Ters Tut</div>
+
+        <div class="controls" role="toolbar" aria-label="Kontroller">
+          <button class="btn" id="prev">⟨</button>
+          <button class="btn" id="back10">-10s</button>
+          <button class="btn big" id="play">▶</button>
+          <button class="btn" id="forward10">+10s</button>
+          <button class="btn" id="next">⟩</button>
+          <div style="flex:1"></div>
+          <label style="color:var(--muted);font-size:13px">Ses</label>
+          <input id="vol" type="range" min="0" max="1" step="0.01" value="1" style="width:80px">
+        </div>
+
+        <div style="margin-top:10px">
+          <div style="display:flex;justify-content:space-between;color:var(--muted)"><div id="cur">0:00</div><div id="dur">0:00</div></div>
+          <div class="progress" id="prog"><div class="bar" id="bar"></div></div>
+        </div>
+
+        <div class="playlist" id="playlist"></div>
+
       </div>
 
-      <div class="controls">
-        <button class="button" id="prev">⟨</button>
-        <button class="button" id="back10">-10s</button>
-        <button class="play-big" id="play">▶</button>
-        <button class="button" id="forward10">+10s</button>
-        <button class="button" id="next">⟩</button>
+      <div class="karaoke" aria-live="polite">
+        <div id="lyrics">🎤 Şarkı sözleri burada belirecek...</div>
       </div>
 
-      <div class="progress" id="prog"><div class="bar" id="bar"></div></div>
-      <div style="display:flex;justify-content:space-between;margin-top:6px;color:var(--muted)"><span id="cur">0:00</span><span id="dur">0:00</span></div>
-
-      <div class="playlist" id="playlist"></div>
-      <div class="karaoke" id="lyrics">🎤 Sözler burada akacak...</div>
     </div>
-  </section>
+  </div>
 
-  <div class="footer">Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</div>
-</div>
+  <footer>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</footer>
+</main>
 
 <audio id="audio" preload="metadata">
   <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
@@ -76,106 +104,156 @@ body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') cent
 </audio>
 
 <script>
-/* sidebar */
-const menuBtn=document.getElementById('menuBtn'), sidebar=document.getElementById('sidebar');
-menuBtn.addEventListener('click', ()=> { const open = sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden', !open); });
+  // sidebar toggle
+  const hb = document.getElementById('hamburgerBtn'), sb = document.getElementById('sidebar');
+  hb.addEventListener('click', ()=> { sb.classList.toggle('open'); sb.setAttribute('aria-hidden', !sb.classList.contains('open')); });
+  document.addEventListener('click', (e)=> { if(!sb.contains(e.target) && !hb.contains(e.target)){ sb.classList.remove('open'); sb.setAttribute('aria-hidden','true'); } });
 
-/* player */
-const audio=document.getElementById('audio');
-const playBtn=document.getElementById('play'), prevBtn=document.getElementById('prev'), nextBtn=document.getElementById('next');
-const back10=document.getElementById('back10'), forward10=document.getElementById('forward10');
-const bar=document.getElementById('bar'), prog=document.getElementById('prog');
-const cur=document.getElementById('cur'), dur=document.getElementById('dur');
-const cover=document.getElementById('cover'), titleEl=document.getElementById('title'), artistEl=document.getElementById('artist');
-const playlistEl=document.getElementById('playlist'), lyricsDiv=document.getElementById('lyrics');
+  // player logic (carefully)
+  const audio = document.getElementById('audio');
+  const playBtn = document.getElementById('play');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const back10 = document.getElementById('back10');
+  const forward10 = document.getElementById('forward10');
+  const vol = document.getElementById('vol');
+  const bar = document.getElementById('bar');
+  const prog = document.getElementById('prog');
+  const cur = document.getElementById('cur');
+  const dur = document.getElementById('dur');
+  const playlistEl = document.getElementById('playlist');
+  const coverImg = document.getElementById('coverImg');
+  const titleEl = document.getElementById('trackTitle');
+  const artistEl = document.getElementById('trackArtist');
+  const lyricsDiv = document.getElementById('lyrics');
 
-const playlist = [
-  {src:'dolu-kadehi-ters-tut-dilerim-ki.mp3', title:'Dilerim Ki', artist:'Dolu Kadehi Ters Tut', cover:'Bahar.jpg'}
-  // İleride buraya yeni şarkı objeleri ekleyebilirsin
-];
+  // playlist - başlangıçta tek parça, ileride ekleyebilirsin
+  const playlist = [
+    { src:'dolu-kadehi-ters-tut-dilerim-ki.mp3', title:'Dilerim Ki', artist:'Dolu Kadehi Ters Tut', cover:'Bahar.jpg' },
+    // örnek ekleme formatı:
+    // { src:'diger-sarki.mp3', title:'Diğer Şarkı', artist:'Örnek', cover:'cover.jpg' }
+  ];
 
-let idx = 0, playing = false;
-function render(){
-  playlistEl.innerHTML='';
-  playlist.forEach((p,i)=>{
-    const it=document.createElement('div'); it.className='pl-item'+(i===idx?' active':'');
-    it.innerHTML=`<div style="width:52px;height:52px;overflow:hidden;border-radius:8px"><img src="${p.cover}" style="width:100%;height:100%;object-fit:cover"></div>
-    <div style="flex:1"><strong>${p.title}</strong><div style="color:var(--muted);font-size:13px">${p.artist}</div></div>`;
-    it.addEventListener('click', ()=> { load(i); play(); });
-    playlistEl.appendChild(it);
-  });
-}
-function load(i){
-  idx = i; audio.src = playlist[idx].src; cover.src = playlist[idx].cover || 'Bahar.jpg';
-  titleEl.textContent = playlist[idx].title; artistEl.textContent = playlist[idx].artist;
-  document.querySelectorAll('.pl-item').forEach((el,ii)=> el.classList.toggle('active', ii===idx));
-  bar.style.width='0%'; cur.textContent='0:00'; dur.textContent='0:00';
-}
-function play(){
-  audio.play().then(()=>{ playing=true; playBtn.textContent='❚❚'; }).catch(()=>{ playing=false; playBtn.textContent='▶'; });
-}
-function pause(){ audio.pause(); playing=false; playBtn.textContent='▶'; }
+  let idx = 0, playing=false;
 
-playBtn.addEventListener('click', ()=> { if(playing) pause(); else { if(!audio.src) load(idx); play(); }});
-prevBtn.addEventListener('click', ()=>{ idx=(idx-1+playlist.length)%playlist.length; load(idx); play(); });
-nextBtn.addEventListener('click', ()=>{ idx=(idx+1)%playlist.length; load(idx); play(); });
-back10.addEventListener('click', ()=> audio.currentTime = Math.max(0, (audio.currentTime||0)-10));
-forward10.addEventListener('click', ()=> audio.currentTime = Math.min((audio.duration||0), (audio.currentTime||0)+10));
-
-audio.addEventListener('timeupdate', ()=>{
-  if(!audio.duration) return;
-  const pct = (audio.currentTime/audio.duration)*100;
-  bar.style.width = pct + '%';
-  cur.textContent = formatTime(Math.floor(audio.currentTime));
-  dur.textContent = formatTime(Math.floor(audio.duration));
-  updateLyrics();
-});
-prog.addEventListener('click',(e)=>{ const r=prog.getBoundingClientRect(); const p=(e.clientX-r.left)/r.width; if(audio.duration) audio.currentTime = p*audio.duration; });
-audio.addEventListener('ended', ()=> nextBtn.click());
-
-function formatTime(s){ const m=Math.floor(s/60); const sec=Math.floor(s%60); return ${m}:${sec<10?'0'+sec:sec}; }
-
-/* lyrics timing */
-const lyrics = [
-  {time:15,text:"Umudumsun"},
-  {time:19,text:"Simsiyahken her yanım"},
-  {time:21,text:"Huzurumsun"},
-  {time:26,text:"Uçurumsun"},
-  {time:29,text:"Atlasam karanlığına"},
-  {time:31,text:"Adım unutulsun"},
-  {time:36,text:"Evim ol"},
-  {time:38,text:"Kurtar beni"},
-  {time:41,text:"Sonum ol"},
-  {time:46,text:"Dilerim ki"},
-  {time:49,text:"Dilerim ki asla caymazsın benim olmaktan"},
-  {time:56,text:"Dursun zaman"},
-  {time:59,text:"Kalsın yerim derinlerinde saklanan"},
-  {time:81,text:"Sönemezsin"},
-  {time:85,text:"İçimi yakan, delip geçen ateş sensin"},
-  {time:91,text:"Onlar ne bilsin"},
-  {time:95,text:"Sana çıksa keşke, her yolum hayalimsin"}
-  // İstersen buraya devam eden zamanlı satırları da ekleyebiliriz
-];
-function updateLyrics(){
-  const t = Math.floor(audio.currentTime||0);
-  let cur = null;
-  for(let i=0;i<lyrics.length;i++){
-    if(t >= lyrics[i].time) cur = lyrics[i];
-    else break;
+  function renderPlaylist(){
+    playlistEl.innerHTML='';
+    playlist.forEach((p,i)=>{
+      const el = document.createElement('div');
+      el.className = 'pl-item' + (i===idx ? ' active':'');
+      el.innerHTML = `<div style="width:48px;height:48px;border-radius:8px;overflow:hidden"><img src="${p.cover}" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="flex:1"><strong>${p.title}</strong><div style="color:var(--muted);font-size:13px">${p.artist}</div></div>`;
+      el.addEventListener('click', ()=> { loadTrack(i); play(); });
+      playlistEl.appendChild(el);
+    });
   }
-  lyricsDiv.textContent = cur ? cur.text : '🎤 Sözler burada akacak...';
-}
 
-/* init */
-render();
-load(0);
+  function loadTrack(i){
+    idx = i;
+    const t = playlist[idx];
+    audio.src = t.src;
+    coverImg.src = t.cover || 'Bahar.jpg';
+    titleEl.textContent = t.title;
+    artistEl.textContent = t.artist;
+    document.querySelectorAll('.pl-item').forEach((el,ii)=>el.classList.toggle('active', ii===idx));
+    bar.style.width='0%'; cur.textContent='0:00'; dur.textContent='0:00';
+  }
 
-/* keyboard shortcuts (space/left/right) */
-document.addEventListener('keydown',(e)=>{
-  if(e.key === ' ' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){ e.preventDefault(); if(playing) pause(); else play(); }
-  if(e.key === 'ArrowRight') audio.currentTime = Math.min((audio.currentTime||0)+5, audio.duration||0);
-  if(e.key === 'ArrowLeft') audio.currentTime = Math.max((audio.currentTime||0)-5, 0);
-});
+  function play(){
+    if(!audio.src) loadTrack(idx);
+    audio.play().then(()=>{ playing=true; playBtn.textContent='❚❚'; }).catch((err)=>{ console.warn('play failure',err); /* user gesture required in some browsers */ });
+  }
+  function pause(){ audio.pause(); playing=false; playBtn.textContent='▶'; }
+
+  playBtn.addEventListener('click', ()=> { playing ? pause() : play(); });
+  prevBtn.addEventListener('click', ()=> { idx=(idx-1+playlist.length)%playlist.length; loadTrack(idx); play(); });
+  nextBtn.addEventListener('click', ()=> { idx=(idx+1)%playlist.length; loadTrack(idx); play(); });
+  back10.addEventListener('click', ()=> audio.currentTime = Math.max(0, (audio.currentTime||0)-10));
+  forward10.addEventListener('click', ()=> audio.currentTime = Math.min((audio.duration||0), (audio.currentTime||0)+10));
+  vol.addEventListener('input', ()=> audio.volume = parseFloat(vol.value) );
+
+  // progress & time
+  audio.addEventListener('timeupdate', ()=>{
+    if(!audio.duration) return;
+    const pct = (audio.currentTime/audio.duration)*100;
+    bar.style.width = pct + '%';
+    cur.textContent = formatTime(Math.floor(audio.currentTime));
+    dur.textContent = formatTime(Math.floor(audio.duration));
+    updateLyrics();
+  });
+  prog.addEventListener('click', (e)=>{
+    const rect = prog.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const p = Math.max(0, Math.min(1, x/rect.width));
+    if(audio.duration) audio.currentTime = p * audio.duration;
+  });
+
+  function formatTime(s){ const m=Math.floor(s/60); const sec=Math.floor(s%60); return ${m}:${sec<10?'0'+sec:sec}; }
+
+  // lyrics timing (seconds)
+  const lyrics = [
+    {time:15,text:"Umudumsun"},
+    {time:19,text:"Simsiyahken her yanım"},
+    {time:21,text:"Huzurumsun"},
+    {time:26,text:"Uçurumsun"},
+    {time:29,text:"Atlasam karanlığına"},
+    {time:31,text:"Adım unutulsun"},
+    {time:36,text:"Evim ol"},
+    {time:38,text:"Kurtar beni"},
+    {time:41,text:"Sonum ol"},
+    {time:46,text:"Dilerim ki"},
+    {time:49,text:"Dilerim ki asla caymazsın benim olmaktan"},
+    {time:56,text:"Dursun zaman"},
+    {time:59,text:"Kalsın yerim derinlerinde saklanan"},
+    {time:81,text:"Sönemezsin"},
+    {time:85,text:"İçimi yakan, delip geçen ateş sensin"},
+    {time:91,text:"Onlar ne bilsin"},
+    {time:95,text:"Sana çıksa keşke, her yolum hayalimsin"},
+    {time:102,text:"Evim ol"},
+    {time:104,text:"Kurtar beni"},
+    {time:108,text:"Sonum ol"},
+    {time:112,text:"Dilerim ki"},
+    {time:115,text:"Dilerim ki asla caymazsın benim olmaktan"},
+    {time:123,text:"Dursun zaman"},
+    {time:126,text:"Kalsın yerim derinlerinde saklanan"},
+    {time:134,text:"Kaybolan bir ruh gibi"},
+    {time:138,text:"Kayıp gidersem de bul beni"},
+    {time:143,text:"Mahvolur da bitersem"},
+    {time:148,text:"Tut elimi"},
+    {time:153,text:"Dilerim ki, dilerim ki"},
+    {time:160,text:"Asla caymazsın benim olmaktan"},
+    {time:166,text:"Dursun zaman"},
+    {time:170,text:"Kalsın yerim derinlerinde saklanan"},
+    {time:175,text:"Dilerim ki, dilerim ki"},
+    {time:182,text:"Asla caymazsın benim olmaktan"},
+    {time:189,text:"Dursun zaman"},
+    {time:193,text:"Kalsın yerim derinlerinde saklanan"}
+  ];
+
+  function updateLyrics(){
+    const t = Math.floor(audio.currentTime || 0);
+    let found = null;
+    for(let i=0;i<lyrics.length;i++){
+      if(t >= lyrics[i].time) found = lyrics[i];
+      else break;
+    }
+    lyricsDiv.textContent = found ? found.text : '🎤 Şarkı sözleri burada belirecek...';
+  }
+
+  // keyboard shortcuts
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === ' ' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){ e.preventDefault(); playing ? pause() : play(); }
+    if(e.key === 'ArrowRight') audio.currentTime = Math.min((audio.currentTime||0)+5, audio.duration||0);
+    if(e.key === 'ArrowLeft') audio.currentTime = Math.max((audio.currentTime||0)-5, 0);
+  });
+
+  // when track ends
+  audio.addEventListener('ended', ()=> { nextBtn.click(); });
+
+  // init
+  renderPlaylist();
+  loadTrack(0);
 </script>
+
 </body>
 </html>
