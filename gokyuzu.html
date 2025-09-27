@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Gökyüzü</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YBDYWZSF9B');
+</script>
+
+<style>
+:root {
+  --accent: #d64b74;
+  --shadow: 0 20px 60px rgba(0,0,0,0.2);
+  --radius: 14px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body {
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  overflow: hidden;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat top center;
+  animation: moveStars 200s linear infinite;
+  z-index: -2;
+}
+@keyframes moveStars {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+
+/* Menü butonları senin diğer sayfalarınla aynı olacak */
+.openbtn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 2000;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  color: #fff;
+  font-size: 20px;
+}
+.sidebar {
+  position: fixed;
+  left: -280px;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  background: rgba(20,20,30,0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 4px 0 40px rgba(0,0,0,0.4);
+  transition: left .4s ease;
+  padding: 60px 20px;
+  z-index: 1900;
+  overflow-y: auto;
+}
+.sidebar.open { left: 0; }
+.sidebar nav { display: flex; flex-direction: column; gap: 14px; }
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #fff;
+  transition: background .3s;
+}
+.sidebar a:hover {
+  background: linear-gradient(90deg, var(--accent), #b33e62);
+  color: #fff;
+}
+.sidebar-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* İçerik */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 20vh auto;
+  padding: 20px;
+  text-align: center;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+h1 {
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+p {
+  color: #ddd;
+  line-height: 1.6;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<!-- Menü -->
+<button class="openbtn" id="menuToggle">☰</button>
+<aside id="sidebar" class="sidebar" aria-hidden="true">
+  <span class="sidebar-close" id="sidebarClose">×</span>
+  <nav>
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="anilar.html">📸 Anılar</a>
+    <a href="zaman.html">⏳ Zaman</a>
+    <a href="sarkilar.html">🎵 Şarkılar</a>
+    <a href="gokyuzu.html">✨ Gökyüzü</a>
+  </nav>
+</aside>
+
+<!-- İçerik -->
+<main class="container">
+  <h1>✨ Yıldızlı Gökyüzü</h1>
+  <p>Gökyüzü milyonlarca yıldızla süslü...  
+  Bu sayfa seninle paylaşılan hayallerin ve sonsuzluğun bir sembolü olarak hazırlandı.</p>
+</main>
+
+<script>
+/* Menü Aç/Kapat */
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+const sidebarClose = document.getElementById('sidebarClose');
+menuToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open'));
+});
+sidebarClose.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  sidebar.setAttribute('aria-hidden', 'true');
+});
+</script>
+</body>
+</html>
