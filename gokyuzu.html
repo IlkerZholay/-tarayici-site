@@ -1,162 +1,440 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✨ Gökyüzü</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Gökyüzü — Alıntılar | İlker ❤ Bahargül</title>
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-YBDYWZSF9B');
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --accent: #d64b74;
-  --shadow: 0 20px 60px rgba(0,0,0,0.2);
-  --radius: 14px;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body {
-  height: 100vh;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  overflow: hidden;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-}
-.stars {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat top center;
-  animation: moveStars 200s linear infinite;
-  z-index: -2;
-}
-@keyframes moveStars {
-  from {background-position:0 0;}
-  to {background-position:-10000px 5000px;}
-}
+  :root{
+    --accent:#e35c7a;
+    --muted:#7a6f7a;
+    --card-bg: rgba(255,255,255,0.9);
+    --card-Glass: rgba(255,255,255,0.06);
+    --glass-blur: 8px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#0b1220,#071028);color:#fff; -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  a{color:inherit;text-decoration:none}
 
-/* Menü butonları senin diğer sayfalarınla aynı olacak */
-.openbtn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 2000;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 12px 14px;
-  border-radius: var(--radius);
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  color: #fff;
-  font-size: 20px;
-}
-.sidebar {
-  position: fixed;
-  left: -280px;
-  top: 0;
-  bottom: 0;
-  width: 260px;
-  background: rgba(20,20,30,0.95);
-  backdrop-filter: blur(12px);
-  box-shadow: 4px 0 40px rgba(0,0,0,0.4);
-  transition: left .4s ease;
-  padding: 60px 20px;
-  z-index: 1900;
-  overflow-y: auto;
-}
-.sidebar.open { left: 0; }
-.sidebar nav { display: flex; flex-direction: column; gap: 14px; }
-.sidebar a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-weight: 600;
-  color: #fff;
-  transition: background .3s;
-}
-.sidebar a:hover {
-  background: linear-gradient(90deg, var(--accent), #b33e62);
-  color: #fff;
-}
-.sidebar-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #fff;
-}
+  /* Canvas starfield is full-bleed */
+  #starfield{position:fixed;inset:0;z-index:0;display:block}
 
-/* İçerik */
-.container {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-  margin: 20vh auto;
-  padding: 20px;
-  text-align: center;
-  background: rgba(255,255,255,0.08);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
-}
-h1 {
-  font-size: 34px;
-  margin-bottom: 18px;
-}
-p {
-  color: #ddd;
-  line-height: 1.6;
-  font-size: 16px;
-}
+  /* SIDEBAR / HAMBURGER */
+  .hamburger{
+    position:fixed;left:16px;top:16px;z-index:1200;background:rgba(255,255,255,0.06);backdrop-filter:blur(var(--glass-blur));border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.35);
+  }
+  .hamburger .bars{width:22px;height:14px;position:relative}
+  .hamburger .bars span{position:absolute;left:0;right:0;height:2px;background:#fff;border-radius:2px;display:block}
+  .hamburger .bars span:nth-child(1){top:0}
+  .hamburger .bars span:nth-child(2){top:6px}
+  .hamburger .bars span:nth-child(3){top:12px}
+  .hamburger .label{font-weight:700;color:#fff;letter-spacing:.2px}
+
+  .sidebar{
+    position:fixed;left:12px;top:64px;z-index:1150;width:0;overflow:hidden;height:calc(100% - 96px);border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));backdrop-filter:blur(var(--glass-blur));box-shadow:0 20px 60px rgba(2,6,12,0.65);transition:width .36s ease;
+  }
+  .sidebar.open{width:260px}
+  .sidebar nav{display:flex;flex-direction:column;padding:14px;gap:8px}
+  .sidebar a{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;color:#fff;font-weight:700}
+  .sidebar a:hover{background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));transform:translateX(6px)}
+
+  /* Page container */
+  .page{
+    position:relative;z-index:10;max-width:var(--maxw);margin:60px auto;padding:28px;
+  }
+
+  /* Header / hero */
+  .hero{
+    display:flex;gap:20px;align-items:center;padding:26px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));box-shadow:0 12px 40px rgba(0,0,0,0.45);
+  }
+  .hero .left{flex:1;min-width:0}
+  .hero h1{font-family:'Dancing Script',cursive;font-size:clamp(28px,5.6vw,56px);margin:0;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,0.6)}
+  .hero p{margin:8px 0;color:rgba(255,255,255,0.88);line-height:1.45;font-size:15px}
+
+  /* slider area */
+  .slider-wrap{margin-top:22px}
+  .controls-row{display:flex;align-items:center;gap:12px;justify-content:space-between}
+  .slide-controls{display:flex;gap:8px;align-items:center}
+  .btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.04);color:#fff;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700;backdrop-filter:blur(6px)}
+  .btn:hover{transform:translateY(-3px)}
+  .auto-toggle{font-size:13px;color:var(--muted);opacity:.9}
+
+  .carousel{
+    margin-top:14px;display:flex;gap:18px;overflow:hidden;padding:8px;border-radius:14px;
+    scroll-behavior:smooth;
+  }
+  .card{
+    flex:0 0 84%;
+    max-width:900px;
+    min-height:220px;
+    background:var(--card-bg);
+    color:#111;
+    border-radius:14px;padding:22px;box-shadow:0 18px 48px rgba(2,6,12,0.45);
+    transform-origin:center center;transition:transform .28s ease,box-shadow .28s ease;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  @media(min-width:900px){ .card{flex:0 0 48%} }
+  .card .quote{flex:1}
+  .card blockquote{margin:0;font-size:18px;line-height:1.6;color:#111;font-weight:600}
+  .card .meta{margin-top:12px;color:var(--muted);font-size:14px}
+  .card .tag{display:inline-block;background:rgba(0,0,0,0.04);padding:6px 10px;border-radius:999px;font-size:13px;margin-top:12px;color:#333}
+
+  /* indicator */
+  .dots{display:flex;gap:8px;align-items:center;margin-top:12px;justify-content:center}
+  .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.15);cursor:pointer}
+  .dot.active{background:var(--accent);box-shadow:0 6px 20px rgba(227,92,122,0.18)}
+
+  /* footer */
+  footer{margin-top:28px;text-align:center;color:rgba(255,255,255,0.76);font-size:13px}
+
+  /* responsiveness */
+  @media(max-width:700px){
+    .page{padding:16px;margin-top:80px}
+    .hero{flex-direction:column;align-items:flex-start}
+    .carousel{padding:6px}
+    .card{flex:0 0 92%}
+    .sidebar{left:8px;top:72px}
+  }
+
+  /* small niceties */
+  .soft-glow{box-shadow:0 10px 40px rgba(227,92,122,0.06)}
+  .kbd{background:rgba(0,0,0,0.12);padding:4px 8px;border-radius:6px;font-weight:700}
 </style>
 </head>
 <body>
-<div class="stars"></div>
 
-<!-- Menü -->
-<button class="openbtn" id="menuToggle">☰</button>
-<aside id="sidebar" class="sidebar" aria-hidden="true">
-  <span class="sidebar-close" id="sidebarClose">×</span>
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- Hamburger + label -->
+<button aria-expanded="false" class="hamburger" id="hamburgerBtn" title="Menüyü aç">
+  <div class="bars" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="label">Menü</div>
+</button>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar" aria-hidden="true">
   <nav>
-    <a href="index.html">🏠 Ana Sayfa</a>
-    <a href="anilar.html">📸 Anılar</a>
-    <a href="zaman.html">⏳ Zaman</a>
-    <a href="sarkilar.html">🎵 Şarkılar</a>
-    <a href="gokyuzu.html">✨ Gökyüzü</a>
+    <a href="index.html" aria-label="Ana Sayfa">🏠 Ana Sayfa</a>
+    <a href="anilar.html" aria-label="Anılar">📸 Anılar</a>
+    <a href="zaman.html" aria-label="Zaman">⏳ Zaman</a>
+    <a href="sarkilar.html" aria-label="Şarkılar">🎶 Şarkılar</a>
+    <a href="gokyuzu.html" aria-current="page" aria-label="Gökyüzü">🌌 Gökyüzü</a>
   </nav>
 </aside>
 
-<!-- İçerik -->
-<main class="container">
-  <h1>✨ Yıldızlı Gökyüzü</h1>
-  <p>Gökyüzü milyonlarca yıldızla süslü...  
-  Bu sayfa seninle paylaşılan hayallerin ve sonsuzluğun bir sembolü olarak hazırlandı.</p>
+<!-- Page content -->
+<main class="page" role="main">
+  <header class="hero" role="banner" aria-labelledby="heroTitle">
+    <div class="left">
+      <h1 id="heroTitle">Gökyüzü — Alıntılar</h1>
+      <p>Buraya en sevdiğin dizeleri, kitap alıntılarını, anıları bırak. Kartlara dokunduğunda okuma rahatlığı için büyütülür; sağ-sol ile kolay gezin.</p>
+      <div style="margin-top:10px;color:rgba(255,255,255,0.85)"><span class="kbd">← →</span> ile gezin — dokunarak veya oklarla.</div>
+    </div>
+    <div style="min-width:220px;text-align:right">
+      <div style="background:rgba(255,255,255,0.03);padding:10px 14px;border-radius:12px;display:inline-block">
+        <div style="font-weight:700">İlker tarafından</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:13px">Bir hatıra sayfası</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="slider-wrap" aria-label="Alıntı kaydırıcı">
+    <div class="controls-row">
+      <div class="slide-controls">
+        <button class="btn" id="prevBtn" aria-label="Önceki">⟨</button>
+        <button class="btn" id="nextBtn" aria-label="Sonraki">⟩</button>
+        <button class="btn" id="toggleAuto" aria-pressed="false">Otomatik: Kapalı</button>
+      </div>
+      <div style="text-align:right;color:rgba(255,255,255,0.85)"><small>Alıntıları daha sonra düzenleyebilirsin — QUOTES listesi JS içinde.</small></div>
+    </div>
+
+    <div class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel">
+      <!-- cards injected by JS -->
+    </div>
+
+    <div class="dots" id="dots" role="tablist" aria-label="Alıntı göstergesi"></div>
+  </section>
+
+  <footer>
+    <p>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</p>
+  </footer>
 </main>
 
 <script>
-/* Menü Aç/Kapat */
-const menuToggle = document.getElementById('menuToggle');
+/* =========================
+   Starfield canvas effect
+   ========================= */
+(function starfield(){
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = innerWidth;
+  let h = canvas.height = innerHeight;
+  const DPR = Math.max(1, window.devicePixelRatio || 1);
+  canvas.width = w * DPR; canvas.height = h * DPR; canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+  ctx.scale(DPR, DPR);
+
+  const STARS = [];
+  const STAR_COUNT = Math.round((w*h)/15000); // density
+  for(let i=0;i<STAR_COUNT;i++){
+    STARS.push({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*1.6 + 0.2,
+      alpha: Math.random()*0.9 + 0.1,
+      dx: (Math.random()-0.5)*0.02,
+      dy: (Math.random()-0.5)*0.02,
+      twinkle: Math.random()*0.02 + 0.002
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    // subtle gradient overlay for depth
+    const g = ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0, 'rgba(6,12,24,0.12)');
+    g.addColorStop(1, 'rgba(0,0,0,0.25)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,w,h);
+
+    // draw stars
+    for(let s of STARS){
+      s.alpha += (Math.random()-0.5) * s.twinkle;
+      if(s.alpha < 0.05) s.alpha = 0.05;
+      if(s.alpha > 1) s.alpha = 1;
+      s.x += s.dx; s.y += s.dy;
+      if(s.x < -10) s.x = w+10;
+      if(s.x > w+10) s.x = -10;
+      if(s.y < -10) s.y = h+10;
+      if(s.y > h+10) s.y = -10;
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255,255,255,' + s.alpha + ')';
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // slow parallax layer
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    for(let i=0;i<10;i++){
+      const x = (Math.sin(Date.now()/6000 + i) + 1)/2 * w;
+      const y = (Math.cos(Date.now()/7000 + i) + 1)/2 * h;
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255,255,255,0.02)';
+      ctx.ellipse(x, y, 200 + i*30, 40 + i*8, 0, 0, Math.PI*2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  window.addEventListener('resize', ()=>{
+    w = canvas.width = innerWidth;
+    h = canvas.height = innerHeight;
+    canvas.width = w * DPR; canvas.height = h * DPR; canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.scale(DPR, DPR);
+  });
+})();
+
+/* =========================
+   Sidebar toggle
+   ========================= */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
 const sidebar = document.getElementById('sidebar');
-const sidebarClose = document.getElementById('sidebarClose');
-menuToggle.addEventListener('click', () => {
-  sidebar.classList.toggle('open');
-  sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open'));
+hamburgerBtn.addEventListener('click', ()=>{
+  const open = sidebar.classList.toggle('open');
+  hamburgerBtn.setAttribute('aria-expanded', String(open));
+  sidebar.setAttribute('aria-hidden', String(!open));
 });
-sidebarClose.addEventListener('click', () => {
-  sidebar.classList.remove('open');
-  sidebar.setAttribute('aria-hidden', 'true');
+
+/* =========================
+   Quotes data (edit here)
+   ========================= */
+const QUOTES = [
+  {text: "Gözler bazen sözlerden daha çok saklar; bir bakış bütün bir hikayedir.", meta:"— Anonim"},
+  {text: "Hatıralar; sessiz bir geceyi aydınlatan küçük yıldızlardır.", meta:"— Kitap"},
+  {text: "Bir cümlenin içine sığdırdığım sevgi, ömrümün en değerli yanıdır.", meta:"— Şiir"},
+  {text: "Yol nerede bitse, hatıralar orada başlar.", meta:"— Düşünce"},
+  {text: "Sessizce bırakılan notlar en ağır yükleri hafifletir.", meta:"— Yazar"},
+  {text: "Bir şarkı, susan kelimelerin tekrar konuşmasıdır.", meta:"— Müzik"},
+  {text: "Uzaklarda kalan küçük mutluluklar, zamanla kıymetli müzelere dönüşür.", meta:"— Anlatı"},
+  {text: "Gecenin en koyu anı, yıldızların en çok parladığı andır.", meta:"— Gözlem"},
+  {text: "Bir şiir, iki insan arasında asılı kalmış bir köprüdür.", meta:"— Dize"},
+  {text: "Söylenmemiş sözler en derin notalarda saklıdır.", meta:"— Mırıldanma"},
+  {text: "Kalp, bir şehrin eski haritasıdır; adımlarla yeniden çizilir.", meta:"— Harita"},
+  {text: "Her ayrılık bir kitaptır; bazı bölümleri bizi öğretir, bazıları sızlatır.", meta:"— AnıDefteri"},
+  {text: "Gurbet, insanın içinde taşıdığı küçücük evdir.", meta:"— Yolcuk"},
+  {text: "Sevdiğin bir melodi asla eskimez; farklı hatıralarla tazelendiği kadar yaşar.", meta:"— Nota"},
+  {text: "Kelimeler yetmiyorsa, gözlerin dili yeter.", meta:"— Bakış"}
+];
+
+/* =========================
+   Carousel render + logic
+   ========================= */
+const carousel = document.getElementById('carousel');
+const dots = document.getElementById('dots');
+
+let currentIndex = 0;
+let autoPlay = false;
+let autoTimer = null;
+
+function createCard(q, idx){
+  const card = document.createElement('article');
+  card.className = 'card soft-glow';
+  card.tabIndex = 0;
+  card.setAttribute('role','group');
+  card.setAttribute('aria-roledescription','slide');
+  card.setAttribute('aria-label', Alıntı ${idx+1} / ${QUOTES.length});
+
+  const left = document.createElement('div');
+  left.style.flex = '1';
+  left.className = 'quote';
+  const block = document.createElement('blockquote');
+  block.textContent = q.text;
+  left.appendChild(block);
+
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  meta.textContent = q.meta || '';
+  left.appendChild(meta);
+
+  // small tag for styling
+  const tag = document.createElement('div');
+  tag.className = 'tag';
+  tag.textContent = Alıntı ${idx+1};
+  left.appendChild(tag);
+
+  card.appendChild(left);
+
+  // open full view on click (lightbox-like)
+  card.addEventListener('click', (e)=>{
+    // animate pop
+    card.style.transform = 'scale(1.02)';
+    setTimeout(()=> card.style.transform = '', 220);
+    // optionally focus reading mode (we will scroll to center)
+    card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  });
+
+  return card;
+}
+
+function renderCarousel(){
+  carousel.innerHTML = '';
+  dots.innerHTML = '';
+  QUOTES.forEach((q,i)=>{
+    const card = createCard(q,i);
+    carousel.appendChild(card);
+
+    const dot = document.createElement('button');
+    dot.className = 'dot';
+    dot.setAttribute('aria-label', Go to ${i+1});
+    dot.addEventListener('click', ()=> { goTo(i); stopAuto(); });
+    dots.appendChild(dot);
+  });
+  updateActive();
+}
+
+function updateActive(){
+  const cards = [...carousel.children];
+  cards.forEach((c,i)=>{
+    const rect = c.getBoundingClientRect();
+    const center = (carousel.clientWidth / 2);
+    const offset = Math.abs(rect.left + rect.width/2 - (carousel.getBoundingClientRect().left + center));
+    c.style.transform = offset < 180 ? 'scale(1.02)' : 'scale(1)';
+    c.style.boxShadow = offset < 180 ? '0 28px 70px rgba(2,6,12,0.55)' : '0 18px 48px rgba(2,6,12,0.45)';
+  });
+
+  const allDots = dots.querySelectorAll('.dot');
+  allDots.forEach((d,idx)=> d.classList.toggle('active', idx === currentIndex));
+}
+
+function goTo(i){
+  currentIndex = (i + QUOTES.length) % QUOTES.length;
+  const target = carousel.children[currentIndex];
+  target.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  updateActive();
+}
+
+document.getElementById('prevBtn').addEventListener('click', ()=>{
+  currentIndex = (currentIndex - 1 + QUOTES.length) % QUOTES.length;
+  goTo(currentIndex);
+  stopAuto();
 });
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  currentIndex = (currentIndex + 1) % QUOTES.length;
+  goTo(currentIndex);
+  stopAuto();
+});
+
+document.getElementById('toggleAuto').addEventListener('click', ()=>{
+  autoPlay = !autoPlay;
+  document.getElementById('toggleAuto').textContent = Otomatik: ${autoPlay ? 'Açık' : 'Kapalı'};
+  document.getElementById('toggleAuto').setAttribute('aria-pressed', String(autoPlay));
+  if(autoPlay) startAuto(); else stopAuto();
+});
+
+function startAuto(){
+  stopAuto();
+  autoTimer = setInterval(()=> {
+    currentIndex = (currentIndex + 1) % QUOTES.length;
+    goTo(currentIndex);
+  }, 5000);
+}
+function stopAuto(){ clearInterval(autoTimer); autoTimer = null; }
+
+carousel.addEventListener('scroll', ()=>{
+  // detect nearest card in center
+  const cards = [...carousel.children];
+  let best = 0; let bestDist = Infinity;
+  const center = carousel.getBoundingClientRect().left + carousel.clientWidth/2;
+  cards.forEach((c,i)=>{
+    const rect = c.getBoundingClientRect();
+    const dist = Math.abs(rect.left + rect.width/2 - center);
+    if(dist < bestDist){ bestDist = dist; best = i; }
+  });
+  if(best !== currentIndex){ currentIndex = best; updateActive(); }
+}, {passive:true});
+
+/* keyboard navigation */
+document.addEventListener('keydown',(e)=>{
+  if(e.key === 'ArrowRight'){ document.getElementById('nextBtn').click(); stopAuto(); }
+  if(e.key === 'ArrowLeft'){ document.getElementById('prevBtn').click(); stopAuto(); }
+});
+
+/* touch swipe support */
+let startX = 0, endX = 0;
+carousel.addEventListener('touchstart', (e)=> startX = e.changedTouches[0].clientX);
+carousel.addEventListener('touchend', (e)=> {
+  endX = e.changedTouches[0].clientX;
+  const dx = endX - startX;
+  if(Math.abs(dx) > 40){
+    if(dx < 0) { document.getElementById('nextBtn').click(); } else { document.getElementById('prevBtn').click(); }
+    stopAuto();
+  }
+});
+
+/* initial render */
+renderCarousel();
+/* center first card */
+setTimeout(()=> goTo(0), 120);
+
+/* accessibility: focus styles */
+carousel.addEventListener('focusin', (e)=> e.target.style.outline = '3px solid rgba(227,92,122,0.14)');
+
+/* If user wants to add quotes via console:
+   QUOTES.push({text:'Yeni alıntı', meta:'— Sen'}); renderCarousel(); goTo(QUOTES.length-1);
+*/
+
+/* small resize-observer so visuals update */
+new ResizeObserver(()=> updateActive()).observe(carousel);
+
+/* End of script */
 </script>
+
 </body>
 </html>
