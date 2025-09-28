@@ -1,137 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>İlker ❤ Bahargül — Ana Sayfa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hatıra - Ana Sayfa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Genel Ayarlar */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      margin: 0;
+      font-weight: 600;
+    }
+    p {
+      line-height: 1.6;
+    }
 
-<!-- Google Analytics (gtag) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YBDYWZSF9B');
-</script>
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+    }
+    nav .logo {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #ffcc70;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffcc70;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    /* Hamburger Menü */
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      color: #fff;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        position: absolute;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+      }
+      nav ul.active {
+        left: 0;
+      }
+      nav ul li {
+        margin: 20px 0;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
 
-<style>
-:root{
-  --accent:#c83a66;
-  --muted:#6b7280;
-  --card: rgba(255,255,255,0.98);
-  --shadow: 0 18px 60px rgba(0,0,0,0.06);
-  --maxw:1100px;
-}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:#fff}
-body::before{
-  content:"";
-  position:fixed;inset:0;
-  background:url('Bahoş.jpg') center/cover fixed no-repeat;
-  filter: saturate(.98) brightness(.96);
-  z-index:-2;
-}
-body::after{
-  content:"";
-  position:fixed;inset:0;
-  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.9));
-  z-index:-1;
-}
-/* Sidebar / hamburger */
-.hamburger{
-  position:fixed; left:14px; top:14px; z-index:1200;
-  background:rgba(255,255,255,0.86); border-radius:12px; padding:10px 12px;
-  box-shadow:var(--shadow); cursor:pointer; display:flex; align-items:center; gap:10px;
-}
-.sidebar{
-  position:fixed; left:0; top:0; bottom:0; width:0; overflow:hidden;
-  background:rgba(255,255,255,0.75); backdrop-filter:blur(8px);
-  box-shadow:2px 0 40px rgba(0,0,0,0.06); transition:width .36s ease; z-index:1195;
-}
-.sidebar.open{width:260px}
-.sidebar nav{margin-top:68px; display:flex; flex-direction:column; gap:6px; padding:12px}
-.sidebar a{padding:12px; border-radius:10px; font-weight:700; color:#222; text-decoration:none; display:flex; gap:10px; align-items:center}
-.sidebar a:hover{background:linear-gradient(90deg,var(--accent),#a33357); color:#fff}
+    /* Hero Bölümü */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px;
+      max-width: 800px;
+    }
 
-/* Container / cards */
-.container{max-width:var(--maxw);margin:8vh auto;padding:26px}
-.card{background:var(--card);padding:20px;border-radius:14px;box-shadow:var(--shadow);}
-.hero{
-  border-radius:14px; overflow:hidden; position:relative;
-  color:#fff; padding:28px; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.14));
-}
-.hero h1{font-family:'Dancing Script',cursive;font-size:clamp(28px,6vw,56px);margin:0}
-.hero p{margin:8px 0;line-height:1.5;opacity:0.95}
+    /* İlker’den Not */
+    .note {
+      padding: 50px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+    .note h2 {
+      margin-bottom: 20px;
+      color: #ffcc70;
+    }
+    .note p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 16px;
+    }
 
-/* note */
-.note{margin-top:18px; padding:18px; border-radius:12px; background:#ffffff; color:#222}
-.note h3{color:var(--accent); margin:0 0 8px}
-
-/* footer */
-footer{margin-top:26px;text-align:center;color:var(--muted);padding-bottom:26px}
-@media(max-width:700px){ .container{padding:16px} .sidebar.open{width:86%} }
-</style>
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YBDYWZSF9B');
+  </script>
 
-<button class="hamburger" id="menuBtn" aria-label="Menüyü aç">☰ <strong style="margin-left:6px">Menü</strong></button>
-
-<aside id="sidebar" class="sidebar" aria-hidden="true">
-  <div style="display:flex;justify-content:flex-end;padding:10px"><button id="closeSidebar" style="background:transparent;border:0;font-size:28px;cursor:pointer">×</button></div>
+  <!-- Navbar -->
   <nav>
-    <a href="index.html">🏠 Ana Sayfa</a>
-    <a href="anilar.html">📸 Anılar</a>
-    <a href="zaman.html">⏳ Zaman</a>
-    <a href="sarkilar.html">🎶 Şarkılar</a>
-    <a href="gokyuzu.html"> Alıntılar</a>
-    <a href="mektuplar.html"> Mektuplar</a>
+    <div class="logo"><i class="fa-solid fa-heart"></i> Hatıra</div>
+    <ul>
+      <li><a href="index.html"><i class="fa-solid fa-house"></i> Ana Sayfa</a></li>
+      <li><a href="anilar.html"><i class="fa-solid fa-image"></i> Anılar</a></li>
+      <li><a href="zaman.html"><i class="fa-solid fa-clock"></i> Zaman</a></li>
+      <li><a href="sarkilar.html"><i class="fa-solid fa-music"></i> Şarkılar</a></li>
+      <li><a href="mektup.html"><i class="fa-solid fa-pen"></i> Mektup</a></li>
+      <li><a href="gokyuzu.html"><i class="fa-solid fa-star"></i> Gökyüzü</a></li>
+    </ul>
+    <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
   </nav>
-</aside>
 
-<main class="container">
-  <section class="card hero" role="banner" aria-label="Kapak">
-    <h1>İlker ❤ Bahargül</h1>
-    <div style="margin-top:12px;">
-      <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
-      <p>Eğer bi' gün tamamen benden soğursan,</p>
-      <p>Barışma ihtimalimiz sıfır olsa bile,</p>
-      <p>Şunu sakın unutma, ben seni hep içimde taşıyacağım.</p>
-      <p>Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.</p>
-      <p>Belki bir şarkı da. Belki seninle yürüdüğümüz sokaklarda,</p>
-      <p>Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.</p>
-      <p>Benim için herşeye rağmen en güzel ihtimal sen oldun.</p>
-      <p>Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.</p>
-      <p>Muazzam bir ihtimaldin, Gökyüzüne dokunmak gibi.</p>
-    </div>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Birlikte geçen günlerin hatırası burada yaşıyor...</h1>
+    <p>
+      Eğer bi' gün tamamen benden soğursan,<br>
+      Barışma ihtimalimiz sıfır olsa bile,<br>
+      Şunu sakın unutma, ben seni hep içimde taşıyacağım.<br><br>
+      Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.<br>
+      Belki bir şarkı da. Belki seninle yürüdüğümüz sokaklarda,<br>
+      Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.<br><br>
+      Benim için her şeye rağmen en güzel ihtimal sen oldun.<br>
+      Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.<br>
+      Muazzam bir ihtimaldin, Gökyüzüne dokunmak gibi.
+    </p>
+  </div>
+
+  <!-- İlker’den Not -->
+  <section class="note">
+    <h2>✨ İlker’den Not</h2>
+    <p>
+      Sevgilim ufaklık,<br><br>
+      Sen benim gözümün görmediğini görensin.<br>
+      Aklımın yetmediğini bilensin.<br>
+      Bir yerlerde çok doğru bir şey yapıyor olmalıydım ki seni hak edeyim.<br><br>
+      Aradığın huzuru bulman dileği ile.<br><br>
+      — İlker
+    </p>
   </section>
 
-  <section class="card note" aria-label="İlker'den Not">
-    <h3>✨ İlker’den Not</h3>
-    <p>Sevgilim ufaklık,</p>
-    <p>Sen benim gözümün görmediğini görensin.</p>
-    <p>Aklımın yetmediğini bilensin.</p>
-    <p>Bir yerlerde çok doğru bir şey yapıyor olmalıydım ki seni hakedeyim.</p>
-    <p>Aradığın huzuru bulman dileği ile.</p>
-    <p style="text-align:right;font-weight:700">— İlker</p>
-  </section>
+  <!-- Footer -->
+  <footer>
+    Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.
+  </footer>
 
-  <footer class="card" style="text-align:center">Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</footer>
-</main>
-
-<script>
-const menuBtn = document.getElementById('menuBtn');
-const sidebar = document.getElementById('sidebar');
-const closeSidebar = document.getElementById('closeSidebar');
-menuBtn.addEventListener('click', ()=> { sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open')) });
-closeSidebar.addEventListener('click', ()=> { sidebar.classList.remove('open'); sidebar.setAttribute('aria-hidden','true') });
-document.addEventListener('click', (e)=>{
-  if(!sidebar.classList.contains('open')) return;
-  if(e.target.closest('#sidebar') || e.target.closest('#menuBtn')) return;
-  sidebar.classList.remove('open');
-});
-</script>
-
+  <script>
+    // Hamburger Menü
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector("nav ul");
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+  </script>
 </body>
 </html>
