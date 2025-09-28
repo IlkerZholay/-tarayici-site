@@ -1,203 +1,168 @@
 <!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>İlker ❤ Bahargül</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>İlker ❤ Bahargül — Ana Sayfa</title>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-YBDYWZSF9B');
-  </script>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBDYWZSF9B');
+</script>
 
-  <style>
-    :root {
-      --accent:#e35c7a;
-      --bg:#fdf8fb;
-      --glass: rgba(255,255,255,0.82);
-      --shadow: 0 18px 50px rgba(0,0,0,0.12);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body {
-      font-family:'Poppins',sans-serif;
-      color:#222;
-      background: var(--bg) url("Bahoş.jpg") no-repeat center center fixed;
-      background-size:cover;
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+<style>
+:root{
+  --accent:#c83a66;
+  --muted:#6b7280;
+  --bg:#fff;
+  --card: rgba(255,255,255,0.96);
+  --shadow: 0 22px 70px rgba(10,10,20,0.08);
+  --menu-accent:#e35c7a;
+}
 
-    /* NAV */
-    nav {
-      position:fixed;top:14px;left:50%;transform:translateX(-50%);
-      z-index:1200;
-      display:flex;justify-content:center;
-      width:96%;
-      pointer-events:auto;
-    }
-    nav ul {
-      list-style:none;
-      display:flex;
-      gap:10px;
-      background:var(--glass);
-      padding:8px 12px;
-      border-radius:999px;
-      backdrop-filter: blur(12px);
-      box-shadow:var(--shadow);
-      overflow:auto;
-    }
-    nav a {
-      font-weight:600;
-      font-size:14px;
-      padding:8px 14px;
-      color:#111;
-      border-radius:10px;
-      text-decoration:none;
-      white-space:nowrap;
-      display:inline-block;
-    }
-    nav a.active {
-      background:linear-gradient(90deg,var(--accent),#b33e62);
-      color:#fff;
-    }
+/* Basic reset */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;background:#fff}
+a{color:inherit;text-decoration:none}
 
-    /* HERO */
-    header.hero {
-      display:flex;align-items:center;justify-content:center;
-      min-height:80vh;text-align:center;padding:0 18px;
-      color:#fff;position:relative;
-    }
-    header.hero::after{
-      content:"";position:absolute;inset:0;
-      background:rgba(0,0,0,0.45);
-      backdrop-filter:blur(3px);
-    }
-    .hero-inner{
-      position:relative;z-index:2;max-width:900px;padding:36px;
-    }
-    .hero h1{
-      font-family:'Dancing Script',cursive;
-      font-size:clamp(36px,7vw,58px);
-      margin-bottom:20px;
-      line-height:1.2;
-      text-shadow:0 8px 30px rgba(0,0,0,0.55);
-    }
-    .hero p{
-      font-size:16px;
-      color:#f7f7f7;
-      margin-bottom:12px;
-      white-space:pre-line;
-    }
-    .hero .sub {opacity:.95;margin-top:8px;font-size:15px}
+/* Body background image (Bahoş.jpg) */
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:-3;background:url('Bahoş.jpg') center/cover no-repeat;
+  filter: saturate(.96) brightness(.92);
+}
 
-    /* MAIN CARD */
-    main{
-      max-width:920px;
-      margin: -80px auto 40px;
-      padding:34px;
-      background:var(--glass);
-      backdrop-filter:blur(10px);
-      border-radius:20px;
-      box-shadow:var(--shadow);
-      position:relative;
-      z-index:2;
-    }
-    h2{
-      font-family:'Dancing Script',cursive;
-      font-size:28px;
-      color:var(--accent);
-      margin-bottom:12px;
-    }
-    .note{
-      font-style:normal;
-      margin-top:10px;
-      white-space:pre-line;
-      color:#333;
-      font-size:16px;
-      line-height:1.8;
-    }
+/* overlay for a gentle soft look */
+body::after{
+  content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.95));
+}
 
-    /* responsive */
-    @media(max-width:720px){
-      .hero-inner{padding:24px}
-      main{margin: -60px 16px 24px;padding:20px;border-radius:16px}
-      .hero h1{font-size:32px}
-    }
+/* site container */
+.container{max-width:1120px;margin:28px auto;padding:18px}
 
-    footer{
-      text-align:center;
-      padding:20px;
-      font-size:14px;
-      color:#555;
-      margin-top:8px;
-    }
+/* hero card like a book first page */
+.hero-card{
+  display:flex;gap:18px;background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
+  border-radius:16px;padding:26px;box-shadow:var(--shadow);align-items:flex-start;
+}
+.hero-left{flex:1;min-width:0}
+.hero-title{font-family:'Playfair Display',serif;font-size:34px;margin:0;color:#2b1620}
+.hero-poem{margin-top:12px;color:#333;line-height:1.6}
+.hero-cover{width:360px;border-radius:14px;overflow:hidden;flex-shrink:0;box-shadow:0 12px 36px rgba(0,0,0,0.08)}
+.hero-cover img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* small fade-in */
-    .fade-in {animation:fadeIn .6s ease both}
-    @keyframes fadeIn {from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  </style>
+/* note card */
+.note-card{margin-top:18px;background:#fff;padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+.note-card h3{color:var(--menu-accent);margin:0 0 8px}
+
+/* small layout niceties */
+.row{display:flex;gap:12px;align-items:center}
+@media(max-width:860px){ .hero-card{flex-direction:column} .hero-cover{width:100%;height:220px} }
+
+/* footer */
+footer{margin-top:18px;text-align:center;color:var(--muted);padding:24px 0}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
+<!-- ============================
+     SITE-WIDE HAMBURGER SIDEBAR
+     (paste-once block, same block appears in all pages)
+   ============================ -->
+<style>
+  :root{--menu-width:260px;--menu-accent:#e35c7a}
+  .site-menu-openbtn{position:fixed;left:14px;top:14px;z-index:2200;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));backdrop-filter: blur(6px);box-shadow: 0 12px 36px rgba(0,0,0,0.25);border: none;cursor: pointer;color:#111;font-weight:700}
+  .site-menu-openbtn .bars{ width:22px; height:14px; position:relative; display:inline-block }
+  .site-menu-openbtn .bars span{ position:absolute; left:0; right:0; height:2px; display:block; background:#222; border-radius:2px }
+  .site-menu-openbtn .bars span:nth-child(1){ top:0 }
+  .site-menu-openbtn .bars span:nth-child(2){ top:6px }
+  .site-menu-openbtn .bars span:nth-child(3){ top:12px }
+  .site-sidebar{position:fixed;left:12px;top:64px;z-index:2100;width:0;height:calc(100% - 96px);overflow:hidden;border-radius:14px;background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));backdrop-filter: blur(8px);box-shadow: 0 18px 50px rgba(2,6,12,0.45);transition: width 320ms;}
+  .site-sidebar.open{ width:var(--menu-width) }
+  .site-sidebar nav{ display:flex; flex-direction:column; padding:14px; gap:8px; }
+  .site-sidebar a{ padding:12px; border-radius:10px; color:#111; font-weight:700; display:flex; gap:10px; align-items:center; text-decoration:none }
+  .site-sidebar a:hover{ background: linear-gradient(90deg, var(--menu-accent), #b33e62); color:#fff }
+  .site-menu-overlay{ position:fixed; inset:0; z-index:2050; display:none; background: rgba(0,0,0,0.4); }
+  .site-menu-overlay.show{ display:block; opacity:1 }
+  @media(max-width:720px){ .site-sidebar.open{ width: min(84vw,320px); left:8px; top:72px } }
+</style>
+
+<button class="site-menu-openbtn" id="siteMenuToggle" aria-expanded="false" aria-controls="siteSidebar" aria-label="Menüyü aç">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+  <span style="color:#111">Menü</span>
+</button>
+
+<aside id="siteSidebar" class="site-sidebar" aria-hidden="true" role="navigation">
   <nav>
-    <ul>
-      <li><a href="index.html" class="active">Ana Sayfa</a></li>
-      <li><a href="anilar.html">Anılar</a></li>
-      <li><a href="zaman.html">Zaman</a></li>
-      <li><a href="sarkilar.html">Şarkılar</a></li>
-      <li><a href="gokyuzu.html">Gökyüzü</a></li>
-      <li><a href="notlar.html">Notlar</a></li>
-    </ul>
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="anilar.html">📸 Anılar</a>
+    <a href="zaman.html">⏳ Zaman</a>
+    <a href="sarkilar.html">🎶 Şarkılar</a>
+    <a href="gokyuzu.html">🌌 Gökyüzü</a>
+    <div style="margin-top:auto;padding:10px;color:#333;font-size:13px">Bu sayfa İlker tarafından hazırlanmıştır.</div>
   </nav>
+</aside>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-inner fade-in" role="banner" aria-labelledby="heroTitle">
-      <h1 id="heroTitle">Birlikte geçen günlerin hatırası burada yaşıyor...</h1>
-      <p class="sub">
-Eğer bi' gün tamamen benden soğursan,
-Barışma ihtimalimiz sıfır olsa bile,
-Şunu sakın unutma, ben seni hep içimde taşıyacağım.
+<div id="siteMenuOverlay" class="site-menu-overlay" tabindex="-1" aria-hidden="true"></div>
 
-Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.
-Belki bir şarkı da. Belki seninle yürüdüğümüz sokaklarda,
-Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.
+<script>
+(function(){
+  const toggle = document.getElementById('siteMenuToggle');
+  const sidebar = document.getElementById('siteSidebar');
+  const overlay = document.getElementById('siteMenuOverlay');
+  function openMenu(){ sidebar.classList.add('open'); overlay.classList.add('show'); sidebar.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); overlay.addEventListener('click', closeOnce); document.addEventListener('keydown', onKey); const first = sidebar.querySelector('a'); if(first) first.focus(); }
+  function closeMenu(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); sidebar.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); overlay.removeEventListener('click', closeOnce); document.removeEventListener('keydown', onKey); toggle.focus(); }
+  function closeOnce(){ closeMenu(); overlay.removeEventListener('click', closeOnce); }
+  function onKey(e){ if(e.key==='Escape') closeMenu(); }
+  toggle.addEventListener('click', ()=> sidebar.classList.contains('open') ? closeMenu() : openMenu());
+  sidebar.addEventListener('click', (e)=> { if(e.target.tagName==='A') setTimeout(()=> closeMenu(), 120); });
+})();
+</script>
+<!-- END MENU BLOCK -->
 
-Benim için herşeye rağmen en güzel ihtimal sen oldun.
-Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.
-Muazzam bir ihtimaldin, Gökyüzüne dokunmak gibi.
-      </p>
+<div class="container">
+  <div class="hero-card" role="banner">
+    <div class="hero-left">
+      <h1 class="hero-title">İlker ❤ Bahargül</h1>
+      <div class="hero-poem">
+        <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
+        <p>Eğer bi' gün tamamen benden soğursan,</p>
+        <p>Barışma ihtimalimiz sıfır olsa bile,</p>
+        <p>Şunu sakın unutma, ben seni hep içimde taşıyacağım.</p>
+        <p>Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.</p>
+        <p>Belki bir şarkı da. Belki seninle yürüdüğümüz sokaklarda,</p>
+        <p>Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.</p>
+        <p>Benim için herşeye rağmen en güzel ihtimal sen oldun.</p>
+        <p>Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.</p>
+        <p>Muazzam bir ihtimaldin, Gökyüzüne dokunmak gibi.</p>
+      </div>
     </div>
-  </header>
 
-  <!-- MAIN -->
-  <main class="fade-in" role="main" aria-labelledby="noteTitle">
-    <h2 id="noteTitle">✨ İlker’den Not</h2>
-    <div class="note" aria-live="polite">
-Sevgilim ufaklık,
-
-Sen benim gözümün görmediğini görensin.
-Aklımın yetmediğini bilensin.
-Bir yerlerde çok doğru bir şey yapıyor olmalıydım ki seni hakedeyim.
-
-Aradığın huzuru bulman dileği ile.
-
-— İlker
+    <div class="hero-cover" aria-hidden="true">
+      <img src="Bahar.jpg" alt="Kapak görseli">
     </div>
-  </main>
+  </div>
 
-  <footer class="fade-in">
-    Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.
+  <div class="note-card" role="region" aria-label="İlker'den Not">
+    <h3>✨ İlker’den Not</h3>
+    <p>Sevgilim ufaklık,</p>
+    <p>Sen benim gözümün görmediğini görensin.</p>
+    <p>Aklımın yetmediğini bilensin.</p>
+    <p>Bir yerlerde çok doğru bir şey yapıyor olmalıydım ki seni hakedeyim.</p>
+    <p>Aradığın huzuru bulman dileği ile.</p>
+    <p style="text-align:right"><strong>— İlker</strong></p>
+  </div>
+
+  <footer>
+    <p>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</p>
   </footer>
+</div>
 
 </body>
 </html>
