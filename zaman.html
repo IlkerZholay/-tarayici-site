@@ -1,129 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mektuplar</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background: url('Bahoş.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      line-height: 1.6;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Zaman — İlker ❤ Bahargül</title>
 
-    /* Menü */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      padding: 15px 0;
-      z-index: 1000;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 25px;
-    }
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBDYWZSF9B');
+</script>
 
-    nav ul li {
-      display: inline;
-    }
+<style>
+:root{--accent:#c83a66;--muted:#6b7280;--card:#fff;--shadow:0 20px 60px rgba(10,10,20,0.06)}
+*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:'Poppins',sans-serif;background:#fff}
+body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed;filter:saturate(.96);z-index:-2}
+body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.96));z-index:-1}
+.container{max-width:1120px;margin:28px auto;padding:18px}
 
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-      padding: 8px 15px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-    }
+/* timeline */
+.timeline{display:flex;gap:16px;overflow-x:auto;padding:14px;scroll-snap-type:x mandatory}
+.tcard{flex:0 0 260px;background:#fff;padding:16px;border-radius:12px;box-shadow:var(--shadow);scroll-snap-align:center;transition:transform .24s, box-shadow .24s}
+.tcard h3{margin:0 0 8px;color:var(--accent)}
+.tcard p{margin:0;color:var(--muted)}
 
-    nav ul li a:hover {
-      background: #ff4b5c;
-      color: #fff;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 120px auto 50px;
-      background: rgba(0, 0, 0, 0.55);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0px 4px 20px rgba(0,0,0,0.7);
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 2.2em;
-      margin-bottom: 20px;
-      color: #ffeaa7;
-    }
-
-    .note {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-left: 5px solid #ff7675;
-      margin-bottom: 25px;
-      border-radius: 10px;
-      font-style: italic;
-    }
-
-    .note small {
-      display: block;
-      margin-top: 10px;
-      text-align: right;
-      font-size: 0.9em;
-      color: #fab1a0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.85em;
-      color: #dfe6e9;
-      margin-top: 40px;
-    }
-  </style>
+/* counter area - static "stopped" */
+.counter{margin-top:22px;background:#fff;padding:18px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:18px;align-items:center;justify-content:space-between}
+.counter .left{flex:1}
+.counter .time{font-size:22px;font-weight:800;color:var(--accent)}
+.counter video{width:320px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.06)}
+@media(max-width:840px){ .counter{flex-direction:column;align-items:flex-start} .counter video{width:100%} }
+</style>
 </head>
 <body>
-  <!-- Menü -->
+
+<!-- MENU block -->
+<style>
+  :root{--menu-width:260px;--menu-accent:#e35c7a}
+  .site-menu-openbtn{position:fixed;left:14px;top:14px;z-index:2200;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));backdrop-filter: blur(6px);box-shadow: 0 12px 36px rgba(0,0,0,0.25);border: none;cursor: pointer;color:#111;font-weight:700}
+  .site-menu-openbtn .bars{ width:22px; height:14px; position:relative; display:inline-block }
+  .site-menu-openbtn .bars span{ position:absolute; left:0; right:0; height:2px; display:block; background:#222; border-radius:2px }
+  .site-menu-openbtn .bars span:nth-child(1){ top:0 }
+  .site-menu-openbtn .bars span:nth-child(2){ top:6px }
+  .site-menu-openbtn .bars span:nth-child(3){ top:12px }
+  .site-sidebar{position:fixed;left:12px;top:64px;z-index:2100;width:0;height:calc(100% - 96px);overflow:hidden;border-radius:14px;background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));backdrop-filter: blur(8px);box-shadow: 0 18px 50px rgba(2,6,12,0.45);transition: width 320ms;}
+  .site-sidebar.open{ width:var(--menu-width) }
+  .site-sidebar nav{ display:flex; flex-direction:column; padding:14px; gap:8px; }
+  .site-sidebar a{ padding:12px; border-radius:10px; color:#111; font-weight:700; display:flex; gap:10px; align-items:center; text-decoration:none }
+  .site-sidebar a:hover{ background: linear-gradient(90deg, var(--menu-accent), #b33e62); color:#fff }
+  .site-menu-overlay{ position:fixed; inset:0; z-index:2050; display:none; background: rgba(0,0,0,0.4); }
+  .site-menu-overlay.show{ display:block; opacity:1 }
+  @media(max-width:720px){ .site-sidebar.open{ width: min(84vw,320px); left:8px; top:72px } }
+</style>
+
+<button class="site-menu-openbtn" id="siteMenuToggle" aria-expanded="false" aria-controls="siteSidebar" aria-label="Menüyü aç">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+  <span style="color:#111">Menü</span>
+</button>
+
+<aside id="siteSidebar" class="site-sidebar" aria-hidden="true" role="navigation">
   <nav>
-    <ul>
-      <li><a href="index.html">Ana Sayfa</a></li>
-      <li><a href="anilar.html">Anılar</a></li>
-      <li><a href="zaman.html">Zaman</a></li>
-      <li><a href="sarkilar.html">Şarkılar</a></li>
-      <li><a href="gokyuzu.html">Gökyüzü</a></li>
-      <li><a href="mektuplar.html">Mektuplar</a></li>
-    </ul>
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="anilar.html">📸 Anılar</a>
+    <a href="zaman.html">⏳ Zaman</a>
+    <a href="sarkilar.html">🎶 Şarkılar</a>
+    <a href="gokyuzu.html">🌌 Gökyüzü</a>
+    <div style="margin-top:auto;padding:10px;color:#333;font-size:13px">Bu sayfa İlker tarafından hazırlanmıştır.</div>
   </nav>
+</aside>
 
-  <div class="container">
-    <h1>📜 Mektuplar</h1>
+<div id="siteMenuOverlay" class="site-menu-overlay" tabindex="-1" aria-hidden="true"></div>
 
-    <!-- Tek örnek not -->
-    <div class="note">
-      Bu satırları yazarken kalbim yine sana doldu.  
-      Bazen kelimeler kifayetsiz kalıyor, ama yine de yazmak istiyorum.  
-      Çünkü sen, yazmaya değer tek ilhamsın.  
-      <small>— İlker</small>
-    </div>
+<script>
+(function(){
+  const toggle = document.getElementById('siteMenuToggle');
+  const sidebar = document.getElementById('siteSidebar');
+  const overlay = document.getElementById('siteMenuOverlay');
+  function openMenu(){ sidebar.classList.add('open'); overlay.classList.add('show'); sidebar.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); overlay.addEventListener('click', closeOnce); document.addEventListener('keydown', onKey); const first = sidebar.querySelector('a'); if(first) first.focus(); }
+  function closeMenu(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); sidebar.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); overlay.removeEventListener('click', closeOnce); document.removeEventListener('keydown', onKey); toggle.focus(); }
+  function closeOnce(){ closeMenu(); overlay.removeEventListener('click', closeOnce); }
+  function onKey(e){ if(e.key==='Escape') closeMenu(); }
+  toggle.addEventListener('click', ()=> sidebar.classList.contains('open') ? closeMenu() : openMenu());
+  sidebar.addEventListener('click', (e)=> { if(e.target.tagName==='A') setTimeout(()=> closeMenu(), 120); });
+})();
+</script>
+<!-- END MENU -->
 
+<div class="container">
+  <h1 style="margin:0 0 10px">⏳ Zaman Çizelgesi</h1>
+  <p style="color:var(--muted);margin-bottom:16px">Sevgili olduğumuz tarihten bu yana küçük duraklar — sağa kaydır.</p>
+
+  <div class="timeline" id="timeline">
+    <article class="tcard"><h3>3 Ağustos 2025</h3><p>04:05 — Sevgili olduk. Yeni bir başlangıç.</p></article>
+    <article class="tcard"><h3>İlk Buluşma</h3><p>Merdivenler & Kahkaha — heyecan dolu anlar.</p></article>
+    <article class="tcard"><h3>İlk Sürpriz</h3><p>Beyaz güller — küçük ama anlamlı.</p></article>
+    <article class="tcard"><h3>20 Eylül 2025</h3><p>Ayrılık — bir dönüm noktası.</p></article>
+    <article class="tcard"><h3>Bugün</h3><p>Hafızalarda kalan anılar.</p></article>
   </div>
 
-  <footer>
-    Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.
-  </footer>
+  <section class="counter" aria-label="Zaman Sayacı">
+    <div class="left">
+      <div style="color:var(--muted);font-weight:700">Sayaç — durdu</div>
+      <div class="time">48 gün 19 saat</div>
+      <div style="color:var(--muted);margin-top:8px">"Güzel şeyler kısa sürermiş" — bu sayaç hatıra olarak burada duruyor.</div>
+    </div>
+    <div>
+      <video src="sonvideo.mp4" controls></video>
+    </div>
+  </section>
+
+  <p style="margin-top:18px;color:var(--muted)">Zaman çizelgesindeki kartlara dokununca hafifçe büyür ve odaklanır — mobilde kaydırarak gezin.</p>
+
+  <footer style="margin-top:18px;color:var(--muted)">Sayfa İlker tarafından hazırlanmıştır.</footer>
+</div>
+
+<script>
+/* small interactivity: scale on click/tap */
+document.querySelectorAll('.tcard').forEach(card=>{
+  card.addEventListener('click', ()=> {
+    document.querySelectorAll('.tcard').forEach(c=> c.style.transform='scale(1)');
+    card.style.transform='scale(1.04)';
+    setTimeout(()=> card.style.transform='scale(1.02)', 260);
+  });
+});
+</script>
+
 </body>
 </html>
