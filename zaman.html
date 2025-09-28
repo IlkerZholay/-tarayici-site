@@ -3,108 +3,149 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>İlker ❤ Bahargül — Zaman</title>
+<title>Zaman — İlker ❤ Bahargül</title>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YBDYWZSF9B');
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBDYWZSF9B');
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{--accent:#c83a66;--muted:#6b7280;--card:#fff;--shadow:0 18px 60px rgba(0,0,0,0.06)}
-*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:#fff}
-body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed no-repeat;filter:brightness(.95);z-index:-2}
-body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.9));z-index:-1}
+  :root{
+    --accent:#e35c7a;
+    --muted:#6b6470;
+    --card:#ffffffee;
+    --shadow:0 18px 50px rgba(2,6,12,0.18);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:'Poppins',system-ui; background: url("Bahoş.jpg") center/cover fixed no-repeat; color:#222}
+  nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:1200;display:flex;justify-content:center;width:96%}
+  nav ul{display:flex;gap:10px;background:rgba(255,255,255,0.88);padding:8px 12px;border-radius:999px;box-shadow:var(--shadow);overflow:auto}
+  nav a{padding:8px 14px;border-radius:10px;font-weight:600;font-size:14px}
+  nav a.active{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff}
 
-/* sidebar */
-.hamburger{position:fixed;left:14px;top:14px;z-index:1200;background:rgba(255,255,255,0.86);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;gap:10px}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:rgba(255,255,255,0.75);backdrop-filter:blur(8px);box-shadow:2px 0 40px rgba(0,0,0,0.06);transition:width .36s}
-.sidebar.open{width:260px}
-.sidebar nav{margin-top:68px;display:flex;flex-direction:column;gap:6px;padding:12px}
-.sidebar a{padding:12px;border-radius:10px;font-weight:700;color:#222;text-decoration:none}
+  .wrap{max-width:1120px;margin:110px auto 60px;padding:20px}
 
-/* main */
-.container{max-width:1100px;margin:8vh auto;padding:20px}
-.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.header h2{margin:0;font-weight:700;color:#222}
+  h1{font-family:'Dancing Script',cursive;font-size:32px;margin:0 0 8px;color:var(--accent)}
+  p.lead{color:#333;margin:0 0 18px}
 
-/* timeline */
-.timeline-wrap{background:var(--card);padding:14px;border-radius:14px;box-shadow:var(--shadow)}
-.timeline{display:flex;gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory}
-.tcard{flex:0 0 260px;background:linear-gradient(#fff,#fff7fb);padding:14px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06);scroll-snap-align:center;transition:transform .22s ease}
-.tcard:hover{transform:translateY(-6px)}
-.tdate{color:var(--accent);font-weight:800;font-size:13px}
-.tcard h3{margin:8px 0}
+  /* timeline area */
+  .timeline-wrap{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+  .timeline{display:flex;gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory}
+  .tcard{flex:0 0 260px;background:#fff;padding:16px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06);scroll-snap-align:center;transition:transform .18s ease, box-shadow .18s ease;cursor:pointer}
+  .tcard:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.12)}
+  .tdate{color:var(--accent);font-weight:800;margin-bottom:6px}
+  .tcard h3{margin:0 0 8px;font-size:16px}
+  .tcard p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
 
-/* counter */
-.counter{margin-top:20px;background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.counter .block{flex:1;min-width:220px}
-.counter .time{font-size:28px;font-weight:800;color:var(--accent)}
-.counter p{margin:6px 0;color:var(--muted)}
-.side-video{max-width:420px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
-.side-video video{width:100%;height:auto;display:block}
+  /* counter + video area */
+  .counter-wrap{display:flex;flex-direction:column;gap:16px;margin-top:18px;align-items:center}
+  .counter-card{background:var(--card);padding:18px;border-radius:14px;box-shadow:var(--shadow);width:100%;display:flex;gap:20px;align-items:center;justify-content:space-between}
+  .count-box{font-size:20px;font-weight:800;color:var(--accent)}
+  .count-sub{color:var(--muted);font-size:14px}
+
+  @media(min-width:900px){ .counter-wrap{flex-direction:row}}
+  .video-box video{max-width:360px;border-radius:12px;box-shadow:var(--shadow)}
 </style>
 </head>
 <body>
 
-<button class="hamburger" id="menuBtn">☰ Men&uuml;</button>
-<aside id="sidebar" class="sidebar" aria-hidden="true">
-  <div style="display:flex;justify-content:flex-end;padding:10px"><button id="closeSidebar" style="background:transparent;border:0;font-size:28px;cursor:pointer">×</button></div>
-  <nav>
-    <a href="index.html">🏠 Ana Sayfa</a>
-    <a href="anilar.html">📸 Anılar</a>
-    <a href="zaman.html" style="background:linear-gradient(90deg,var(--accent),#a33357);color:#fff;padding:12px;border-radius:8px">⏳ Zaman</a>
-    <a href="sarkilar.html">🎶 Şarkılar</a>
-  </nav>
-</aside>
+<nav>
+  <ul>
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="anilar.html">Anılar</a></li>
+    <li><a href="zaman.html" class="active">Zaman</a></li>
+    <li><a href="sarkilar.html">Şarkılar</a></li>
+    <li><a href="gokyuzu.html">Gökyüzü</a></li>
+  </ul>
+</nav>
 
-<main class="container">
-  <header class="header">
-    <h2>⏳ Zaman Çizelgesi</h2>
-    <p style="color:var(--muted)">Sevgili olduğumuz tarihten bugüne küçük duraklar — kaydır.</p>
+<main class="wrap" role="main" aria-labelledby="title">
+  <header>
+    <h1 id="title">Zaman Çizelgesi</h1>
+    <p class="lead">Sevgili olduğumuz günden bugüne küçük duraklarımız — sağa kaydırın. Aşağıda duran zaman sayacı “hatıra” olarak sabit gösteriliyor.</p>
   </header>
 
-  <section class="timeline-wrap card">
+  <section class="timeline-wrap" aria-label="Zaman çizelgesi">
     <div class="timeline" id="timeline">
-      <div class="tcard" tabindex="0"><div class="tdate">3 Ağustos 2025 • 04:05</div><h3>Sevgili Olduk</h3><p class="muted">O gece hayatımız yepyeni bir yola girdi.</p></div>
-      <div class="tcard" tabindex="0"><div class="tdate">İlk Sürpriz</div><h3>Beyaz Güller</h3><p class="muted">Senin için aldığım küçük çiçekler.</p></div>
-      <div class="tcard" tabindex="0"><div class="tdate">İlk Buluşma</div><h3>Merdivenler & Kahkaha</h3><p class="muted">Kalbim deli gibi atıyordu.</p></div>
-      <div class="tcard" tabindex="0"><div class="tdate">20 Eylül 2025</div><h3>Ayrılık</h3><p class="muted">Bir dönüm noktası — kaydedildi.</p></div>
-      <div class="tcard" tabindex="0"><div class="tdate">Bugün</div><h3>Hâlâ Buradayız</h3><p class="muted">Anılar burada saklı.</p></div>
+      <article class="tcard" tabindex="0">
+        <div class="tdate">03 Ağustos 2025 • 04:05</div>
+        <h3>Sevgili Olduk</h3>
+        <p>O sabah, yeni bir başlangıç... Kalbimiz hızlı çarpıyordu.</p>
+      </article>
+
+      <article class="tcard" tabindex="0">
+        <div class="tdate">İlk Sürpriz</div>
+        <h3>Beyaz Güller</h3>
+        <p>Hiç beklemediğin anda gelen o küçük demet.</p>
+      </article>
+
+      <article class="tcard" tabindex="0">
+        <div class="tdate">İlk Buluşma</div>
+        <h3>Merdivenler & Kahkaha</h3>
+        <p>O akşam, iki yürek bir adım daha yakındı.</p>
+      </article>
+
+      <article class="tcard" tabindex="0">
+        <div class="tdate">20 Eylül 2025</div>
+        <h3>Ayrılık</h3>
+        <p>Bu tarih ayrı bir dönüm noktası — hatıra olarak işaretlendi.</p>
+      </article>
+
+      <article class="tcard" tabindex="0">
+        <div class="tdate">Bugün</div>
+        <h3>Hâlâ Buradayız (Anı)</h3>
+        <p>Geçmişin küçük notları, geleceğin sessiz tanıklarıdır.</p>
+      </article>
     </div>
   </section>
 
-  <section style="margin-top:18px" class="card">
-    <div class="counter">
-      <div class="block">
-        <p style="font-weight:700">Serüvenimizin sayaç kaydı</p>
-        <div class="time">48 gün 19 saat</div>
-        <p style="color:var(--muted)">Bu sayaç burada duracak — bir hatıra olarak. <strong>Güzel şeyler kısa sürermiş</strong>.</p>
+  <section class="counter-wrap" aria-label="Sayaç ve video">
+    <div class="counter-card" role="status" aria-live="polite">
+      <div>
+        <div style="font-size:13px;color:var(--muted)">Zaman Sayacı (durdu)</div>
+        <div class="count-box">48 gün 19 saat</div>
+        <div class="count-sub">Güzel şeyler kısa sürermiş — bu sayaç hatıra olarak duruyor.</div>
       </div>
-      <div class="side-video">
-        <video src="sonvideo.mp4" controls></video>
+
+      <div class="video-box">
+        <video src="sonvideo.mp4" controls preload="metadata"></video>
       </div>
     </div>
   </section>
 </main>
 
 <script>
-/* sidebar */
-const menuBtn=document.getElementById('menuBtn'), sidebar=document.getElementById('sidebar'), closeSidebar=document.getElementById('closeSidebar');
-menuBtn.addEventListener('click', ()=>{ sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden',!sidebar.classList.contains('open')) });
-closeSidebar.addEventListener('click', ()=>{ sidebar.classList.remove('open'); sidebar.setAttribute('aria-hidden','true') });
-
-/* timeline click grow effect */
-document.querySelectorAll('.tcard').forEach(card=>{
-  card.addEventListener('click', ()=> {
-    card.style.transform = 'translateY(-8px) scale(1.02)';
-    setTimeout(()=>{ card.style.transform = ''; }, 260);
+  // timeline cards: small interaction (büyüme on focus/click)
+  document.querySelectorAll('.tcard').forEach(card=>{
+    card.addEventListener('click', ()=> {
+      // quick pulse effect
+      card.style.transform = 'scale(1.03)';
+      setTimeout(()=> card.style.transform = '', 220);
+    });
+    card.addEventListener('keydown', (e)=> {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
   });
-});
+
+  // make timeline horizontally scrollable by wheel (nice UX on desktop)
+  const timeline = document.getElementById('timeline');
+  timeline.addEventListener('wheel', (e)=> {
+    if(Math.abs(e.deltaX) < Math.abs(e.deltaY)){
+      timeline.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }
+  }, {passive:false});
 </script>
+
 </body>
 </html>
