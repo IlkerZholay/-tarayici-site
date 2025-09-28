@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mektuplar — İlker ❤ Bahargül</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --accent:#e35c7a;
+    --muted:#9aa0a6;
+    --bg-dark:#071028;
+    --card-bg: rgba(255,255,255,0.95);
+    --glass: rgba(255,255,255,0.06);
+    --glass-strong: rgba(255,255,255,0.12);
+    --maxw:1120px;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#061424,#071028);color:#fff;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  /* canvas starfield sits full-bleed */
+  #starfield{position:fixed;inset:0;z-index:0;display:block}
+
+  /* hamburger */
+  .hamburger{
+    position:fixed;left:16px;top:16px;z-index:1200;background:rgba(255,255,255,0.04);backdrop-filter:blur(6px);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.45);
+  }
+  .hamburger .bars{width:22px;height:14px;position:relative}
+  .hamburger .bars span{position:absolute;left:0;right:0;height:2px;background:#fff;border-radius:2px;display:block}
+  .hamburger .bars span:nth-child(1){top:0}
+  .hamburger .bars span:nth-child(2){top:6px}
+  .hamburger .bars span:nth-child(3){top:12px}
+  .hamburger .label{font-weight:700;color:#fff;letter-spacing:.2px;font-size:14px}
+
+  /* sidebar */
+  .sidebar{
+    position:fixed;left:12px;top:64px;z-index:1150;width:0;overflow:hidden;height:calc(100% - 96px);border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(2,6,12,0.65);transition:width .36s ease;
+  }
+  .sidebar.open{width:260px}
+  .sidebar nav{display:flex;flex-direction:column;padding:14px;gap:8px}
+  .sidebar a{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;color:#fff;font-weight:700}
+  .sidebar a:hover{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));transform:translateX(6px)}
+
+  /* page container */
+  .page{position:relative;z-index:10;max-width:var(--maxw);margin:64px auto;padding:28px}
+  .hero{display:flex;gap:20px;align-items:center;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 8px 40px rgba(0,0,0,0.45)}
+  .hero .left{flex:1;min-width:0}
+  .hero h1{font-family:'Dancing Script',cursive;font-size:clamp(28px,5.6vw,48px);margin:0;color:#fff;text-shadow:0 8px 30px rgba(0,0,0,0.6)}
+  .hero p{margin:8px 0;color:rgba(255,255,255,0.9);line-height:1.5;font-size:15px}
+
+  /* layout: two columns on wide screens */
+  .cols{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:22px}
+  @media(max-width:980px){ .cols{grid-template-columns:1fr} }
+
+  /* notes list */
+  .notes-wrap{background:var(--glass);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,12,0.45)}
+  .note-card{background:var(--card-bg);color:#111;padding:16px;border-radius:12px;margin-bottom:14px;box-shadow:0 8px 28px rgba(2,6,12,0.16);cursor:pointer;transition:transform .22s ease,box-shadow .22s ease}
+  .note-card:hover{transform:translateY(-6px);box-shadow:0 22px 60px rgba(2,6,12,0.22)}
+  .note-card h3{margin:0 0 6px;font-size:16px;color:var(--accent)}
+  .note-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+  .note-meta{margin-top:10px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+  /* controls & form (right column) */
+  .panel{background:var(--card-bg);padding:16px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.14)}
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+  input[type="text"], textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #eee;font-size:15px;font-family:inherit}
+  textarea{min-height:120px;resize:vertical}
+  .row{display:flex;gap:8px}
+  button{background:var(--accent);border:0;color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+  button.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.06)}
+
+  /* modal */
+  #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1400;align-items:center;justify-content:center;padding:18px}
+  .modal-card{background:var(--card-bg);color:#111;border-radius:12px;max-width:960px;width:100%;max-height:88vh;overflow:auto;padding:22px;box-shadow:0 28px 90px rgba(2,6,12,0.6)}
+  .modal-card h2{margin-top:0}
+  .modal-close{position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:28px;cursor:pointer}
+
+  /* empty state */
+  .empty{text-align:center;padding:30px;color:var(--muted)}
+
+  /* small niceties */
+  .soft{box-shadow:0 10px 40px rgba(227,92,122,0.06)}
+  .muted{color:var(--muted)}
+  .small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- Hamburger -->
+<button aria-expanded="false" class="hamburger" id="hamburgerBtn" title="Menüyü aç">
+  <div class="bars" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="label">Menü</div>
+</button>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar" aria-hidden="true">
+  <nav>
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="anilar.html">📸 Anılar</a>
+    <a href="zaman.html">⏳ Zaman</a>
+    <a href="sarkilar.html">🎶 Şarkılar</a>
+    <a href="gokyuzu.html">🌌 Gökyüzü</a>
+    <a href="mektuplar.html" style="opacity:0.9">✉ Mektuplar</a>
+  </nav>
+</aside>
+
+<!-- Page -->
+<main class="page" role="main" aria-labelledby="pageTitle">
+  <header class="hero" role="banner">
+    <div class="left">
+      <h1 id="pageTitle">Mektuplar & Notlar</h1>
+      <p>Buraya yıllar içinde biriktirdiğin, saklamak istediğin uzun notları ve mektupları ekleyebilirsin. Kartlara tıkla; tam metin modal'da açılacak. Yeni bir not eklersen yerel olarak tarayıcıda saklanır.</p>
+    </div>
+    <div style="min-width:180px;text-align:right">
+      <div style="background:rgba(255,255,255,0.03);padding:10px 14px;border-radius:12px;display:inline-block">
+        <div style="font-weight:700">İlker tarafından</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:13px">Bir hatıra sayfası</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="cols" id="cols">
+    <!-- left: notes list -->
+    <section class="notes-wrap" aria-label="Mektuplar listesi">
+      <div id="notesList" aria-live="polite">
+        <!-- Cards injected by JS -->
+      </div>
+
+      <div id="emptyState" class="empty" style="display:none">
+        <p>Henüz hiç not yok. Sağ taraftan yeni bir not ekleyebilirsin.</p>
+      </div>
+    </section>
+
+    <!-- right: add form + helpers -->
+    <aside>
+      <div class="panel">
+        <h3 style="margin-top:0">Yeni Not / Mektup Ekle</h3>
+        <label for="noteTitle">Başlık</label>
+        <input id="noteTitle" type="text" placeholder="Kısa başlık (ör. Veda Notu)">
+
+        <label for="noteExcerpt" style="margin-top:10px">Kısa Alıntı (kart üstü görünür)</label>
+        <input id="noteExcerpt" type="text" placeholder="Kartta görünecek kısa açıklama">
+
+        <label for="noteBody" style="margin-top:10px">Tam Metin</label>
+        <textarea id="noteBody" placeholder="Uzun metin veya mektubun tamamını buraya yapıştırabilirsin..."></textarea>
+
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button id="addNoteBtn">Notu Ekle</button>
+          <button id="clearNotes" class="ghost" style="border:1px solid rgba(255,255,255,0.06)">Tümünü Sil</button>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(0,0,0,0.06);margin:12px 0">
+
+        <div class="small">Notlar yalnızca bu tarayıcıda saklanır. İstersen ileride dışa aktar-düğmesi ekleriz.</div>
+      </div>
+
+      <div style="height:16px"></div>
+
+      <div class="panel">
+        <h4 style="margin:0 0 8px">Örnek Şablon</h4>
+        <div class="small muted">Kopyala -> yapıştır -> düzenle:</div>
+        <pre style="background:#fff;padding:10px;border-radius:8px;color:#111;font-size:13px;overflow:auto">Başlık: Küçük Sürpriz
+Alıntı: O gün sen gülmüştün...
+Metin: Sevgilim, o küçük sürprizle başlayan her şey benim için çok kıymetli...
+</pre>
+      </div>
+    </aside>
+  </div>
+
+  <footer style="margin-top:26px;text-align:center;color:rgba(255,255,255,0.7);font-size:13px">
+    Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.
+  </footer>
+</main>
+
+<!-- Modal for full note -->
+<div id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <button id="modalClose" class="modal-close" aria-label="Kapat">×</button>
+  <div class="modal-card" role="document" id="modalCard" tabindex="0">
+    <h2 id="modalTitle"></h2>
+    <div id="modalMeta" class="small muted" style="margin-bottom:12px"></div>
+    <div id="modalBody" style="white-space:pre-wrap;line-height:1.6;color:#222"></div>
+  </div>
+</div>
+
+<script>
+/* ------------------------
+   Starfield effect
+   ------------------------ */
+(function starfield(){
+  const canvas = document.getElementById('starfield');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = innerWidth;
+  let h = canvas.height = innerHeight;
+  const DPR = Math.max(1, window.devicePixelRatio || 1);
+  canvas.width = w * DPR; canvas.height = h * DPR; canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+  ctx.scale(DPR, DPR);
+
+  const STARS = [];
+  const STAR_COUNT = Math.round((w*h)/19000);
+  for(let i=0;i<STAR_COUNT;i++){
+    STARS.push({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*1.6 + 0.2,
+      a: Math.random()*0.9 + 0.1,
+      dx: (Math.random()-0.5)*0.02,
+      dy: (Math.random()-0.5)*0.02,
+      t: Math.random()*0.02 + 0.002
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const g = ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0, 'rgba(6,12,24,0.10)');
+    g.addColorStop(1, 'rgba(0,0,0,0.25)');
+    ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+
+    for(let s of STARS){
+      s.a += (Math.random()-0.5)*s.t;
+      if(s.a < 0.05) s.a = 0.05;
+      if(s.a > 1) s.a = 1;
+      s.x += s.dx; s.y += s.dy;
+      if(s.x < -10) s.x = w+10;
+      if(s.x > w+10) s.x = -10;
+      if(s.y < -10) s.y = h+10;
+      if(s.y > h+10) s.y = -10;
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255,255,255,' + s.a + ')';
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+  window.addEventListener('resize', ()=>{
+    w = canvas.width = innerWidth; h = canvas.height = innerHeight;
+    canvas.width = w * DPR; canvas.height = h * DPR; canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.scale(DPR, DPR);
+  });
+})();
+
+/* ------------------------
+   Sidebar toggle
+   ------------------------ */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sidebar = document.getElementById('sidebar');
+hamburgerBtn.addEventListener('click', ()=>{
+  const open = sidebar.classList.toggle('open');
+  hamburgerBtn.setAttribute('aria-expanded', String(open));
+  sidebar.setAttribute('aria-hidden', String(!open));
+});
+
+/* ------------------------
+   Notes data & rendering
+   ------------------------ */
+const STORAGE_KEY = 'mektup_notlar_v1';
+let notes = [];
+
+/* sample initial notes (you can edit or leave) */
+const SAMPLE = [
+  {
+    id: cryptoRandomId(),
+    title: 'İlk Veda',
+    excerpt: 'O gece suskun kaldık ama yıldızlar konuştu...',
+    body: `Sevgilim,
+
+O gece suskun kalışımızın içinde yıldızlar birer birer söndü gibi oldu ama gözlerin hala oradaydı.
+Anlatamadığım o şeyler, kelimelerin yetmediği yerde sen vardın.
+Bu satırlar, o anların ardından kalan küçük bir iz olsun.
+
+— İlker`
+  },
+  {
+    id: cryptoRandomId(),
+    title: 'Küçük Sürpriz',
+    excerpt: 'Senin güldüğün küçük anıları saklıyorum.',
+    body: `Sevgili Ufaklık,
+
+Senin için aldığım o küçük şeyler, en büyük hazine oldu.
+Gülüşün, en kötü günümü aydınlatan bir melodi gibi.
+
+Sevgiyle.`
+  }
+];
+
+function cryptoRandomId(){ return 'id-' + Math.random().toString(36).slice(2,9); }
+
+function loadNotes(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ notes = JSON.parse(raw); }
+    else { notes = SAMPLE.slice(); saveNotes(); }
+  }catch(e){ notes = SAMPLE.slice(); saveNotes(); }
+}
+function saveNotes(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(notes)); }
+
+const notesList = document.getElementById('notesList');
+const emptyState = document.getElementById('emptyState');
+
+function renderNotes(){
+  notesList.innerHTML = '';
+  if(!notes.length){
+    emptyState.style.display = 'block';
+    return;
+  } else emptyState.style.display = 'none';
+
+  notes.slice().reverse().forEach(n => {
+    const el = document.createElement('article');
+    el.className = 'note-card';
+    el.tabIndex = 0;
+    el.setAttribute('role','button');
+    el.setAttribute('aria-label', n.title);
+    el.innerHTML = `
+      <h3>${escapeHtml(n.title)}</h3>
+      <p>${escapeHtml(n.excerpt || (n.body.slice(0,120) + (n.body.length>120 ? '…':'')))}</p>
+      <div class="note-meta"><span class="small muted">${new Date(n.createdAt||0).toLocaleString() || ''}</span><span class="small muted">#${n.id.slice(-5)}</span></div>
+    `;
+    el.addEventListener('click', ()=> openModal(n));
+    el.addEventListener('keydown', (e)=>{ if(e.key==='Enter') openModal(n); });
+    notesList.appendChild(el);
+  });
+}
+
+function escapeHtml(s){ return String(s || '').replace(/[&<>"']/g, (m)=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[m]); }
+
+/* ------------------------
+   Modal logic
+   ------------------------ */
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modalTitle');
+const modalMeta = document.getElementById('modalMeta');
+const modalBody = document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+
+function openModal(note){
+  modalTitle.textContent = note.title || 'Not';
+  modalMeta.textContent = ID: ${note.id} • Oluşturulma: ${note.createdAt ? new Date(note.createdAt).toLocaleString() : ''};
+  modalBody.textContent = note.body || '';
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  // focus for accessibility
+  document.getElementById('modalCard').focus();
+}
+function closeModal(){
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e)=> { if(e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
+
+/* ------------------------
+   Add note form
+   ------------------------ */
+const addBtn = document.getElementById('addNoteBtn');
+const clearBtn = document.getElementById('clearNotes');
+addBtn.addEventListener('click', ()=>{
+  const title = document.getElementById('noteTitle').value.trim();
+  const excerpt = document.getElementById('noteExcerpt').value.trim();
+  const body = document.getElementById('noteBody').value.trim();
+  if(!body){ alert('Lütfen metin gir.'); return; }
+  const note = { id: cryptoRandomId(), title: title || 'Başlıksız', excerpt: excerpt || body.slice(0,120), body, createdAt: Date.now() };
+  notes.push(note);
+  saveNotes();
+  renderNotes();
+  document.getElementById('noteTitle').value = '';
+  document.getElementById('noteExcerpt').value = '';
+  document.getElementById('noteBody').value = '';
+  // give feedback
+  addBtn.textContent = 'Eklendi ✓';
+  setTimeout(()=> addBtn.textContent = 'Notu Ekle', 900);
+});
+clearBtn.addEventListener('click', ()=>{
+  if(!confirm('Tüm notları silmek istediğine emin misin? Bu işlem geri alınamaz.')) return;
+  notes = []; saveNotes(); renderNotes();
+});
+
+/* ------------------------
+   boot
+   ------------------------ */
+loadNotes();
+renderNotes();
+
+/* Optionally expose add via console */
+window.Mektup = {
+  add(note){ notes.push(note); saveNotes(); renderNotes(); },
+  list(){ return notes; },
+  clear(){ notes=[]; saveNotes(); renderNotes(); }
+};
+</script>
+
+</body>
+</html>
