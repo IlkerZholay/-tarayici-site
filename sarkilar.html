@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>İlker ❤ Bahargül — Şarkılar</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Şarkılar — İlker ❤ Bahargül</title>
 
-<!-- Google Analytics (gtag) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -14,210 +16,136 @@
   gtag('config', 'G-YBDYWZSF9B');
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --accent:#d64b74;
-  --muted:#6b6470;
-  --bg-ov: rgba(255,255,255,0.9);
-  --glass: rgba(255,255,255,0.12);
-  --shadow: 0 20px 60px rgba(10,10,20,0.08);
-  --radius:14px;
-}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:#fff;color:#111;-webkit-font-smoothing:antialiased}
-body::before{
-  content:"";
-  position:fixed;inset:0;
-  background: url("Bahoş.jpg") center/cover fixed no-repeat;
-  filter: saturate(.98) contrast(.98);
-  z-index:-2;
-}
-body::after{
-  content:"";
-  position:fixed;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.42));z-index:-1;
-}
+:root{--accent:#d64b74;--muted:#6b6470;--panel: rgba(255,255,255,0.95);--shadow:0 20px 60px rgba(10,10,20,0.08)}
+*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:'Poppins',sans-serif;background:#fff}
+body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed;filter:saturate(.96);z-index:-2}
+body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.96));z-index:-1}
+.container{max-width:1100px;margin:40px auto;padding:18px}
 
-/* Hamburger + sidebar (same across site) */
-.openbtn{
-  position:fixed;left:14px;top:14px;z-index:2000;background:var(--glass);border:0;padding:10px 12px;border-radius:12px;backdrop-filter:blur(6px);cursor:pointer;box-shadow:var(--shadow);
-  display:flex;align-items:center;gap:10px;font-weight:700;color:#fff;
-}
-.openbtn .bars{width:22px;height:14px;position:relative}
-.openbtn .bars span{position:absolute;left:0;right:0;height:2px;background:#fff;border-radius:2px;display:block}
-.openbtn .bars span:nth-child(1){top:0}
-.openbtn .bars span:nth-child(2){top:6px}
-.openbtn .bars span:nth-child(3){top:12px}
+/* player */
+.player{background:var(--panel);padding:18px;border-radius:14px;box-shadow:var(--shadow);display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:center}
+.cover{width:200px;height:200px;border-radius:12px;overflow:hidden}
+.cover img{width:100%;height:100%;object-fit:cover}
+.meta{display:flex;flex-direction:column;gap:6px}
+.title{font-weight:800;font-size:18px}
+.artist{color:var(--muted)}
+.controls{display:flex;align-items:center;gap:10px;margin-top:12px}
+.ctrl{padding:10px;border-radius:10px;border:none;cursor:pointer;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.04)}
+.playbig{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:14px;border-radius:999px;box-shadow:0 14px 40px rgba(180,50,90,0.18)}
 
-.sidebar{
-  position:fixed;left:12px;top:60px;z-index:1900;width:0;overflow:hidden;height:calc(100% - 84px);border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(2,6,12,0.45);transition:width .36s;
-}
-.sidebar.open{width:260px}
-.sidebar nav{display:flex;flex-direction:column;padding:12px;gap:8px}
-.sidebar a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;color:#fff;font-weight:700}
-.sidebar a:hover{background:linear-gradient(90deg,var(--accent),#b33e62)}
+.progress{height:10px;background:#eee;border-radius:999px;overflow:hidden;margin-top:12px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#b33e62)}
 
-/* Main container */
-.container{max-width:1100px;margin:10vh auto;padding:22px}
-.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand .logo{width:58px;height:58px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
-.brand .logo img{width:100%;height:100%;object-fit:cover;display:block}
-.title{font-family:'Dancing Script',cursive;font-size:24px;color:var(--accent)}
-.subtitle{color:var(--muted);font-size:14px}
-
-/* Player card */
-.player{
-  background:rgba(255,255,255,0.95);border-radius:16px;padding:16px;box-shadow:var(--shadow);display:grid;gap:12px;
-}
-@media(min-width:900px){ .player{grid-template-columns:260px 1fr;align-items:center} }
-
-.cover{width:100%;max-width:260px;border-radius:12px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,0.08)}
-.cover img{width:100%;height:100%;object-fit:cover;display:block}
-
-.meta{padding:6px 2px}
-.track-title{font-weight:800;font-size:20px}
-.track-artist{color:var(--muted);font-size:13px;margin-top:6px}
-
-/* Controls */
-.controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
-.ctrl{background:#fff;border:0;padding:10px;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,0.06);cursor:pointer}
-.ctrl.big{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:12px 18px;font-weight:800}
-.time{font-size:13px;color:var(--muted)}
-
-/* progress */
-.progress{height:10px;background:#eee;border-radius:999px;overflow:hidden;cursor:pointer;flex:1}
-.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#b33e62);transition:width .08s linear}
-
-/* playlist */
 .playlist{margin-top:14px;display:flex;flex-direction:column;gap:8px}
 .pl-item{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.04);cursor:pointer}
-.pl-item.active{outline:3px solid rgba(214,75,116,0.08)}
-.pl-item img{width:56px;height:56px;border-radius:8px;object-fit:cover}
-
-/* karaoke / lyrics */
-.karaoke{margin-top:14px;padding:12px;background:linear-gradient(180deg,#fff,#fffafc);border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.06)}
-#lyrics{min-height:54px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#333;font-size:18px}
-
-/* footer */
-.footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-
-/* responsive tweaks */
-@media(max-width:820px){
-  .player{grid-template-columns:1fr}
-  .cover{max-width:100%}
-  .controls{justify-content:center}
-  .sidebar{left:8px;top:72px}
-  .container{padding:12px}
-}
+.pl-item.active{outline:3px solid rgba(214,75,116,0.06)}
+.karaoke{margin-top:10px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 12px 36px rgba(0,0,0,0.06)}
+#lyrics{min-height:48px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#333}
+@media(max-width:820px){ .player{grid-template-columns:1fr;align-items:start} .cover{width:100%;height:220px} }
 </style>
 </head>
 <body>
 
-<!-- Hamburger -->
-<button class="openbtn" id="menuToggle" aria-label="Menüyü aç">
-  <div class="bars" aria-hidden="true"><span></span><span></span><span></span></div>
-  MENÜ
+<!-- MENU block -->
+<style>
+  :root{--menu-width:260px;--menu-accent:#e35c7a}
+  .site-menu-openbtn{position:fixed;left:14px;top:14px;z-index:2200;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));backdrop-filter: blur(6px);box-shadow: 0 12px 36px rgba(0,0,0,0.25);border: none;cursor: pointer;color:#111;font-weight:700}
+  .site-menu-openbtn .bars{ width:22px; height:14px; position:relative; display:inline-block }
+  .site-menu-openbtn .bars span{ position:absolute; left:0; right:0; height:2px; display:block; background:#222; border-radius:2px }
+  .site-menu-openbtn .bars span:nth-child(1){ top:0 }
+  .site-menu-openbtn .bars span:nth-child(2){ top:6px }
+  .site-menu-openbtn .bars span:nth-child(3){ top:12px }
+  .site-sidebar{position:fixed;left:12px;top:64px;z-index:2100;width:0;height:calc(100% - 96px);overflow:hidden;border-radius:14px;background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));backdrop-filter: blur(8px);box-shadow: 0 18px 50px rgba(2,6,12,0.45);transition: width 320ms;}
+  .site-sidebar.open{ width:var(--menu-width) }
+  .site-sidebar nav{ display:flex; flex-direction:column; padding:14px; gap:8px; }
+  .site-sidebar a{ padding:12px; border-radius:10px; color:#111; font-weight:700; display:flex; gap:10px; align-items:center; text-decoration:none }
+  .site-sidebar a:hover{ background: linear-gradient(90deg, var(--menu-accent), #b33e62); color:#fff }
+  .site-menu-overlay{ position:fixed; inset:0; z-index:2050; display:none; background: rgba(0,0,0,0.4); }
+  .site-menu-overlay.show{ display:block; opacity:1 }
+  @media(max-width:720px){ .site-sidebar.open{ width: min(84vw,320px); left:8px; top:72px } }
+</style>
+
+<button class="site-menu-openbtn" id="siteMenuToggle" aria-expanded="false" aria-controls="siteSidebar" aria-label="Menüyü aç">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+  <span style="color:#111">Menü</span>
 </button>
 
-<!-- Sidebar -->
-<aside id="sidebar" class="sidebar" aria-hidden="true">
+<aside id="siteSidebar" class="site-sidebar" aria-hidden="true" role="navigation">
   <nav>
     <a href="index.html">🏠 Ana Sayfa</a>
     <a href="anilar.html">📸 Anılar</a>
     <a href="zaman.html">⏳ Zaman</a>
-    <a href="sarkilar.html" style="background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:10px;border-radius:8px">🎶 Şarkılar</a>
+    <a href="sarkilar.html">🎶 Şarkılar</a>
     <a href="gokyuzu.html">🌌 Gökyüzü</a>
+    <div style="margin-top:auto;padding:10px;color:#333;font-size:13px">Bu sayfa İlker tarafından hazırlanmıştır.</div>
   </nav>
 </aside>
 
-<!-- Page -->
-<main class="container" role="main">
-  <div class="header">
-    <div class="brand">
-      <div class="logo"><img src="Bahar.jpg" alt="Kapak"></div>
-      <div>
-        <div class="title">Şarkılar</div>
-        <div class="subtitle">Seç, çal, sözleri takip et — hafıza için kaydedildi.</div>
-      </div>
-    </div>
-    <div style="text-align:right;color:var(--muted);font-size:13px">Bu bölüm İlker tarafından düzenlendi — hatıra amaçlı.</div>
-  </div>
+<div id="siteMenuOverlay" class="site-menu-overlay" tabindex="-1" aria-hidden="true"></div>
+
+<script>
+(function(){
+  const toggle = document.getElementById('siteMenuToggle');
+  const sidebar = document.getElementById('siteSidebar');
+  const overlay = document.getElementById('siteMenuOverlay');
+  function openMenu(){ sidebar.classList.add('open'); overlay.classList.add('show'); sidebar.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); overlay.addEventListener('click', closeOnce); document.addEventListener('keydown', onKey); const first = sidebar.querySelector('a'); if(first) first.focus(); }
+  function closeMenu(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); sidebar.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); overlay.removeEventListener('click', closeOnce); document.removeEventListener('keydown', onKey); toggle.focus(); }
+  function closeOnce(){ closeMenu(); overlay.removeEventListener('click', closeOnce); }
+  function onKey(e){ if(e.key==='Escape') closeMenu(); }
+  toggle.addEventListener('click', ()=> sidebar.classList.contains('open') ? closeMenu() : openMenu());
+  sidebar.addEventListener('click', (e)=> { if(e.target.tagName==='A') setTimeout(()=> closeMenu(), 120); });
+})();
+</script>
+<!-- END MENU -->
+
+<div class="container">
+  <h1 style="margin:0 0 12px;font-weight:800">🎶 Şarkılar</h1>
+  <p style="color:#6b6470">Şarkıları çal, duraklat, ileri/geri sar, sonraki parçaya geç — Spotify-esintili sade arayüz.</p>
 
   <section class="player" aria-label="Müzik oynatıcı">
-    <!-- left: kapak -->
-    <div>
-      <div class="cover"><img id="coverImg" src="Bahar.jpg" alt="Kapak"></div>
-    </div>
+    <div class="cover"><img id="coverImg" src="Bahar.jpg" alt="Kapak"></div>
 
-    <!-- right: meta / controls -->
     <div>
       <div class="meta">
-        <div class="track-title" id="title">Dilerim Ki</div>
-        <div class="track-artist" id="artist">Dolu Kadehi Ters Tut</div>
-      </div>
+        <div class="title" id="trackTitle">Dilerim Ki</div>
+        <div class="artist" id="trackArtist">Dolu Kadehi Ters Tut</div>
 
-      <div class="controls" role="toolbar" aria-label="Çalma kontrolleri">
-        <button class="ctrl" id="prevBtn" title="Önceki">⟨</button>
-        <button class="ctrl" id="back10" title="-10s">-10s</button>
-        <button class="ctrl big" id="playBtn" title="Oynat / Duraklat">▶</button>
-        <button class="ctrl" id="forward10" title="+10s">+10s</button>
-        <button class="ctrl" id="nextBtn" title="Sonraki">⟩</button>
-
-        <div style="flex:1"></div>
-
-        <div class="time" id="curTime">0:00</div>
-        <div class="progress" id="progress" aria-label="İlerleme çubuğu" title="Çalma konumu">
-          <div class="bar" id="bar"></div>
+        <div class="controls" role="toolbar" aria-label="Kontroller">
+          <button class="ctrl" id="prevBtn">⟨</button>
+          <button class="ctrl" id="back10">-10s</button>
+          <button class="playbig" id="playBtn">▶</button>
+          <button class="ctrl" id="forward10">+10s</button>
+          <button class="ctrl" id="nextBtn">⟩</button>
+          <div style="flex:1"></div>
+          <label style="font-size:13px;color:var(--muted)">Ses</label>
+          <input id="vol" type="range" min="0" max="1" step="0.01" value="1">
         </div>
-        <div class="time" id="durTime">0:00</div>
-      </div>
 
-      <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
-        <label style="font-size:13px;color:var(--muted)">Ses</label>
-        <input id="vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Ses seviyesi">
-      </div>
+        <div class="progress" id="progressBar"><div class="bar" id="bar"></div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;color:var(--muted)"><div id="curTime">0:00</div><div id="durTime">0:00</div></div>
 
-      <div class="playlist" id="playlist" aria-label="Çalma listesi"></div>
+        <div class="playlist" id="playlist"></div>
 
-      <div class="karaoke" aria-live="polite">
-        <div id="lyrics">🎤 Şarkı sözleri burada belirecek...</div>
+        <div class="karaoke"><div id="lyrics">🎤 Şarkı sözleri burada...</div></div>
       </div>
     </div>
   </section>
 
-  <div class="footer">Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</div>
-</main>
+  <footer style="margin-top:18px;color:#6b6470">Sayfa İlker tarafından hazırlanmıştır.</footer>
+</div>
 
-<!-- Hidden audio element -->
-<audio id="audio" preload="metadata"></audio>
+<!-- audio element -->
+<audio id="audio" preload="metadata">
+  <source src="dolu-kadehi-ters-tut-dilerim-ki.mp3" type="audio/mpeg">
+  Tarayıcınız bu ses formatını desteklemiyor.
+</audio>
 
 <script>
-/* ============================
-   Sidebar toggle
-   ============================ */
-const menuToggle = document.getElementById('menuToggle');
-const sidebar = document.getElementById('sidebar');
-menuToggle.addEventListener('click', ()=>{
-  const open = sidebar.classList.toggle('open');
-  sidebar.setAttribute('aria-hidden', String(!open));
-});
-
-/* ============================
-   Playlist & player setup
-   ============================ */
-/*
-  Dosya isimleri aynı klasörde olmalı:
-  - dolu-kadehi-ters-tut-dilerim-ki.mp3
-  - sesdosya.mp3   (veya sesdosya.mp4 - fallback handled)
-  - Bahar.jpg (kapak)
-*/
+/* Basic player with playlist and karaoke sync */
 const playlist = [
-  { src: 'dolu-kadehi-ters-tut-dilerim-ki.mp3', title: 'Dilerim Ki', artist: 'Dolu Kadehi Ters Tut', cover: 'Bahar.jpg' },
-  { src: 'sesdosya.mp3',               title: 'İkinci Parça', artist: 'İlker',                     cover: 'Bahar.jpg' }
-  // İstersen sonradan ekle: { src:'yeni.mp3', title:'Başlık', artist:'Sanatçı', cover:'kapak.jpg'}
+  {src:'dolu-kadehi-ters-tut-dilerim-ki.mp3', title:'Dilerim Ki', artist:'Dolu Kadehi Ters Tut', cover:'Bahar.jpg'},
+  {src:'sesdosya.mp3', title:'İkinci Parça', artist:'Ses Dosyası', cover:'Bahar.jpg'}
 ];
 
 const audio = document.getElementById('audio');
@@ -228,135 +156,82 @@ const back10 = document.getElementById('back10');
 const forward10 = document.getElementById('forward10');
 const vol = document.getElementById('vol');
 const bar = document.getElementById('bar');
-const progress = document.getElementById('progress');
+const progressBar = document.getElementById('progressBar');
 const curTime = document.getElementById('curTime');
 const durTime = document.getElementById('durTime');
 const playlistEl = document.getElementById('playlist');
 const coverImg = document.getElementById('coverImg');
-const titleEl = document.getElementById('title');
-const artistEl = document.getElementById('artist');
+const trackTitle = document.getElementById('trackTitle');
+const trackArtist = document.getElementById('trackArtist');
 const lyricsDiv = document.getElementById('lyrics');
 
-let idx = 0;
+let index = 0;
 let playing = false;
 
-function formatTime(s){
-  if(!s || isNaN(s)) return '0:00';
-  const m = Math.floor(s/60);
-  const sec = Math.floor(s%60);
-  return ${m}:${sec<10? '0'+sec : sec};
-}
-
+/* render playlist UI */
 function renderPlaylist(){
   playlistEl.innerHTML = '';
   playlist.forEach((p,i)=>{
     const el = document.createElement('div');
-    el.className = 'pl-item' + (i===idx? ' active' : '');
-    el.innerHTML = `
-      <img src="${p.cover}" alt="kapak">
-      <div style="flex:1">
-        <div style="font-weight:800">${p.title}</div>
-        <div style="color:var(--muted);font-size:13px">${p.artist}</div>
-      </div>`;
+    el.className = 'pl-item'+(i===index?' active':'');
+    el.innerHTML = `<div style="width:48px;height:48px;overflow:hidden;border-radius:8px"><img src="${p.cover}" style="width:100%;height:100%;object-fit:cover"></div>
+      <div style="flex:1;padding-left:8px"><strong>${p.title}</strong><div style="font-size:13px;color:#6b6470">${p.artist}</div></div>`;
     el.addEventListener('click', ()=> { loadTrack(i); play(); });
     playlistEl.appendChild(el);
   });
 }
 
+/* load track */
 function loadTrack(i){
-  idx = i;
-  const t = playlist[idx];
-  // Set source, but check if file exists? Browsers will 404 if not — assume correct names placed.
+  index = i;
+  const t = playlist[index];
   audio.src = t.src;
-  audio.load();
-  coverImg.src = t.cover || 'Bahar.jpg';
-  titleEl.textContent = t.title;
-  artistEl.textContent = t.artist;
-  document.querySelectorAll('.pl-item').forEach((el,ii)=> el.classList.toggle('active', ii===idx));
-  // reset UI
-  bar.style.width = '0%';
-  curTime.textContent = '0:00';
-  durTime.textContent = '0:00';
+  coverImg.src = t.cover;
+  trackTitle.textContent = t.title;
+  trackArtist.textContent = t.artist;
+  renderPlaylist();
+  updateBar(0);
 }
 
-/* Controls */
+/* time format */
+function fmt(s){ const m=Math.floor(s/60); const sec=Math.floor(s%60); return m+':'+(sec<10?('0'+sec):sec); }
+
 function play(){
-  audio.play().then(()=> {
-    playing = true;
-    playBtn.textContent = '❚❚';
-  }).catch((err)=> {
-    // autoplay blocked or other
-    console.warn('play error', err);
-    playing = false;
-    playBtn.textContent = '▶';
-  });
+  audio.play().then(()=>{ playing=true; playBtn.textContent='❚❚'; }).catch(()=>{ playing=false; playBtn.textContent='▶'; });
 }
-function pause(){
-  audio.pause();
-  playing = false;
-  playBtn.textContent = '▶';
-}
+function pause(){ audio.pause(); playing=false; playBtn.textContent='▶'; }
 
-playBtn.addEventListener('click', ()=> {
-  if(playing) pause(); else {
-    // if no src loaded yet, load current
-    if(!audio.src) loadTrack(idx);
-    play();
-  }
-});
+/* controls */
+playBtn.addEventListener('click', ()=> { if(playing) pause(); else { if(!audio.src) loadTrack(index); play(); } });
+prevBtn.addEventListener('click', ()=> { index = (index-1+playlist.length)%playlist.length; loadTrack(index); play(); });
+nextBtn.addEventListener('click', ()=> { index = (index+1)%playlist.length; loadTrack(index); play(); });
+back10.addEventListener('click', ()=> audio.currentTime = Math.max(0, (audio.currentTime||0)-10));
+forward10.addEventListener('click', ()=> audio.currentTime = Math.min((audio.duration||0), (audio.currentTime||0)+10));
+vol.addEventListener('input', ()=> audio.volume = parseFloat(vol.value) );
 
-prevBtn.addEventListener('click', ()=> {
-  idx = (idx - 1 + playlist.length) % playlist.length;
-  loadTrack(idx);
-  play();
-});
-nextBtn.addEventListener('click', ()=> {
-  idx = (idx + 1) % playlist.length;
-  loadTrack(idx);
-  play();
-});
-
-back10.addEventListener('click', ()=> { audio.currentTime = Math.max(0, (audio.currentTime || 0) - 10); });
-forward10.addEventListener('click', ()=> { audio.currentTime = Math.min((audio.duration || 0), (audio.currentTime || 0) + 10); });
-
-vol.addEventListener('input', ()=> audio.volume = parseFloat(vol.value));
-
-/* progress click to seek */
-progress.addEventListener('click', (e)=>{
-  const rect = progress.getBoundingClientRect();
-  const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-  const p = Math.max(0, Math.min(1, x / rect.width));
-  if(audio.duration) audio.currentTime = p * audio.duration;
-});
-
-/* update UI on timeupdate */
+/* progress & seek */
 audio.addEventListener('timeupdate', ()=>{
   if(!audio.duration) return;
-  const pct = (audio.currentTime / audio.duration) * 100;
+  const pct = (audio.currentTime / audio.duration)*100;
   bar.style.width = pct + '%';
-  curTime.textContent = formatTime(audio.currentTime);
-  durTime.textContent = formatTime(audio.duration);
-  updateLyrics(audio.currentTime);
+  curTime.textContent = fmt(audio.currentTime);
+  durTime.textContent = fmt(audio.duration);
+  updateLyrics();
+});
+progressBar.addEventListener('click',(e)=>{
+  const rect = progressBar.getBoundingClientRect();
+  const p = Math.max(0, Math.min(1, (e.clientX-rect.left)/rect.width));
+  if(audio.duration) audio.currentTime = p*audio.duration;
 });
 
-/* keyboard shortcuts */
-document.addEventListener('keydown', (e)=>{
-  if(e.key === ' ' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){ e.preventDefault(); if(playing) pause(); else play(); }
-  if(e.key === 'ArrowRight') audio.currentTime = Math.min((audio.currentTime||0)+5, audio.duration||0);
-  if(e.key === 'ArrowLeft') audio.currentTime = Math.max((audio.currentTime||0)-5, 0);
-});
-
-/* when track ends, play next */
+/* when track ends */
 audio.addEventListener('ended', ()=> { nextBtn.click(); });
 
-/* initial render */
+/* init */
 renderPlaylist();
 loadTrack(0);
 
-/* ============================
-   Karaoke / lyrics sync
-   ============================ */
-/* Use the timestamps (seconds) you provided earlier — extended where helpful. */
+/* Karaoke timings (seconds) - use your timestamps */
 const lyrics = [
   {time:15, text:"Umudumsun"},
   {time:19, text:"Simsiyahken her yanım"},
@@ -396,46 +271,23 @@ const lyrics = [
   {time:193, text:"Kalsın yerim derinlerinde saklanan"}
 ];
 
-function updateLyrics(current){
-  current = Math.floor(current || 0);
-  let line = null;
+function updateLyrics(){
+  const t = Math.floor(audio.currentTime || 0);
+  let found = null;
   for(let i=0;i<lyrics.length;i++){
-    if(current >= lyrics[i].time) line = lyrics[i];
+    if(t >= lyrics[i].time) found = lyrics[i];
     else break;
   }
-  lyricsDiv.textContent = line ? line.text : '🎤 Şarkı sözleri burada belirecek...';
+  lyricsDiv.textContent = found ? found.text : '🎤 Şarkı sözleri burada...';
 }
 
-/* ============================
-   Small UX niceties
-   ============================ */
-/* Swipe support for playlist (mobile) */
-let startX = 0;
-playlistEl.addEventListener('touchstart', e => startX = e.changedTouches[0].clientX);
-playlistEl.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - startX;
-  if(Math.abs(dx) > 60) playlistEl.scrollBy({left: dx < 0 ? 200 : -200, behavior:'smooth'});
-});
-
-/* Try to guard for file extension mismatch: if loading initially fails, attempt fallback .mp4 */
-audio.addEventListener('error', (e)=>{
-  console.warn('Audio error, trying fallback if available', e);
-  const curSrc = audio.src || '';
-  if(curSrc && curSrc.endsWith('.mp3')){
-    const fallback = curSrc.replace('.mp3','.mp4');
-    // only try if different
-    if(fallback !== curSrc){
-      audio.src = fallback;
-      audio.load();
-      // don't auto-play to avoid autoplay block; let user press play
-    }
-  }
-});
-
-/* Touch-friendly large play toggle (double tap cover) */
-coverImg.addEventListener('click', ()=> {
-  if(playing) pause(); else play();
+/* keyboard */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === ' ' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){ e.preventDefault(); playBtn.click(); }
+  if(e.key === 'ArrowRight') audio.currentTime = Math.min((audio.currentTime||0)+5, audio.duration||0);
+  if(e.key === 'ArrowLeft') audio.currentTime = Math.max((audio.currentTime||0)-5, 0);
 });
 </script>
+
 </body>
 </html>
