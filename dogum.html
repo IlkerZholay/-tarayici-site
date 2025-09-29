@@ -1,246 +1,402 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎂 Doğum Günün Kutlu Olsun Bahar 🎂</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: url('Bahoş.jpg') no-repeat center center/cover;
-      color: #fff;
-      text-align: center;
-      overflow-x: hidden;
-      position: relative;
-    }
-    /* Menü */
-    nav {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.5);
-      display: flex; justify-content: space-between;
-      padding: 15px 30px;
-      z-index: 1000;
-      backdrop-filter: blur(8px);
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav a:hover { color: #ffd700; }
-    /* Başlık */
-    header {
-      margin-top: 120px;
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      animation: glow 2s infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ff69b4; }
-      to   { text-shadow: 0 0 25px #ffd700; }
-    }
-    /* Pasta */
-    .cake {
-      margin: 50px auto;
-      width: 200px; height: 200px;
-      background: #ff69b4;
-      border-radius: 10px;
-      position: relative;
-    }
-    .candle {
-      width: 10px; height: 40px;
-      background: #fff;
-      position: absolute;
-      top: -40px;
-      left: 95px;
-    }
-    .flame {
-      width: 15px; height: 25px;
-      background: radial-gradient(circle, yellow 40%, orange 70%, transparent 80%);
-      border-radius: 50%;
-      position: absolute;
-      top: -25px;
-      left: -2px;
-      animation: flicker 0.3s infinite alternate;
-    }
-    @keyframes flicker {
-      from { transform: scale(1); opacity: 1; }
-      to { transform: scale(1.2); opacity: 0.8; }
-    }
-    .btn {
-      margin: 20px;
-      padding: 12px 24px;
-      background: #ffd700;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      color: #333;
-      transition: 0.3s;
-    }
-    .btn:hover { background: #ff69b4; color: #fff; }
-    /* Kalpler */
-    .heart {
-      position: fixed;
-      font-size: 24px;
-      color: red;
-      animation: fall 4s linear forwards;
-    }
-    @keyframes fall {
-      to { transform: translateY(100vh); opacity: 0; }
-    }
-    /* Typing effect */
-    #message {
-      margin: 30px auto;
-      width: 80%;
-      font-size: 20px;
-      line-height: 1.6;
-      border-left: 3px solid #ffd700;
-      padding-left: 15px;
-      text-align: left;
-      white-space: pre-wrap;
-      min-height: 120px;
-    }
-    /* Slideshow */
-    .slideshow {
-      display: none;
-      margin: 40px auto;
-      width: 300px; height: 200px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    .slide {
-      width: 100%; height: 100%;
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0;
-      transition: opacity 1s;
-    }
-    .slide.active { opacity: 1; }
-    footer {
-      margin: 50px 0;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Doğum Günü Sürprizi — İlker ❤ Bahargül</title>
+<style>
+  :root{
+    --accent:#ff6b88;
+    --muted:#6b6b6b;
+    --glass: rgba(255,255,255,0.06);
+    --card:#ffffffee;
+    --maxw:1100px;
+  }
+  html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Poppins", "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased; background:#07061a;color:#111}
+  /* full-bleed background image (Bahoş.jpg) */
+  body::before{
+    content:"";
+    position:fixed; inset:0; z-index:-3;
+    background: url("Bahoş.jpg") center/cover no-repeat fixed;
+    filter: saturate(.98) contrast(.98);
+  }
+  /* subtle overlay */
+  body::after{
+    content:""; position:fixed; inset:0; z-index:-2;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5));
+  }
+
+  /* layout */
+  .wrap{position:relative;z-index:10;max-width:var(--maxw);margin:28px auto;padding:22px}
+  header.hero{display:flex;gap:18px;align-items:center;padding:26px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+  .hero-left{flex:1; min-width:0}
+  .title{font-family:"Dancing Script",cursive;font-size:clamp(28px,6vw,54px);color:#fff;margin:0 0 8px;text-shadow:0 8px 30px rgba(0,0,0,0.6)}
+  .lead{color:rgba(255,255,255,0.92);line-height:1.5;margin:0;font-size:15px}
+  .note-card{margin-top:12px;background:rgba(255,255,255,0.04);padding:14px;border-radius:12px;color:#fff;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
+  .note-card p{margin:8px 0}
+
+  /* center area for fireworks canvas */
+  #fx-wrap{position:fixed; inset:0; z-index:1; pointer-events:none}
+  canvas#fireworks{width:100%;height:100%;display:block}
+
+  /* UFAKLIK overlay */
+  .surprise-text{
+    position:fixed; left:50%; top:40%; transform:translate(-50%,-50%); z-index:15;
+    font-family:"Dancing Script",cursive; font-size:72px; color:#fff; text-shadow:0 10px 40px rgba(0,0,0,0.6);
+    opacity:0; pointer-events:none; transition:opacity .6s ease, transform .6s ease;
+  }
+
+  /* cake area */
+  .cake-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin:22px 0}
+  .cake{
+    width:260px;height:200px;border-radius:18px;background:linear-gradient(180deg,#fff,#ffefef);
+    box-shadow:0 18px 50px rgba(0,0,0,0.45);border:6px solid rgba(255,255,255,0.18);position:relative;
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:18px;
+  }
+  .cake .frosting{width:90%;height:52px;background:linear-gradient(180deg,#ffdfe6,#fff);border-radius:12px;position:absolute;top:24px;left:50%;transform:translateX(-50%);box-shadow:inset 0 6px 20px rgba(255,180,200,0.25)}
+  .cake .berries{position:absolute;top:12px;display:flex;gap:8px}
+  .berry{width:28px;height:28px;background:#ff3b68;border-radius:999px;box-shadow:0 6px 14px rgba(0,0,0,0.25)}
+  .candles{display:flex;gap:8px;position:absolute;top:6px}
+  .candle{width:8px;height:36px;background:linear-gradient(180deg,#fff6f6,#ffd9d9);border-radius:4px;position:relative;display:flex;align-items:flex-start;justify-content:center}
+  .flame{width:8px;height:12px;background:radial-gradient(circle at 35% 40%, #fff, #ffd600 30%, #ff6b00 70%);border-radius:6px;position:absolute;top:-12px;opacity:1;filter:drop-shadow(0 6px 8px rgba(255,120,120,0.42))}
+
+  .cake-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .btn{background:linear-gradient(90deg,var(--accent),#e04b79);color:#fff;padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:700;box-shadow:0 12px 30px rgba(224,75,121,0.12)}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08)}
+
+  /* countdown */
+  .countdown{margin-top:18px;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,0.45);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .countdown .time{font-weight:800;font-size:22px;color:var(--accent)}
+  .countdown .label{color:var(--muted);font-size:13px}
+
+  /* small responsive */
+  @media(max-width:720px){
+    .title{font-size:34px}
+    .surprise-text{font-size:48px; top:46%}
+    .cake{width:220px;height:170px}
+  }
+
+  /* confetti (DOM-based) */
+  .confetti { position:fixed; z-index:14; pointer-events:none; left:0; top:0; width:100%; height:100%; overflow:hidden; }
+  .confetti .piece { position:absolute; width:10px; height:16px; opacity:0; transform-origin:center; will-change:transform,opacity; }
+
+  /* small footer */
+  footer{margin-top:28px;color:rgba(255,255,255,0.75);text-align:center;font-size:13px}
+</style>
 </head>
 <body>
 
-  <!-- Menü -->
-  <nav>
-    <div class="logo">✨ Bahar ✨</div>
-    <div>
-      <a href="index.html">Ana Sayfa</a>
-      <a href="anilar.html">Anılar</a>
-      <a href="zaman.html">Zaman</a>
-      <a href="sarkilar.html">Şarkılar</a>
-      <a href="gokyuzu.html">Gökyüzü</a>
-      <a href="mektuplar.html">Mektuplar</a>
-      <a href="dogumgunu.html">🎂 Doğum Günü</a>
-    </div>
-  </nav>
+<!-- fireworks canvas -->
+<div id="fx-wrap"><canvas id="fireworks"></canvas></div>
 
-  <!-- Başlık -->
-  <header>
-    🎉 Doğum Günün Kutlu Olsun Bahar 🎉
+<!-- surprise text -->
+<div id="surprise" class="surprise-text" aria-hidden="true">UFAKLIK</div>
+
+<div class="wrap">
+  <header class="hero" role="banner">
+    <div class="hero-left">
+      <h1 class="title">Doğum Günün Kutlu Olsun</h1>
+      <p class="lead">
+        Birlikte geçen günlerin hatırası burada toplanıyor — bugün ufaklığa özel bir sürpriz.
+      </p>
+
+      <div class="note-card" aria-live="polite">
+        <p><strong>İlker’den Not:</strong></p>
+        <p>Sevgilim ufaklık,</p>
+        <p>Sen benim gözümün görmediğini görensin. Aklımın yetmediğini bilensin. Bir yerlerde çok doğru bir şey yapıyor olmalıydım ki seni hakedeyim. Aradığın huzuru bulman dileği ile.</p>
+        <p style="text-align:right;margin-top:6px">— İlker</p>
+      </div>
+    </div>
+
+    <div style="min-width:260px;text-align:center">
+      <!-- prominent cake -->
+      <div class="cake-wrap" role="region" aria-label="Pasta ve Mumlar">
+        <div class="cake" id="cake">
+          <div class="berries">
+            <div class="berry"></div><div class="berry"></div><div class="berry"></div>
+          </div>
+          <div class="candles" id="candles">
+            <div class="candle"><div class="flame" data-on="true"></div></div>
+            <div class="candle"><div class="flame" data-on="true"></div></div>
+            <div class="candle"><div class="flame" data-on="true"></div></div>
+          </div>
+          <div class="frosting"></div>
+        </div>
+
+        <div class="cake-controls">
+          <button class="btn" id="blowBtn" title="Mumları Üflet">Mumları Üflet</button>
+          <button class="btn ghost" id="reigniteBtn" title="Mumları Yeniden Yak">Yeniden Yak</button>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Pasta -->
-  <div class="cake">
-    <div class="candle">
-      <div class="flame" id="flame"></div>
+  <!-- media / video (sonvideo.mp4) -->
+  <section aria-label="Anı videosu" style="margin-top:18px">
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+      <div style="flex:1;min-width:220px">
+        <div class="countdown" role="region" aria-label="Doğum günü sayacı">
+          <div>
+            <div class="label">Hedef Tarih</div>
+            <div style="font-weight:800">18 Ekim 2025 • 00:00</div>
+          </div>
+          <div style="flex:1"></div>
+          <div style="text-align:right">
+            <div class="label">Kalan</div>
+            <div class="time" id="countDisplay">— gün — saat — dakika — saniye</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;color:rgba(255,255,255,0.9)">
+          <p style="margin:6px 0"><strong>Not:</strong> Sayaç hedefe ulaşınca büyük bir konfeti + havai fişek gösterisi olacak.</p>
+        </div>
+      </div>
+
+      <div style="width:320px;max-width:40%;min-width:240px">
+        <video id="highlightVideo" src="sonvideo.mp4" controls style="width:100%;border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,0.45)"></video>
+      </div>
     </div>
-  </div>
-  <button class="btn" onclick="blowCandle()">Mumları Üfle 🎈</button>
+  </section>
 
-  <!-- Mesaj -->
-  <div id="message"></div>
+  <footer>
+    <p>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</p>
+  </footer>
+</div>
 
-  <!-- Slideshow -->
-  <div class="slideshow" id="slideshow">
-    <img src="Bahar.jpg" class="slide active">
-    <img src="bahaar.jpg" class="slide">
-    <img src="baharr.jpg" class="slide">
-    <img src="bahharr.jpg" class="slide">
-  </div>
+<!-- confetti container -->
+<div class="confetti" id="confettiArea" aria-hidden="true"></div>
 
-  <footer>✨ İlker tarafından Bahar’a özel hazırlandı ✨</footer>
+<script>
+/* ------------------------
+   Utilities
+   ------------------------ */
+function rand(min,max){ return Math.random()*(max-min)+min; }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-  <!-- Şarkı -->
-  <audio id="bg-music" src="dolu-kadehi-ters-tut-dilerim-ki.mp3" autoplay loop></audio>
+/* ------------------------
+   Fireworks canvas
+   ------------------------ */
+(function(){
+  const canvas = document.getElementById('fireworks');
+  const ctx = canvas.getContext('2d');
+  let W = canvas.width = innerWidth;
+  let H = canvas.height = innerHeight;
+  let DPR = Math.max(1, window.devicePixelRatio || 1);
+  canvas.width = W * DPR; canvas.height = H * DPR;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  ctx.scale(DPR, DPR);
 
-  <!-- Konfeti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
-    // Konfeti yağmuru
-    function launchConfetti() {
-      confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+  const particles = [];
+  const shells = [];
+
+  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; canvas.width = W * DPR; canvas.height = H * DPR; canvas.style.width = W + 'px'; canvas.style.height = H + 'px'; ctx.scale(DPR, DPR); }
+
+  window.addEventListener('resize', resize);
+
+  class Shell {
+    constructor(){
+      this.x = rand(80, W-80);
+      this.y = H + 10;
+      this.vx = rand(-2,2);
+      this.vy = rand(-12, -8);
+      this.color = hsl(${Math.floor(rand(0,360))},100%,60%);
+      this.exploded = false;
+      this.phase = 0; // 0: rising, 1: explode
     }
-    window.onload = () => { launchConfetti(); setTimeout(launchConfetti, 1000); };
-
-    // Mum üfleme
-    function blowCandle() {
-      document.getElementById("flame").style.display = "none";
-      launchConfetti();
-      rainHearts();
-      typeMessage("💌 Dileğini tuttun mu sevgilim?\n\nİyi ki doğdun Bahar ❤\nHayatımın en güzel ihtimali sensin...");
-      document.getElementById("slideshow").style.display = "block";
-      startSlideshow();
+    update(){
+      if(this.phase === 0){
+        this.x += this.vx; this.y += this.vy; this.vy += 0.2;
+        if(this.vy > -2){ this.phase = 1; this.explode(); }
+      }
     }
+    explode(){
+      const count = Math.floor(rand(40,110));
+      for(let i=0;i<count;i++){
+        const angle = rand(0, Math.PI*2);
+        const speed = rand(1,6);
+        particles.push({
+          x:this.x, y:this.y,
+          vx:Math.cos(angle)*speed,
+          vy:Math.sin(angle)*speed,
+          life: Math.floor(rand(40,110)),
+          color: pick([this.color, hsl(${Math.floor(rand(0,360))},100%,55%), '#fff', '#ffd700']),
+          size: rand(1,3)
+        });
+      }
+    }
+  }
 
-    // Kalpler yağmuru
-    function rainHearts() {
-      for (let i=0; i<30; i++) {
-        let heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerText = "❤";
-        heart.style.left = Math.random()*100 + "vw";
-        heart.style.animationDuration = (2+Math.random()*3) + "s";
-        document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(), 4000);
+  function spawnShell(){ shells.push(new Shell()); }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // gentle dark overlay for trails
+    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+    ctx.fillRect(0,0,W,H);
+
+    // update shells
+    for(let i=shells.length-1;i>=0;i--){
+      shells[i].update();
+      if(shells[i].phase === 1){
+        shells.splice(i,1);
       }
     }
 
-    // Typing effect
-    function typeMessage(text) {
-      let i = 0;
-      let box = document.getElementById("message");
-      box.innerHTML = "";
-      let interval = setInterval(()=>{
-        box.innerHTML += text.charAt(i);
-        i++;
-        if (i >= text.length) clearInterval(interval);
-      }, 60);
+    // update particles
+    for(let i=particles.length-1;i>=0;i--){
+      const p = particles[i];
+      p.vy += 0.04; p.x += p.vx; p.y += p.vy; p.life--;
+      const alpha = Math.max(0, p.life/110);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      if(p.life<=0) particles.splice(i,1);
     }
+    requestAnimationFrame(draw);
+  }
 
-    // Slideshow
-    function startSlideshow() {
-      let slides = document.querySelectorAll(".slide");
-      let idx = 0;
-      setInterval(()=>{
-        slides[idx].classList.remove("active");
-        idx = (idx+1)%slides.length;
-        slides[idx].classList.add("active");
-      }, 2500);
+  // initial burst pattern for 4 seconds then slower
+  let starter = setInterval(spawnShell, 700);
+  setTimeout(()=>{
+    clearInterval(starter);
+    setInterval(spawnShell, 1200);
+  }, 4500);
+
+  // some immediate shells for show
+  for(let i=0;i<6;i++) setTimeout(spawnShell, i*300);
+
+  draw();
+
+  // expose function to trigger intensive celebration
+  window.bigFireworks = function(times=20){
+    for(let i=0;i<times;i++){
+      setTimeout(spawnShell, i*160);
     }
-  </script>
+  };
+})();
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-YBDYWZSF9B');
-  </script>
+/* ------------------------
+   Confetti (DOM pieces)
+   ------------------------ */
+function makeConfettiBurst(num=80, colors){
+  colors = colors || ['#ff6b88','#ffd166','#6bd3ff','#8affc1','#ffd6f0'];
+  const area = document.getElementById('confettiArea');
+  for(let i=0;i<num;i++){
+    const el = document.createElement('div');
+    el.className = 'piece';
+    el.style.background = pick(colors);
+    el.style.left = (rand(10,90)) + '%';
+    el.style.top = (rand(5,40)) + '%';
+    el.style.width = (rand(6,12))+'px';
+    el.style.height = (rand(8,16))+'px';
+    el.style.opacity = 1;
+    el.style.transform = rotate(${rand(0,360)}deg) translateY(0px);
+    area.appendChild(el);
+    // animate
+    requestAnimationFrame(()=>{
+      el.style.transition = transform ${rand(900,1800)}ms cubic-bezier(.2,.8,.2,1), opacity 1000ms linear;
+      el.style.transform = translate3d(${rand(-200,200)}px, ${rand(200,900)}px,0) rotate(${rand(200,900)}deg);
+      el.style.opacity = 0;
+    });
+  }
+  // cleanup
+  setTimeout(()=> {
+    const kids = area.querySelectorAll('.piece');
+    kids.forEach(k=>k.remove());
+  }, 2200);
+}
+
+/* ------------------------
+   Surprise text timing
+   ------------------------ */
+const surprise = document.getElementById('surprise');
+// show surprise after fireworks initial show
+setTimeout(()=>{
+  surprise.style.opacity = 1;
+  surprise.style.transform = 'translate(-50%,-52%) scale(1.02)';
+  // small pulse
+  setTimeout(()=>{ surprise.style.transform = 'translate(-50%,-52%) scale(1)'; }, 1800);
+  // hide after 4s
+  setTimeout(()=>{ surprise.style.opacity = 0; surprise.style.transform = 'translate(-50%,-48%) scale(.98)'; }, 4200);
+}, 4800);
+
+/* ------------------------
+   Candle blow & confetti + fireworks trigger
+   ------------------------ */
+const blowBtn = document.getElementById('blowBtn');
+const reigniteBtn = document.getElementById('reigniteBtn');
+const flames = document.querySelectorAll('.flame');
+
+blowBtn.addEventListener('click', ()=>{
+  // extinguish flames with small animation
+  flames.forEach((f, i)=>{
+    f.style.transition = 'opacity 520ms ease, transform 520ms ease';
+    f.style.opacity = 0;
+    f.style.transform = 'translateY(-6px) scale(.8)';
+    f.dataset.on = 'false';
+  });
+  // confetti burst + heavy fireworks
+  makeConfettiBurst(120);
+  if(typeof window.bigFireworks === 'function') window.bigFireworks(28);
+  // small toast
+  blowBtn.textContent = 'Mumlar Sönük ✓';
+  blowBtn.disabled = true;
+  setTimeout(()=> { blowBtn.textContent = 'Mumları Üflet'; blowBtn.disabled = false; }, 5000);
+});
+
+reigniteBtn.addEventListener('click', ()=>{
+  flames.forEach((f)=>{ f.style.opacity = 1; f.style.transform = 'translateY(0)'; f.dataset.on='true'; });
+  makeConfettiBurst(20,['#fff7c8','#ffd1d9']);
+});
+
+/* ------------------------
+   Countdown to 18 Oct 2025 00:00
+   ------------------------ */
+const countDisplay = document.getElementById('countDisplay');
+// target: 18 October 2025 00:00:00 (local time)
+function getTarget(){
+  // fixed year 2025 per request
+  return new Date(2025, 9, 18, 0, 0, 0); // month index 9 = October
+}
+const TARGET = getTarget();
+
+function updateCountdown(){
+  const now = new Date();
+  let diff = TARGET - now;
+  if(diff < 0) diff = 0; // do not go negative (stopped)
+  const s = Math.floor(diff/1000);
+  const days = Math.floor(s/86400);
+  const hours = Math.floor((s%86400)/3600);
+  const mins = Math.floor((s%3600)/60);
+  const secs = s%60;
+  countDisplay.textContent = ${days} gün ${hours} saat ${mins} dk ${secs} sn;
+  // When reaches 0 -> celebration
+  if(diff === 0){
+    // show celebration
+    makeConfettiBurst(180);
+    if(typeof window.bigFireworks === 'function') window.bigFireworks(40);
+    // show message
+    setTimeout(()=> alert('Hedefe ulaşıldı — kutlama zamanı!'), 600);
+    // stop interval (we keep showing 0)
+    clearInterval(window._cdInt);
+  }
+}
+updateCountdown();
+window._cdInt = setInterval(updateCountdown, 1000);
+
+/* ------------------------
+   Accessibility & small niceties
+   ------------------------ */
+document.addEventListener('visibilitychange', ()=>{
+  // if user switches away, don't aggressively spawn fireworks
+});
+
+/* On first load, gentle confetti + small fireworks */
+setTimeout(()=>{ makeConfettiBurst(40); }, 1200);
+
+</script>
 </body>
 </html>
