@@ -4,57 +4,42 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Doğum Günü Sürprizi — İlker ❤ Bahargül</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --accent:#ff6b88;
     --muted:#6b6b6b;
-    --glass: rgba(255,255,255,0.06);
     --card:#ffffffee;
     --maxw:1100px;
   }
-  html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Poppins", "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased; background:#07061a;color:#111}
-  /* full-bleed background image (Bahoş.jpg) */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#07061a;color:#111;-webkit-font-smoothing:antialiased}
+  /* background image - Bahoş.jpg expected in same folder */
   body::before{
-    content:"";
-    position:fixed; inset:0; z-index:-3;
-    background: url("Bahoş.jpg") center/cover no-repeat fixed;
-    filter: saturate(.98) contrast(.98);
+    content:"";position:fixed;inset:0;z-index:-3;background:url("Bahoş.jpg") center/cover no-repeat fixed;filter:saturate(.98) contrast(.98);
   }
-  /* subtle overlay */
-  body::after{
-    content:""; position:fixed; inset:0; z-index:-2;
-    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5));
-  }
+  body::after{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(0,0,0,0.5));}
 
-  /* layout */
   .wrap{position:relative;z-index:10;max-width:var(--maxw);margin:28px auto;padding:22px}
   header.hero{display:flex;gap:18px;align-items:center;padding:26px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 20px 60px rgba(0,0,0,0.6)}
-  .hero-left{flex:1; min-width:0}
+  .hero-left{flex:1;min-width:0}
   .title{font-family:"Dancing Script",cursive;font-size:clamp(28px,6vw,54px);color:#fff;margin:0 0 8px;text-shadow:0 8px 30px rgba(0,0,0,0.6)}
   .lead{color:rgba(255,255,255,0.92);line-height:1.5;margin:0;font-size:15px}
   .note-card{margin-top:12px;background:rgba(255,255,255,0.04);padding:14px;border-radius:12px;color:#fff;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
   .note-card p{margin:8px 0}
 
-  /* center area for fireworks canvas */
-  #fx-wrap{position:fixed; inset:0; z-index:1; pointer-events:none}
+  /* fireworks canvas */
+  #fx-wrap{position:fixed;inset:0;z-index:1;pointer-events:none}
   canvas#fireworks{width:100%;height:100%;display:block}
 
-  /* UFAKLIK overlay */
-  .surprise-text{
-    position:fixed; left:50%; top:40%; transform:translate(-50%,-50%); z-index:15;
-    font-family:"Dancing Script",cursive; font-size:72px; color:#fff; text-shadow:0 10px 40px rgba(0,0,0,0.6);
-    opacity:0; pointer-events:none; transition:opacity .6s ease, transform .6s ease;
-  }
+  /* surprise text */
+  .surprise-text{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);z-index:15;font-family:"Dancing Script",cursive;font-size:72px;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,0.6);opacity:0;pointer-events:none;transition:opacity .6s ease, transform .6s ease}
 
-  /* cake area */
+  /* cake block */
   .cake-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin:22px 0}
-  .cake{
-    width:260px;height:200px;border-radius:18px;background:linear-gradient(180deg,#fff,#ffefef);
-    box-shadow:0 18px 50px rgba(0,0,0,0.45);border:6px solid rgba(255,255,255,0.18);position:relative;
-    display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:18px;
-  }
+  .cake{width:260px;height:200px;border-radius:18px;background:linear-gradient(180deg,#fff,#ffefef);box-shadow:0 18px 50px rgba(0,0,0,0.45);border:6px solid rgba(255,255,255,0.18);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:18px}
   .cake .frosting{width:90%;height:52px;background:linear-gradient(180deg,#ffdfe6,#fff);border-radius:12px;position:absolute;top:24px;left:50%;transform:translateX(-50%);box-shadow:inset 0 6px 20px rgba(255,180,200,0.25)}
-  .cake .berries{position:absolute;top:12px;display:flex;gap:8px}
+  .berries{position:absolute;top:12px;display:flex;gap:8px}
   .berry{width:28px;height:28px;background:#ff3b68;border-radius:999px;box-shadow:0 6px 14px rgba(0,0,0,0.25)}
   .candles{display:flex;gap:8px;position:absolute;top:6px}
   .candle{width:8px;height:36px;background:linear-gradient(180deg,#fff6f6,#ffd9d9);border-radius:4px;position:relative;display:flex;align-items:flex-start;justify-content:center}
@@ -69,37 +54,54 @@
   .countdown .time{font-weight:800;font-size:22px;color:var(--accent)}
   .countdown .label{color:var(--muted);font-size:13px}
 
-  /* small responsive */
+  /* confetti pieces */
+  .confetti{position:fixed;z-index:14;pointer-events:none;left:0;top:0;width:100%;height:100%;overflow:hidden}
+  .confetti .piece{position:absolute;width:10px;height:16px;opacity:0;transform-origin:center;will-change:transform,opacity}
+
+  /* Wish overlay (full-screen) */
+  #wishOverlay{position:fixed;inset:0;z-index:40;background:linear-gradient(180deg,rgba(0,0,0,0.65),rgba(0,0,0,0.8));display:flex;align-items:center;justify-content:center;padding:20px}
+  .wish-card{background:rgba(255,255,255,0.03);border-radius:16px;padding:26px;text-align:center;color:#fff;max-width:560px;box-shadow:0 18px 60px rgba(0,0,0,0.6)}
+  .wish-card h2{font-family:"Dancing Script",cursive;font-size:44px;margin:0 0 8px}
+  .wish-card p{margin:8px 0;color:rgba(255,255,255,0.92)}
+  .wish-actions{margin-top:14px;display:flex;gap:10px;justify-content:center}
+  .wish-input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:#fff}
+
   @media(max-width:720px){
     .title{font-size:34px}
-    .surprise-text{font-size:48px; top:46%}
+    .surprise-text{font-size:48px;top:46%}
     .cake{width:220px;height:170px}
+    .wish-card h2{font-size:32px}
   }
 
-  /* confetti (DOM-based) */
-  .confetti { position:fixed; z-index:14; pointer-events:none; left:0; top:0; width:100%; height:100%; overflow:hidden; }
-  .confetti .piece { position:absolute; width:10px; height:16px; opacity:0; transform-origin:center; will-change:transform,opacity; }
-
-  /* small footer */
   footer{margin-top:28px;color:rgba(255,255,255,0.75);text-align:center;font-size:13px}
 </style>
 </head>
 <body>
 
-<!-- fireworks canvas -->
+<!-- fireworks layer -->
 <div id="fx-wrap"><canvas id="fireworks"></canvas></div>
 
 <!-- surprise text -->
 <div id="surprise" class="surprise-text" aria-hidden="true">UFAKLIK</div>
 
+<!-- Wish overlay (shows first) -->
+<div id="wishOverlay" role="dialog" aria-modal="true">
+  <div class="wish-card" role="document">
+    <h2>DİLEK TUT ✨</h2>
+    <p>Gözlerini kapat, bir dilek tut ve aşağıdaki butona bas. (Dilediğini yazmak istersen küçük not da bırakabilirsin.)</p>
+    <textarea id="wishText" class="wish-input" placeholder="Dileğini yazmak istersen buraya..."></textarea>
+    <div class="wish-actions">
+      <button id="wishBtn" class="btn">Dileğimi Tuttum</button>
+      <button id="skipBtn" class="btn ghost">Atla</button>
+    </div>
+  </div>
+</div>
+
 <div class="wrap">
   <header class="hero" role="banner">
     <div class="hero-left">
       <h1 class="title">Doğum Günün Kutlu Olsun</h1>
-      <p class="lead">
-        Birlikte geçen günlerin hatırası burada toplanıyor — bugün ufaklığa özel bir sürpriz.
-      </p>
-
+      <p class="lead">Birlikte geçen günlerin hatırası burada toplanıyor — bugün ufaklığa özel bir sürpriz.</p>
       <div class="note-card" aria-live="polite">
         <p><strong>İlker’den Not:</strong></p>
         <p>Sevgilim ufaklık,</p>
@@ -109,7 +111,6 @@
     </div>
 
     <div style="min-width:260px;text-align:center">
-      <!-- prominent cake -->
       <div class="cake-wrap" role="region" aria-label="Pasta ve Mumlar">
         <div class="cake" id="cake">
           <div class="berries">
@@ -124,15 +125,14 @@
         </div>
 
         <div class="cake-controls">
-          <button class="btn" id="blowBtn" title="Mumları Üflet">Mumları Üflet</button>
-          <button class="btn ghost" id="reigniteBtn" title="Mumları Yeniden Yak">Yeniden Yak</button>
+          <button class="btn" id="blowBtn">Mumları Üflet</button>
+          <button class="btn ghost" id="reigniteBtn">Yeniden Yak</button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- media / video (sonvideo.mp4) -->
-  <section aria-label="Anı videosu" style="margin-top:18px">
+  <section style="margin-top:18px">
     <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
       <div style="flex:1;min-width:220px">
         <div class="countdown" role="region" aria-label="Doğum günü sayacı">
@@ -153,6 +153,7 @@
       </div>
 
       <div style="width:320px;max-width:40%;min-width:240px">
+        <!-- optional media, if present -->
         <video id="highlightVideo" src="sonvideo.mp4" controls style="width:100%;border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,0.45)"></video>
       </div>
     </div>
@@ -163,56 +164,56 @@
   </footer>
 </div>
 
-<!-- confetti container -->
+<!-- confetti area -->
 <div class="confetti" id="confettiArea" aria-hidden="true"></div>
 
 <script>
-/* ------------------------
-   Utilities
-   ------------------------ */
-function rand(min,max){ return Math.random()*(max-min)+min; }
-function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+/* ---------- helpers ---------- */
+function rand(min,max){return Math.random()*(max-min)+min;}
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
-/* ------------------------
-   Fireworks canvas
-   ------------------------ */
+/* ---------- fireworks canvas ---------- */
 (function(){
   const canvas = document.getElementById('fireworks');
   const ctx = canvas.getContext('2d');
-  let W = canvas.width = innerWidth;
-  let H = canvas.height = innerHeight;
   let DPR = Math.max(1, window.devicePixelRatio || 1);
-  canvas.width = W * DPR; canvas.height = H * DPR;
-  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  let W = canvas.width = innerWidth * DPR;
+  let H = canvas.height = innerHeight * DPR;
+  canvas.style.width = innerWidth + 'px';
+  canvas.style.height = innerHeight + 'px';
   ctx.scale(DPR, DPR);
 
   const particles = [];
   const shells = [];
 
-  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; canvas.width = W * DPR; canvas.height = H * DPR; canvas.style.width = W + 'px'; canvas.style.height = H + 'px'; ctx.scale(DPR, DPR); }
-
+  function resize(){
+    canvas.style.width = innerWidth + 'px';
+    canvas.style.height = innerHeight + 'px';
+    W = canvas.width = innerWidth * DPR;
+    H = canvas.height = innerHeight * DPR;
+    ctx.scale(DPR, DPR);
+  }
   window.addEventListener('resize', resize);
 
   class Shell {
     constructor(){
-      this.x = rand(80, W-80);
-      this.y = H + 10;
+      this.x = rand(80, innerWidth-80);
+      this.y = innerHeight + 10;
       this.vx = rand(-2,2);
-      this.vy = rand(-12, -8);
+      this.vy = rand(-12,-8);
       this.color = hsl(${Math.floor(rand(0,360))},100%,60%);
-      this.exploded = false;
-      this.phase = 0; // 0: rising, 1: explode
+      this.phase = 0;
     }
     update(){
-      if(this.phase === 0){
-        this.x += this.vx; this.y += this.vy; this.vy += 0.2;
-        if(this.vy > -2){ this.phase = 1; this.explode(); }
+      if(this.phase===0){
+        this.x += this.vx; this.y += this.vy; this.vy += 0.25;
+        if(this.vy > -2){ this.explode(); this.phase=1; }
       }
     }
     explode(){
       const count = Math.floor(rand(40,110));
       for(let i=0;i<count;i++){
-        const angle = rand(0, Math.PI*2);
+        const angle = rand(0,Math.PI*2);
         const speed = rand(1,6);
         particles.push({
           x:this.x, y:this.y,
@@ -229,20 +230,14 @@ function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
   function spawnShell(){ shells.push(new Shell()); }
 
   function draw(){
-    ctx.clearRect(0,0,W,H);
-    // gentle dark overlay for trails
+    ctx.clearRect(0,0,innerWidth,innerHeight);
     ctx.fillStyle = 'rgba(0,0,0,0.15)';
-    ctx.fillRect(0,0,W,H);
+    ctx.fillRect(0,0,innerWidth,innerHeight);
 
-    // update shells
     for(let i=shells.length-1;i>=0;i--){
       shells[i].update();
-      if(shells[i].phase === 1){
-        shells.splice(i,1);
-      }
+      if(shells[i].phase===1) shells.splice(i,1);
     }
-
-    // update particles
     for(let i=particles.length-1;i>=0;i--){
       const p = particles[i];
       p.vy += 0.04; p.x += p.vx; p.y += p.vy; p.life--;
@@ -258,29 +253,18 @@ function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
     requestAnimationFrame(draw);
   }
 
-  // initial burst pattern for 4 seconds then slower
-  let starter = setInterval(spawnShell, 700);
-  setTimeout(()=>{
-    clearInterval(starter);
-    setInterval(spawnShell, 1200);
-  }, 4500);
-
-  // some immediate shells for show
-  for(let i=0;i<6;i++) setTimeout(spawnShell, i*300);
+  // initial bursts
+  for(let i=0;i<5;i++) setTimeout(spawnShell, i*300);
+  let starter = setInterval(spawnShell, 800);
+  setTimeout(()=>{ clearInterval(starter); setInterval(spawnShell, 1400); }, 4200);
 
   draw();
-
-  // expose function to trigger intensive celebration
   window.bigFireworks = function(times=20){
-    for(let i=0;i<times;i++){
-      setTimeout(spawnShell, i*160);
-    }
+    for(let i=0;i<times;i++) setTimeout(spawnShell, i*160);
   };
 })();
 
-/* ------------------------
-   Confetti (DOM pieces)
-   ------------------------ */
+/* ---------- confetti ---------- */
 function makeConfettiBurst(num=80, colors){
   colors = colors || ['#ff6b88','#ffd166','#6bd3ff','#8affc1','#ffd6f0'];
   const area = document.getElementById('confettiArea');
@@ -289,113 +273,114 @@ function makeConfettiBurst(num=80, colors){
     el.className = 'piece';
     el.style.background = pick(colors);
     el.style.left = (rand(10,90)) + '%';
-    el.style.top = (rand(5,40)) + '%';
+    el.style.top = (rand(0,40)) + '%';
     el.style.width = (rand(6,12))+'px';
     el.style.height = (rand(8,16))+'px';
-    el.style.opacity = 1;
-    el.style.transform = rotate(${rand(0,360)}deg) translateY(0px);
     area.appendChild(el);
-    // animate
     requestAnimationFrame(()=>{
       el.style.transition = transform ${rand(900,1800)}ms cubic-bezier(.2,.8,.2,1), opacity 1000ms linear;
       el.style.transform = translate3d(${rand(-200,200)}px, ${rand(200,900)}px,0) rotate(${rand(200,900)}deg);
       el.style.opacity = 0;
     });
   }
-  // cleanup
-  setTimeout(()=> {
-    const kids = area.querySelectorAll('.piece');
-    kids.forEach(k=>k.remove());
-  }, 2200);
+  setTimeout(()=> { const kids = area.querySelectorAll('.piece'); kids.forEach(k=>k.remove()); }, 2400);
 }
 
-/* ------------------------
-   Surprise text timing
-   ------------------------ */
+/* ---------- surprise text control ---------- */
 const surprise = document.getElementById('surprise');
-// show surprise after fireworks initial show
-setTimeout(()=>{
+function showSurprise(duration=4200){
   surprise.style.opacity = 1;
   surprise.style.transform = 'translate(-50%,-52%) scale(1.02)';
-  // small pulse
-  setTimeout(()=>{ surprise.style.transform = 'translate(-50%,-52%) scale(1)'; }, 1800);
-  // hide after 4s
-  setTimeout(()=>{ surprise.style.opacity = 0; surprise.style.transform = 'translate(-50%,-48%) scale(.98)'; }, 4200);
-}, 4800);
+  setTimeout(()=>{ surprise.style.transform = 'translate(-50%,-50%) scale(1)'; }, 1800);
+  setTimeout(()=>{ surprise.style.opacity = 0; surprise.style.transform = 'translate(-50%,-48%) scale(.98)'; }, duration);
+}
 
-/* ------------------------
-   Candle blow & confetti + fireworks trigger
-   ------------------------ */
+/* ---------- wish overlay logic ---------- */
+const wishOverlay = document.getElementById('wishOverlay');
+const wishBtn = document.getElementById('wishBtn');
+const skipBtn = document.getElementById('skipBtn');
+const wishText = document.getElementById('wishText');
+
+function startCelebration(initial=false){
+  // small immediate confetti + fireworks
+  makeConfettiBurst(60);
+  if(typeof window.bigFireworks === 'function') window.bigFireworks(18);
+  showSurprise(4200);
+  // small follow-up confetti
+  setTimeout(()=> makeConfettiBurst(40), 1200);
+  // store wish text optionally
+  const text = (wishText && wishText.value && wishText.value.trim()) ? wishText.value.trim() : '';
+  if(text) {
+    try{ localStorage.setItem('ufaklik_wish', text); }catch(e){}
+  }
+}
+
+wishBtn.addEventListener('click', ()=>{
+  // hide overlay
+  wishOverlay.style.transition = 'opacity .4s ease'; wishOverlay.style.opacity = '0';
+  setTimeout(()=> wishOverlay.remove(), 420);
+  // start sequence
+  startCelebration(true);
+});
+
+skipBtn.addEventListener('click', ()=>{
+  wishOverlay.style.transition = 'opacity .25s ease'; wishOverlay.style.opacity = '0';
+  setTimeout(()=> wishOverlay.remove(), 300);
+  // still show small welcome
+  makeConfettiBurst(20);
+});
+
+/* if a wish already saved, show it in console (optional) */
+try{
+  const prev = localStorage.getItem('ufaklik_wish');
+  if(prev){ console.log('Önceki dilek:', prev); }
+}catch(e){}
+
+/* ---------- cake candle controls ---------- */
+const flames = document.querySelectorAll('.flame');
 const blowBtn = document.getElementById('blowBtn');
 const reigniteBtn = document.getElementById('reigniteBtn');
-const flames = document.querySelectorAll('.flame');
 
 blowBtn.addEventListener('click', ()=>{
-  // extinguish flames with small animation
-  flames.forEach((f, i)=>{
-    f.style.transition = 'opacity 520ms ease, transform 520ms ease';
-    f.style.opacity = 0;
-    f.style.transform = 'translateY(-6px) scale(.8)';
-    f.dataset.on = 'false';
-  });
-  // confetti burst + heavy fireworks
+  flames.forEach((f)=>{ f.style.transition='opacity .52s ease, transform .52s ease'; f.style.opacity=0; f.style.transform='translateY(-6px) scale(.8)'; f.dataset.on='false'; });
   makeConfettiBurst(120);
   if(typeof window.bigFireworks === 'function') window.bigFireworks(28);
-  // small toast
   blowBtn.textContent = 'Mumlar Sönük ✓';
   blowBtn.disabled = true;
-  setTimeout(()=> { blowBtn.textContent = 'Mumları Üflet'; blowBtn.disabled = false; }, 5000);
+  setTimeout(()=>{ blowBtn.textContent = 'Mumları Üflet'; blowBtn.disabled = false; }, 5000);
 });
 
 reigniteBtn.addEventListener('click', ()=>{
   flames.forEach((f)=>{ f.style.opacity = 1; f.style.transform = 'translateY(0)'; f.dataset.on='true'; });
-  makeConfettiBurst(20,['#fff7c8','#ffd1d9']);
+  makeConfettiBurst(24,['#fff7c8','#ffd1d9']);
 });
 
-/* ------------------------
-   Countdown to 18 Oct 2025 00:00
-   ------------------------ */
+/* ---------- countdown ---------- */
 const countDisplay = document.getElementById('countDisplay');
-// target: 18 October 2025 00:00:00 (local time)
-function getTarget(){
-  // fixed year 2025 per request
-  return new Date(2025, 9, 18, 0, 0, 0); // month index 9 = October
-}
+function getTarget(){ return new Date(2025,9,18,0,0,0); } // Oct=9
 const TARGET = getTarget();
 
 function updateCountdown(){
   const now = new Date();
   let diff = TARGET - now;
-  if(diff < 0) diff = 0; // do not go negative (stopped)
+  if(diff < 0) diff = 0;
   const s = Math.floor(diff/1000);
   const days = Math.floor(s/86400);
   const hours = Math.floor((s%86400)/3600);
   const mins = Math.floor((s%3600)/60);
   const secs = s%60;
   countDisplay.textContent = ${days} gün ${hours} saat ${mins} dk ${secs} sn;
-  // When reaches 0 -> celebration
   if(diff === 0){
-    // show celebration
     makeConfettiBurst(180);
     if(typeof window.bigFireworks === 'function') window.bigFireworks(40);
-    // show message
-    setTimeout(()=> alert('Hedefe ulaşıldı — kutlama zamanı!'), 600);
-    // stop interval (we keep showing 0)
     clearInterval(window._cdInt);
   }
 }
 updateCountdown();
 window._cdInt = setInterval(updateCountdown, 1000);
 
-/* ------------------------
-   Accessibility & small niceties
-   ------------------------ */
-document.addEventListener('visibilitychange', ()=>{
-  // if user switches away, don't aggressively spawn fireworks
-});
-
-/* On first load, gentle confetti + small fireworks */
-setTimeout(()=>{ makeConfettiBurst(40); }, 1200);
+/* light initial small celebration while overlay present so page isn't empty */
+setTimeout(()=>{ makeConfettiBurst(18); }, 1400);
 
 </script>
 </body>
