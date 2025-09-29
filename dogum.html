@@ -4,17 +4,18 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Doğum Günü Sürprizi — İlker ❤ Bahargül</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --accent:#ff6b88;
     --muted:#6b6b6b;
-    --card:#ffffffee;
+    --card:#ffffff18;
     --maxw:1100px;
   }
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#07061a;color:#111;-webkit-font-smoothing:antialiased}
-  /* background image - Bahoş.jpg expected in same folder */
+  /* background image - same folder: Bahoş.jpg */
   body::before{
     content:"";position:fixed;inset:0;z-index:-3;background:url("Bahoş.jpg") center/cover no-repeat fixed;filter:saturate(.98) contrast(.98);
   }
@@ -29,7 +30,7 @@
   .note-card p{margin:8px 0}
 
   /* fireworks canvas */
-  #fx-wrap{position:fixed;inset:0;z-index:1;pointer-events:none}
+  #fx-wrap{position:fixed;inset:0;z-index:2;pointer-events:none}
   canvas#fireworks{width:100%;height:100%;display:block}
 
   /* surprise text */
@@ -37,26 +38,26 @@
 
   /* cake block */
   .cake-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin:22px 0}
-  .cake{width:260px;height:200px;border-radius:18px;background:linear-gradient(180deg,#fff,#ffefef);box-shadow:0 18px 50px rgba(0,0,0,0.45);border:6px solid rgba(255,255,255,0.18);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:18px}
+  .cake{width:260px;height:200px;border-radius:18px;background:linear-gradient(180deg,#fff,#ffefef);box-shadow:0 18px 50px rgba(0,0,0,0.45);border:6px solid rgba(255,255,255,0.12);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:18px}
   .cake .frosting{width:90%;height:52px;background:linear-gradient(180deg,#ffdfe6,#fff);border-radius:12px;position:absolute;top:24px;left:50%;transform:translateX(-50%);box-shadow:inset 0 6px 20px rgba(255,180,200,0.25)}
   .berries{position:absolute;top:12px;display:flex;gap:8px}
   .berry{width:28px;height:28px;background:#ff3b68;border-radius:999px;box-shadow:0 6px 14px rgba(0,0,0,0.25)}
   .candles{display:flex;gap:8px;position:absolute;top:6px}
   .candle{width:8px;height:36px;background:linear-gradient(180deg,#fff6f6,#ffd9d9);border-radius:4px;position:relative;display:flex;align-items:flex-start;justify-content:center}
-  .flame{width:8px;height:12px;background:radial-gradient(circle at 35% 40%, #fff, #ffd600 30%, #ff6b00 70%);border-radius:6px;position:absolute;top:-12px;opacity:1;filter:drop-shadow(0 6px 8px rgba(255,120,120,0.42))}
+  .flame{width:8px;height:12px;background:radial-gradient(circle at 35% 40%, #fff, #ffd600 30%, #ff6b00 70%);border-radius:6px;position:absolute;top:-12px;opacity:1;filter:drop-shadow(0 6px 8px rgba(255,120,120,0.42));transition:opacity .4s ease, transform .4s ease}
 
   .cake-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
   .btn{background:linear-gradient(90deg,var(--accent),#e04b79);color:#fff;padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:700;box-shadow:0 12px 30px rgba(224,75,121,0.12)}
   .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08)}
 
   /* countdown */
-  .countdown{margin-top:18px;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,0.45);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .countdown{margin-top:18px;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,0.45);display:flex;align-items:center;gap:18px;flex-wrap:wrap;color:rgba(255,255,255,0.92)}
   .countdown .time{font-weight:800;font-size:22px;color:var(--accent)}
   .countdown .label{color:var(--muted);font-size:13px}
 
   /* confetti pieces */
   .confetti{position:fixed;z-index:14;pointer-events:none;left:0;top:0;width:100%;height:100%;overflow:hidden}
-  .confetti .piece{position:absolute;width:10px;height:16px;opacity:0;transform-origin:center;will-change:transform,opacity}
+  .confetti .piece{position:absolute;width:10px;height:16px;opacity:0;transform-origin:center;will-change:transform,opacity;border-radius:2px}
 
   /* Wish overlay (full-screen) */
   #wishOverlay{position:fixed;inset:0;z-index:40;background:linear-gradient(180deg,rgba(0,0,0,0.65),rgba(0,0,0,0.8));display:flex;align-items:center;justify-content:center;padding:20px}
@@ -64,7 +65,7 @@
   .wish-card h2{font-family:"Dancing Script",cursive;font-size:44px;margin:0 0 8px}
   .wish-card p{margin:8px 0;color:rgba(255,255,255,0.92)}
   .wish-actions{margin-top:14px;display:flex;gap:10px;justify-content:center}
-  .wish-input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:#fff}
+  .wish-input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:#fff;min-height:64px}
 
   @media(max-width:720px){
     .title{font-size:34px}
@@ -78,17 +79,17 @@
 </head>
 <body>
 
-<!-- fireworks layer -->
+<!-- fireworks canvas -->
 <div id="fx-wrap"><canvas id="fireworks"></canvas></div>
 
 <!-- surprise text -->
 <div id="surprise" class="surprise-text" aria-hidden="true">UFAKLIK</div>
 
-<!-- Wish overlay (shows first) -->
+<!-- Wish overlay -->
 <div id="wishOverlay" role="dialog" aria-modal="true">
   <div class="wish-card" role="document">
     <h2>DİLEK TUT ✨</h2>
-    <p>Gözlerini kapat, bir dilek tut ve aşağıdaki butona bas. (Dilediğini yazmak istersen küçük not da bırakabilirsin.)</p>
+    <p>Gözlerini kapat, bir dilek tut ve "Dileğimi Tuttum" butonuna bas. (İstersen dileğini yaz.)</p>
     <textarea id="wishText" class="wish-input" placeholder="Dileğini yazmak istersen buraya..."></textarea>
     <div class="wish-actions">
       <button id="wishBtn" class="btn">Dileğimi Tuttum</button>
@@ -112,14 +113,14 @@
 
     <div style="min-width:260px;text-align:center">
       <div class="cake-wrap" role="region" aria-label="Pasta ve Mumlar">
-        <div class="cake" id="cake">
+        <div class="cake" id="cake" aria-hidden="false">
           <div class="berries">
             <div class="berry"></div><div class="berry"></div><div class="berry"></div>
           </div>
           <div class="candles" id="candles">
-            <div class="candle"><div class="flame" data-on="true"></div></div>
-            <div class="candle"><div class="flame" data-on="true"></div></div>
-            <div class="candle"><div class="flame" data-on="true"></div></div>
+            <div class="candle"><div class="flame" data-on="true" aria-hidden="false"></div></div>
+            <div class="candle"><div class="flame" data-on="true" aria-hidden="false"></div></div>
+            <div class="candle"><div class="flame" data-on="true" aria-hidden="false"></div></div>
           </div>
           <div class="frosting"></div>
         </div>
@@ -148,14 +149,12 @@
         </div>
 
         <div style="margin-top:12px;color:rgba(255,255,255,0.9)">
-          <p style="margin:6px 0"><strong>Not:</strong> Sayaç hedefe ulaşınca büyük bir konfeti + havai fişek gösterisi olacak.</p>
+          <p style="margin:6px 0"><strong>Not:</strong> Sayaç hedefe ulaştığında büyük bir konfeti + havai fişek gösterisi olacak.</p>
         </div>
       </div>
 
-      <div style="width:320px;max-width:40%;min-width:240px">
-        <!-- optional media, if present -->
-        <video id="highlightVideo" src="sonvideo.mp4" controls style="width:100%;border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,0.45)"></video>
-      </div>
+      <!-- placeholder media removed intentionally (istedin) -->
+      <div style="width:320px;max-width:40%;min-width:240px;opacity:0.95"></div>
     </div>
   </section>
 
@@ -164,36 +163,35 @@
   </footer>
 </div>
 
-<!-- confetti area -->
+<!-- confetti container -->
 <div class="confetti" id="confettiArea" aria-hidden="true"></div>
 
 <script>
-/* ---------- helpers ---------- */
-function rand(min,max){return Math.random()*(max-min)+min;}
-function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+/* --------- Utilities ---------- */
+function rand(min,max){ return Math.random()*(max-min)+min; }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-/* ---------- fireworks canvas ---------- */
+/* --------- Fireworks (canvas) ---------- */
 (function(){
   const canvas = document.getElementById('fireworks');
+  if(!canvas) return;
   const ctx = canvas.getContext('2d');
   let DPR = Math.max(1, window.devicePixelRatio || 1);
-  let W = canvas.width = innerWidth * DPR;
-  let H = canvas.height = innerHeight * DPR;
-  canvas.style.width = innerWidth + 'px';
-  canvas.style.height = innerHeight + 'px';
-  ctx.scale(DPR, DPR);
+
+  function resizeCanvas(){
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    canvas.width = Math.round(w * DPR);
+    canvas.height = Math.round(h * DPR);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0); // avoid cumulative scaling
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
   const particles = [];
   const shells = [];
-
-  function resize(){
-    canvas.style.width = innerWidth + 'px';
-    canvas.style.height = innerHeight + 'px';
-    W = canvas.width = innerWidth * DPR;
-    H = canvas.height = innerHeight * DPR;
-    ctx.scale(DPR, DPR);
-  }
-  window.addEventListener('resize', resize);
 
   class Shell {
     constructor(){
@@ -202,12 +200,12 @@ function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
       this.vx = rand(-2,2);
       this.vy = rand(-12,-8);
       this.color = hsl(${Math.floor(rand(0,360))},100%,60%);
-      this.phase = 0;
+      this.exploded = false;
     }
     update(){
-      if(this.phase===0){
+      if(!this.exploded){
         this.x += this.vx; this.y += this.vy; this.vy += 0.25;
-        if(this.vy > -2){ this.explode(); this.phase=1; }
+        if(this.vy > -2){ this.explode(); this.exploded = true; }
       }
     }
     explode(){
@@ -227,16 +225,19 @@ function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
     }
   }
 
-  function spawnShell(){ shells.push(new Shell()); }
+  function spawnShell(){
+    shells.push(new Shell());
+  }
 
   function draw(){
     ctx.clearRect(0,0,innerWidth,innerHeight);
+    // subtle dim background to create trails
     ctx.fillStyle = 'rgba(0,0,0,0.15)';
     ctx.fillRect(0,0,innerWidth,innerHeight);
 
     for(let i=shells.length-1;i>=0;i--){
       shells[i].update();
-      if(shells[i].phase===1) shells.splice(i,1);
+      if(shells[i].exploded) shells.splice(i,1);
     }
     for(let i=particles.length-1;i>=0;i--){
       const p = particles[i];
@@ -252,135 +253,147 @@ function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
     }
     requestAnimationFrame(draw);
   }
-
-  // initial bursts
-  for(let i=0;i<5;i++) setTimeout(spawnShell, i*300);
-  let starter = setInterval(spawnShell, 800);
-  setTimeout(()=>{ clearInterval(starter); setInterval(spawnShell, 1400); }, 4200);
-
   draw();
-  window.bigFireworks = function(times=20){
-    for(let i=0;i<times;i++) setTimeout(spawnShell, i*160);
+
+  // make function globally accessible
+  window.bigFireworks = function(times=20, interval=140){
+    for(let i=0;i<times;i++){
+      setTimeout(()=> spawnShell(), i*interval);
+    }
   };
+
+  // small steady bursts so page feels alive
+  let starter = setInterval(()=> spawnShell(), 900);
+  setTimeout(()=>{ clearInterval(starter); }, 6000);
 })();
 
-/* ---------- confetti ---------- */
+/* ---------- Confetti ---------- */
 function makeConfettiBurst(num=80, colors){
   colors = colors || ['#ff6b88','#ffd166','#6bd3ff','#8affc1','#ffd6f0'];
   const area = document.getElementById('confettiArea');
+  if(!area) return;
+  const created = [];
   for(let i=0;i<num;i++){
     const el = document.createElement('div');
     el.className = 'piece';
     el.style.background = pick(colors);
     el.style.left = (rand(10,90)) + '%';
-    el.style.top = (rand(0,40)) + '%';
+    el.style.top = (rand(-10,20)) + '%';
     el.style.width = (rand(6,12))+'px';
     el.style.height = (rand(8,16))+'px';
+    el.style.transform = translate3d(0,0,0) rotate(${rand(0,360)}deg);
+    el.style.opacity = '1';
     area.appendChild(el);
+    created.push(el);
+    // animate next tick
     requestAnimationFrame(()=>{
-      el.style.transition = transform ${rand(900,1800)}ms cubic-bezier(.2,.8,.2,1), opacity 1000ms linear;
-      el.style.transform = translate3d(${rand(-200,200)}px, ${rand(200,900)}px,0) rotate(${rand(200,900)}deg);
-      el.style.opacity = 0;
+      const tx = rand(-300,300);
+      const ty = rand(200,900);
+      const rot = rand(200,900);
+      el.style.transition = transform ${rand(900,2000)}ms cubic-bezier(.2,.8,.2,1), opacity 1400ms linear;
+      el.style.transform = translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg);
+      el.style.opacity = '0';
     });
   }
-  setTimeout(()=> { const kids = area.querySelectorAll('.piece'); kids.forEach(k=>k.remove()); }, 2400);
+  // remove after animation
+  setTimeout(()=> created.forEach(c=>c.remove()), 2600);
 }
 
-/* ---------- surprise text control ---------- */
+/* ---------- Surprise text ---------- */
 const surprise = document.getElementById('surprise');
 function showSurprise(duration=4200){
-  surprise.style.opacity = 1;
+  surprise.style.opacity = '1';
   surprise.style.transform = 'translate(-50%,-52%) scale(1.02)';
   setTimeout(()=>{ surprise.style.transform = 'translate(-50%,-50%) scale(1)'; }, 1800);
-  setTimeout(()=>{ surprise.style.opacity = 0; surprise.style.transform = 'translate(-50%,-48%) scale(.98)'; }, duration);
+  setTimeout(()=>{ surprise.style.opacity = '0'; surprise.style.transform = 'translate(-50%,-48%) scale(.98)'; }, duration);
 }
 
-/* ---------- wish overlay logic ---------- */
+/* ---------- Wish overlay logic ---------- */
 const wishOverlay = document.getElementById('wishOverlay');
 const wishBtn = document.getElementById('wishBtn');
 const skipBtn = document.getElementById('skipBtn');
 const wishText = document.getElementById('wishText');
 
-function startCelebration(initial=false){
-  // small immediate confetti + fireworks
-  makeConfettiBurst(60);
-  if(typeof window.bigFireworks === 'function') window.bigFireworks(18);
+function safeCall(fn){
+  try{ fn && fn(); } catch(e){ console.error(e); }
+}
+
+function startCelebration(){
+  // confetti + fireworks + surprise text
+  makeConfettiBurst(110);
+  safeCall(()=> window.bigFireworks && window.bigFireworks(22, 120));
   showSurprise(4200);
-  // small follow-up confetti
-  setTimeout(()=> makeConfettiBurst(40), 1200);
-  // store wish text optionally
-  const text = (wishText && wishText.value && wishText.value.trim()) ? wishText.value.trim() : '';
-  if(text) {
-    try{ localStorage.setItem('ufaklik_wish', text); }catch(e){}
-  }
+  setTimeout(()=> makeConfettiBurst(60), 1200);
+  // save wish text if present
+  const txt = (wishText && wishText.value && wishText.value.trim()) ? wishText.value.trim() : '';
+  if(txt){ try{ localStorage.setItem('ufaklik_wish', txt); }catch(e){} }
 }
 
 wishBtn.addEventListener('click', ()=>{
-  // hide overlay
-  wishOverlay.style.transition = 'opacity .4s ease'; wishOverlay.style.opacity = '0';
-  setTimeout(()=> wishOverlay.remove(), 420);
-  // start sequence
-  startCelebration(true);
+  wishBtn.disabled = true;
+  wishBtn.textContent = 'Başlıyor...';
+  // hide overlay with fade
+  wishOverlay.style.transition = 'opacity .35s ease';
+  wishOverlay.style.opacity = '0';
+  setTimeout(()=> { try{ wishOverlay.remove(); }catch(e){} }, 420);
+  // start celebration
+  setTimeout(()=> startCelebration(), 220);
 });
 
 skipBtn.addEventListener('click', ()=>{
-  wishOverlay.style.transition = 'opacity .25s ease'; wishOverlay.style.opacity = '0';
-  setTimeout(()=> wishOverlay.remove(), 300);
-  // still show small welcome
-  makeConfettiBurst(20);
+  wishOverlay.style.transition = 'opacity .2s ease';
+  wishOverlay.style.opacity = '0';
+  setTimeout(()=> { try{ wishOverlay.remove(); }catch(e){} }, 300);
+  // small confetti
+  setTimeout(()=> makeConfettiBurst(30), 200);
 });
 
-/* if a wish already saved, show it in console (optional) */
-try{
-  const prev = localStorage.getItem('ufaklik_wish');
-  if(prev){ console.log('Önceki dilek:', prev); }
-}catch(e){}
-
-/* ---------- cake candle controls ---------- */
+/* ---------- Cake candle controls ---------- */
 const flames = document.querySelectorAll('.flame');
 const blowBtn = document.getElementById('blowBtn');
 const reigniteBtn = document.getElementById('reigniteBtn');
 
 blowBtn.addEventListener('click', ()=>{
-  flames.forEach((f)=>{ f.style.transition='opacity .52s ease, transform .52s ease'; f.style.opacity=0; f.style.transform='translateY(-6px) scale(.8)'; f.dataset.on='false'; });
-  makeConfettiBurst(120);
-  if(typeof window.bigFireworks === 'function') window.bigFireworks(28);
-  blowBtn.textContent = 'Mumlar Sönük ✓';
+  // visually turn off flames
+  flames.forEach((f)=>{ f.style.opacity = 0; f.style.transform = 'translateY(-6px) scale(.85)'; f.dataset.on = 'false'; });
+  // big celebration
+  makeConfettiBurst(160);
+  safeCall(()=> window.bigFireworks && window.bigFireworks(36, 100));
+  blowBtn.textContent = 'Mumlar Üflendi ✓';
   blowBtn.disabled = true;
-  setTimeout(()=>{ blowBtn.textContent = 'Mumları Üflet'; blowBtn.disabled = false; }, 5000);
+  setTimeout(()=>{ blowBtn.textContent = 'Mumları Üflet'; blowBtn.disabled = false; }, 4800);
 });
 
 reigniteBtn.addEventListener('click', ()=>{
-  flames.forEach((f)=>{ f.style.opacity = 1; f.style.transform = 'translateY(0)'; f.dataset.on='true'; });
-  makeConfettiBurst(24,['#fff7c8','#ffd1d9']);
+  flames.forEach((f)=>{ f.style.opacity = 1; f.style.transform = 'translateY(0) scale(1)'; f.dataset.on = 'true'; });
+  makeConfettiBurst(28, ['#fff7c8','#ffd1d9']);
 });
 
-/* ---------- countdown ---------- */
+/* ---------- Countdown ---------- */
 const countDisplay = document.getElementById('countDisplay');
-function getTarget(){ return new Date(2025,9,18,0,0,0); } // Oct=9
-const TARGET = getTarget();
-
+// target: 18 Oct 2025 00:00
+const TARGET = new Date(2025, 9, 18, 0, 0, 0); // month index 9 = Oct
 function updateCountdown(){
   const now = new Date();
-  let diff = TARGET - now;
-  if(diff < 0) diff = 0;
-  const s = Math.floor(diff/1000);
-  const days = Math.floor(s/86400);
-  const hours = Math.floor((s%86400)/3600);
-  const mins = Math.floor((s%3600)/60);
-  const secs = s%60;
+  let diff = Math.max(0, TARGET - now);
+  const s = Math.floor(diff / 1000);
+  const days = Math.floor(s / 86400);
+  const hours = Math.floor((s % 86400) / 3600);
+  const mins = Math.floor((s % 3600) / 60);
+  const secs = s % 60;
   countDisplay.textContent = ${days} gün ${hours} saat ${mins} dk ${secs} sn;
   if(diff === 0){
-    makeConfettiBurst(180);
-    if(typeof window.bigFireworks === 'function') window.bigFireworks(40);
-    clearInterval(window._cdInt);
+    // trigger final celebration
+    makeConfettiBurst(220);
+    safeCall(()=> window.bigFireworks && window.bigFireworks(48, 90));
+    clearInterval(window.__cd_int);
   }
 }
 updateCountdown();
-window._cdInt = setInterval(updateCountdown, 1000);
+window.__cd_int = setInterval(updateCountdown, 1000);
 
-/* light initial small celebration while overlay present so page isn't empty */
-setTimeout(()=>{ makeConfettiBurst(18); }, 1400);
+/* small welcome confetti while overlay present */
+setTimeout(()=> makeConfettiBurst(16), 1200);
 
 </script>
 </body>
