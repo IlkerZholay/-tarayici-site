@@ -5,210 +5,140 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Gökyüzü — Alıntılar | İlker ❤ Bahargül</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YBDYWZSF9B');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YBDYWZSF9B');
 </script>
 
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root{--accent:#e35c7a;--muted:#7a6f7a;--card-bg: rgba(255,255,255,0.9);--glass-blur:8px;--maxw:1120px;}
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:"Poppins",system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#0b1220,#071028);color:#fff}
-  a{color:inherit;text-decoration:none}
-  #starfield{position:fixed;inset:0;z-index:0;display:block}
-  .hamburger{position:fixed;left:16px;top:16px;z-index:1200;background:rgba(255,255,255,0.06);backdrop-filter:blur(var(--glass-blur));border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.35)}
-  .page{position:relative;z-index:10;max-width:var(--maxw);margin:60px auto;padding:28px}
-  .hero{display:flex;gap:20px;align-items:center;padding:26px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));box-shadow:0 12px 40px rgba(0,0,0,0.45)}
-  .carousel{margin-top:14px;display:flex;gap:18px;overflow:hidden;padding:8px;border-radius:14px}
-  .card{flex:0 0 84%;max-width:900px;min-height:220px;background:var(--card-bg);color:#111;border-radius:14px;padding:22px;box-shadow:0 18px 48px rgba(2,6,12,0.45);display:flex;gap:16px;align-items:flex-start;transition:transform .28s ease,box-shadow .28s ease}
-  @media(min-width:900px){ .card{flex:0 0 48%} }
-  .card blockquote{margin:0;font-size:18px;line-height:1.6;color:#111;font-weight:600}
-  .card .meta{margin-top:12px;color:var(--muted);font-size:14px}
-  .tag{display:inline-block;background:rgba(0,0,0,0.04);padding:6px 10px;border-radius:999px;font-size:13px;margin-top:12px;color:#333}
-  .dots{display:flex;gap:8px;align-items:center;margin-top:12px;justify-content:center}
-  .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.15);cursor:pointer}
-  .dot.active{background:var(--accent);box-shadow:0 6px 20px rgba(227,92,122,0.18)}
-  footer{margin-top:28px;text-align:center;color:rgba(255,255,255,0.76);font-size:13px}
+:root{
+  --accent:#e35c7a;
+  --muted:#7a6f7a;
+  --card-bg: rgba(255,255,255,0.9);
+  --maxw:1120px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:"Poppins",system-ui;background:linear-gradient(180deg,#0b1220,#071028);color:#fff}
+#starfield{position:fixed;inset:0;z-index:0}
+.hambutton{position:fixed;left:14px;top:14px;z-index:1200;background:rgba(255,255,255,0.06);padding:10px;border-radius:12px;backdrop-filter:blur(6px);cursor:pointer}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;z-index:1150;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));backdrop-filter:blur(8px);transition:width .36s}
+.sidebar.open{width:260px}
+.sidebar nav{margin-top:72px;display:flex;flex-direction:column;padding:12px}
+.page{position:relative;z-index:10;max-width:var(--maxw);margin:80px auto;padding:18px}
+.hero{display:flex;gap:20px;align-items:center;padding:20px;border-radius:12px;background:rgba(255,255,255,0.03)}
+.carousel{display:flex;gap:18px;overflow:hidden;padding:8px;border-radius:14px}
+.card{flex:0 0 84%;max-width:900px;min-height:180px;background:var(--card-bg);color:#111;border-radius:14px;padding:18px;box-shadow:0 18px 48px rgba(0,0,0,0.45)}
+.dots{display:flex;gap:8px;margin-top:12px;justify-content:center}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.15)}
+.dot.active{background:var(--accent)}
+@media(max-width:700px){ .card{flex:0 0 92%} .page{margin-top:120px} }
 </style>
 </head>
 <body>
-
 <canvas id="starfield" aria-hidden="true"></canvas>
 
-<!-- MENU block -->
-<style>
-  :root{--menu-width:260px;--menu-accent:#e35c7a}
-  .site-menu-openbtn{position:fixed;left:14px;top:14px;z-index:2200;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));backdrop-filter: blur(6px);box-shadow: 0 12px 36px rgba(0,0,0,0.25);border: none;cursor: pointer;color:#fff;font-weight:700}
-  .site-menu-openbtn .bars{ width:22px; height:14px; position:relative; display:inline-block }
-  .site-menu-openbtn .bars span{ position:absolute; left:0; right:0; height:2px; display:block; background:#fff; border-radius:2px }
-  .site-menu-openbtn .bars span:nth-child(1){ top:0 }
-  .site-menu-openbtn .bars span:nth-child(2){ top:6px }
-  .site-menu-openbtn .bars span:nth-child(3){ top:12px }
-  .site-sidebar{position:fixed;left:12px;top:64px;z-index:2100;width:0;height:calc(100% - 96px);overflow:hidden;border-radius:14px;background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));backdrop-filter: blur(8px);box-shadow: 0 18px 50px rgba(2,6,12,0.45);transition: width 320ms;}
-  .site-sidebar.open{ width:var(--menu-width) }
-  .site-sidebar nav{ display:flex; flex-direction:column; padding:14px; gap:8px; }
-  .site-sidebar a{ padding:12px; border-radius:10px; color:#fff; font-weight:700; display:flex; gap:10px; align-items:center; text-decoration:none }
-  .site-sidebar a:hover{ background: linear-gradient(90deg, var(--menu-accent), #b33e62); color:#fff }
-  .site-menu-overlay{ position:fixed; inset:0; z-index:2050; display:none; background: rgba(0,0,0,0.4); }
-  .site-menu-overlay.show{ display:block; opacity:1 }
-  @media(max-width:720px){ .site-sidebar.open{ width: min(84vw,320px); left:8px; top:72px } }
-</style>
-
-<button class="site-menu-openbtn" id="siteMenuToggle" aria-expanded="false" aria-controls="siteSidebar" aria-label="Menüyü aç">
-  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-  <span style="color:#fff">Menü</span>
-</button>
-
-<aside id="siteSidebar" class="site-sidebar" aria-hidden="true" role="navigation">
-  <nav>
+<button class="hambutton" id="menuBtn">☰ Menü</button>
+<aside id="sidebar" class="sidebar" aria-hidden="true">
+  <nav style="margin-top:72px;display:flex;flex-direction:column;padding:12px;gap:8px">
     <a href="index.html">🏠 Ana Sayfa</a>
     <a href="anilar.html">📸 Anılar</a>
     <a href="zaman.html">⏳ Zaman</a>
     <a href="sarkilar.html">🎶 Şarkılar</a>
-    <a href="gokyuzu.html">🌌 Alıntılar</a>
-    <a href="mektuplar.html">💌 Mektuplar</a>
-    <div style="margin-top:auto;padding:10px;color:#fff;font-size:13px">Bu sayfa İlker tarafından hazırlanmıştır.</div>
+    <a href="gokyuzu.html" style="background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff;padding:12px;border-radius:10px">🌌 Gökyüzü</a>
+    <a href="masal.html">📚 Masal</a>
+    <a href="dogum.html">🎂 Doğum Günü</a>
   </nav>
 </aside>
 
-<div id="siteMenuOverlay" class="site-menu-overlay" tabindex="-1" aria-hidden="true"></div>
-
-<script>
-(function(){
-  const toggle = document.getElementById('siteMenuToggle');
-  const sidebar = document.getElementById('siteSidebar');
-  const overlay = document.getElementById('siteMenuOverlay');
-  function openMenu(){ sidebar.classList.add('open'); overlay.classList.add('show'); sidebar.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); overlay.addEventListener('click', closeOnce); document.addEventListener('keydown', onKey); const first = sidebar.querySelector('a'); if(first) first.focus(); }
-  function closeMenu(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); sidebar.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); overlay.removeEventListener('click', closeOnce); document.removeEventListener('keydown', onKey); toggle.focus(); }
-  function closeOnce(){ closeMenu(); overlay.removeEventListener('click', closeOnce); }
-  function onKey(e){ if(e.key==='Escape') closeMenu(); }
-  toggle.addEventListener('click', ()=> sidebar.classList.contains('open') ? closeMenu() : openMenu());
-  sidebar.addEventListener('click', (e)=> { if(e.target.tagName==='A') setTimeout(()=> closeMenu(), 120); });
-})();
-</script>
-<!-- END MENU -->
-
-<main class="page" role="main">
+<main class="page">
   <header class="hero">
-    <div class="left">
-      <h1 style="font-family:'Dancing Script',cursive;font-size:36px;margin:0">Gökyüzü — Alıntılar</h1>
-      <p style="margin-top:8px;color:rgba(255,255,255,0.85)">En sevdiğin dizeleri, kitap alıntılarını, notları burada topla. Kartlara dokunduğunda büyür; oklarla ya da dokunarak geçiş yapabilirsin.</p>
+    <div style="flex:1">
+      <h1 style="font-family:'Dancing Script',cursive;margin:0;font-size:36px">Gökyüzü — Alıntılar</h1>
+      <p style="margin:8px 0;color:rgba(255,255,255,0.9)">En sevdiğin dizeleri, kitap alıntılarını burada sakla. Kartlara dokun — rahat okumak için büyütebilirsin.</p>
+    </div>
+    <div style="text-align:right">
+      <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:10px">İlker tarafından</div>
     </div>
   </header>
 
-  <section class="slider-wrap">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div style="display:flex;gap:8px">
-        <button id="prevBtn" class="btn" style="padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.04)">⟨</button>
-        <button id="nextBtn" class="btn" style="padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.04)">⟩</button>
-        <button id="toggleAuto" class="btn" style="padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.04)">Otomatik: Kapalı</button>
-      </div>
-      <div style="color:rgba(255,255,255,0.7)">Alıntılar QUOTES listesinde — istediğin zaman güncelleyebilirsin.</div>
-    </div>
+  <section class="carousel" id="carousel"></section>
+  <div class="dots" id="dots"></div>
 
-    <div class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel" style="margin-top:20px">
-      <!-- JS inject -->
-    </div>
-
-    <div class="dots" id="dots"></div>
-  </section>
-
-  <footer>
-    <p>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</p>
-  </footer>
+  <footer style="margin-top:18px;color:rgba(255,255,255,0.7)">Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</footer>
 </main>
 
 <script>
-/* starfield (lightweight) */
+/* starfield */
 (function(){
-  const canvas = document.getElementById('starfield'), ctx = canvas.getContext('2d');
+  const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d');
   let w=canvas.width=innerWidth, h=canvas.height=innerHeight;
-  const STARS = [];
-  for(let i=0;i<Math.round((w*h)/18000);i++) STARS.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+0.2,alpha:Math.random()*0.9+0.1,dx:(Math.random()-0.5)*0.02,dy:(Math.random()-0.5)*0.02});
-  function draw(){ ctx.clearRect(0,0,w,h); for(const s of STARS){ s.alpha += (Math.random()-0.5)*0.02; if(s.alpha<0.05) s.alpha=0.05; if(s.alpha>1) s.alpha=1; s.x+=s.dx; s.y+=s.dy; ctx.beginPath(); ctx.fillStyle='rgba(255,255,255,'+s.alpha+')'; ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
-  draw(); window.addEventListener('resize', ()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; });
+  const DPR = Math.max(1, window.devicePixelRatio || 1);
+  canvas.width = w*DPR; canvas.height = h*DPR; canvas.style.width=w+'px'; canvas.style.height=h+'px'; ctx.scale(DPR,DPR);
+  const stars=[]; const COUNT = Math.round((w*h)/18000);
+  for(let i=0;i<COUNT;i++) stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+0.2,a:Math.random(),dx:(Math.random()-0.5)*0.03,dy:(Math.random()-0.5)*0.03});
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(const s of stars){
+      s.x += s.dx; s.y += s.dy; s.a += (Math.random()-0.5)*0.02; if(s.a<0.05) s.a=0.05;
+      ctx.beginPath(); ctx.fillStyle='rgba(255,255,255,'+s.a+')'; ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+  window.addEventListener('resize', ()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; canvas.width = w*DPR; canvas.height = h*DPR; canvas.style.width=w+'px'; canvas.style.height=h+'px'; ctx.scale(DPR,DPR); });
 })();
 
-/* QUOTES array */
+/* sidebar */
+const menuBtn=document.getElementById('menuBtn'), sidebar=document.getElementById('sidebar');
+menuBtn.addEventListener('click', ()=> sidebar.classList.toggle('open'));
+
+/* quotes */
 const QUOTES = [
-  {text:"Gözler bazen sözlerden daha çok saklar; bir bakış bütün bir hikayedir.", meta:"— Anonim"},
-  {text:"Hatıralar; sessiz bir geceyi aydınlatan küçük yıldızlardır.", meta:"— Kitap"},
-  {text:"Bir cümlenin içine sığdırdığım sevgi, ömrümün en değerli yanıdır.", meta:"— Şiir"},
-  {text:"Yol nerede bitse, hatıralar orada başlar.", meta:"— Düşünce"},
-  {text:"Sessizce bırakılan notlar en ağır yükleri hafifletir.", meta:"— Yazar"},
-  {text:"Bir şarkı, susan kelimelerin tekrar konuşmasıdır.", meta:"— Müzik"},
-  {text:"Uzaklarda kalan küçük mutluluklar, zamanla kıymetli müzelere dönüşür.", meta:"— Anlatı"},
-  {text:"Gecenin en koyu anı, yıldızların en çok parladığı andır.", meta:"— Gözlem"},
-  {text:"Bir şiir, iki insan arasında asılı kalmış bir köprüdür.", meta:"— Dize"},
-  {text:"Söylenmemiş sözler en derin notalarda saklıdır.", meta:"— Mırıldanma"}
+  {text: "Gözler bazen sözlerden daha çok saklar; bir bakış bütün bir hikayedir.", meta:"— Anonim"},
+  {text: "Hatıralar; sessiz bir geceyi aydınlatan küçük yıldızlardır.", meta:"— Kitap"},
+  {text: "Bir cümlenin içine sığdırdığım sevgi, ömrümün en değerli yanıdır.", meta:"— Şiir"},
+  {text: "Yol nerede bitse, hatıralar orada başlar.", meta:"— Düşünce"},
+  {text: "Sessizce bırakılan notlar en ağır yükleri hafifletir.", meta:"— Yazar"},
+  {text: "Bir şarkı, susan kelimelerin tekrar konuşmasıdır.", meta:"— Müzik"},
+  {text: "Uzaklarda kalan küçük mutluluklar, zamanla kıymetli müzelere dönüşür.", meta:"— Anlatı"},
+  {text: "Gecenin en koyu anı, yıldızların en çok parladığı andır.", meta:"— Gözlem"},
+  {text: "Bir şiir, iki insan arasında asılı kalmış bir köprüdür.", meta:"— Dize"},
+  {text: "Söylenmemiş sözler en derin notalarda saklıdır.", meta:"— Mırıldanma"}
 ];
 
-const carousel = document.getElementById('carousel');
-const dots = document.getElementById('dots');
-let currentIndex = 0, autoPlay=false, autoTimer=null;
-
-function createCard(q,i){
-  const card = document.createElement('article'); card.className='card';
-  const left = document.createElement('div'); left.style.flex='1';
-  const block = document.createElement('blockquote'); block.textContent = q.text;
-  left.appendChild(block);
-  const meta = document.createElement('div'); meta.className='meta'; meta.textContent = q.meta;
-  left.appendChild(meta);
-  const tag = document.createElement('div'); tag.className='tag'; tag.textContent = 'Alıntı '+(i+1);
-  left.appendChild(tag);
-  card.appendChild(left);
-  card.tabIndex = 0;
-  card.addEventListener('click', ()=> {card.style.transform='scale(1.02)'; setTimeout(()=>card.style.transform='',220); card.scrollIntoView({behavior:'smooth', inline:'center'});});
-  return card;
+const carousel=document.getElementById('carousel'), dots=document.getElementById('dots');
+let idx=0;
+function makeCard(q,i){
+  const el=document.createElement('article'); el.className='card'; el.tabIndex=0;
+  el.innerHTML = <div style="flex:1"><blockquote>${q.text}</blockquote><div style="margin-top:12px;color:${'#7a6f7a'}">${q.meta||''}</div></div>;
+  el.addEventListener('click', ()=> { el.style.transform='scale(1.02)'; setTimeout(()=>el.style.transform='scale(1)',240); el.scrollIntoView({behavior:'smooth',inline:'center'}); });
+  return el;
 }
-
 function render(){
-  carousel.innerHTML = ''; dots.innerHTML = '';
-  QUOTES.forEach((q,i)=>{
-    carousel.appendChild(createCard(q,i));
-    const d = document.createElement('button'); d.className='dot'; d.addEventListener('click', ()=> { goTo(i); stopAuto(); }); dots.appendChild(d);
+  carousel.innerHTML=''; dots.innerHTML='';
+  QUOTES.forEach((q,i)=> {
+    carousel.appendChild(makeCard(q,i));
+    const d=document.createElement('button'); d.className='dot'; d.addEventListener('click', ()=> goTo(i)); dots.appendChild(d);
   });
   updateActive();
 }
-function updateActive(){
-  const cards = [...carousel.children];
-  const center = carousel.getBoundingClientRect().left + carousel.clientWidth/2;
-  cards.forEach((c,i)=>{
-    const rect = c.getBoundingClientRect();
-    const dist = Math.abs(rect.left + rect.width/2 - center);
-    c.style.transform = dist < 180 ? 'scale(1.02)' : 'scale(1)';
-    c.style.boxShadow = dist < 180 ? '0 28px 70px rgba(2,6,12,0.55)' : '0 18px 48px rgba(2,6,12,0.45)';
+function goTo(i){ idx=(i+QUOTES.length)%QUOTES.length; carousel.children[idx].scrollIntoView({behavior:'smooth',inline:'center'}); updateActive(); }
+function updateActive(){ Array.from(dots.children).forEach((d,i)=> d.classList.toggle('active', i===idx)); }
+render();
+setTimeout(()=> goTo(0),120);
+carousel.addEventListener('scroll', ()=>{
+  let best=0,bestDist=Infinity; const center = carousel.getBoundingClientRect().left + carousel.clientWidth/2;
+  Array.from(carousel.children).forEach((c,i)=>{
+    const r=c.getBoundingClientRect(); const dist=Math.abs(r.left + r.width/2 - center);
+    if(dist<bestDist){bestDist=dist; best=i;}
   });
-  dots.querySelectorAll('.dot').forEach((d,idx)=> d.classList.toggle('active', idx===currentIndex));
-}
-function goTo(i){ currentIndex = (i+QUOTES.length)%QUOTES.length; carousel.children[currentIndex].scrollIntoView({behavior:'smooth', inline:'center'}); updateActive(); }
-document.getElementById('prevBtn').addEventListener('click', ()=>{ currentIndex=(currentIndex-1+QUOTES.length)%QUOTES.length; goTo(currentIndex); stopAuto(); });
-document.getElementById('nextBtn').addEventListener('click', ()=>{ currentIndex=(currentIndex+1)%QUOTES.length; goTo(currentIndex); stopAuto(); });
-document.getElementById('toggleAuto').addEventListener('click', ()=>{
-  autoPlay=!autoPlay; document.getElementById('toggleAuto').textContent = 'Otomatik: '+(autoPlay?'Açık':'Kapalı');
-  if(autoPlay) startAuto(); else stopAuto();
+  if(best!==idx){ idx=best; updateActive(); }
 });
-function startAuto(){ stopAuto(); autoTimer = setInterval(()=>{ currentIndex=(currentIndex+1)%QUOTES.length; goTo(currentIndex); }, 5000); }
-function stopAuto(){ if(autoTimer) clearInterval(autoTimer); autoTimer=null; }
-
-carousel.addEventListener('scroll', ()=> {
-  const cards = [...carousel.children]; let best = 0, bestDist = Infinity;
-  const center = carousel.getBoundingClientRect().left + carousel.clientWidth/2;
-  cards.forEach((c,i)=>{ const rect=c.getBoundingClientRect(); const dist = Math.abs(rect.left + rect.width/2 - center); if(dist<bestDist){bestDist=dist; best=i;} });
-  if(best !== currentIndex){ currentIndex = best; updateActive(); }
-}, {passive:true});
-
-document.addEventListener('keydown',(e)=>{ if(e.key==='ArrowRight'){ document.getElementById('nextBtn').click(); stopAuto(); } if(e.key==='ArrowLeft'){ document.getElementById('prevBtn').click(); stopAuto(); } });
-
-render(); setTimeout(()=>goTo(0),120);
-new ResizeObserver(()=> updateActive()).observe(carousel);
 </script>
-
 </body>
 </html>
