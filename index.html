@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>İlker ❤ Bahargül — Ana Sayfa</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+<!-- Google Analytics -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBDYWZSF9B"></script>
 <script>
@@ -16,154 +15,102 @@
   gtag('config', 'G-YBDYWZSF9B');
 </script>
 
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --accent:#c83a66;
-  --muted:#6b7280;
-  --bg:#fff;
-  --card: rgba(255,255,255,0.96);
-  --shadow: 0 22px 70px rgba(10,10,20,0.08);
-  --menu-accent:#e35c7a;
+  --accent:#e75480;
+  --bg:#fffafb;
+  --muted:#555;
+  --card:#ffffffcc;
+  --shadow:0 10px 40px rgba(10,10,20,0.12);
+  --maxw:1100px;
 }
-
-/* Basic reset */
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;background:#fff}
-a{color:inherit;text-decoration:none}
+html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;background:#f8f6f8;color:#222;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;background:url('Bahoş.jpg') center/cover fixed;filter:contrast(0.98) brightness(0.98);z-index:-2}
+body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.96));z-index:-1}
 
-/* Body background image (Bahoş.jpg) */
-body::before{
-  content:"";
-  position:fixed;inset:0;z-index:-3;background:url('Bahoş.jpg') center/cover no-repeat;
-  filter: saturate(.96) brightness(.92);
+.header-hamburger{position:fixed;left:14px;top:14px;z-index:1200}
+.hambutton{background:rgba(255,255,255,0.85);border:0;padding:10px;border-radius:12px;box-shadow:var(--shadow);cursor:pointer;font-weight:700}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:0;overflow:hidden;background:rgba(255,255,255,0.94);backdrop-filter:blur(8px);transition:width .36s;z-index:1190;box-shadow:2px 0 40px rgba(0,0,0,0.06)}
+.sidebar.open{width:260px}
+.sidebar nav{margin-top:72px;display:flex;flex-direction:column;gap:6px;padding:12px}
+.sidebar a{padding:12px;border-radius:10px;font-weight:700;color:#222;display:flex;gap:10px;align-items:center}
+.sidebar a:hover{background:linear-gradient(90deg,var(--accent),#b33e62);color:#fff}
+
+.container{max-width:var(--maxw);margin:80px auto 80px;padding:18px}
+.hero{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));padding:28px;border-radius:18px;box-shadow:var(--shadow);display:flex;gap:18px;align-items:center;flex-direction:column;text-align:center}
+.hero h1{font-family:'Dancing Script',cursive;font-size:clamp(30px,6vw,56px);margin:6px 0;color:#2b0b1a}
+.hero p{max-width:780px;margin:6px auto;color:rgba(10,10,10,0.7);line-height:1.6;font-size:15px}
+
+.card-note{margin-top:18px;background:rgba(255,255,255,0.9);padding:18px;border-radius:14px;box-shadow:var(--shadow);max-width:760px}
+.card-note p{margin:8px 0;color:#222}
+
+.footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
+
+/* responsive */
+@media(max-width:700px){
+  .container{margin:88px 14px}
+  .sidebar{left:8px;top:80px}
 }
-
-/* overlay for a gentle soft look */
-body::after{
-  content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.95));
-}
-
-/* site container */
-.container{max-width:1120px;margin:28px auto;padding:18px}
-
-/* hero card like a book first page */
-.hero-card{
-  display:flex;gap:18px;background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
-  border-radius:16px;padding:26px;box-shadow:var(--shadow);align-items:flex-start;
-}
-.hero-left{flex:1;min-width:0}
-.hero-title{font-family:'Playfair Display',serif;font-size:34px;margin:0;color:#2b1620}
-.hero-poem{margin-top:12px;color:#333;line-height:1.6}
-.hero-cover{width:360px;border-radius:14px;overflow:hidden;flex-shrink:0;box-shadow:0 12px 36px rgba(0,0,0,0.08)}
-.hero-cover img{width:100%;height:100%;object-fit:cover;display:block}
-
-/* note card */
-.note-card{margin-top:18px;background:#fff;padding:18px;border-radius:12px;box-shadow:var(--shadow)}
-.note-card h3{color:var(--menu-accent);margin:0 0 8px}
-
-/* small layout niceties */
-.row{display:flex;gap:12px;align-items:center}
-@media(max-width:860px){ .hero-card{flex-direction:column} .hero-cover{width:100%;height:220px} }
-
-/* footer */
-footer{margin-top:18px;text-align:center;color:var(--muted);padding:24px 0}
 </style>
 </head>
 <body>
 
-<!-- ============================
-     SITE-WIDE HAMBURGER SIDEBAR
-     (paste-once block, same block appears in all pages)
-   ============================ -->
-<style>
-  :root{--menu-width:260px;--menu-accent:#e35c7a}
-  .site-menu-openbtn{position:fixed;left:14px;top:14px;z-index:2200;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));backdrop-filter: blur(6px);box-shadow: 0 12px 36px rgba(0,0,0,0.25);border: none;cursor: pointer;color:#111;font-weight:700}
-  .site-menu-openbtn .bars{ width:22px; height:14px; position:relative; display:inline-block }
-  .site-menu-openbtn .bars span{ position:absolute; left:0; right:0; height:2px; display:block; background:#222; border-radius:2px }
-  .site-menu-openbtn .bars span:nth-child(1){ top:0 }
-  .site-menu-openbtn .bars span:nth-child(2){ top:6px }
-  .site-menu-openbtn .bars span:nth-child(3){ top:12px }
-  .site-sidebar{position:fixed;left:12px;top:64px;z-index:2100;width:0;height:calc(100% - 96px);overflow:hidden;border-radius:14px;background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));backdrop-filter: blur(8px);box-shadow: 0 18px 50px rgba(2,6,12,0.45);transition: width 320ms;}
-  .site-sidebar.open{ width:var(--menu-width) }
-  .site-sidebar nav{ display:flex; flex-direction:column; padding:14px; gap:8px; }
-  .site-sidebar a{ padding:12px; border-radius:10px; color:#111; font-weight:700; display:flex; gap:10px; align-items:center; text-decoration:none }
-  .site-sidebar a:hover{ background: linear-gradient(90deg, var(--menu-accent), #b33e62); color:#fff }
-  .site-menu-overlay{ position:fixed; inset:0; z-index:2050; display:none; background: rgba(0,0,0,0.4); }
-  .site-menu-overlay.show{ display:block; opacity:1 }
-  @media(max-width:720px){ .site-sidebar.open{ width: min(84vw,320px); left:8px; top:72px } }
-</style>
+<div class="header-hamburger">
+  <button class="hambutton" id="menuBtn">☰ Menü</button>
+</div>
 
-<button class="site-menu-openbtn" id="siteMenuToggle" aria-expanded="false" aria-controls="siteSidebar" aria-label="Menüyü aç">
-  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-  <span style="color:#111">Menü</span>
-</button>
-
-<aside id="siteSidebar" class="site-sidebar" aria-hidden="true" role="navigation">
+<aside id="sidebar" class="sidebar" aria-hidden="true">
   <nav>
-    <a href="dogum.html">🎂Doğum günü</a>
     <a href="index.html">🏠 Ana Sayfa</a>
     <a href="anilar.html">📸 Anılar</a>
     <a href="zaman.html">⏳ Zaman</a>
     <a href="sarkilar.html">🎶 Şarkılar</a>
     <a href="gokyuzu.html">🌌 Gökyüzü</a>
-    <div style="margin-top:auto;padding:10px;color:#333;font-size:13px">Bu sayfa İlker tarafından hazırlanmıştır.</div>
+    <a href="masal.html">📚 Masal</a>
+    <a href="dogum.html">🎂 Doğum Günü</a>
   </nav>
 </aside>
 
-<div id="siteMenuOverlay" class="site-menu-overlay" tabindex="-1" aria-hidden="true"></div>
+<main class="container" role="main">
+  <section class="hero" aria-labelledby="heroTitle">
+    <h1 id="heroTitle">İlker ❤ Bahargül</h1>
+    <p>
+      Birlikte geçen günlerin hatırası burada yaşıyor...<br>
+      Eğer bi' gün tamamen benden soğursan,<br>
+      Barışma ihtimalimiz sıfır olsa bile,<br>
+      Şunu sakın unutma, ben seni hep içimde taşıyacağım.<br>
+      Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.<br>
+      Belki bir şarkı da. Belki seninle yürüdüğümüz sokaklarda,<br>
+      Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.<br>
+      Benim için herşeye rağmen en güzel ihtimal sen oldun.<br>
+      Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.<br>
+      Muazzam bir ihtimaldin, Gökyüzüne dokunmak gibi.
+    </p>
+
+    <div class="card-note" aria-live="polite">
+      <strong>✨ İlker’den Not</strong>
+      <p>Sevgilim ufaklık,</p>
+      <p>Sen benim gözümün görmediğini görensin.</p>
+      <p>Aklımın yetmediğini bilensin.</p>
+      <p>Bir yerlerde çok doğru bir şey yapıyor olmalıydım ki seni hakedeyim.</p>
+      <p>Aradığın huzuru bulman dileği ile.</p>
+      <p style="text-align:right;font-weight:700">— İlker</p>
+    </div>
+  </section>
+
+  <div class="footer">Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</div>
+</main>
 
 <script>
-(function(){
-  const toggle = document.getElementById('siteMenuToggle');
-  const sidebar = document.getElementById('siteSidebar');
-  const overlay = document.getElementById('siteMenuOverlay');
-  function openMenu(){ sidebar.classList.add('open'); overlay.classList.add('show'); sidebar.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); overlay.addEventListener('click', closeOnce); document.addEventListener('keydown', onKey); const first = sidebar.querySelector('a'); if(first) first.focus(); }
-  function closeMenu(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); sidebar.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); overlay.removeEventListener('click', closeOnce); document.removeEventListener('keydown', onKey); toggle.focus(); }
-  function closeOnce(){ closeMenu(); overlay.removeEventListener('click', closeOnce); }
-  function onKey(e){ if(e.key==='Escape') closeMenu(); }
-  toggle.addEventListener('click', ()=> sidebar.classList.contains('open') ? closeMenu() : openMenu());
-  sidebar.addEventListener('click', (e)=> { if(e.target.tagName==='A') setTimeout(()=> closeMenu(), 120); });
-})();
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+menuBtn.addEventListener('click', ()=>{
+  const open = sidebar.classList.toggle('open');
+  sidebar.setAttribute('aria-hidden', String(!open));
+});
 </script>
-<!-- END MENU BLOCK -->
-
-<div class="container">
-  <div class="hero-card" role="banner">
-    <div class="hero-left">
-      <h1 class="hero-title">İlker ❤ Bahargül</h1>
-      <div class="hero-poem">
-        <p>Birlikte geçen günlerin hatırası burada yaşıyor...</p>
-        <p>Eğer bi' gün tamamen benden soğursan,</p>
-        <p>Barışma ihtimalimiz sıfır olsa bile,</p>
-        <p>Şunu sakın unutma, ben seni hep içimde taşıyacağım.</p>
-        <p>Her ne yaşarsam yaşayayım, kalbimin en derin yerlerinde hep var olacaksın.</p>
-        <p>Belki bir şarkı da. Belki seninle yürüdüğümüz sokaklarda,</p>
-        <p>Ve belki de gecenin bi' vaktinde hep aklımda kalacaksın.</p>
-        <p>Benim için herşeye rağmen en güzel ihtimal sen oldun.</p>
-        <p>Gerçekleşmedi ama hayalimdeki yerini hiç kaybetmedin.</p>
-        <p>Muazzam bir ihtimaldin, Gökyüzüne dokunmak gibi.</p>
-      </div>
-    </div>
-
-    <div class="hero-cover" aria-hidden="true">
-      <img src="Bahar.jpg" alt="Kapak görseli">
-    </div>
-  </div>
-
-  <div class="note-card" role="region" aria-label="İlker'den Not">
-    <h3>✨ İlker’den Not</h3>
-    <p>Sevgilim ufaklık,</p>
-    <p>Sen benim gözümün görmediğini görensin.</p>
-    <p>Aklımın yetmediğini bilensin.</p>
-    <p>Bir yerlerde çok doğru bir şey yapıyor olmalıydım ki seni hakedeyim.</p>
-    <p>Aradığın huzuru bulman dileği ile.</p>
-    <p style="text-align:right"><strong>— İlker</strong></p>
-  </div>
-
-  <footer>
-    <p>Bu sayfa İlker tarafından bir hatıra olarak hazırlandı.</p>
-  </footer>
-</div>
 
 </body>
 </html>
